@@ -10,6 +10,7 @@ import { dbConfig, TDbConfig } from './config/db.config';
 import { jwtConfig } from './config/jwt.config';
 
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
       useFactory: (config: TDbConfig) => config,
     }),
 
+    UsersModule,
     AuthModule,
   ],
   controllers: [AppController],
