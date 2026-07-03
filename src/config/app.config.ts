@@ -1,6 +1,8 @@
-import { ConfigService } from '@nestjs/config';
+import { registerAs } from '@nestjs/config';
 
-export const appConfig = (configService: ConfigService) => ({
-  port: configService.get<number>('PORT', 3000),
-  hashSalt: configService.get<string>('HASH_SALT', 'default_salt'),
-});
+export const appConfig = registerAs('APP_CONFIG', () => ({
+  port: Number(process.env.PORT) || 3000,
+  hashSalt: process.env.HASH_SALT || 'default_salt',
+}));
+
+export type TAppConfig = ReturnType<typeof appConfig>;

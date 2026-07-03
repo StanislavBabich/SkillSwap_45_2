@@ -3,27 +3,30 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { appConfig } from './config/app.config';
+import { dbConfig } from './config/db.config';
+import { TDbConfig } from './config/db.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
+      load: [appConfig, dbConfig],
     }),
 
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get('DB_HOST'),
-        port: config.get('DB_PORT'),
-        username: config.get('DB_USER'),
-        password: config.get('DB_PASSWORD'),
-        database: config.get('DB_NAME'),
-        autoLoadEntities: true,
-        synchronize: true,
-      }),
+      useFactory: (config: ConfigService) => {
+        const db = config.get<TDbConfig>('DB_CONFIG');
+
+        if (!db) {
+          throw new Error('DB_CONFIG is not defined');
+        }
+
+        return db;
+      },
     }),
   ],
   controllers: [AppController],
