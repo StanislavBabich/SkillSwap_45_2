@@ -6,13 +6,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { appConfig } from './config/app.config';
 import { dbConfig } from './config/db.config';
 import { TDbConfig } from './config/db.config';
+import { jwtConfig } from './config/jwt.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
-      load: [appConfig, dbConfig],
+      load: [appConfig, dbConfig, jwtConfig],
     }),
 
     TypeOrmModule.forRootAsync({
