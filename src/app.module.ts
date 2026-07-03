@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 
 import { appConfig } from './config/app.config';
 import { dbConfig, TDbConfig } from './config/db.config';
@@ -21,16 +21,8 @@ import { AuthModule } from './auth/auth.module';
 
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        const db = config.get<TDbConfig>('DB_CONFIG');
-
-        if (!db) {
-          throw new Error('DB_CONFIG is not defined');
-        }
-
-        return db;
-      },
+      inject: [dbConfig.KEY],
+      useFactory: (config: TDbConfig) => config,
     }),
 
     AuthModule,
