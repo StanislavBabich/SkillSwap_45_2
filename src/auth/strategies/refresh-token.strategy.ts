@@ -1,21 +1,31 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { jwtConfig, TJwtConfig } from '../../config/jwt.config';
+import { TJwtPayload } from '../auth.types';
 
 @Injectable()
 export class JwtRefreshStrategy extends PassportStrategy(
   Strategy,
   'jwt-refresh',
 ) {
-  constructor() {
+  constructor(
+    @Inject(jwtConfig.KEY)
+    private readonly config: TJwtConfig,
+  ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_REFRESH_SECRET ?? 'default-refresh-secret',
+      secretOrKey: config.refreshSecret ?? 'default-refresh-secret',
     });
   }
 
-  validate(payload: Record<string, unknown>) {
-    return { userId: payload['sub'], email: payload['email'] };
+  validate(payload: TJwtPayload) {
+    return {
+      userId: payload.sub,
+      email: payload.email,
+      role: payload.role,
+      refreshToken: payload.refreshToken,
+    };
   }
 }
