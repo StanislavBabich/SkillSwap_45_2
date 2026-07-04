@@ -14,9 +14,6 @@ import { UserEntity } from '../users/entities/user.entity';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_CONFIG.accessSecret'),
-        signOptions: {
-          expiresIn: configService.get<string>('JWT_CONFIG.accessExpiresIn') as `${number}${'s' | 'm' | 'h' | 'd'}`,
-        },
       }),
       inject: [ConfigService],
     }),

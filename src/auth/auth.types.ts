@@ -5,3 +5,5 @@ export interface JwtPayload {
   email: string;
   role: UserRole;
 }
+
+export type JwtExpiresIn = `${number}${'s' | 'm' | 'h' | 'd' | 'w' | 'y'}`;

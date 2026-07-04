@@ -1,4 +1,8 @@
-import { Injectable, ConflictException, UnauthorizedException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+// import {
+//   ConflictException,
+//   InternalServerErrorException,
+// } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
@@ -6,11 +10,14 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 
 import { UserEntity } from '../users/entities/user.entity';
-import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthResponseDto } from './dto/auth-response.dto';
-import { JwtPayload } from './auth.types';
-import { UserGender } from '../users/entities/user.enums';
+import { JwtPayload, JwtExpiresIn } from './auth.types';
+// import { UserGender } from '../users/entities/user.enums';
+// import { RegisterDto } from './dto/register.dto';
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-assignment
+const ms = require('ms');
 
 @Injectable()
 export class AuthService {
@@ -40,7 +47,7 @@ export class AuthService {
   //     name,
   //     birthdate: '2000-01-01',
   //     city: 'Unknown',
-  //     gender: UserGender.OTHER, 
+  //     gender: UserGender.OTHER,
   //   });
 
   //   try {
@@ -81,10 +88,11 @@ export class AuthService {
     user.refreshToken = tokens.refreshToken;
     await this.userRepository.save(user);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _, ...userWithoutPassword } = user;
     return {
       ...tokens,
-      user: userWithoutPassword as any,
+      user: userWithoutPassword,
     };
   }
 
@@ -98,19 +106,34 @@ export class AuthService {
       role: user.role,
     };
 
-    const accessSecret = this.configService.get<string>('JWT_CONFIG.accessSecret') || 'default-access-secret';
-    const refreshSecret = this.configService.get<string>('JWT_CONFIG.refreshSecret') || 'default-refresh-secret';
-    const accessExpiresIn = this.configService.get<string>('JWT_CONFIG.accessExpiresIn') || '15m';
-    const refreshExpiresIn = this.configService.get<string>('JWT_CONFIG.refreshExpiresIn') || '7d';
+    const accessSecret =
+      this.configService.get<string>('JWT_CONFIG.accessSecret') ||
+      'default-access-secret';
+    const refreshSecret =
+      this.configService.get<string>('JWT_CONFIG.refreshSecret') ||
+      'default-refresh-secret';
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const accessExpiresIn = ms(
+      (this.configService.get<string>(
+        'JWT_CONFIG.accessExpiresIn',
+      ) as JwtExpiresIn) || '15m',
+    ) as number;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    const refreshExpiresIn = ms(
+      (this.configService.get<string>(
+        'JWT_CONFIG.refreshExpiresIn',
+      ) as JwtExpiresIn) || '7d',
+    ) as number;
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(payload, {
         secret: accessSecret,
-        expiresIn: accessExpiresIn as any,
+        expiresIn: accessExpiresIn,
       }),
+
       this.jwtService.signAsync(payload, {
         secret: refreshSecret,
-        expiresIn: refreshExpiresIn as any,
+        expiresIn: refreshExpiresIn,
       }),
     ]);
 
