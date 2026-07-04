@@ -13,9 +13,9 @@ import { jwtConfig, TJwtConfig } from '../config/jwt.config';
       imports: [ConfigModule.forFeature(jwtConfig)],
       inject: [jwtConfig.KEY],
       useFactory: (config: TJwtConfig) => ({
-        secret: config.accessSecret,
+        secret: config.accessSecret ?? 'default-secret',
         signOptions: {
-          expiresIn: config.accessExpiresIn,
+          expiresIn: (config.accessExpiresIn ?? '15m') as '15m',
         },
       }),
     }),
