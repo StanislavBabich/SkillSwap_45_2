@@ -9,7 +9,7 @@ import {
 import { UserGender, UserRole } from './user.enums';
 
 @Entity('users')
-export class UserEntity {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
@@ -25,52 +25,54 @@ export class UserEntity {
   @Column({ type: 'text', nullable: true })
   about?: string | null;
 
-  @Column({ type: 'date' })
-  birthdate!: string;
+  @Column({ type: 'date', nullable: true })
+  birthdate?: string | null;
 
-  @Column({ type: 'varchar', length: 100 })
-  city!: string;
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  city?: string | null;
 
   @Column({
     type: 'enum',
     enum: UserGender,
     enumName: 'user_gender_enum',
+    nullable: true,
   })
-  gender!: UserGender;
+  gender?: UserGender | null;
 
   @Column({ type: 'varchar', length: 500, nullable: true })
   avatar?: string | null;
 
-  @OneToMany('SkillEntity', 'owner')
-  skills?: unknown[];
+  // ВРЕМЕННО ЗАКОММЕНТИРОВАНЫ СВЯЗИ
+  // @OneToMany('SkillEntity', 'owner')
+  // skills?: unknown[];
 
-  @ManyToMany('CategoryEntity')
-  @JoinTable({
-    name: 'users_want_to_learn',
-    joinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'category_id',
-      referencedColumnName: 'id',
-    },
-  })
-  wantToLearn?: unknown[];
+  // @ManyToMany('CategoryEntity')
+  // @JoinTable({
+  //   name: 'users_want_to_learn',
+  //   joinColumn: {
+  //     name: 'user_id',
+  //     referencedColumnName: 'id',
+  //   },
+  //   inverseJoinColumn: {
+  //     name: 'category_id',
+  //     referencedColumnName: 'id',
+  //   },
+  // })
+  // wantToLearn?: unknown[];
 
-  @ManyToMany('SkillEntity')
-  @JoinTable({
-    name: 'users_favorite_skills',
-    joinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'skill_id',
-      referencedColumnName: 'id',
-    },
-  })
-  favoriteSkills?: unknown[];
+  // @ManyToMany('SkillEntity')
+  // @JoinTable({
+  //   name: 'users_favorite_skills',
+  //   joinColumn: {
+  //     name: 'user_id',
+  //     referencedColumnName: 'id',
+  //   },
+  //   inverseJoinColumn: {
+  //     name: 'skill_id',
+  //     referencedColumnName: 'id',
+  //   },
+  // })
+  // favoriteSkills?: unknown[];
 
   @Column({
     type: 'enum',

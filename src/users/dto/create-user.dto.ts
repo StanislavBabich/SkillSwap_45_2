@@ -11,7 +11,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { UserGender } from '../entities/user.enums';
+import { UserGender, UserRole } from '../entities/user.enums';
 
 export class CreateUserDto {
   @IsString()
@@ -32,15 +32,18 @@ export class CreateUserDto {
   @Length(0, 1000)
   about?: string;
 
+  @IsOptional()  // ← делаем опциональным
   @IsDateString()
-  birthdate!: string;
+  birthdate?: string;
 
+  @IsOptional()  // ← делаем опциональным
   @IsString()
   @Length(2, 100)
-  city!: string;
+  city?: string;
 
+  @IsOptional()  // ← делаем опциональным
   @IsEnum(UserGender)
-  gender!: UserGender;
+  gender?: UserGender;
 
   @IsOptional()
   @IsUrl()
@@ -56,4 +59,8 @@ export class CreateUserDto {
   @IsArray()
   @IsUUID('4', { each: true })
   favoriteSkills?: string[];
+
+  @IsOptional()
+  @IsEnum(UserRole)
+  role?: UserRole;
 }
