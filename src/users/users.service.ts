@@ -63,7 +63,10 @@ export class UsersService {
   /**
    * Обновление refresh токена пользователя
    */
-  async updateRefreshToken(userId: string, refreshToken: string): Promise<void> {
+  async updateRefreshToken(
+    userId: string,
+    refreshToken: string,
+  ): Promise<void> {
     await this.userRepository.update(userId, { refreshToken });
   }
 

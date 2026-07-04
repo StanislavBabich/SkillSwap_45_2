@@ -1,6 +1,6 @@
 import { Inject, Injectable, ConflictException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import type { StringValue } from 'ms';  // ← только тип!
+import type { StringValue } from 'ms'; // ← только тип!
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -8,7 +8,6 @@ import { User } from '../users/entities/user.entity';
 import { UsersService } from '../users/users.service';
 import { UserRole } from '../users/entities/user.enums';
 import { RegisterDto } from './dto/register.dto';
-import { AuthResponseDto } from './dto/auth-response.dto';
 import { jwtConfig, type TJwtConfig } from '../config/jwt.config';
 import { appConfig, type TAppConfig } from '../config/app.config';
 

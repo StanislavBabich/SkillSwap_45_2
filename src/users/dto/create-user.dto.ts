@@ -32,16 +32,16 @@ export class CreateUserDto {
   @Length(0, 1000)
   about?: string;
 
-  @IsOptional()  // ← делаем опциональным
+  @IsOptional() // ← делаем опциональным
   @IsDateString()
   birthdate?: string;
 
-  @IsOptional()  // ← делаем опциональным
+  @IsOptional() // ← делаем опциональным
   @IsString()
   @Length(2, 100)
   city?: string;
 
-  @IsOptional()  // ← делаем опциональным
+  @IsOptional() // ← делаем опциональным
   @IsEnum(UserGender)
   gender?: UserGender;
 

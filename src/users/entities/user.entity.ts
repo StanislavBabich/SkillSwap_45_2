@@ -1,9 +1,9 @@
 import {
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
-  OneToMany,
+  // JoinTable,
+  // ManyToMany,
+  // OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { UserGender, UserRole } from './user.enums';

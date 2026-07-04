@@ -13,4 +13,4 @@ async function bootstrap() {
   console.log(`App running on http://localhost:${port}`);
 }
 
-bootstrap();
+void bootstrap();
