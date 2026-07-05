@@ -7,3 +7,10 @@ export interface JwtPayload {
 }
 
 export type JwtExpiresIn = `${number}${'s' | 'm' | 'h' | 'd' | 'w' | 'y'}`;
+
+export type TJwtPayload = {
+  sub: string;
+  email: string;
+  role: string;
+  refreshToken?: string;
+};
