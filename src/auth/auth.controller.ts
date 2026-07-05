@@ -1,5 +1,6 @@
 import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthResponseDto } from './dto/auth-response.dto';
 
@@ -7,11 +8,11 @@ import { AuthResponseDto } from './dto/auth-response.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // @Post('api/register')
-  // @HttpCode(HttpStatus.CREATED)
-  // async register(@Body() registerDto: RegisterDto): Promise<AuthResponseDto> {
-  //   return this.authService.register(registerDto);
-  // }
+  @Post('register')
+  @HttpCode(HttpStatus.CREATED)
+  async register(@Body() registerDto: RegisterDto) {
+    return this.authService.registerUser(registerDto);
+  }
 
   @Post('api/login')
   @HttpCode(HttpStatus.OK)

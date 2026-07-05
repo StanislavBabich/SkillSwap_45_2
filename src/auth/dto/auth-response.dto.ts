@@ -1,7 +1,7 @@
-import { UserEntity } from '../../users/entities/user.entity';
+import { User } from '../../users/entities/user.entity';
 
 export class AuthResponseDto {
-  accessToken: string;
-  refreshToken: string;
-  user: Omit<UserEntity, 'password' | 'refreshToken'>;
+  accessToken!: string;
+  refreshToken!: string;
+  user!: Omit<User, 'password' | 'refreshToken'>;
 }

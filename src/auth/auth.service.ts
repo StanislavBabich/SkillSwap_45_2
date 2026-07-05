@@ -1,72 +1,72 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-// import {
-//   ConflictException,
-//   InternalServerErrorException,
-// } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  ConflictException,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import type { StringValue } from 'ms';
+import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import * as bcrypt from 'bcrypt';
-import { JwtService } from '@nestjs/jwt';
-import { ConfigService } from '@nestjs/config';
-
-import { UserEntity } from '../users/entities/user.entity';
+import { User } from '../users/entities/user.entity';
+import { UsersService } from '../users/users.service';
+import { UserRole } from '../users/entities/user.enums';
+import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthResponseDto } from './dto/auth-response.dto';
-import { JwtPayload, JwtExpiresIn } from './auth.types';
-// import { UserGender } from '../users/entities/user.enums';
-// import { RegisterDto } from './dto/register.dto';
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-unsafe-assignment
-const ms = require('ms');
+import { jwtConfig, type TJwtConfig } from '../config/jwt.config';
+import { appConfig, type TAppConfig } from '../config/app.config';
+import type { AccessTokenPayload, RefreshTokenPayload } from './auth.types';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(UserEntity)
-    private userRepository: Repository<UserEntity>,
-    private jwtService: JwtService,
-    private configService: ConfigService,
+    private readonly usersService: UsersService,
+    private readonly jwtService: JwtService,
+    @Inject(jwtConfig.KEY)
+    private readonly jwtConf: TJwtConfig,
+    @Inject(appConfig.KEY)
+    private readonly appConf: TAppConfig,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
-  // async register(registerDto: RegisterDto): Promise<AuthResponseDto> {
-  //   const { email, password, name } = registerDto;
-  //   const existingUser = await this.userRepository.findOne({
-  //     where: { email },
-  //   });
+  async registerUser(dto: RegisterDto): Promise<{
+    user: User;
+    accessToken: string;
+    refreshToken: string;
+  }> {
+    // 1. Проверяем, существует ли пользователь
+    const existingUser = await this.usersService.findByEmail(dto.email);
+    if (existingUser) {
+      throw new ConflictException('Пользователь с таким email уже существует');
+    }
 
-  //   if (existingUser) {
-  //     throw new ConflictException('Пользователь с таким email уже существует');
-  //   }
+    // 2. Хешируем пароль
+    const saltRounds = this.appConf.hashSalt;
+    const hashedPassword = await bcrypt.hash(dto.password, saltRounds);
 
-  //   const saltRounds = 10;
-  //   const hashedPassword = await bcrypt.hash(password, saltRounds);
+    // 3. Создаём пользователя
+    const user = await this.usersService.create({
+      email: dto.email,
+      password: hashedPassword,
+      name: dto.name,
+      role: UserRole.USER,
+    });
 
-  //   const user = this.userRepository.create({
-  //     email,
-  //     password: hashedPassword,
-  //     name,
-  //     birthdate: '2000-01-01',
-  //     city: 'Unknown',
-  //     gender: UserGender.OTHER,
-  //   });
+    // 4. Генерируем токены
+    const { accessToken, refreshToken } = await this.generateTokens(user);
 
-  //   try {
-  //     await this.userRepository.save(user);
-  //   } catch (error) {
-  //     throw new InternalServerErrorException('Ошибка при сохранении пользователя');
-  //   }
+    // 5. Хешируем refreshToken и сохраняем в БД
+    const hashedRefreshToken = await bcrypt.hash(refreshToken, saltRounds);
+    await this.usersService.updateRefreshToken(user.id, hashedRefreshToken);
 
-  //   const tokens = await this.generateTokens(user);
+    return { user, accessToken, refreshToken };
+  }
 
-  //   const { password: _, ...userWithoutPassword } = user;
-  //   return {
-  //     ...tokens,
-  //     user: userWithoutPassword as any,
-  //   };
-  // }
-
-  async login(loginDto: LoginDto): Promise<AuthResponseDto> {
-    const { email, password } = loginDto;
+  async login(dto: LoginDto): Promise<AuthResponseDto> {
+    const { email, password } = dto;
 
     const user = await this.userRepository
       .createQueryBuilder('user')
@@ -83,74 +83,53 @@ export class AuthService {
       throw new UnauthorizedException('Неверный email или пароль');
     }
 
-    const tokens = await this.generateTokens(user);
+    const { accessToken, refreshToken } = await this.generateTokens(user);
 
-    user.refreshToken = tokens.refreshToken;
-    await this.userRepository.save(user);
+    const hashedRefreshToken = await bcrypt.hash(
+      refreshToken,
+      this.appConf.hashSalt,
+    );
+    await this.usersService.updateRefreshToken(user.id, hashedRefreshToken);
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    const {
+      password: _password,
+      refreshToken: _refreshToken,
+      ...userWithoutSensitive
+    } = user;
+    /* eslint-enable @typescript-eslint/no-unused-vars */
 
     return {
-      ...tokens,
-      user,
+      accessToken,
+      refreshToken,
+      user: userWithoutSensitive,
     };
   }
 
-  private async generateTokens(user: UserEntity): Promise<{
+  private async generateTokens(user: User): Promise<{
     accessToken: string;
     refreshToken: string;
   }> {
-    const payload: JwtPayload = {
+    const accessPayload: AccessTokenPayload = {
       sub: user.id,
       email: user.email,
       role: user.role,
     };
-
-    const accessSecret =
-      this.configService.get<string>('JWT_CONFIG.accessSecret') ||
-      'default-access-secret';
-    const refreshSecret =
-      this.configService.get<string>('JWT_CONFIG.refreshSecret') ||
-      'default-refresh-secret';
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    const accessExpiresIn = ms(
-      (this.configService.get<string>(
-        'JWT_CONFIG.accessExpiresIn',
-      ) as JwtExpiresIn) || '15m',
-    ) as number;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    const refreshExpiresIn = ms(
-      (this.configService.get<string>(
-        'JWT_CONFIG.refreshExpiresIn',
-      ) as JwtExpiresIn) || '7d',
-    ) as number;
+    const refreshPayload: RefreshTokenPayload = {
+      sub: user.id,
+    };
 
     const [accessToken, refreshToken] = await Promise.all([
-      this.jwtService.signAsync(payload, {
-        secret: accessSecret,
-        expiresIn: accessExpiresIn,
+      this.jwtService.signAsync(accessPayload, {
+        secret: this.jwtConf.accessSecret,
+        expiresIn: this.jwtConf.accessExpiresIn as StringValue,
       }),
-
-      this.jwtService.signAsync(payload, {
-        secret: refreshSecret,
-        expiresIn: refreshExpiresIn,
+      this.jwtService.signAsync(refreshPayload, {
+        secret: this.jwtConf.refreshSecret,
+        expiresIn: this.jwtConf.refreshExpiresIn as StringValue,
       }),
     ]);
 
     return { accessToken, refreshToken };
-  }
-
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
   }
 }

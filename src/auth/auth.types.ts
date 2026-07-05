@@ -1,12 +1,14 @@
 import { UserRole } from '../users/entities/user.enums';
 
-export interface JwtPayload {
+export type AccessTokenPayload = {
   sub: string;
   email: string;
   role: UserRole;
-}
+};
 
-export type JwtExpiresIn = `${number}${'s' | 'm' | 'h' | 'd' | 'w' | 'y'}`;
+export type RefreshTokenPayload = {
+  sub: string;
+};
 
 export type TJwtPayload = {
   sub: string;
