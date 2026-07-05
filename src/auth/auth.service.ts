@@ -1,4 +1,9 @@
-import { Inject, Injectable, ConflictException } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  ConflictException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import type { StringValue } from 'ms';
 import * as bcrypt from 'bcrypt';
@@ -8,6 +13,8 @@ import { User } from '../users/entities/user.entity';
 import { UsersService } from '../users/users.service';
 import { UserRole } from '../users/entities/user.enums';
 import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
+import { AuthResponseDto } from './dto/auth-response.dto';
 import { jwtConfig, type TJwtConfig } from '../config/jwt.config';
 import { appConfig, type TAppConfig } from '../config/app.config';
 import type { AccessTokenPayload, RefreshTokenPayload } from './auth.types';
@@ -56,6 +63,47 @@ export class AuthService {
     await this.usersService.updateRefreshToken(user.id, hashedRefreshToken);
 
     return { user, accessToken, refreshToken };
+  }
+
+  async login(dto: LoginDto): Promise<AuthResponseDto> {
+    const { email, password } = dto;
+
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.password')
+      .where('user.email = :email', { email })
+      .getOne();
+
+    if (!user) {
+      throw new UnauthorizedException('Неверный email или пароль');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Неверный email или пароль');
+    }
+
+    const { accessToken, refreshToken } = await this.generateTokens(user);
+
+    const hashedRefreshToken = await bcrypt.hash(
+      refreshToken,
+      this.appConf.hashSalt,
+    );
+    await this.usersService.updateRefreshToken(user.id, hashedRefreshToken);
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    const {
+      password: _password,
+      refreshToken: _refreshToken,
+      ...userWithoutSensitive
+    } = user;
+    /* eslint-enable @typescript-eslint/no-unused-vars */
+
+    return {
+      accessToken,
+      refreshToken,
+      user: userWithoutSensitive,
+    };
   }
 
   private async generateTokens(user: User): Promise<{

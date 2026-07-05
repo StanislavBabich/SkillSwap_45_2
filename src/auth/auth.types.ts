@@ -9,3 +9,10 @@ export type AccessTokenPayload = {
 export type RefreshTokenPayload = {
   sub: string;
 };
+
+export type TJwtPayload = {
+  sub: string;
+  email: string;
+  role: string;
+  refreshToken?: string;
+};
