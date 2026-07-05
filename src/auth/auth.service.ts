@@ -88,11 +88,9 @@ export class AuthService {
     user.refreshToken = tokens.refreshToken;
     await this.userRepository.save(user);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _, ...userWithoutPassword } = user;
     return {
       ...tokens,
-      user: userWithoutPassword,
+      user,
     };
   }
 
