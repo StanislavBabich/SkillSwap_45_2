@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 import { User } from '../users/entities/user.entity';
+import { jwtConfig, type TJwtConfig } from '../config/jwt.config';
 
 @Module({
   imports: [
@@ -13,16 +14,13 @@ import { User } from '../users/entities/user.entity';
     UsersModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService): JwtModuleOptions => ({
-        secret:
-          configService.get<string>('JWT_CONFIG.accessSecret') ||
-          'default_secret',
+      useFactory: (config: TJwtConfig): JwtModuleOptions => ({
+        secret: config.accessSecret,
         signOptions: {
-          expiresIn:
-            configService.get<string>('JWT_CONFIG.accessExpiresIn') || '1h',
+          expiresIn: config.accessExpiresIn,
         } as JwtModuleOptions['signOptions'],
       }),
-      inject: [ConfigService],
+      inject: [jwtConfig.KEY],
     }),
   ],
   controllers: [AuthController],

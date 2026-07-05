@@ -1,6 +1,6 @@
 import { Inject, Injectable, ConflictException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import type { StringValue } from 'ms'; // ← только тип!
+import type { StringValue } from 'ms';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -10,16 +10,7 @@ import { UserRole } from '../users/entities/user.enums';
 import { RegisterDto } from './dto/register.dto';
 import { jwtConfig, type TJwtConfig } from '../config/jwt.config';
 import { appConfig, type TAppConfig } from '../config/app.config';
-
-type AccessTokenPayload = {
-  sub: string;
-  email: string;
-  role: UserRole;
-};
-
-type RefreshTokenPayload = {
-  sub: string;
-};
+import type { AccessTokenPayload, RefreshTokenPayload } from './auth.types';
 
 @Injectable()
 export class AuthService {
@@ -27,9 +18,9 @@ export class AuthService {
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
     @Inject(jwtConfig.KEY)
-    private readonly configService: TJwtConfig,
+    private readonly jwtConf: TJwtConfig,
     @Inject(appConfig.KEY)
-    private readonly appConfigService: TAppConfig,
+    private readonly appConf: TAppConfig,
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
@@ -46,7 +37,7 @@ export class AuthService {
     }
 
     // 2. Хешируем пароль
-    const saltRounds = Number(this.appConfigService.hashSalt) || 10;
+    const saltRounds = this.appConf.hashSalt;
     const hashedPassword = await bcrypt.hash(dto.password, saltRounds);
 
     // 3. Создаём пользователя
@@ -60,8 +51,9 @@ export class AuthService {
     // 4. Генерируем токены
     const { accessToken, refreshToken } = await this.generateTokens(user);
 
-    // 5. Сохраняем refreshToken в БД
-    await this.usersService.updateRefreshToken(user.id, refreshToken);
+    // 5. Хешируем refreshToken и сохраняем в БД
+    const hashedRefreshToken = await bcrypt.hash(refreshToken, saltRounds);
+    await this.usersService.updateRefreshToken(user.id, hashedRefreshToken);
 
     return { user, accessToken, refreshToken };
   }
@@ -70,8 +62,6 @@ export class AuthService {
     accessToken: string;
     refreshToken: string;
   }> {
-    const jwt = this.configService;
-
     const accessPayload: AccessTokenPayload = {
       sub: user.id,
       email: user.email,
@@ -83,12 +73,12 @@ export class AuthService {
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(accessPayload, {
-        secret: jwt.accessSecret,
-        expiresIn: jwt.accessExpiresIn as StringValue,
+        secret: this.jwtConf.accessSecret,
+        expiresIn: this.jwtConf.accessExpiresIn as StringValue,
       }),
       this.jwtService.signAsync(refreshPayload, {
-        secret: jwt.refreshSecret,
-        expiresIn: jwt.refreshExpiresIn as StringValue,
+        secret: this.jwtConf.refreshSecret,
+        expiresIn: this.jwtConf.refreshExpiresIn as StringValue,
       }),
     ]);
 
