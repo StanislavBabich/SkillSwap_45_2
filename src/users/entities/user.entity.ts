@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   Column,
   Entity,
@@ -82,6 +83,7 @@ export class User {
   })
   role: UserRole = UserRole.USER;
 
+  @Exclude()
   @Column({
     name: 'refresh_token',
     type: 'text',
