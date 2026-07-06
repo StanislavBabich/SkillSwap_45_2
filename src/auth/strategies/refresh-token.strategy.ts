@@ -1,31 +1,45 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import type { Request } from 'express';
 import { jwtConfig, TJwtConfig } from '../../config/jwt.config';
-import { TJwtPayload } from '../auth.types';
+import type { RefreshTokenPayload } from '../auth.types';
+
+function getRefreshTokenFromRequest(req: Request): string | null {
+  const body = req.body as { refreshToken?: unknown };
+  if (typeof body.refreshToken === 'string') {
+    return body.refreshToken;
+  }
+
+  const cookies = req.cookies as { refreshToken?: unknown } | undefined;
+  if (typeof cookies?.refreshToken === 'string') {
+    return cookies.refreshToken;
+  }
+
+  return null;
+}
 
 @Injectable()
-export class JwtRefreshStrategy extends PassportStrategy(
+export class RefreshTokenStrategy extends PassportStrategy(
   Strategy,
-  'jwt-refresh',
+  'refresh-token',
 ) {
   constructor(
     @Inject(jwtConfig.KEY)
     private readonly config: TJwtConfig,
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (req: Request) => getRefreshTokenFromRequest(req),
+      ]),
       ignoreExpiration: false,
       secretOrKey: config.refreshSecret ?? 'default-refresh-secret',
+      passReqToCallback: true,
     });
   }
 
-  validate(payload: TJwtPayload) {
-    return {
-      userId: payload.sub,
-      email: payload.email,
-      role: payload.role,
-      refreshToken: payload.refreshToken,
-    };
+  validate(req: Request, payload: RefreshTokenPayload) {
+    const refreshToken = getRefreshTokenFromRequest(req) ?? '';
+    return { id: payload.sub, refreshToken };
   }
 }
