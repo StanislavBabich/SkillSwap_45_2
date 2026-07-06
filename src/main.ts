@@ -4,6 +4,7 @@ import { appConfig, TAppConfig } from './config/app.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
 
   const config = app.get<TAppConfig>(appConfig.KEY);
   const port = config.port;

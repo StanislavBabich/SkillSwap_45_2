@@ -15,6 +15,7 @@ import { UserRole } from '../users/entities/user.enums';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthResponseDto } from './dto/auth-response.dto';
+import { LogoutResponseDto } from './dto/logout-response.dto';
 import { jwtConfig, type TJwtConfig } from '../config/jwt.config';
 import { appConfig, type TAppConfig } from '../config/app.config';
 import type { AccessTokenPayload, RefreshTokenPayload } from './auth.types';
@@ -104,6 +105,11 @@ export class AuthService {
       refreshToken,
       user: userWithoutSensitive,
     };
+  }
+
+  async logout(userId: string): Promise<LogoutResponseDto> {
+    await this.usersService.removeRefreshToken(userId);
+    return { message: 'Вы успешно вышли из аккаунта' };
   }
 
   private async generateTokens(user: User): Promise<{
