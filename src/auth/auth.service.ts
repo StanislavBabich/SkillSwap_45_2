@@ -139,7 +139,7 @@ export class AuthService {
 
     return tokens;
   }
-  
+
   async logout(userId: string): Promise<LogoutResponseDto> {
     await this.usersService.removeRefreshToken(userId);
     return { message: 'Вы успешно вышли из аккаунта' };

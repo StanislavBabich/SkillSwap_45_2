@@ -33,7 +33,6 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
-
   @Post('refresh')
   @UseGuards(RefreshTokenGuard)
   @HttpCode(HttpStatus.OK)
@@ -43,7 +42,7 @@ export class AuthController {
   ): Promise<{ accessToken: string; refreshToken: string }> {
     return this.authService.refresh(req.user.id, refreshTokenDto.refreshToken);
   }
- 
+
   @Post('logout')
   @UseGuards(AccessTokenGuard)
   @HttpCode(HttpStatus.OK)

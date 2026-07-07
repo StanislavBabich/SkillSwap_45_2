@@ -30,7 +30,13 @@ import { AccessTokenGuard } from './guards/access-token.guard';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, AccessTokenStrategy, AccessTokenGuard,RefreshTokenStrategy, RefreshTokenGuard],
+  providers: [
+    AuthService,
+    AccessTokenStrategy,
+    AccessTokenGuard,
+    RefreshTokenStrategy,
+    RefreshTokenGuard,
+  ],
   exports: [AuthService],
 })
 export class AuthModule {}
