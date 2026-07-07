@@ -2,6 +2,7 @@ import {
   Injectable,
   NotFoundException,
   UnauthorizedException,
+  Inject,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -10,12 +11,15 @@ import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
+import { appConfig, type TAppConfig } from '../config/app.config';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @Inject(appConfig.KEY)
+    private readonly appConf: TAppConfig,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -30,44 +34,6 @@ export class UsersService {
   async findOne(id: string): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { id },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        about: true,
-        birthdate: true,
-        city: true,
-        gender: true,
-        avatar: true,
-        role: true,
-      },
-    });
-
-    if (!user) {
-      throw new NotFoundException('Пользователь не найден');
-    }
-
-    return user;
-  }
-
-  /**
-   * Поиск пользователя с паролем (для логина и смены пароля)
-   */
-  async findOneWithPassword(id: string): Promise<User> {
-    const user = await this.userRepository.findOne({
-      where: { id },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        password: true,
-        about: true,
-        birthdate: true,
-        city: true,
-        gender: true,
-        avatar: true,
-        role: true,
-      },
     });
 
     if (!user) {
@@ -83,22 +49,26 @@ export class UsersService {
     });
   }
 
-  /**
-   * Обновление профиля (name, about, birthdate, city, gender, avatar)
-   */
   async updateProfile(id: string, dto: UpdateProfileDto): Promise<User> {
     await this.userRepository.update(id, dto);
     return this.findOne(id);
   }
 
-  /**
-   * Смена пароля с проверкой старого
-   */
   async changePassword(
     id: string,
     dto: ChangePasswordDto,
   ): Promise<{ message: string }> {
-    const user = await this.findOneWithPassword(id);
+    const user = await this.userRepository.findOne({
+      where: { id },
+      select: {
+        id: true,
+        password: true,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException('Пользователь не найден');
+    }
 
     const isOldPasswordValid = await bcrypt.compare(
       dto.oldPassword,
@@ -108,7 +78,10 @@ export class UsersService {
       throw new UnauthorizedException('Неверный текущий пароль');
     }
 
-    const hashedPassword = await bcrypt.hash(dto.newPassword, 10);
+    const hashedPassword = await bcrypt.hash(
+      dto.newPassword,
+      this.appConf.hashSalt,
+    );
     await this.userRepository.update(id, { password: hashedPassword });
 
     return { message: 'Пароль успешно изменён' };
