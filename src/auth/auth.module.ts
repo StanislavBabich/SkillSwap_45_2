@@ -10,6 +10,8 @@ import { User } from '../users/entities/user.entity';
 import { jwtConfig, type TJwtConfig } from '../config/jwt.config';
 import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
 import { RefreshTokenGuard } from './guards/refresh-token.guard';
+import { AccessTokenStrategy } from './strategies/access-token.strategy';
+import { AccessTokenGuard } from './guards/access-token.guard';
 
 @Module({
   imports: [
@@ -28,7 +30,7 @@ import { RefreshTokenGuard } from './guards/refresh-token.guard';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, RefreshTokenStrategy, RefreshTokenGuard],
+  providers: [AuthService, AccessTokenStrategy, AccessTokenGuard,RefreshTokenStrategy, RefreshTokenGuard],
   exports: [AuthService],
 })
 export class AuthModule {}

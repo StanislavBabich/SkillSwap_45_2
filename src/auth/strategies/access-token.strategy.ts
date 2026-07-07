@@ -5,7 +5,10 @@ import { jwtConfig, TJwtConfig } from '../../config/jwt.config';
 import { TJwtPayload } from '../auth.types';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+export class AccessTokenStrategy extends PassportStrategy(
+  Strategy,
+  'access-token',
+) {
   constructor(
     @Inject(jwtConfig.KEY)
     private readonly config: TJwtConfig,
@@ -18,6 +21,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   }
 
   validate(payload: TJwtPayload) {
-    return { userId: payload.sub, email: payload.email, role: payload.role };
+    return { id: payload.sub, email: payload.email, role: payload.role };
   }
 }
