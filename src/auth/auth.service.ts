@@ -107,6 +107,39 @@ export class AuthService {
     };
   }
 
+  async refresh(
+    userId: string,
+    refreshToken: string,
+  ): Promise<{ accessToken: string; refreshToken: string }> {
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .addSelect('user.refreshToken')
+      .where('user.id = :id', { id: userId })
+      .getOne();
+
+    if (!user?.refreshToken) {
+      throw new UnauthorizedException('Недействительный refresh token');
+    }
+
+    const isRefreshTokenValid = await bcrypt.compare(
+      refreshToken,
+      user.refreshToken,
+    );
+    if (!isRefreshTokenValid) {
+      throw new UnauthorizedException('Недействительный refresh token');
+    }
+
+    const tokens = await this.generateTokens(user);
+
+    const hashedRefreshToken = await bcrypt.hash(
+      tokens.refreshToken,
+      this.appConf.hashSalt,
+    );
+    await this.usersService.updateRefreshToken(user.id, hashedRefreshToken);
+
+    return tokens;
+  }
+  
   async logout(userId: string): Promise<LogoutResponseDto> {
     await this.usersService.removeRefreshToken(userId);
     return { message: 'Вы успешно вышли из аккаунта' };

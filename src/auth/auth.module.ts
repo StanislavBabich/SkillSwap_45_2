@@ -8,6 +8,8 @@ import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 import { User } from '../users/entities/user.entity';
 import { jwtConfig, type TJwtConfig } from '../config/jwt.config';
+import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
+import { RefreshTokenGuard } from './guards/refresh-token.guard';
 import { AccessTokenStrategy } from './strategies/access-token.strategy';
 import { AccessTokenGuard } from './guards/access-token.guard';
 
@@ -28,7 +30,7 @@ import { AccessTokenGuard } from './guards/access-token.guard';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, AccessTokenStrategy, AccessTokenGuard],
+  providers: [AuthService, AccessTokenStrategy, AccessTokenGuard,RefreshTokenStrategy, RefreshTokenGuard],
   exports: [AuthService],
 })
 export class AuthModule {}
