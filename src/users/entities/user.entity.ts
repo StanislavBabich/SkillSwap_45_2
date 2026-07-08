@@ -7,7 +7,7 @@ import {
   // OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { UserGender, UserRole } from './user.enums';
+import { UserGender, UserRole } from '../user.enums';
 
 @Entity('users')
 export class User {

@@ -1,4 +1,4 @@
-import { UserRole } from '../users/entities/user.enums';
+import { UserRole } from '../users/user.enums';
 
 export type AccessTokenPayload = {
   sub: string;
