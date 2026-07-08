@@ -1,68 +1,104 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+  Inject,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateProfileDto } from './dto/update-profile.dto';
+import { ChangePasswordDto } from './dto/change-password.dto';
+import { appConfig, type TAppConfig } from '../config/app.config';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @Inject(appConfig.KEY)
+    private readonly appConf: TAppConfig,
   ) {}
 
-  /**
-   * Создание нового пользователя
-   */
   async create(createUserDto: CreateUserDto): Promise<User> {
     const user = this.userRepository.create(createUserDto);
     return this.userRepository.save(user);
   }
 
-  /**
-   * Получение всех пользователей
-   */
   async findAll(): Promise<User[]> {
     return this.userRepository.find();
   }
 
-  /**
-   * Получение пользователя по ID
-   */
-  async findOne(id: string): Promise<User | null> {
-    return this.userRepository.findOne({
+  async findOne(id: string): Promise<User> {
+    const user = await this.userRepository.findOne({
       where: { id },
     });
+
+    if (!user) {
+      throw new NotFoundException('Пользователь не найден');
+    }
+
+    return user;
   }
 
-  /**
-   * Получение пользователя по Email
-   */
   async findByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({
       where: { email },
     });
   }
 
-  /**
-   * Обновление данных пользователя
-   */
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<User | null> {
+  async updateProfile(id: string, dto: UpdateProfileDto): Promise<User> {
+    await this.userRepository.update(id, dto);
+    return this.findOne(id);
+  }
+
+  async changePassword(
+    id: string,
+    dto: ChangePasswordDto,
+  ): Promise<{ message: string }> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      select: {
+        id: true,
+        password: true,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException('Пользователь не найден');
+    }
+
+    const isOldPasswordValid = await bcrypt.compare(
+      dto.oldPassword,
+      user.password,
+    );
+    if (!isOldPasswordValid) {
+      throw new UnauthorizedException('Неверный текущий пароль');
+    }
+
+    const hashedPassword = await bcrypt.hash(
+      dto.newPassword,
+      this.appConf.hashSalt,
+    );
+    await this.userRepository.update(id, { password: hashedPassword });
+
+    return { message: 'Пароль успешно изменён' };
+  }
+
+  async update(
+    id: string,
+    updateUserDto: Record<string, unknown>,
+  ): Promise<User | null> {
     await this.userRepository.update(id, updateUserDto);
     return this.findOne(id);
   }
 
-  /**
-   * Удаление пользователя
-   */
   async remove(id: string): Promise<void> {
     await this.userRepository.delete(id);
   }
 
-  /**
-   * Обновление refresh токена пользователя
-   */
   async updateRefreshToken(
     userId: string,
     refreshToken: string,
@@ -70,9 +106,6 @@ export class UsersService {
     await this.userRepository.update(userId, { refreshToken });
   }
 
-  /**
-   * Удаление refresh токена пользователя (при логауте)
-   */
   async removeRefreshToken(userId: string): Promise<void> {
     await this.userRepository.update(userId, { refreshToken: null });
   }
