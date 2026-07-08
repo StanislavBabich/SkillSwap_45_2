@@ -92,18 +92,10 @@ export class AuthService {
     );
     await this.usersService.updateRefreshToken(user.id, hashedRefreshToken);
 
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const {
-      password: _password,
-      refreshToken: _refreshToken,
-      ...userWithoutSensitive
-    } = user;
-    /* eslint-enable @typescript-eslint/no-unused-vars */
-
     return {
       accessToken,
       refreshToken,
-      user: userWithoutSensitive,
+      user,
     };
   }
 
