@@ -5,6 +5,9 @@ import {
   ArgumentsHost,
   HttpException,
   HttpStatus,
+  Logger,
+  Inject,
+  Optional,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { EntityNotFoundError, QueryFailedError } from 'typeorm';
@@ -12,8 +15,12 @@ import type {
   ErrorResponse,
   ErrorResponseDev,
 } from '../types/error-response.type';
-
+//утилиты
 import { parseDuplicateError } from '../utils/error-parser.util';
+
+// Логгер
+import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { Logger as WinstonLogger } from 'winston';
 
 // Обработчики ошибок
 import { EntityNotFoundException } from '../exceptions/entity-not-found.exception';
@@ -22,6 +29,13 @@ import { FileTooLargeException } from '../exceptions/file-too-large.exception';
 // @Catch() — ловим ВСЕ исключения
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
+  private readonly logger = new Logger(AllExceptionsFilter.name);
+  constructor(
+    @Optional()
+    @Inject(WINSTON_MODULE_PROVIDER)
+    private readonly winston?: WinstonLogger,
+  ) {}
+
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
 
@@ -79,6 +93,27 @@ export class AllExceptionsFilter implements ExceptionFilter {
     // Форимирую ответ в зависимости от окружения
     const isDev = process.env.NODE_ENV === 'dev';
 
+    // Формируем сообщение для лога
+    const logMessage = `${request.method} ${request.url} - Status: ${status} - Message: ${message}`;
+    const stack = exception instanceof Error ? exception.stack : undefined;
+
+    // Логируем через Winston если есть, иначе через NestJS Logger
+    if (this.winston) {
+      // Winston
+      this.winston.error({
+        message: logMessage,
+        status,
+        path: request.url,
+        method: request.method,
+        timestamp: new Date().toISOString(),
+        stack,
+      });
+    } else {
+      // Fallback на NestJS Logger нативноый
+      this.logger.error(logMessage, stack);
+    }
+
+    // Формируем ответ
     let responseBody: ErrorResponse | ErrorResponseDev;
 
     if (isDev) {
