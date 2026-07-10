@@ -6,6 +6,7 @@ import { Repository, SelectQueryBuilder } from 'typeorm';
 import { Skill } from './entities/skill.entity';
 import { Category } from '../categories/entities/category.entity';
 import { GetSkillsDto } from './dto/get-skills.dto';
+import { SkillsResponseDto } from './dto/skills-response.dto';
 
 @Injectable()
 export class SkillsService {
@@ -16,7 +17,7 @@ export class SkillsService {
     private readonly categoryRepository: Repository<Category>,
   ) {}
 
-  async findAll(query: GetSkillsDto) {
+  async findAll(query: GetSkillsDto): Promise<SkillsResponseDto>{
     const { page = 1, limit = 20, search = '', category } = query;
 
     const qb = this.buildBaseQuery();
