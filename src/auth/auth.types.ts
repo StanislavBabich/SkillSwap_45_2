@@ -1,4 +1,5 @@
-import { UserRole } from '../users/entities/user.enums';
+import { UserRole } from '../users/user.enums';
+import { Request } from 'express';
 
 export type AccessTokenPayload = {
   sub: string;
@@ -15,4 +16,8 @@ export type TJwtPayload = {
   email: string;
   role: string;
   refreshToken?: string;
+};
+
+export type AuthRequest = Request & {
+  user: TJwtPayload;
 };
