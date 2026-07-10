@@ -1,5 +1,5 @@
 import { IsOptional, IsString, IsDateString, IsEnum } from 'class-validator';
-import { UserGender } from '../entities/user.enums';
+import { UserGender } from '../user.enums';
 
 export class UpdateProfileDto {
   @IsOptional()

@@ -1,5 +1,5 @@
+import { UserRole } from '../users/user.enums';
 import { Request } from 'express';
-import { UserRole } from '../users/entities/user.enums';
 
 export type AccessTokenPayload = {
   sub: string;
