@@ -4,6 +4,7 @@ import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { appConfig, TAppConfig } from './config/app.config';
 import { winstonLogger } from './logger/logger.module';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -12,6 +13,7 @@ async function bootstrap() {
 
   app.use(cookieParser());
   app.setGlobalPrefix('api');
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   const config = app.get<TAppConfig>(appConfig.KEY);
   const port = config.port;
