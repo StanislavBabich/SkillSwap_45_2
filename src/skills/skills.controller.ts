@@ -6,8 +6,10 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { SkillsService } from './skills.service';
+import { GetSkillsDto } from './dto/get-skills.dto';
 
 @Controller('skills')
 export class SkillsController {
@@ -19,8 +21,8 @@ export class SkillsController {
   }
 
   @Get()
-  findAll() {
-    return this.skillsService.findAll();
+  async findAll(@Query() query: GetSkillsDto) {
+    return this.skillsService.findAll(query);
   }
 
   @Get(':id')
