@@ -2,9 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 import { Skill } from './entities/skill.entity';
-import { Category } from '../categories/entities/category.entity';
 import { GetSkillsDto } from './dto/get-skills.dto';
 import { SkillsResponseDto } from './dto/skills-response.dto';
+import { Category } from 'src/categories/entities/category.entity';
 
 @Injectable()
 export class SkillsService {
