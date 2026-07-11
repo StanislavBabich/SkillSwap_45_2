@@ -1,3 +1,3 @@
-export class Category {//Заглушка
-
+export class Category {
+  //Заглушка
 }

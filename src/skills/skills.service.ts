@@ -61,7 +61,10 @@ export class SkillsService {
       .leftJoin('category.parent', 'parentCategory');
   }
 
-  private applySearchFilter(qb: SelectQueryBuilder<Skill>, search: string): void {
+  private applySearchFilter(
+    qb: SelectQueryBuilder<Skill>,
+    search: string,
+  ): void {
     if (search && search.trim() !== '') {
       qb.andWhere(
         `(
