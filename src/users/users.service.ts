@@ -38,10 +38,11 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     try {
-      const { favoriteSkills: _favoriteSkills, ...userData } = createUserDto;
+      const { favoriteSkills, ...userData } = createUserDto;
+      void favoriteSkills;
 
       const user = this.userRepository.create(userData);
-      
+
       return this.userRepository.save(user);
     } catch (error) {
       if (error instanceof QueryFailedError) {
