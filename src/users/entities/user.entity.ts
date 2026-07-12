@@ -1,5 +1,5 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Skill } from '../../skills/entities/skill.entity';
 import { UserGender, UserRole } from '../user.enums';
 
@@ -40,6 +40,20 @@ export class User {
 
   @OneToMany(() => Skill, (skill) => skill.owner)
   skills?: Skill[];
+
+  @ManyToMany(() => Skill)
+  @JoinTable({
+    name: 'users_favorite_skills',
+    joinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'skill_id',
+      referencedColumnName: 'id',
+    },
+  })
+  favoriteSkills!: Skill[];
 
   @Column({
     type: 'enum',
