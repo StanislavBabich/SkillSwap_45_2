@@ -8,27 +8,23 @@ import {
   Delete,
   Query,
   Req,
+  UseGuards,
 } from '@nestjs/common';
-import { Request } from 'express';
 import { SkillsService } from './skills.service';
 import { GetSkillsDto } from './dto/get-skills.dto';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
-
-// Временный тип для запроса (позже заменим на полноценный тип из гарды)
-interface AuthRequest extends Request {
-  user?: { sub: string; email: string; role: string };
-}
+import { AccessTokenGuard } from '../auth/guards/access-token.guard';
+import { AuthRequest } from '../auth/auth.types';
 
 @Controller('skills')
 export class SkillsController {
   constructor(private readonly skillsService: SkillsService) {}
 
+  @UseGuards(AccessTokenGuard)
   @Post()
   create(@Body() dto: CreateSkillDto, @Req() req: AuthRequest) {
-    // Когда гарда будет готова, раскомментировать строку ниже и удалить временную заглушку
-    // const userId = req.user?.sub;
-    const userId = req.user?.sub || '295b2053-c137-4f45-8687-9d1a0656d189'; // реальный ID пользователя для тестов
+    const userId = req.user.sub;
     return this.skillsService.create(dto, userId);
   }
 
@@ -42,23 +38,21 @@ export class SkillsController {
     return this.skillsService.findOne(id);
   }
 
+  @UseGuards(AccessTokenGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Body() dto: UpdateSkillDto,
     @Req() req: AuthRequest,
   ) {
-    // Когда гарда будет готова, раскомментировать строку ниже и удалить временную заглушку
-    // const userId = req.user?.sub;
-    const userId = req.user?.sub || '295b2053-c137-4f45-8687-9d1a0656d189'; // реальный ID пользователя для тестов
+    const userId = req.user.sub;
     return this.skillsService.update(id, dto, userId);
   }
 
+  @UseGuards(AccessTokenGuard)
   @Delete(':id')
   remove(@Param('id') id: string, @Req() req: AuthRequest) {
-    // Когда гарда будет готова, раскомментировать строку ниже и удалить временную заглушку
-    // const userId = req.user?.sub;
-    const userId = req.user?.sub || '295b2053-c137-4f45-8687-9d1a0656d189'; // реальный ID пользователя для тестов
+    const userId = req.user.sub;
     return this.skillsService.remove(id, userId);
   }
 }
