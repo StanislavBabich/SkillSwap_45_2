@@ -5,7 +5,7 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
-  JoinColumn
+  JoinColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Category } from '../../categories/entities/category.entity';
@@ -32,10 +32,10 @@ export class Skill {
   category!: Category | null;
 
   @ManyToOne(() => User, (user) => user.skills, {
-  nullable: false,
-  onDelete: 'CASCADE',
+    nullable: false,
+    onDelete: 'CASCADE',
   })
-  @JoinColumn({ name: 'owner_id' })  
+  @JoinColumn({ name: 'owner_id' })
   owner!: User;
 
   @CreateDateColumn()

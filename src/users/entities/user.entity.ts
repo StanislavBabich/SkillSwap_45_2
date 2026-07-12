@@ -1,5 +1,12 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Skill } from '../../skills/entities/skill.entity';
 import { UserGender, UserRole } from '../user.enums';
 

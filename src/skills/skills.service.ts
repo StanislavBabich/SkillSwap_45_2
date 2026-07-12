@@ -97,8 +97,8 @@ export class SkillsService {
     if (category.parent === null) {
       // Если родительская категория то ищем по подкатегориям подходящие скилы
       const subcategories = await this.categoryRepository.find({
-        where: { parent:{id: categoryId } },
-        select: {id: true},
+        where: { parent: { id: categoryId } },
+        select: { id: true },
       });
 
       const subIds = subcategories.map((c) => c.id);
