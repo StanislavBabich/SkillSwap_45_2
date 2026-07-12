@@ -30,7 +30,6 @@ const fileFilter = (req: any, file: Express.Multer.File, callback: (error: Error
 export class FilesController {
   
   @Post('upload')
-  @UseGuards(AccessTokenGuard)
   @HttpCode(HttpStatus.CREATED)
   @UseInterceptors(
     FileInterceptor('file', {
