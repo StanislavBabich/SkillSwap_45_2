@@ -11,7 +11,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { UserGender, UserRole } from '../entities/user.enums';
+import { UserGender, UserRole } from '../user.enums';
 
 export class CreateUserDto {
   @IsString()

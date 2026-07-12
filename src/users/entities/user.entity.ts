@@ -1,12 +1,14 @@
+import { Exclude } from 'class-transformer';
 import {
   Column,
   Entity,
-  // JoinTable,
-  // ManyToMany,
-  // OneToMany,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { UserGender, UserRole } from './user.enums';
+import { Skill } from '../../skills/entities/skill.entity';
+import { UserGender, UserRole } from '../user.enums';
 
 @Entity('users')
 export class User {
@@ -19,6 +21,7 @@ export class User {
   @Column({ type: 'varchar', length: 255, unique: true })
   email!: string;
 
+  @Exclude()
   @Column({ type: 'varchar', length: 255, select: false })
   password!: string;
 
@@ -42,37 +45,22 @@ export class User {
   @Column({ type: 'varchar', length: 500, nullable: true })
   avatar?: string | null;
 
-  // ВРЕМЕННО ЗАКОММЕНТИРОВАНЫ СВЯЗИ
-  // @OneToMany('SkillEntity', 'owner')
-  // skills?: unknown[];
+  @OneToMany(() => Skill, (skill) => skill.owner)
+  skills?: Skill[];
 
-  // @ManyToMany('CategoryEntity')
-  // @JoinTable({
-  //   name: 'users_want_to_learn',
-  //   joinColumn: {
-  //     name: 'user_id',
-  //     referencedColumnName: 'id',
-  //   },
-  //   inverseJoinColumn: {
-  //     name: 'category_id',
-  //     referencedColumnName: 'id',
-  //   },
-  // })
-  // wantToLearn?: unknown[];
-
-  // @ManyToMany('SkillEntity')
-  // @JoinTable({
-  //   name: 'users_favorite_skills',
-  //   joinColumn: {
-  //     name: 'user_id',
-  //     referencedColumnName: 'id',
-  //   },
-  //   inverseJoinColumn: {
-  //     name: 'skill_id',
-  //     referencedColumnName: 'id',
-  //   },
-  // })
-  // favoriteSkills?: unknown[];
+  @ManyToMany(() => Skill)
+  @JoinTable({
+    name: 'users_favorite_skills',
+    joinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'skill_id',
+      referencedColumnName: 'id',
+    },
+  })
+  favoriteSkills!: Skill[];
 
   @Column({
     type: 'enum',
@@ -82,6 +70,7 @@ export class User {
   })
   role: UserRole = UserRole.USER;
 
+  @Exclude()
   @Column({
     name: 'refresh_token',
     type: 'text',
