@@ -20,5 +20,5 @@ export class GetSkillsDto {
 
   @IsOptional()
   @IsUUID()
-  category?: string;   // ID категории 
+  category?: string; // ID категории
 }
