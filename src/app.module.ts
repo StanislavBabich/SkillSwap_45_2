@@ -13,6 +13,9 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { SkillsModule } from './skills/skills.module';
+import { FilesModule } from './files/files.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { CategoriesModule } from './categories/categories.module';
 
 @Module({
@@ -29,9 +32,15 @@ import { CategoriesModule } from './categories/categories.module';
       useFactory: (config: TDbConfig) => config,
     }),
 
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: '/',
+    }),
+
     UsersModule,
     AuthModule,
     SkillsModule,
+    FilesModule,
     CategoriesModule,
   ],
   controllers: [AppController],
