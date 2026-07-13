@@ -12,6 +12,8 @@ import { SkillsResponseDto } from './dto/skills-response.dto';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
 import { Category } from '../categories/entities/category.entity';
+import { unlink } from 'fs/promises';
+import { join } from 'path';
 
 @Injectable()
 export class SkillsService {
@@ -117,7 +119,20 @@ export class SkillsService {
       throw new ForbiddenException('Вы не можете удалить чужой навык');
     }
 
-    // TODO: удалить файлы изображений из public/uploads, когда появится загрузка
+    // Удаляем файлы изображений из public/uploads
+    if (skill.images && Array.isArray(skill.images)) {
+      for (const imageUrl of skill.images) {
+        try {
+          const filePath = join(process.cwd(), 'public', imageUrl);
+          await unlink(filePath);
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+            throw error;
+          }
+        }
+      }
+    }
+
     await this.skillRepository.delete(id);
   }
 
