@@ -43,6 +43,6 @@ import { RolesGuard } from './guards/roles.guard';
       useClass: RolesGuard,
     },
   ],
-  exports: [AuthService],
+  exports: [AuthService, AccessTokenGuard],
 })
 export class AuthModule {}

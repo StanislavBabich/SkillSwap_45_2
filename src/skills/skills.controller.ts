@@ -7,9 +7,13 @@ import {
   Param,
   Delete,
   Query,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { SkillsService } from './skills.service';
 import { GetSkillsDto } from './dto/get-skills.dto';
+import { AccessTokenGuard } from '../auth/guards/access-token.guard';
+import { AuthRequest } from '../auth/auth.types';
 
 @Controller('skills')
 export class SkillsController {
@@ -23,6 +27,12 @@ export class SkillsController {
   @Get()
   async findAll(@Query() query: GetSkillsDto) {
     return this.skillsService.findAll(query);
+  }
+
+  @Post(':id/favorite')
+  @UseGuards(AccessTokenGuard)
+  addToFavorites(@Param('id') skillId: string, @Req() req: AuthRequest) {
+    return this.skillsService.addToFavorites(skillId, req.user.sub);
   }
 
   @Get(':id')
