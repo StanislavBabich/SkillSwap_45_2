@@ -5,8 +5,10 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  JoinColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
+import { Category } from '../../categories/entities/category.entity';
 
 @Entity('skills')
 export class Skill {
@@ -22,10 +24,18 @@ export class Skill {
   @Column({ type: 'text', array: true, nullable: true })
   images?: string[] | null;
 
-  @Column({ type: 'uuid', nullable: true })
-  categoryId?: string | null;
+  @ManyToOne(() => Category, (category) => category.skills, {
+    nullable: true,
+    onDelete: 'SET NULL',
+  })
+  @JoinColumn({ name: 'category_id' })
+  category!: Category | null;
 
-  @ManyToOne(() => User, (user) => user.id, { nullable: false })
+  @ManyToOne(() => User, (user) => user.skills, {
+    nullable: false,
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'owner_id' })
   owner!: User;
 
   @CreateDateColumn()
