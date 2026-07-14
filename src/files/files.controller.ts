@@ -6,20 +6,32 @@ import {
   HttpCode,
   HttpStatus,
   BadRequestException,
-  UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { Express } from 'express';
-import { AccessTokenGuard } from '../auth/guards/access-token.guard';
 
-const fileFilter = (req: any, file: Express.Multer.File, callback: (error: Error | null, acceptFile: boolean) => void) => {
-  const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-  
+const fileFilter = (
+  _req: any,
+  file: Express.Multer.File,
+  callback: (error: Error | null, acceptFile: boolean) => void,
+) => {
+  const allowedMimeTypes = [
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'image/webp',
+  ];
+
   if (!allowedMimeTypes.includes(file.mimetype)) {
-    callback(new BadRequestException('Недопустимый формат файла. Разрешены: JPEG, PNG, GIF, WEBP'), false);
+    callback(
+      new BadRequestException(
+        'Недопустимый формат файла. Разрешены: JPEG, PNG, GIF, WEBP',
+      ),
+      false,
+    );
     return;
   }
 
@@ -28,7 +40,6 @@ const fileFilter = (req: any, file: Express.Multer.File, callback: (error: Error
 
 @Controller('files')
 export class FilesController {
-  
   @Post('upload')
   @HttpCode(HttpStatus.CREATED)
   @UseInterceptors(
