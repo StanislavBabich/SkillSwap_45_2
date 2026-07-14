@@ -1,6 +1,7 @@
 import {
   Injectable,
   UnauthorizedException,
+  BadRequestException,
   ConflictException,
   Inject,
 } from '@nestjs/common';
@@ -8,6 +9,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, QueryFailedError } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
+import { Skill } from '../skills/entities/skill.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -20,6 +22,8 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(Skill)
+    private readonly skillRepository: Repository<Skill>,
     @Inject(appConfig.KEY)
     private readonly appConf: TAppConfig,
   ) {}
@@ -135,5 +139,38 @@ export class UsersService {
   async removeRefreshToken(userId: string): Promise<void> {
     await this.findUserById(userId);
     await this.userRepository.update(userId, { refreshToken: null });
+  }
+
+  // Добавить навык в избранное пользователя
+  async addFavoriteSkill(userId: string, skillId: string): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: { favoriteSkills: true },
+    });
+
+    if (!user) {
+      throw new EntityNotFoundException('User', userId);
+    }
+
+    const skill = await this.skillRepository.findOne({
+      where: { id: skillId },
+    });
+
+    if (!skill) {
+      throw new EntityNotFoundException('Skill', skillId);
+    }
+
+    const isAlreadyFavorite = user.favoriteSkills.some(
+      (favSkill) => favSkill.id === skillId,
+    );
+
+    if (isAlreadyFavorite) {
+      throw new BadRequestException('Навык уже добавлен в избранное');
+    }
+
+    user.favoriteSkills.push(skill);
+    await this.userRepository.save(user);
+
+    return user;
   }
 }

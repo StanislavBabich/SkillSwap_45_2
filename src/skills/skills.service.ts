@@ -19,6 +19,19 @@ export class SkillsService {
     return 'This action adds a new skill';
   }
 
+  // Временная заглушка для findOne для теста
+  async findOne(id: string): Promise<Skill> {
+    const skill = await this.skillRepository.findOne({
+      where: { id },
+    });
+
+    if (!skill) {
+      throw new NotFoundException(`Навык с ID ${id} не найден`);
+    }
+
+    return skill;
+  }
+
   async findAll(query: GetSkillsDto): Promise<SkillsResponseDto> {
     const { page = 1, limit = 20, search = '', category } = query;
 
@@ -112,10 +125,6 @@ export class SkillsService {
       // Подкатегория → ищем только в ней
       qb.andWhere('skill.category_id = :categoryId', { categoryId });
     }
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} skill`;
   }
 
   update(id: number) {

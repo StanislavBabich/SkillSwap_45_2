@@ -20,14 +20,15 @@ export class SkillsController {
     return this.skillsService.create();
   }
 
+  //заглушка
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.skillsService.findOne(id);
+  }
+
   @Get()
   async findAll(@Query() query: GetSkillsDto) {
     return this.skillsService.findAll(query);
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.skillsService.findOne(+id);
   }
 
   @Patch(':id')
