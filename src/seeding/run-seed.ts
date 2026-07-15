@@ -1,4 +1,5 @@
 import { SeedingDataSource } from './data-source';
+import { seedAdmin } from './seed-admin';
 import { seedCategories } from './seed-categories';
 import { seedSkills } from './seed-skills';
 import { seedUsers } from './seed-users';
@@ -7,6 +8,7 @@ const seeds = {
   users: seedUsers,
   categories: seedCategories,
   skills: seedSkills,
+  admin: seedAdmin,
 };
 
 async function run(): Promise<void> {

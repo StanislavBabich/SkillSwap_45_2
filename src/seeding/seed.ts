@@ -1,4 +1,5 @@
 import { SeedingDataSource } from './data-source';
+import { seedAdmin } from './seed-admin';
 import { seedCategories } from './seed-categories';
 import { seedSkills } from './seed-skills';
 import { seedUsers } from './seed-users';
@@ -10,6 +11,7 @@ async function run(): Promise<void> {
     await seedUsers(SeedingDataSource);
     await seedCategories(SeedingDataSource);
     await seedSkills(SeedingDataSource);
+    await seedAdmin(SeedingDataSource);
     console.log('Все сиды успешно выполнены');
   } finally {
     await SeedingDataSource.destroy();
