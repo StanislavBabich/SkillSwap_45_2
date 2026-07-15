@@ -1,8 +1,10 @@
 import { SeedingDataSource } from './data-source';
+import { seedCategories } from './seed-categories';
 import { seedUsers } from './seed-users';
 
 const seeds = {
   users: seedUsers,
+  categories: seedCategories,
 };
 
 async function run(): Promise<void> {
