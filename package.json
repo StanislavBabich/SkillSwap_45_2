@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "seed": "ts-node -r tsconfig-paths/register src/seeding/seed.ts",
     "seed:users": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts users",
-    "seed:categories": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts categories"
+    "seed:categories": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts categories",
+    "seed:skills": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts skills"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^2.3.7",
