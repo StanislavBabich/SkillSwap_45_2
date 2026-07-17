@@ -21,3 +21,10 @@ export type TJwtPayload = {
 export type AuthRequest = Request & {
   user: TJwtPayload;
 };
+
+export type TJwtUser = {
+  id: string;
+  sub: string;
+  email: string;
+  role: UserRole;
+};
