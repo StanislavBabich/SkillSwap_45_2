@@ -5,8 +5,6 @@ import { NotificationsGateway } from './notifications.gateway';
 @Module({
   imports: [AuthModule],
   providers: [NotificationsGateway],
-  // Когда будут сделаны задачи Бориса RequestsModule добавить NotificationsModule в imports:
-
   exports: [NotificationsGateway],
 })
 export class NotificationsModule {}

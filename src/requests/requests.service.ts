@@ -19,6 +19,8 @@ import { UserRole } from '../users/user.enums';
 // Сервисы
 import { UsersService } from '../users/users.service';
 import { SkillsService } from '../skills/skills.service';
+import { NotificationsGateway } from '../notifications/notifications.gateway';
+import { NotificationType } from '../notifications/notification.types';
 
 @Injectable()
 export class RequestsService {
@@ -27,6 +29,7 @@ export class RequestsService {
     private readonly requestRepository: Repository<Request>,
     private readonly usersService: UsersService,
     private readonly skillsService: SkillsService,
+    private readonly notificationsGateway: NotificationsGateway,
   ) {}
 
   // СОЗДАТЬ ЗАЯВКУ
@@ -57,6 +60,15 @@ export class RequestsService {
     const savedRequest = await this.requestRepository.save(request);
 
     const result = await this.loadRequestWithRelations(savedRequest.id);
+
+    this.notificationsGateway.notifyUser(result.receiver.id, {
+      type: NotificationType.NEW_REQUEST,
+      skillName: result.requestedSkill.title,
+      user: {
+        id: result.sender.id,
+        name: result.sender.name,
+      },
+    });
 
     return plainToInstance(RequestResponseDto, result);
   }
@@ -148,6 +160,16 @@ export class RequestsService {
     await this.requestRepository.save(request);
 
     const updatedRequest = await this.loadRequestWithRelations(id);
+
+    this.notificationsGateway.notifyUser(updatedRequest.sender.id, {
+      type: NotificationType.REQUEST_ACCEPTED,
+      skillName: updatedRequest.requestedSkill.title,
+      user: {
+        id: updatedRequest.receiver.id,
+        name: updatedRequest.receiver.name,
+      },
+    });
+
     return this.toResponseDto(updatedRequest);
   }
 
@@ -173,6 +195,16 @@ export class RequestsService {
     await this.requestRepository.save(request);
 
     const updatedRequest = await this.loadRequestWithRelations(id);
+
+    this.notificationsGateway.notifyUser(updatedRequest.sender.id, {
+      type: NotificationType.REQUEST_REJECTED,
+      skillName: updatedRequest.requestedSkill.title,
+      user: {
+        id: updatedRequest.receiver.id,
+        name: updatedRequest.receiver.name,
+      },
+    });
+
     return this.toResponseDto(updatedRequest);
   }
 

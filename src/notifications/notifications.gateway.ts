@@ -23,13 +23,6 @@ export class NotificationsGateway implements OnGatewayConnection {
     }
   }
 
-  /*
-   * Когда будут сделаны задачи Бориса
-дописть сюда 
-create → уведомление receiver;
-accept → уведомление sender;
-reject → уведомление sender;
-   */
   notifyUser(userId: string, payload: NotificationPayload): void {
     this.server.to(userId).emit('notificateNewRequest', payload);
   }
