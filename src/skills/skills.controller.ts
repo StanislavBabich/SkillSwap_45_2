@@ -39,9 +39,14 @@ export class SkillsController {
     return this.skillsService.findAll(query);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.skillsService.findOne(id);
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.skillsService.findOne(id);
+  // }
+
+  @Get(':id/similar')
+  async findSimilarUsers(@Param('id') id: string) {
+    return this.skillsService.findSimilarUsers(id);
   }
 
   @UseGuards(AccessTokenGuard)

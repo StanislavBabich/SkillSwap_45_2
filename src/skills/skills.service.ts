@@ -11,9 +11,11 @@ import { GetSkillsDto } from './dto/get-skills.dto';
 import { SkillsResponseDto } from './dto/skills-response.dto';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
+import { SimilarUserDto } from './dto/similar-users-response.dto';
 import { Category } from '../categories/entities/category.entity';
 import { unlink } from 'fs/promises';
 import { join } from 'path';
+import { UserGender } from '../users/user.enums';
 
 @Injectable()
 export class SkillsService {
@@ -76,18 +78,18 @@ export class SkillsService {
     return { data, page, totalPages };
   }
 
-  async findOne(id: string): Promise<Skill> {
-    const skill = await this.skillRepository.findOne({
-      where: { id },
-      relations: { owner: true, category: true },
-    });
+  // async findOne(id: string): Promise<Skill> {
+  //   const skill = await this.skillRepository.findOne({
+  //     where: { id },
+  //     relations: { owner: true, category: true },
+  //   });
 
-    if (!skill) {
-      throw new NotFoundException('Навык не найден');
-    }
+  //   if (!skill) {
+  //     throw new NotFoundException('Навык не найден');
+  //   }
 
-    return skill;
-  }
+  //   return skill;
+  // }
 
   async update(
     id: string,
@@ -147,6 +149,91 @@ export class SkillsService {
     }
 
     await this.skillRepository.delete(id);
+  }
+
+  async findSimilarUsers(skillId: string): Promise<SimilarUserDto[]> {
+    const skill = await this.skillRepository.findOne({
+      where: { id: skillId },
+      relations: { category: true, owner: true },
+    });
+
+    if (!skill) {
+      throw new NotFoundException('Навык не найден');
+    }
+
+    if (!skill.category) {
+      return [];
+    }
+
+    const skillsInCategory = await this.skillRepository.find({
+      where: { category: { id: skill.category.id } },
+      relations: { owner: true },
+    });
+
+    const userMap = new Map<
+      string,
+      {
+        user: {
+          id: string;
+          name: string;
+          email: string;
+          avatar?: string | null;
+          city?: string | null;
+          birthdate?: string | null;
+          about?: string | null;
+          gender?: UserGender | null;
+        };
+        count: number;
+        skills: Array<{ id: string; title: string; description?: string | null }>;
+      }
+    >();
+
+    for (const s of skillsInCategory) {
+      if (s.owner.id === skill.owner.id) continue;
+
+      const owner = s.owner;
+      const existing = userMap.get(owner.id);
+
+      if (existing) {
+        existing.count++;
+        existing.skills.push({
+          id: s.id,
+          title: s.title,
+          description: s.description,
+        });
+      } else {
+        userMap.set(owner.id, {
+          user: {
+            id: owner.id,
+            name: owner.name,
+            email: owner.email,
+            avatar: owner.avatar,
+            city: owner.city,
+            birthdate: owner.birthdate,
+            about: owner.about,
+            gender: owner.gender,
+          },
+          count: 1,
+          skills: [
+            {
+              id: s.id,
+              title: s.title,
+              description: s.description,
+            },
+          ],
+        });
+      }
+    }
+
+    const sorted = Array.from(userMap.values())
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 10);
+
+    return sorted.map((item) => ({
+      ...item.user,
+      commonSkillsCount: item.count,
+      skills: item.skills,
+    }));
   }
 
   private async findOneWithOwner(id: string): Promise<Skill> {
