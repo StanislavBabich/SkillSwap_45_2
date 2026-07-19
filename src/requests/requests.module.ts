@@ -5,9 +5,15 @@ import { RequestsController } from './requests.controller';
 import { Request } from './entities/request.entity';
 import { UsersModule } from '../users/users.module';
 import { SkillsModule } from '../skills/skills.module';
+import { NotificationsModule } from '../notifications/notifications.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Request]), UsersModule, SkillsModule],
+  imports: [
+    TypeOrmModule.forFeature([Request]),
+    UsersModule,
+    SkillsModule,
+    NotificationsModule,
+  ],
   controllers: [RequestsController],
   providers: [RequestsService],
 })
