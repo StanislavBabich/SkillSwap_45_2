@@ -1,5 +1,6 @@
 import { NestFactory, Reflector } from '@nestjs/core';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { appConfig, TAppConfig } from './config/app.config';
@@ -14,6 +15,18 @@ async function bootstrap() {
   app.use(cookieParser());
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new AllExceptionsFilter());
+
+  // Настройка Swagger
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('SkillSwap API')
+    .setDescription('Платформа обмена навыками «Я научу / Хочу научиться»')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api/docs', app, document);
+  // Конец настройки Swagger
 
   const config = app.get<TAppConfig>(appConfig.KEY);
   const port = config.port;

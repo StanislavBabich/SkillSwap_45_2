@@ -41,19 +41,6 @@ export class SkillsService {
     return this.skillRepository.save(skill);
   }
 
-  // Временная заглушка для findOne для теста
-  async findOne(id: string): Promise<Skill> {
-    const skill = await this.skillRepository.findOne({
-      where: { id },
-    });
-
-    if (!skill) {
-      throw new NotFoundException(`Навык с ID ${id} не найден`);
-    }
-
-    return skill;
-  }
-
   async findAll(query: GetSkillsDto): Promise<SkillsResponseDto> {
     const { page = 1, limit = 20, search = '', category } = query;
 
