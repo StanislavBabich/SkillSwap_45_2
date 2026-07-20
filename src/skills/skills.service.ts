@@ -140,12 +140,14 @@ export class SkillsService {
       (favoriteSkill) => favoriteSkill.id === skillId,
     );
 
-    if (isFavorite) {
-      user.favoriteSkills = user.favoriteSkills.filter(
-        (favoriteSkill) => favoriteSkill.id !== skillId,
-      );
-      await this.userRepository.save(user);
+    if (!isFavorite) {
+      throw new NotFoundException('Навык не найден в избранном');
     }
+
+    user.favoriteSkills = user.favoriteSkills.filter(
+      (favoriteSkill) => favoriteSkill.id !== skillId,
+    );
+    await this.userRepository.save(user);
   }
 
   findOne(id: number) {
