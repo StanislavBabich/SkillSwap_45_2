@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, SelectQueryBuilder } from 'typeorm';
 import { Skill } from './entities/skill.entity';
@@ -140,10 +140,12 @@ export class SkillsService {
       (favoriteSkill) => favoriteSkill.id === skillId,
     );
 
-    if (!isAlreadyFavorite) {
-      user.favoriteSkills.push(skill);
-      await this.userRepository.save(user);
+    if (isAlreadyFavorite) {
+      throw new ConflictException('Навык уже добавлен в избранное');
     }
+
+    user.favoriteSkills.push(skill);
+    await this.userRepository.save(user);
   }
 
   findOne(id: number) {
