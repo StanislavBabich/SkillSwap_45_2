@@ -1,3 +1,4 @@
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import {
   Injectable,
   NotFoundException,
@@ -9,6 +10,9 @@ import { Repository, SelectQueryBuilder } from 'typeorm';
 import { Skill } from './entities/skill.entity';
 import { GetSkillsDto } from './dto/get-skills.dto';
 import { SkillsResponseDto } from './dto/skills-response.dto';
+import { Category } from 'src/categories/entities/category.entity';
+import { User } from '../users/entities/user.entity';
+import { EntityNotFoundException } from '../common/exceptions/entity-not-found.exception';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
 import { SimilarUserDto } from './dto/similar-users-response.dto';
@@ -24,6 +28,8 @@ export class SkillsService {
     private readonly skillRepository: Repository<Skill>,
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   // ===================== CRUD =====================
@@ -297,5 +303,35 @@ export class SkillsService {
       // Подкатегория → ищем только в ней
       qb.andWhere('skill.category_id = :categoryId', { categoryId });
     }
+  }
+
+  async addToFavorites(skillId: string, userId: string): Promise<void> {
+    const skill = await this.skillRepository.findOne({
+      where: { id: skillId },
+    });
+
+    if (!skill) {
+      throw new EntityNotFoundException('Skill', skillId);
+    }
+
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: { favoriteSkills: true },
+    });
+
+    if (!user) {
+      throw new EntityNotFoundException('User', userId);
+    }
+
+    const isAlreadyFavorite = user.favoriteSkills.some(
+      (favoriteSkill) => favoriteSkill.id === skillId,
+    );
+
+    if (isAlreadyFavorite) {
+      throw new ConflictException('Навык уже добавлен в избранное');
+    }
+
+    user.favoriteSkills.push(skill);
+    await this.userRepository.save(user);
   }
 }

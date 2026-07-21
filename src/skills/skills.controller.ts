@@ -7,6 +7,11 @@ import {
   Param,
   Delete,
   Query,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
+import { SkillsService } from './skills.service';
+import { GetSkillsDto } from './dto/get-skills.dto';
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -33,10 +38,16 @@ export class SkillsController {
     return this.skillsService.findAll(query);
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.skillsService.findOne(id);
-  // }
+  @Post(':id/favorite')
+  @UseGuards(AccessTokenGuard)
+  addToFavorites(@Param('id') skillId: string, @Req() req: AuthRequest) {
+    return this.skillsService.addToFavorites(skillId, req.user.sub);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.skillsService.findOne(+id);
+  }
 
   @Get(':id/similar')
   async findSimilarUsers(@Param('id') id: string) {
