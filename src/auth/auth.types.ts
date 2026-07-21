@@ -14,10 +14,17 @@ export type RefreshTokenPayload = {
 export type TJwtPayload = {
   sub: string;
   email: string;
-  role: string;
+  role: UserRole;
   refreshToken?: string;
 };
 
 export type AuthRequest = Request & {
   user: TJwtPayload;
+};
+
+export type TJwtUser = {
+  id: string;
+  sub: string;
+  email: string;
+  role: UserRole;
 };

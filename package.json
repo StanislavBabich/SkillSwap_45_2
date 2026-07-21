@@ -17,7 +17,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "seed": "ts-node -r tsconfig-paths/register src/seeding/seed.ts",
+    "seed:users": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts users",
+    "seed:categories": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts categories",
+    "seed:skills": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts skills",
+    "seed:admin": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts admin"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^2.3.7",
@@ -28,6 +33,7 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/platform-socket.io": "^11.1.27",
+    "@nestjs/serve-static": "^5.0.5",
     "@nestjs/swagger": "^11.4.5",
     "@nestjs/typeorm": "^11.0.3",
     "@nestjs/websockets": "^11.1.27",
@@ -47,6 +53,7 @@
     "socket.io": "^4.8.3",
     "swagger-ui-express": "^5.0.1",
     "typeorm": "^1.0.0",
+    "uuid": "^14.0.1",
     "winston": "^3.19.0"
   },
   "devDependencies": {
@@ -68,6 +75,7 @@
     "@types/passport-jwt": "^4.0.1",
     "@types/passport-local": "^1.0.38",
     "@types/supertest": "^6.0.2",
+    "@types/uuid": "^10.0.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
