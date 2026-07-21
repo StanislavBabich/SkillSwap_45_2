@@ -8,6 +8,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { ROLES_KEY } from '../decorators/roles.decorator';
 import { UserRole } from '../../users/user.enums';
+import { AuthRequest } from '../auth.types';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -23,8 +24,8 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const request = context.switchToHttp().getRequest();
-    const user = request.user as { id: string; email: string; role: UserRole };
+    const request = context.switchToHttp().getRequest<AuthRequest>();
+    const user = request.user;
 
     if (!user) {
       throw new UnauthorizedException('Пользователь не авторизован');
