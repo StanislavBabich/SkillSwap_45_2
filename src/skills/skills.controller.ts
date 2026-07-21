@@ -44,6 +44,12 @@ export class SkillsController {
     return this.skillsService.addToFavorites(skillId, req.user.sub);
   }
 
+  @Delete(':id/favorite')
+  @UseGuards(AccessTokenGuard)
+  removeFromFavorites(@Param('id') skillId: string, @Req() req: AuthRequest) {
+    return this.skillsService.removeFromFavorites(skillId, req.user.sub);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.skillsService.findOne(+id);

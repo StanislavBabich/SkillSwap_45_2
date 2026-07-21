@@ -334,4 +334,36 @@ export class SkillsService {
     user.favoriteSkills.push(skill);
     await this.userRepository.save(user);
   }
+  
+  async removeFromFavorites(skillId: string, userId: string): Promise<void> {
+    const skill = await this.skillRepository.findOne({
+      where: { id: skillId },
+    });
+
+    if (!skill) {
+      throw new EntityNotFoundException('Skill', skillId);
+    }
+
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: { favoriteSkills: true },
+    });
+
+    if (!user) {
+      throw new EntityNotFoundException('User', userId);
+    }
+
+    const isFavorite = user.favoriteSkills.some(
+      (favoriteSkill) => favoriteSkill.id === skillId,
+    );
+
+    if (!isFavorite) {
+      throw new NotFoundException('Навык не найден в избранном');
+    }
+
+    user.favoriteSkills = user.favoriteSkills.filter(
+      (favoriteSkill) => favoriteSkill.id !== skillId,
+    );
+    await this.userRepository.save(user);
+  }
 }
