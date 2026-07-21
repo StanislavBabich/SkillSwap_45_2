@@ -1,25 +1,24 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import {
+  ConflictException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
-  ForbiddenException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, SelectQueryBuilder } from 'typeorm';
-import { Skill } from './entities/skill.entity';
-import { GetSkillsDto } from './dto/get-skills.dto';
-import { SkillsResponseDto } from './dto/skills-response.dto';
-import { Category } from 'src/categories/entities/category.entity';
-import { User } from '../users/entities/user.entity';
-import { EntityNotFoundException } from '../common/exceptions/entity-not-found.exception';
-import { CreateSkillDto } from './dto/create-skill.dto';
-import { UpdateSkillDto } from './dto/update-skill.dto';
-import { SimilarUserDto } from './dto/similar-users-response.dto';
-import { Category } from '../categories/entities/category.entity';
 import { unlink } from 'fs/promises';
 import { join } from 'path';
+import { Category } from 'src/categories/entities/category.entity';
+import { Repository, SelectQueryBuilder } from 'typeorm';
+import { EntityNotFoundException } from '../common/exceptions/entity-not-found.exception';
+import { User } from '../users/entities/user.entity';
 import { UserGender } from '../users/user.enums';
+import { CreateSkillDto } from './dto/create-skill.dto';
+import { GetSkillsDto } from './dto/get-skills.dto';
+import { SimilarUserDto } from './dto/similar-users-response.dto';
+import { SkillsResponseDto } from './dto/skills-response.dto';
+import { UpdateSkillDto } from './dto/update-skill.dto';
+import { Skill } from './entities/skill.entity';
 
 @Injectable()
 export class SkillsService {
@@ -117,6 +116,13 @@ export class SkillsService {
     return this.findOne(id);
   }
 
+  async findOne(id: string): Promise<Skill> {
+    return this.skillRepository.findOneOrFail({
+      where: { id },
+      relations: { owner: true, category: true },
+    });
+  }
+
   async remove(id: string, userId: string): Promise<void> {
     if (!userId) {
       throw new UnauthorizedException('Требуется авторизация');
@@ -177,7 +183,11 @@ export class SkillsService {
           gender?: UserGender | null;
         };
         count: number;
-        skills: Array<{ id: string; title: string; description?: string | null }>;
+        skills: Array<{
+          id: string;
+          title: string;
+          description?: string | null;
+        }>;
       }
     >();
 
@@ -334,7 +344,7 @@ export class SkillsService {
     user.favoriteSkills.push(skill);
     await this.userRepository.save(user);
   }
-  
+
   async removeFromFavorites(skillId: string, userId: string): Promise<void> {
     const skill = await this.skillRepository.findOne({
       where: { id: skillId },

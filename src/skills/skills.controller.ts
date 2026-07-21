@@ -1,26 +1,21 @@
 import {
   Controller,
-  Get,
+  UseGuards,
   Post,
   Body,
-  Patch,
+  Req,
+  Get,
+  Query,
   Param,
   Delete,
-  Query,
-  UseGuards,
-  Req,
+  Patch,
 } from '@nestjs/common';
-import { SkillsService } from './skills.service';
-import { GetSkillsDto } from './dto/get-skills.dto';
-  Req,
-  UseGuards,
-} from '@nestjs/common';
-import { SkillsService } from './skills.service';
-import { GetSkillsDto } from './dto/get-skills.dto';
-import { CreateSkillDto } from './dto/create-skill.dto';
-import { UpdateSkillDto } from './dto/update-skill.dto';
-import { AccessTokenGuard } from '../auth/guards/access-token.guard';
 import { AuthRequest } from '../auth/auth.types';
+import { AccessTokenGuard } from '../auth/guards/access-token.guard';
+import { CreateSkillDto } from './dto/create-skill.dto';
+import { GetSkillsDto } from './dto/get-skills.dto';
+import { UpdateSkillDto } from './dto/update-skill.dto';
+import { SkillsService } from './skills.service';
 
 @Controller('skills')
 export class SkillsController {
@@ -52,7 +47,7 @@ export class SkillsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.skillsService.findOne(+id);
+    return this.skillsService.findOne(id);
   }
 
   @Get(':id/similar')

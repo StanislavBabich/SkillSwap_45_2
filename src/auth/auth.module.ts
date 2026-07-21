@@ -45,6 +45,6 @@ import { WsJwtGuard } from './guards/ws-jwt.guard';
       useClass: RolesGuard,
     },
   ],
-  exports: [AuthService, JwtModule, WsJwtGuard,  AccessTokenGuard],
+  exports: [AuthService, JwtModule, WsJwtGuard, AccessTokenGuard],
 })
 export class AuthModule {}
