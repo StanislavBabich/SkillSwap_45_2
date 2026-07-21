@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Skill } from '../../skills/entities/skill.entity';
+import { Request } from '../../requests/entities/request.entity';
 import { UserGender, UserRole } from '../user.enums';
 
 @Entity('users')
@@ -47,6 +48,14 @@ export class User {
 
   @OneToMany(() => Skill, (skill) => skill.owner)
   skills?: Skill[];
+
+  // Заявки где пользователь — отправитель
+  @OneToMany(() => Request, (request) => request.sender)
+  sentRequests!: Request[];
+
+  // Заявки, где пользователь — получатель
+  @OneToMany(() => Request, (request) => request.receiver)
+  receivedRequests!: Request[];
 
   @ManyToMany(() => Skill)
   @JoinTable({

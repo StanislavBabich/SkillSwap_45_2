@@ -3,11 +3,13 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
+import { Request } from '../../requests/entities/request.entity';
 import { Category } from '../../categories/entities/category.entity';
 
 @Entity('skills')
@@ -37,6 +39,14 @@ export class Skill {
   })
   @JoinColumn({ name: 'owner_id' })
   owner!: User;
+
+  // Где этот скилл — предлагаемый
+  @OneToMany(() => Request, (request) => request.offeredSkill)
+  offeredInRequests!: Request[];
+
+  // Где этот скилл — запрашиваемый
+  @OneToMany(() => Request, (request) => request.requestedSkill)
+  requestedInRequests!: Request[];
 
   @CreateDateColumn()
   createdAt!: Date;
