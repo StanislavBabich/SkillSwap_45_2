@@ -16,17 +16,15 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new AllExceptionsFilter());
 
-  // Настройка Swagger
   const swaggerConfig = new DocumentBuilder()
     .setTitle('SkillSwap API')
-    .setDescription('Платформа обмена навыками «Я научу / Хочу научиться»')
+    .setDescription('API платформы обмена навыками SkillSwap')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api/docs', app, document);
-  // Конец настройки Swagger
+  const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api/docs', app, swaggerDocument);
 
   const config = app.get<TAppConfig>(appConfig.KEY);
   const port = config.port;
@@ -44,6 +42,7 @@ async function bootstrap() {
   await app.listen(port);
 
   winstonLogger.log(`App running on http://localhost:${port}`);
+  winstonLogger.log(`Swagger docs: http://localhost:${port}/api/docs`);
 }
 
 void bootstrap();
