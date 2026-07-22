@@ -10,7 +10,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 import { Express } from 'express';
 
 const fileFilter = (
@@ -47,7 +47,7 @@ export class FilesController {
       storage: diskStorage({
         destination: './public/uploads',
         filename: (req, file, callback) => {
-          const uniqueName = uuidv4();
+          const uniqueName = randomUUID();
           const extension = extname(file.originalname);
           callback(null, `${uniqueName}${extension}`);
         },
