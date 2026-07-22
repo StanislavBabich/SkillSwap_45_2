@@ -1,7 +1,12 @@
-import { ClassSerializerInterceptor, INestApplication, ValidationPipe } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  INestApplication,
+  ValidationPipe,
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as cookieParser from 'cookie-parser';
+import type { Server } from 'http';
 import * as request from 'supertest';
 import { DataSource, Repository } from 'typeorm';
 import { AppModule } from './../src/app.module';
@@ -10,8 +15,26 @@ import { Category } from './../src/categories/entities/category.entity';
 import { User } from './../src/users/entities/user.entity';
 import { UserRole } from './../src/users/user.enums';
 
+interface AuthResponse {
+  accessToken: string;
+}
+
+interface CategoryResponse {
+  id: string;
+  name: string;
+  createdAt?: string;
+  updatedAt?: string;
+  children?: CategoryResponse[];
+}
+
+interface ErrorResponse {
+  statusCode: number;
+  message?: string | string[];
+}
+
 describe('CategoriesController (e2e)', () => {
   let app: INestApplication;
+  let httpServer: Server;
 
   let categoryRepository: Repository<Category>;
   let userRepository: Repository<User>;
@@ -83,6 +106,8 @@ describe('CategoriesController (e2e)', () => {
 
     await app.init();
 
+    httpServer = app.getHttpServer() as Server;
+
     const dataSource = app.get(DataSource);
 
     categoryRepository = dataSource.getRepository(Category);
@@ -91,12 +116,12 @@ describe('CategoriesController (e2e)', () => {
     /*
      * Регистрируем двух пользователей через настоящее API.
      */
-    await request(app.getHttpServer())
+    await request(httpServer)
       .post('/api/auth/register')
       .send(adminData)
       .expect(201);
 
-    await request(app.getHttpServer())
+    await request(httpServer)
       .post('/api/auth/register')
       .send(userData)
       .expect(201);
@@ -116,7 +141,7 @@ describe('CategoriesController (e2e)', () => {
     /*
      * Выполняем login после изменения роли, чтобы получить токен администратора.
      */
-    const adminLoginResponse = await request(app.getHttpServer())
+    const adminLoginResponse = await request(httpServer)
       .post('/api/auth/login')
       .send({
         email: adminData.email,
@@ -124,9 +149,11 @@ describe('CategoriesController (e2e)', () => {
       })
       .expect(200);
 
-    adminAccessToken = adminLoginResponse.body.accessToken;
+    const adminLoginBody = adminLoginResponse.body as AuthResponse;
 
-    const userLoginResponse = await request(app.getHttpServer())
+    adminAccessToken = adminLoginBody.accessToken;
+
+    const userLoginResponse = await request(httpServer)
       .post('/api/auth/login')
       .send({
         email: userData.email,
@@ -134,7 +161,9 @@ describe('CategoriesController (e2e)', () => {
       })
       .expect(200);
 
-    userAccessToken = userLoginResponse.body.accessToken;
+    const userLoginBody = userLoginResponse.body as AuthResponse;
+
+    userAccessToken = userLoginBody.accessToken;
   });
 
   afterEach(async () => {
@@ -169,118 +198,101 @@ describe('CategoriesController (e2e)', () => {
 
   describe('GET /api/categories', () => {
     it('возвращает массив категорий', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .get('/api/categories')
         .expect(200);
 
-      expect(Array.isArray(response.body)).toBe(true);
+      const body = response.body as CategoryResponse[];
+
+      expect(Array.isArray(body)).toBe(true);
     });
 
     it('возвращает созданные корневые категории', async () => {
-      const programming = await createCategory(
-        `E2E Programming ${testId}`,
-      );
-
+      const programming = await createCategory(`E2E Programming ${testId}`);
       const design = await createCategory(`E2E Design ${testId}`);
 
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .get('/api/categories')
         .expect(200);
 
-      expect(response.body).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            id: programming.id,
-            name: programming.name,
-          }),
-          expect.objectContaining({
-            id: design.id,
-            name: design.name,
-          }),
-        ]),
+      const body = response.body as CategoryResponse[];
+
+      const returnedProgramming = body.find(
+        (category) => category.id === programming.id,
       );
+
+      const returnedDesign = body.find((category) => category.id === design.id);
+
+      expect(returnedProgramming?.name).toBe(programming.name);
+      expect(returnedDesign?.name).toBe(design.name);
     });
 
     it('возвращает дочернюю категорию внутри родительской', async () => {
-      const parent = await createCategory(
-        `E2E Development ${testId}`,
-      );
+      const parent = await createCategory(`E2E Development ${testId}`);
+      const child = await createCategory(`E2E Backend ${testId}`, parent);
 
-      const child = await createCategory(
-        `E2E Backend ${testId}`,
-        parent,
-      );
-
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .get('/api/categories')
         .expect(200);
 
-      const returnedParent = response.body.find(
-        (category: Category) => category.id === parent.id,
-      );
+      const body = response.body as CategoryResponse[];
+
+      const returnedParent = body.find((category) => category.id === parent.id);
 
       expect(returnedParent).toBeDefined();
 
-      expect(returnedParent.children).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            id: child.id,
-            name: child.name,
-          }),
-        ]),
+      const returnedChild = returnedParent?.children?.find(
+        (category) => category.id === child.id,
       );
+
+      expect(returnedChild?.name).toBe(child.name);
     });
   });
 
   describe('GET /api/categories/:id', () => {
     it('возвращает категорию по ID', async () => {
-      const category = await createCategory(
-        `E2E Testing ${testId}`,
-      );
+      const category = await createCategory(`E2E Testing ${testId}`);
 
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .get(`/api/categories/${category.id}`)
         .expect(200);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          id: category.id,
-          name: category.name,
-          children: expect.any(Array),
-        }),
-      );
+      const body = response.body as CategoryResponse;
+
+      expect(body.id).toBe(category.id);
+      expect(body.name).toBe(category.name);
+      expect(Array.isArray(body.children)).toBe(true);
     });
 
     it('возвращает null для несуществующей категории', async () => {
-      const missingCategoryId =
-        '11111111-1111-4111-8111-111111111111';
+      const missingCategoryId = '11111111-1111-4111-8111-111111111111';
 
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .get(`/api/categories/${missingCategoryId}`)
         .expect(200);
 
-      expect(response.body).toEqual({});
+      const body = response.body as Record<string, unknown>;
+
+      expect(body).toEqual({});
     });
   });
 
   describe('POST /api/categories', () => {
     it('возвращает 401 без access token', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/categories')
         .send({
           name: `E2E Unauthorized ${testId}`,
         })
         .expect(401);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          statusCode: 401,
-        }),
-      );
+      const body = response.body as ErrorResponse;
+
+      expect(body.statusCode).toBe(401);
     });
 
     it('возвращает 403 для обычного пользователя', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/categories')
         .set('Authorization', `Bearer ${userAccessToken}`)
         .send({
@@ -288,17 +300,15 @@ describe('CategoriesController (e2e)', () => {
         })
         .expect(403);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          statusCode: 403,
-        }),
-      );
+      const body = response.body as ErrorResponse;
+
+      expect(body.statusCode).toBe(403);
     });
 
     it('позволяет администратору создать категорию', async () => {
       const categoryName = `E2E Admin category ${testId}`;
 
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/categories')
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .send({
@@ -306,19 +316,17 @@ describe('CategoriesController (e2e)', () => {
         })
         .expect(201);
 
-      createdCategoryIds.push(response.body.id);
+      const body = response.body as CategoryResponse;
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          id: expect.any(String),
-          name: categoryName,
-          createdAt: expect.any(String),
-          updatedAt: expect.any(String),
-        }),
-      );
+      createdCategoryIds.push(body.id);
+
+      expect(typeof body.id).toBe('string');
+      expect(body.name).toBe(categoryName);
+      expect(typeof body.createdAt).toBe('string');
+      expect(typeof body.updatedAt).toBe('string');
 
       const savedCategory = await categoryRepository.findOneBy({
-        id: response.body.id,
+        id: body.id,
       });
 
       expect(savedCategory).not.toBeNull();
@@ -326,11 +334,9 @@ describe('CategoriesController (e2e)', () => {
     });
 
     it('позволяет администратору создать дочернюю категорию', async () => {
-      const parent = await createCategory(
-        `E2E Parent ${testId}`,
-      );
+      const parent = await createCategory(`E2E Parent ${testId}`);
 
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/categories')
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .send({
@@ -339,11 +345,13 @@ describe('CategoriesController (e2e)', () => {
         })
         .expect(201);
 
-      createdCategoryIds.push(response.body.id);
+      const body = response.body as CategoryResponse;
+
+      createdCategoryIds.push(body.id);
 
       const savedCategory = await categoryRepository.findOne({
         where: {
-          id: response.body.id,
+          id: body.id,
         },
         relations: {
           parent: true,
@@ -355,21 +363,19 @@ describe('CategoriesController (e2e)', () => {
     });
 
     it('возвращает 400, если name отсутствует', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/categories')
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .send({})
         .expect(400);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          statusCode: 400,
-        }),
-      );
+      const body = response.body as ErrorResponse;
+
+      expect(body.statusCode).toBe(400);
     });
 
     it('возвращает 400 при некорректном parentId', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/categories')
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .send({
@@ -378,15 +384,13 @@ describe('CategoriesController (e2e)', () => {
         })
         .expect(400);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          statusCode: 400,
-        }),
-      );
+      const body = response.body as ErrorResponse;
+
+      expect(body.statusCode).toBe(400);
     });
 
     it('возвращает 400 при передаче лишнего поля', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/categories')
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .send({
@@ -395,23 +399,19 @@ describe('CategoriesController (e2e)', () => {
         })
         .expect(400);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          statusCode: 400,
-        }),
-      );
+      const body = response.body as ErrorResponse;
+
+      expect(body.statusCode).toBe(400);
     });
   });
 
   describe('PATCH /api/categories/:id', () => {
     it('позволяет администратору изменить категорию', async () => {
-      const category = await createCategory(
-        `E2E Old name ${testId}`,
-      );
+      const category = await createCategory(`E2E Old name ${testId}`);
 
       const newName = `E2E New name ${testId}`;
 
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .patch(`/api/categories/${category.id}`)
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .send({
@@ -419,12 +419,10 @@ describe('CategoriesController (e2e)', () => {
         })
         .expect(200);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          id: category.id,
-          name: newName,
-        }),
-      );
+      const body = response.body as CategoryResponse;
+
+      expect(body.id).toBe(category.id);
+      expect(body.name).toBe(newName);
 
       const updatedCategory = await categoryRepository.findOneBy({
         id: category.id,
@@ -438,7 +436,7 @@ describe('CategoriesController (e2e)', () => {
         `E2E Unauthorized update ${testId}`,
       );
 
-      await request(app.getHttpServer())
+      await request(httpServer)
         .patch(`/api/categories/${category.id}`)
         .send({
           name: `E2E Forbidden update ${testId}`,
@@ -453,11 +451,9 @@ describe('CategoriesController (e2e)', () => {
     });
 
     it('возвращает 403 для обычного пользователя', async () => {
-      const category = await createCategory(
-        `E2E Protected update ${testId}`,
-      );
+      const category = await createCategory(`E2E Protected update ${testId}`);
 
-      await request(app.getHttpServer())
+      await request(httpServer)
         .patch(`/api/categories/${category.id}`)
         .set('Authorization', `Bearer ${userAccessToken}`)
         .send({
@@ -475,11 +471,9 @@ describe('CategoriesController (e2e)', () => {
 
   describe('DELETE /api/categories/:id', () => {
     it('позволяет администратору удалить категорию', async () => {
-      const category = await createCategory(
-        `E2E Delete me ${testId}`,
-      );
+      const category = await createCategory(`E2E Delete me ${testId}`);
 
-      await request(app.getHttpServer())
+      await request(httpServer)
         .delete(`/api/categories/${category.id}`)
         .set('Authorization', `Bearer ${adminAccessToken}`)
         .expect(200);
@@ -500,7 +494,7 @@ describe('CategoriesController (e2e)', () => {
         `E2E Unauthorized delete ${testId}`,
       );
 
-      await request(app.getHttpServer())
+      await request(httpServer)
         .delete(`/api/categories/${category.id}`)
         .expect(401);
 
@@ -512,11 +506,9 @@ describe('CategoriesController (e2e)', () => {
     });
 
     it('возвращает 403 для обычного пользователя', async () => {
-      const category = await createCategory(
-        `E2E Protected delete ${testId}`,
-      );
+      const category = await createCategory(`E2E Protected delete ${testId}`);
 
-      await request(app.getHttpServer())
+      await request(httpServer)
         .delete(`/api/categories/${category.id}`)
         .set('Authorization', `Bearer ${userAccessToken}`)
         .expect(403);

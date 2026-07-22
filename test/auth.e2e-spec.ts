@@ -6,12 +6,40 @@ import {
 import { Reflector } from '@nestjs/core';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as cookieParser from 'cookie-parser';
+import type { Server } from 'http';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { AllExceptionsFilter } from './../src/common/filters/all-exceptions.filter';
 
+interface AuthUserResponse {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface AuthResponse {
+  accessToken: string;
+  refreshToken: string;
+  user: AuthUserResponse;
+}
+
+interface TokensResponse {
+  accessToken: string;
+  refreshToken: string;
+}
+
+interface ErrorResponse {
+  statusCode: number;
+  message: string | string[];
+}
+
+interface LogoutResponse {
+  message: string;
+}
+
 describe('AuthController (e2e)', () => {
   let app: INestApplication;
+  let httpServer: Server;
 
   const testUser = {
     name: 'E2E Test User',
@@ -47,6 +75,8 @@ describe('AuthController (e2e)', () => {
     );
 
     await app.init();
+
+    httpServer = app.getHttpServer() as Server;
   });
 
   afterAll(async () => {
@@ -55,34 +85,32 @@ describe('AuthController (e2e)', () => {
 
   describe('POST /api/auth/register', () => {
     it('регистрирует нового пользователя', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/register')
         .send(testUser)
         .expect(201);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          accessToken: expect.any(String),
-          refreshToken: expect.any(String),
-          user: expect.objectContaining({
-            id: expect.any(String),
-            name: testUser.name,
-            email: testUser.email,
-          }),
-        }),
-      );
+      const body = response.body as AuthResponse;
 
-      accessToken = response.body.accessToken;
-      refreshToken = response.body.refreshToken;
+      expect(typeof body.accessToken).toBe('string');
+      expect(typeof body.refreshToken).toBe('string');
+      expect(typeof body.user.id).toBe('string');
+      expect(body.user.name).toBe(testUser.name);
+      expect(body.user.email).toBe(testUser.email);
+
+      accessToken = body.accessToken;
+      refreshToken = body.refreshToken;
     });
 
     it('возвращает 409 при повторной регистрации того же email', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/register')
         .send(testUser)
         .expect(409);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 409,
           message: 'Пользователь с таким email уже существует',
@@ -91,7 +119,7 @@ describe('AuthController (e2e)', () => {
     });
 
     it('возвращает 400 при некорректном email', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/register')
         .send({
           name: 'Test User',
@@ -100,19 +128,21 @@ describe('AuthController (e2e)', () => {
         })
         .expect(400);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 400,
         }),
       );
 
-      expect(response.body.message).toEqual(
+      expect(body.message).toEqual(
         expect.arrayContaining(['Некорректный email']),
       );
     });
 
     it('возвращает 400, если передано лишнее поле', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/register')
         .send({
           name: 'Test User',
@@ -122,7 +152,9 @@ describe('AuthController (e2e)', () => {
         })
         .expect(400);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 400,
         }),
@@ -132,7 +164,7 @@ describe('AuthController (e2e)', () => {
 
   describe('POST /api/auth/login', () => {
     it('авторизует зарегистрированного пользователя', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/login')
         .send({
           email: testUser.email,
@@ -140,26 +172,22 @@ describe('AuthController (e2e)', () => {
         })
         .expect(200);
 
-      expect(response.body).toEqual(
-        expect.objectContaining({
-          accessToken: expect.any(String),
-          refreshToken: expect.any(String),
-          user: expect.objectContaining({
-            id: expect.any(String),
-            name: testUser.name,
-            email: testUser.email,
-          }),
-        }),
-      );
+      const body = response.body as AuthResponse;
+
+      expect(typeof body.accessToken).toBe('string');
+      expect(typeof body.refreshToken).toBe('string');
+      expect(typeof body.user.id).toBe('string');
+      expect(body.user.name).toBe(testUser.name);
+      expect(body.user.email).toBe(testUser.email);
 
       // После входа refresh token в БД обновляется,
       // поэтому дальше используем именно новые токены.
-      accessToken = response.body.accessToken;
-      refreshToken = response.body.refreshToken;
+      accessToken = body.accessToken;
+      refreshToken = body.refreshToken;
     });
 
     it('возвращает 401 при неправильном пароле', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/login')
         .send({
           email: testUser.email,
@@ -167,7 +195,9 @@ describe('AuthController (e2e)', () => {
         })
         .expect(401);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 401,
           message: 'Неверный email или пароль',
@@ -176,7 +206,7 @@ describe('AuthController (e2e)', () => {
     });
 
     it('возвращает 401 для несуществующего пользователя', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/login')
         .send({
           email: `unknown-${Date.now()}@example.com`,
@@ -184,7 +214,9 @@ describe('AuthController (e2e)', () => {
         })
         .expect(401);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 401,
           message: 'Неверный email или пароль',
@@ -193,7 +225,7 @@ describe('AuthController (e2e)', () => {
     });
 
     it('возвращает 400 при некорректных данных', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/login')
         .send({
           email: 'not-an-email',
@@ -201,13 +233,15 @@ describe('AuthController (e2e)', () => {
         })
         .expect(400);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 400,
         }),
       );
 
-      expect(response.body.message).toEqual(
+      expect(body.message).toEqual(
         expect.arrayContaining([
           'Некорректный email',
           'Пароль должен содержать минимум 6 символов',
@@ -218,27 +252,29 @@ describe('AuthController (e2e)', () => {
 
   describe('POST /api/auth/refresh', () => {
     it('обновляет access и refresh токены', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/refresh')
         .send({ refreshToken })
         .expect(200);
 
-      expect(response.body).toEqual({
-        accessToken: expect.any(String),
-        refreshToken: expect.any(String),
-      });
+      const body = response.body as TokensResponse;
 
-      accessToken = response.body.accessToken;
-      refreshToken = response.body.refreshToken;
+      expect(typeof body.accessToken).toBe('string');
+      expect(typeof body.refreshToken).toBe('string');
+
+      accessToken = body.accessToken;
+      refreshToken = body.refreshToken;
     });
 
     it('возвращает 401 без refresh token', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/refresh')
         .send({})
         .expect(401);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 401,
         }),
@@ -246,14 +282,16 @@ describe('AuthController (e2e)', () => {
     });
 
     it('возвращает 401 с некорректным refresh token', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/refresh')
         .send({
           refreshToken: 'incorrect-refresh-token',
         })
         .expect(401);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 401,
         }),
@@ -263,11 +301,13 @@ describe('AuthController (e2e)', () => {
 
   describe('POST /api/auth/logout', () => {
     it('возвращает 401 без access token', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/logout')
         .expect(401);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 401,
         }),
@@ -275,23 +315,27 @@ describe('AuthController (e2e)', () => {
     });
 
     it('завершает сессию авторизованного пользователя', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/logout')
         .set('Authorization', `Bearer ${accessToken}`)
         .expect(200);
 
-      expect(response.body).toEqual({
+      const body = response.body as LogoutResponse;
+
+      expect(body).toEqual({
         message: 'Вы успешно вышли из аккаунта',
       });
     });
 
     it('не позволяет обновить токены после выхода', async () => {
-      const response = await request(app.getHttpServer())
+      const response = await request(httpServer)
         .post('/api/auth/refresh')
         .send({ refreshToken })
         .expect(401);
 
-      expect(response.body).toEqual(
+      const body = response.body as ErrorResponse;
+
+      expect(body).toEqual(
         expect.objectContaining({
           statusCode: 401,
         }),
