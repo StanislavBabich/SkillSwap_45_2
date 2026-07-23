@@ -2,44 +2,50 @@ import { ApiProperty } from '@nestjs/swagger';
 import { UserGender } from '../../users/user.enums';
 
 class SimilarUserSkillDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: '6ba7b810-9dad-41d1-80b4-00c04fd430c8',
+    format: 'uuid',
+  })
   id!: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'NestJS development' })
   title!: string;
 
-  @ApiProperty({ nullable: true })
+  @ApiProperty({ example: 'Backend development', nullable: true })
   description?: string | null;
 }
 
 export class SimilarUserDto {
-  @ApiProperty()
+  @ApiProperty({
+    example: '550e8400-e29b-41d4-a716-446655440000',
+    format: 'uuid',
+  })
   id!: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Alex Smith' })
   name!: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'alex@example.com', format: 'email' })
   email!: string;
 
-  @ApiProperty({ nullable: true })
+  @ApiProperty({ example: 'https://example.com/avatar.jpg', nullable: true })
   avatar?: string | null;
 
-  @ApiProperty({ nullable: true })
+  @ApiProperty({ example: 'Moscow', nullable: true })
   city?: string | null;
 
-  @ApiProperty({ nullable: true })
+  @ApiProperty({ example: '1995-05-20', format: 'date', nullable: true })
   birthdate?: string | null;
 
-  @ApiProperty({ nullable: true })
+  @ApiProperty({ example: 'Backend developer', nullable: true })
   about?: string | null;
 
   @ApiProperty({ enum: UserGender, nullable: true })
   gender?: UserGender | null;
 
-  @ApiProperty()
+  @ApiProperty({ example: 2, minimum: 1 })
   commonSkillsCount!: number;
 
-  @ApiProperty({ type: [SimilarUserSkillDto] })
+  @ApiProperty({ type: SimilarUserSkillDto, isArray: true })
   skills!: SimilarUserSkillDto[];
 }
