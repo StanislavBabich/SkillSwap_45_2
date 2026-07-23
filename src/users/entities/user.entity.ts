@@ -1,5 +1,10 @@
 import { Exclude } from 'class-transformer';
 import {
+  ApiHideProperty,
+  ApiProperty,
+  ApiPropertyOptional,
+} from '@nestjs/swagger';
+import {
   Column,
   Entity,
   JoinTable,
@@ -13,28 +18,43 @@ import { UserGender, UserRole } from '../user.enums';
 
 @Entity('users')
 export class User {
+  @ApiProperty({
+    example: '550e8400-e29b-41d4-a716-446655440000',
+    format: 'uuid',
+  })
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
+  @ApiProperty({ example: 'Alex Smith' })
   @Column({ type: 'varchar', length: 100 })
   name!: string;
 
+  @ApiProperty({ example: 'alex@example.com', format: 'email' })
   @Column({ type: 'varchar', length: 255, unique: true })
   email!: string;
 
+  @ApiHideProperty()
   @Exclude()
   @Column({ type: 'varchar', length: 255, select: false })
   password!: string;
 
+  @ApiPropertyOptional({ example: 'Backend developer', nullable: true })
   @Column({ type: 'text', nullable: true })
   about?: string | null;
 
+  @ApiPropertyOptional({
+    example: '1995-05-20',
+    format: 'date',
+    nullable: true,
+  })
   @Column({ type: 'date', nullable: true })
   birthdate?: string | null;
 
+  @ApiPropertyOptional({ example: 'Moscow', nullable: true })
   @Column({ type: 'varchar', length: 100, nullable: true })
   city?: string | null;
 
+  @ApiPropertyOptional({ enum: UserGender, nullable: true })
   @Column({
     type: 'enum',
     enum: UserGender,
@@ -43,20 +63,29 @@ export class User {
   })
   gender?: UserGender | null;
 
+  @ApiPropertyOptional({
+    example: 'https://example.com/avatar.jpg',
+    format: 'uri',
+    nullable: true,
+  })
   @Column({ type: 'varchar', length: 500, nullable: true })
   avatar?: string | null;
 
+  @ApiHideProperty()
   @OneToMany(() => Skill, (skill) => skill.owner)
   skills?: Skill[];
 
   // Заявки где пользователь — отправитель
+  @ApiHideProperty()
   @OneToMany(() => Request, (request) => request.sender)
   sentRequests!: Request[];
 
   // Заявки, где пользователь — получатель
+  @ApiHideProperty()
   @OneToMany(() => Request, (request) => request.receiver)
   receivedRequests!: Request[];
 
+  @ApiHideProperty()
   @ManyToMany(() => Skill)
   @JoinTable({
     name: 'users_favorite_skills',
@@ -71,6 +100,7 @@ export class User {
   })
   favoriteSkills!: Skill[];
 
+  @ApiProperty({ enum: UserRole, default: UserRole.USER })
   @Column({
     type: 'enum',
     enum: UserRole,
@@ -79,6 +109,7 @@ export class User {
   })
   role: UserRole = UserRole.USER;
 
+  @ApiHideProperty()
   @Exclude()
   @Column({
     name: 'refresh_token',
