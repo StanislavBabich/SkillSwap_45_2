@@ -78,7 +78,7 @@ export class RequestsService {
     await this.usersService.findOne(userId);
 
     const requests = await this.createBaseQueryBuilder()
-      .where('request.receiverId = :userId', { userId })
+      .where('receiver.id = :userId', { userId })
       .andWhere('request.status IN (:...statuses)', {
         statuses: [RequestStatus.PENDING, RequestStatus.IN_PROGRESS],
       })
@@ -94,7 +94,7 @@ export class RequestsService {
     await this.usersService.findOne(userId);
 
     const requests = await this.createBaseQueryBuilder()
-      .where('request.senderId = :userId', { userId })
+      .where('sender.id = :userId', { userId })
       .andWhere('request.status IN (:...statuses)', {
         statuses: [RequestStatus.PENDING, RequestStatus.IN_PROGRESS],
       })
