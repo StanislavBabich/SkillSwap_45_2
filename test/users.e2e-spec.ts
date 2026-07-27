@@ -144,7 +144,7 @@ describe('UsersController (e2e)', () => {
     for (const userId of [...createdUserIds].reverse()) {
       const admin = await userRepository.findOneBy({ email: adminData.email });
       const user = await userRepository.findOneBy({ email: userData.email });
-      
+
       if (userId !== admin?.id && userId !== user?.id) {
         await userRepository.delete(userId);
       }
@@ -221,9 +221,7 @@ describe('UsersController (e2e)', () => {
 
   describe('GET /api/users', () => {
     it('возвращает массив пользователей', async () => {
-      const response = await request(httpServer)
-        .get('/api/users')
-        .expect(200);
+      const response = await request(httpServer).get('/api/users').expect(200);
 
       const body = response.body as UserResponse[];
 
