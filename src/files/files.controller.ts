@@ -10,8 +10,9 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 import { Express } from 'express';
+import { ApiFilesController, ApiUploadFile } from './files.swagger';
 
 const fileFilter = (
   _req: any,
@@ -38,16 +39,18 @@ const fileFilter = (
   callback(null, true);
 };
 
+@ApiFilesController()
 @Controller('files')
 export class FilesController {
   @Post('upload')
   @HttpCode(HttpStatus.CREATED)
+  @ApiUploadFile()
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
         destination: './public/uploads',
         filename: (req, file, callback) => {
-          const uniqueName = uuidv4();
+          const uniqueName = randomUUID();
           const extension = extname(file.originalname);
           callback(null, `${uniqueName}${extension}`);
         },

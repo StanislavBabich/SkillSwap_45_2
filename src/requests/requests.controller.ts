@@ -11,11 +11,8 @@ import {
 import { RequestsService } from './requests.service';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { AccessTokenGuard } from '../auth/guards/access-token.guard';
-import { RolesGuard } from '../auth/guards/roles.guard';
-import { Roles } from '../auth/decorators/roles.decorator';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { TJwtUser } from '../auth/auth.types';
-import { UserRole } from '../users/user.enums';
 
 @Controller('requests')
 @UseGuards(AccessTokenGuard)
@@ -63,8 +60,6 @@ export class RequestsController {
 
   // удалить заявку
   @Delete(':id')
-  @UseGuards(RolesGuard)
-  @Roles([UserRole.ADMIN])
   remove(@Param('id') id: string, @CurrentUser() user: TJwtUser) {
     return this.requestsService.remove(id, user.id, user.role);
   }

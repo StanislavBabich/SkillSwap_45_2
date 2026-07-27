@@ -11,6 +11,6 @@ import { AuthModule } from '../auth/auth.module';
   imports: [TypeOrmModule.forFeature([Skill, Category, User]), AuthModule],
   controllers: [SkillsController],
   providers: [SkillsService],
-  exports: [SkillsService], 
+  exports: [SkillsService],
 })
 export class SkillsModule {}
