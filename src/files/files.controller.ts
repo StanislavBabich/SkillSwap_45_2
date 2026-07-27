@@ -12,6 +12,7 @@ import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { randomUUID } from 'crypto';
 import { Express } from 'express';
+import { ApiFilesController, ApiUploadFile } from './files.swagger';
 
 const fileFilter = (
   _req: any,
@@ -38,10 +39,12 @@ const fileFilter = (
   callback(null, true);
 };
 
+@ApiFilesController()
 @Controller('files')
 export class FilesController {
   @Post('upload')
   @HttpCode(HttpStatus.CREATED)
+  @ApiUploadFile()
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
