@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 
-export default async function globalSetup(): Promise<void> {
+export default function globalSetup(): void {
   console.log('\n🔄 Подготовка тестовой БД...\n');
 
   try {
