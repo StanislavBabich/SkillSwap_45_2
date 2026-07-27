@@ -4,17 +4,25 @@ import { CategoriesService } from './categories.service';
 
 describe('CategoriesController', () => {
   let controller: CategoriesController;
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [CategoriesController],
-      providers: [CategoriesService],
+      providers: [
+        {
+          provide: CategoriesService,
+          useValue: {
+            create: jest.fn(),
+            findAll: jest.fn(),
+            findOne: jest.fn(),
+            update: jest.fn(),
+            remove: jest.fn(),
+          },
+        },
+      ],
     }).compile();
-
     controller = module.get<CategoriesController>(CategoriesController);
   });
-
-  it('should be defined', () => {
+  it('должен быть определен', () => {
     expect(controller).toBeDefined();
   });
 });
