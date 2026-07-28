@@ -4,17 +4,24 @@ import { AuthService } from './auth.service';
 
 describe('AuthController', () => {
   let controller: AuthController;
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
-      providers: [AuthService],
+      providers: [
+        {
+          provide: AuthService,
+          useValue: {
+            registerUser: jest.fn(),
+            login: jest.fn(),
+            refresh: jest.fn(),
+            logout: jest.fn(),
+          },
+        },
+      ],
     }).compile();
-
     controller = module.get<AuthController>(AuthController);
   });
-
-  it('should be defined', () => {
+  it('должен быть определен', () => {
     expect(controller).toBeDefined();
   });
 });
