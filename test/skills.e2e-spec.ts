@@ -96,12 +96,12 @@ describe('SkillsController (e2e)', () => {
   let createdCategoryIds: string[] = [];
   let createdSkillIds: string[] = [];
 
-  const rememberCategory = (category: Category): Category => {
+  const _rememberCategory = (category: Category): Category => {
     createdCategoryIds.push(category.id);
     return category;
   };
 
-  const rememberSkill = (skill: Skill): Skill => {
+  const _rememberSkill = (skill: Skill): Skill => {
     createdSkillIds.push(skill.id);
     return skill;
   };

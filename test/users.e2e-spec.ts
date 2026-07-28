@@ -66,7 +66,7 @@ describe('UsersController (e2e)', () => {
 
   let createdUserIds: string[] = [];
 
-  const rememberUser = (user: User): User => {
+  const _rememberUser = (user: User): User => {
     createdUserIds.push(user.id);
     return user;
   };

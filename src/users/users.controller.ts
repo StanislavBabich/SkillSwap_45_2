@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiChangeCurrentUserPassword,
@@ -24,9 +25,7 @@ import { ChangePasswordDto } from './dto/change-password.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UsersService } from './users.service';
-
-// Импорты гард Юля и Дарья ещё делают
-// import { AccessTokenGuard } from '../auth/guards/access-token.guard';
+import { AccessTokenGuard } from '../auth/guards/access-token.guard';
 
 @ApiUsersController()
 @Controller('users')
@@ -45,8 +44,7 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  // 🔒 Защищённый эндпоинт — только авторизованные
-  // @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard)
   @Get('me')
   @ApiGetCurrentUser()
   getMe(@Req() req: Request) {
@@ -54,8 +52,7 @@ export class UsersController {
     return this.usersService.findOne(userId);
   }
 
-  // 🔒 Защищённый эндпоинт
-  // @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard)
   @Patch('me')
   @ApiUpdateCurrentUser()
   updateMe(@Req() req: Request, @Body() dto: UpdateProfileDto) {
@@ -63,8 +60,7 @@ export class UsersController {
     return this.usersService.updateProfile(userId, dto);
   }
 
-  // 🔒 Защищённый эндпоинт
-  // @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard)
   @Patch('me/password')
   @ApiChangeCurrentUserPassword()
   changePassword(@Req() req: Request, @Body() dto: ChangePasswordDto) {
