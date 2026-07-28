@@ -4,17 +4,28 @@ import { SkillsService } from './skills.service';
 
 describe('SkillsController', () => {
   let controller: SkillsController;
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [SkillsController],
-      providers: [SkillsService],
+      providers: [
+        {
+          provide: SkillsService,
+          useValue: {
+            create: jest.fn(),
+            findAll: jest.fn(),
+            findOne: jest.fn(),
+            update: jest.fn(),
+            remove: jest.fn(),
+            findSimilarUsers: jest.fn(),
+            addToFavorites: jest.fn(),
+            removeFromFavorites: jest.fn(),
+          },
+        },
+      ],
     }).compile();
-
     controller = module.get<SkillsController>(SkillsController);
   });
-
-  it('should be defined', () => {
+  it('должен быть определен', () => {
     expect(controller).toBeDefined();
   });
 });
