@@ -5,9 +5,9 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';;
 import type { Server } from 'http';
-import * as request from 'supertest';
+import request from 'supertest';
 import { DataSource, Repository } from 'typeorm';
 import { AppModule } from './../src/app.module';
 import { AllExceptionsFilter } from './../src/common/filters/all-exceptions.filter';

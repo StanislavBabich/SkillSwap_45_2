@@ -2,12 +2,12 @@ import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';;
 import { existsSync } from 'fs';
 import { mkdir, readFile, unlink } from 'fs/promises';
 import type { Server } from 'http';
 import { basename, join } from 'path';
-import * as request from 'supertest';
+import request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { AllExceptionsFilter } from './../src/common/filters/all-exceptions.filter';
 

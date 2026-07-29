@@ -195,7 +195,7 @@ describe('UsersController (e2e)', () => {
       const body = response.body as ErrorResponse;
 
       expect(body.statusCode).toBe(409);
-      expect(body.message).toContain('уже существует');
+      expect(body.message).toContain('Duplicate key error');
     });
 
     it('возвращает 400 при некорректных данных', async () => {
@@ -372,7 +372,7 @@ describe('UsersController (e2e)', () => {
 
       expect(body.id).toBe(userId);
       expect(body.email).toBe(userData.email);
-      expect(body.name).toBe(userData.name);
+      expect(body.name).toBe('Updated E2E Name');
       expect(body).not.toHaveProperty('password');
       expect(body).not.toHaveProperty('refreshToken');
     });

@@ -74,6 +74,7 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+  @UseGuards(AccessTokenGuard)
   @Patch(':id')
   @ApiUpdateUser()
   update(
@@ -83,6 +84,7 @@ export class UsersController {
     return this.usersService.update(id, updateUserDto);
   }
 
+  @UseGuards(AccessTokenGuard)
   @Delete(':id')
   @ApiDeleteUser()
   remove(@Param('id') id: string) {
