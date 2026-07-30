@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconButton {
+  display: inline-flex;  
+  align-items: center;
+  justify-content: center;
+}
+
+.iconButton svg {
+  display: block;
+  width: 24px;
+  height: 24px; 
+}

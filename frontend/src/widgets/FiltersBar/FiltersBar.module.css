@@ -1,0 +1,69 @@
+.sidebar {
+    position: sticky;
+    top: 16px;
+    
+    /* Используем flex-контейнер для разделения */
+    display: flex;
+    flex-direction: column;
+
+    /* Ограничиваем высоту */
+    max-height: calc(100vh - 32px);
+    padding: 20px;
+    background-color: var(--base-color);
+    border-radius: var(--border-modal-radius, 12px);
+}
+
+.title {
+    font-family: var(--font-family-heading, 'Jost');
+    font-size: var(--heading-h2-font-size, 24px);
+    font-weight: var(--font-weight-medium, 500);
+}
+
+.top {
+    display: flex;
+
+    /* Фиксируем верхнюю панель */
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    margin-block-end: 40px;
+}
+
+/* Контейнер для фильтров - только он будет скроллиться */
+.filters {
+    display: flex;
+    flex: 1; /* Занимает все доступное место */
+    flex-direction: column;
+    gap: 32px;
+    padding-right: 8px; /* Небольшой отступ для контента */
+    overflow-y: auto;
+    
+    /* Скрываем скроллбар для разных браузеров */
+    scrollbar-width: none; /* Для Firefox */
+    -ms-overflow-style: none; /* Для Internet Explorer и Edge */
+}
+
+/* Для WebKit браузеров (Chrome, Safari, Edge) */
+.filters::-webkit-scrollbar {
+    display: none; /* Скрываем скроллбар */
+    width: 0;
+    background: transparent;
+}
+
+/* Альтернативный способ для WebKit */
+.filters::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.clean {
+  display: flex;
+  flex-shrink: 0;
+  gap: 4px;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-link-button, #508826);
+  letter-spacing: 0.32px;
+}
+

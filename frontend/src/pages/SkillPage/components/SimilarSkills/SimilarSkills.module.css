@@ -1,0 +1,72 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 0 1.7rem; 
+  font-family: var(--font-family-heading);
+  font-size: var(--heading-h2-font-size);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.018em;
+}
+
+.gridWrapper {
+  position: relative;
+}
+
+.gridViewport {
+  width: calc(4 * 20.25rem + 3 * 1.5rem); /* 4 карточки + 3 промежутка */
+  overflow: hidden;
+}
+
+.gridTrack {
+  display: flex;
+  gap: 1.5rem; /* 24px */
+  transition: transform 0.15s ease;
+}
+
+.gridCell {
+  flex-shrink: 0;
+  width: 20.25rem;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem; /* 32px */
+  height: 2rem; /* 32px */
+  padding: 0;
+  cursor: pointer;
+  background-color: var(--color-disabled);
+  border: none;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.navButton:active {
+  transform: translateY(calc(-50% + 2px));
+}
+
+.navButtonHidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.navButtonLeft {
+  left: -1rem; /* -2rem + 5px */
+}
+
+.navButtonRight {
+  right: -1rem;
+}
+
+.navIcon {
+  flex-shrink: 0;
+  color: var(--color-input-border);
+}

@@ -1,0 +1,344 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Бизнес и карьера",
+      "color": "var(--color-tag-business)",
+      "icon": "/src/assets/briefcase.svg"
+    },
+    {
+      "id": 2,
+      "name": "Творчество и искусство",
+      "color": "var(--color-tag-art)",
+      "icon": "/src/assets/palette.svg"
+    },
+    {
+      "id": 3,
+      "name": "Иностранные языки",
+      "color": "var(--color-tag-language)",
+      "icon": "/src/assets/global.svg"
+    },
+    {
+      "id": 4,
+      "name": "Образование и развитие",
+      "color": "var(--color-tag-education)",
+      "icon": "/src/assets/book.svg"
+    },
+    {
+      "id": 5,
+      "name": "Здоровье и лайфстайл",
+      "color": "var(--color-tag-health)",
+      "icon": "/src/assets/lifestyle.svg"
+    },
+    {
+      "id": 6,
+      "name": "Дом и уют",
+      "color": "var(--color-tag-home)",
+      "icon": "/src/assets/home.svg"
+    },
+    {
+      "id": 7,
+      "name": "IT и технологии",
+      "color": "var(--color-tag-tech)",
+      "icon": "/src/assets/idea.svg"
+    },
+    {
+      "id": 8,
+      "name": "Спорт и активный отдых",
+      "color": "var(--color-tag-sport)",
+      "icon": "/src/assets/sun.svg"
+    }
+  ],
+  "subcategories": [
+    {
+      "id": 101,
+      "name": "Управление командой",
+      "categoryId": 1
+    },
+    {
+      "id": 102,
+      "name": "Маркетинг и реклама",
+      "categoryId": 1
+    },
+    {
+      "id": 103,
+      "name": "Продажи и переговоры",
+      "categoryId": 1
+    },
+    {
+      "id": 104,
+      "name": "Личный бренд",
+      "categoryId": 1
+    },
+    {
+      "id": 105,
+      "name": "Резюме и собеседование",
+      "categoryId": 1
+    },
+    {
+      "id": 106,
+      "name": "Тайм-менеджмент",
+      "categoryId": 1
+    },
+    {
+      "id": 107,
+      "name": "Проектное управление",
+      "categoryId": 1
+    },
+    {
+      "id": 108,
+      "name": "Предпринимательство",
+      "categoryId": 1
+    },
+    {
+      "id": 9,
+      "name": "Английский",
+      "categoryId": 3
+    },
+    {
+      "id": 10,
+      "name": "Французский",
+      "categoryId": 3
+    },
+    {
+      "id": 11,
+      "name": "Испанский",
+      "categoryId": 3
+    },
+    {
+      "id": 12,
+      "name": "Немецкий",
+      "categoryId": 3
+    },
+    {
+      "id": 13,
+      "name": "Китайский",
+      "categoryId": 3
+    },
+    {
+      "id": 14,
+      "name": "Японский",
+      "categoryId": 3
+    },
+    {
+      "id": 15,
+      "name": "Подготовка к экзаменам",
+      "categoryId": 3
+    },
+    {
+      "id": 16,
+      "name": "Уборка и организация",
+      "categoryId": 6
+    },
+    {
+      "id": 17,
+      "name": "Домашние финансы",
+      "categoryId": 6
+    },
+    {
+      "id": 18,
+      "name": "Приготовление еды",
+      "categoryId": 6
+    },
+    {
+      "id": 19,
+      "name": "Домашние растения",
+      "categoryId": 6
+    },
+    {
+      "id": 20,
+      "name": "Ремонт",
+      "categoryId": 6
+    },
+    {
+      "id": 21,
+      "name": "Хранение вещей",
+      "categoryId": 6
+    },
+    {
+      "id": 22,
+      "name": "Рисование и иллюстрация",
+      "categoryId": 2
+    },
+    {
+      "id": 23,
+      "name": "Фотография",
+      "categoryId": 2
+    },
+    {
+      "id": 24,
+      "name": "Видеомонтаж",
+      "categoryId": 2
+    },
+    {
+      "id": 25,
+      "name": "Музыка и звук",
+      "categoryId": 2
+    },
+    {
+      "id": 26,
+      "name": "Актёрское мастерство",
+      "categoryId": 2
+    },
+    {
+      "id": 27,
+      "name": "Креативное письмо",
+      "categoryId": 2
+    },
+    {
+      "id": 28,
+      "name": "Арт-терапия",
+      "categoryId": 2
+    },
+    {
+      "id": 29,
+      "name": "Декор и DIY",
+      "categoryId": 2
+    },
+    {
+      "id": 30,
+      "name": "Личностное развитие",
+      "categoryId": 4
+    },
+    {
+      "id": 31,
+      "name": "Навыки обучения",
+      "categoryId": 4
+    },
+    {
+      "id": 32,
+      "name": "Когнитивные техники",
+      "categoryId": 4
+    },
+    {
+      "id": 33,
+      "name": "Скорочтение",
+      "categoryId": 4
+    },
+    {
+      "id": 34,
+      "name": "Навыки преподавания",
+      "categoryId": 4
+    },
+    {
+      "id": 35,
+      "name": "Коучинг",
+      "categoryId": 4
+    },
+    {
+      "id": 36,
+      "name": "Йога и медитация",
+      "categoryId": 5
+    },
+    {
+      "id": 37,
+      "name": "Питание и ЗОЖ",
+      "categoryId": 5
+    },
+    {
+      "id": 38,
+      "name": "Ментальное здоровье",
+      "categoryId": 5
+    },
+    {
+      "id": 39,
+      "name": "Осознанность",
+      "categoryId": 5
+    },
+    {
+      "id": 40,
+      "name": "Физические тренировки",
+      "categoryId": 5
+    },
+    {
+      "id": 41,
+      "name": "Сон и восстановление",
+      "categoryId": 5
+    },
+    {
+      "id": 42,
+      "name": "Баланс жизни и работы",
+      "categoryId": 5
+    },
+    {
+      "id": 43,
+      "name": "Веб-разработка",
+      "categoryId": 7
+    },
+    {
+      "id": 44,
+      "name": "Мобильная разработка",
+      "categoryId": 7
+    },
+    {
+      "id": 45,
+      "name": "Data Science",
+      "categoryId": 7
+    },
+    {
+      "id": 46,
+      "name": "Кибербезопасность",
+      "categoryId": 7
+    },
+    {
+      "id": 47,
+      "name": "DevOps",
+      "categoryId": 7
+    },
+    {
+      "id": 48,
+      "name": "UI/UX дизайн",
+      "categoryId": 7
+    },
+    {
+      "id": 49,
+      "name": "Тестирование (QA)",
+      "categoryId": 7
+    },
+    {
+      "id": 50,
+      "name": "1С",
+      "categoryId": 7
+    },
+    {
+      "id": 51,
+      "name": "Фитнес",
+      "categoryId": 8
+    },
+    {
+      "id": 52,
+      "name": "Бег и триатлон",
+      "categoryId": 8
+    },
+    {
+      "id": 53,
+      "name": "Командные виды спорта",
+      "categoryId": 8
+    },
+    {
+      "id": 54,
+      "name": "Боевые искусства",
+      "categoryId": 8
+    },
+    {
+      "id": 55,
+      "name": "Танцы",
+      "categoryId": 8
+    },
+    {
+      "id": 56,
+      "name": "Экстремальный спорт",
+      "categoryId": 8
+    },
+    {
+      "id": 57,
+      "name": "Плавание",
+      "categoryId": 8
+    },
+    {
+      "id": 58,
+      "name": "Зимние виды спорта",
+      "categoryId": 8
+    }
+  ]
+}

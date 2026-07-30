@@ -1,0 +1,10 @@
+:root {
+  color-scheme: light;
+}
+
+/* Заготовка для будущей темной темы */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}

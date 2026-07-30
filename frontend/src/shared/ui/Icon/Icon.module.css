@@ -1,0 +1,6 @@
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  color: currentcolor; /* наследует цвет текста */
+  transition: color 0.2s ease;
+}

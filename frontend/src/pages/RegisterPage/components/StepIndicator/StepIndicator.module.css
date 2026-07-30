@@ -1,0 +1,49 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--heading-h2-font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-color);
+  text-align: center;
+}
+
+.bars {
+  display: flex;
+  gap: 1rem;
+}
+
+.bar {
+  position: relative;
+  flex: 1;
+  width: 60px;
+  height: 0.25rem;
+  overflow: hidden;
+  background-color: var(--color-disabled);
+  border-radius: var(--border-modal-radius, 12px);
+}
+
+.barFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-accent);
+  border-radius: var(--border-modal-radius, 12px);
+  transition: width 0.15s ease;
+}
+
+.barActive .barFill {
+  width: 100%;
+}
+
+.barFirst.barActive .barFill {
+  transition: none;
+}

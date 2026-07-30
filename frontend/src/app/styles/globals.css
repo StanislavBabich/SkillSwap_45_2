@@ -1,0 +1,39 @@
+/* Reset и базовые стили */
+@import './design-tokens.css';
+@import './design-tokens-typography.css';
+@import './theme.css';
+
+:root {
+  color-scheme: light dark;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-family-body);
+  font-size: var(--body-font-size, 16px);
+  line-height: 1.5;
+  color: var(--text-color, #253017);
+  background-color: var(--bg-color, #F9FAF7);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-primary {
+  color: var(--text-color, #253017);
+}
+
+a {
+  color: var(--text-color, #253017);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+

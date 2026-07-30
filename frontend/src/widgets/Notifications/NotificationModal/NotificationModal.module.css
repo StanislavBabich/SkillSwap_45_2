@@ -1,0 +1,141 @@
+/* Смещение панели влево от кнопки */
+:global(:root) {
+  --notification-panel-offset-left: 300;
+}
+
+.panel {
+  position: absolute;
+  top: 3.5rem;
+  right: -9.6875rem;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  width: 34.75rem;
+  padding: 3.4375rem 3.5625rem;
+  overflow: hidden;
+  background: var(--base-color, #fff);
+  border: 0.0625rem solid #69735D;
+  border-radius: var(--border-modal-radius);
+  animation: panelIn 0.15s ease;
+}
+
+.section:not(:last-child) {
+  margin-bottom: 2.1875rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.8125rem;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--heading-h2-font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-color);
+}
+
+.actionBtn {
+  font-family: var(--font-family-body);
+  font-size: var(--heading-h4-font-size);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-link-button);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.actionBtn:hover {
+  text-decoration: underline;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.empty {
+  padding: 1.5rem 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.itemRow {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.itemContent,
+.itemMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemContent {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-left: 0.3125rem;
+}
+
+.itemIcon {
+  display: block;
+  flex-shrink: 0;
+  width: 2.0625rem;
+  height: 2.0625rem;
+}
+
+.itemMain {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemMessage,
+.itemHint,
+.itemDate {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+}
+
+.itemMessage {
+  font-size: var(--font-size-sm);
+  color: var(--text-color);
+}
+
+.itemHint {
+  font-size: var(--font-size-xs);
+  color: var(--text-color);
+}
+
+.itemDate {
+  font-size: var(--font-size-sm);
+  color: var(--color-input-border);
+  letter-spacing: 0.1em;
+}
+
+.goBtn {
+  width: 7.125rem;
+  color: var(--text-color);
+  letter-spacing: 0.06em;
+  background: var(--color-accent);
+}
+
+.goBtn:hover {
+  color: var(--base-color, #fff);
+  background: var(--color-input-caret, #508826);
+}

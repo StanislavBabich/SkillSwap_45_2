@@ -1,0 +1,1402 @@
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "name": "Написать Telegram-бот",
+    "subcategoryId": 43,
+    "description": "Telegram-боты — мощный инструмент для бизнеса. Покажу, как создать бота для автоматизации заказов, поддержки клиентов или сбора лидов. Разберем кейсы из реальной практики и оптимизируем ваши бизнес-процессы.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [12, 23, 45, 67, 78, 89]
+  },
+  {
+    "id": 2,
+    "userId": 2,
+    "name": "Немецкий с нуля",
+    "subcategoryId": 12,
+    "description": "Знаю немецкий в совершенстве. Обучу говорить как милая молочница, или как злобная старая домработница.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-4.jpg"
+    ],
+    "likes": [3, 8, 15, 22, 31, 77, 84, 92]
+  },
+  {
+    "id": 3,
+    "userId": 3,
+    "name": "Как удерживать внимание аудитории",
+    "subcategoryId": 34,
+    "description": "Преподавание — эмоциональный труд. Поделюсь техниками сохранения энергии и мотивации на протяжении десятилетий карьеры. Расскажу, как превратить рутину в творческий процесс и избежать профессиональной деформации",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-4.jpg"
+    ],
+    "likes": [5, 18, 27, 39, 44, 52, 61, 73, 88, 95]
+  },
+  {
+    "id": 4,
+    "userId": 4,
+    "name": "Растения для ленивых и очень занятых",
+    "subcategoryId": 19,
+    "description": "Научу обращаться не только с кактусами, но и самыми прихотливыми орхидеями!",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [7, 14, 29, 35, 48, 59, 64, 76, 82, 91, 97]
+  },
+  {
+    "id": 5,
+    "userId": 5,
+    "name": "Скрипка для начинающих: от смычка до мелодии",
+    "subcategoryId": 25,
+    "description": "Уникальный курс для смелых: основы игры на скрипке и постановка голоса. Поймёте, как эти два навыка усиливают друг друга (чувство интонации, ритма, дыхания). Научитесь аккомпанировать себе или просто откроете два новых мира самовыражения. Для полных новичков в обоих искусствах.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [2, 11, 24, 33, 47, 53, 68, 71, 85, 94]
+  },
+  {
+    "id": 6,
+    "userId": 6,
+    "name": "Рататуй и не только: магия сезонных овощей",
+    "subcategoryId": 18,
+    "description": "Еда должна радовать глаз. Научу вас не только готовить, но и красиво сервировать. Простые приёмы ресторанной подачи в домашних условиях. Как свернуть спринг-ролл, чтобы он хрустел, и выложить бургер, чтобы он просился в инстаграм. Превратим каждый ужин в небольшой перформанс.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [9, 16, 21, 37, 46, 58, 62, 74, 81, 93, 99]
+  },
+  {
+    "id": 7,
+    "userId": 7,
+    "name": "Медитация Севера: тишина и сияние внутри",
+    "subcategoryId": 36,
+    "description": "Йога — это не скучно. Это суперспособность управлять своим настроением, энергией и вниманием. Научу простым, но мощным практикам, которые можно делать даже в общаге: асаны для спины после долгого сидения, дыхание перед важным делом, 5-минутные медитации для перезагрузки. Никакой эзотерики, только работающие инструменты.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-4.jpg"
+    ],
+    "likes": [4, 5, 13, 25, 38, 49, 57, 65, 79, 86, 98]
+  },
+  {
+    "id": 8,
+    "userId": 8,
+    "name": "Ремонт без паники: первые шаги для новичка",
+    "subcategoryId": 20,
+    "description": "Базовый курс для тех, кто отличает отвертку от пассатижей, но боится к ним подойти. Научимся: 1) собирать и разбирать мебель по инструкции (и без!), 2) вешать полки, картины и светильники ровно и надёжно, 3) менять розетки и выключатели (с полным соблюдением техники безопасности), 4) чинить мелкие бытовые неисправности. Никакой воды, только конкретные навыки и уверенность в своих руках.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [1, 10, 19, 28, 36, 43, 55, 67, 72, 83, 90]
+  },
+  {
+    "id": 9,
+    "userId": 9,
+    "name": "Рисовать свет: основы живописи маслом",
+    "subcategoryId": 22,
+    "description": "Курс по основам живописи маслом. От подмалёвка до лессировок. Учимся у старых мастеров: как строить композицию, смешивать краски на палитре, работать с тоном и цветом. Пишем копии фрагментов импрессионистов (как на моём аватаре) — лучший способ понять магию света и цвета",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [6, 17, 26, 34, 41, 54, 66, 75, 87, 96]
+  },
+  {
+    "id": 10,
+    "userId": 10,
+    "name": "Скрытая тирания",
+    "subcategoryId": 101,
+    "description": "Управляй людьми",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-4.jpg"
+    ],
+    "likes": [20, 32, 51, 69, 80, 100]
+  },
+  {
+    "id": 11,
+    "userId": 11,
+    "name": "Переговоры без поражений: от тактики к стратегии",
+    "subcategoryId": 103,
+    "description": "Вас давят, шантажируют, ставят перед фактом? Научимся давать отпор. Разберём арсенал нечестных приёмов: «игра в хорошего и плохого полицейского», ложные дедлайны, давление на жалость. И главное — отработаем элегантные и жёсткие контрстратегии. Вы перестанете быть пешкой в чужой игре.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-4.jpg"
+    ],
+    "likes": [8, 30, 42, 63, 77, 89, 95]
+  },
+  {
+    "id": 12,
+    "userId": 12,
+    "name": "React с нуля",
+    "subcategoryId": 43,
+    "description": "Прокачаю ваши навыки фронтенда. Разберём хуки, состояние, роутинг и всё, что нужно для уверенной работы с React. Научу не просто писать код, а думать как разработчик и создавать масштабируемые приложения.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [5, 14, 22, 39, 48, 56, 71, 84, 92, 98]
+  },
+  {
+    "id": 13,
+    "userId": 13,
+    "name": "Интуитивное питание",
+    "subcategoryId": 37,
+    "description": "Как перестать сидеть на диетах и начать жить. Разберём мифы о питании, научимся слушать свой организм и построим здоровые отношения с едой без запретов и срывов.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-4.jpg"
+    ],
+    "likes": [3, 19, 27, 35, 44, 59, 68, 73, 85, 97]
+  },
+  {
+    "id": 14,
+    "userId": 14,
+    "name": "Дом из дерева",
+    "subcategoryId": 20,
+    "description": "Проектирование и строительство деревянных домов. Расскажу о выборе материалов, технологии сборки и типичных ошибках новичков. Помогу спроектировать дом мечты с умом и без лишних затрат.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [1, 2, 3, 5, 9, 11, 21, 33, 47, 52, 64, 79, 86, 93]
+  },
+  {
+    "id": 15,
+    "userId": 15,
+    "name": "Business English",
+    "subcategoryId": 9,
+    "description": "Английский для работы и карьеры. Научу писать деловые письма, проводить презентации и confidently общаться с иностранными партнёрами. Разберём реальные кейсы из международного бизнеса.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-4.jpg"
+    ],
+    "likes": [7, 16, 24, 38, 45, 58, 62, 74, 81, 90, 99]
+  },
+  {
+    "id": 16,
+    "userId": 16,
+    "name": "Французская кухня",
+    "subcategoryId": 18,
+    "description": "Секреты высокой кухни для дома. Научу готовить идеальный луковый суп, круассаны и соусы, которые превращают обычное блюдо в шедевр. Никакой магии, только техника и качественные продукты.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [2, 13, 29, 36, 49, 57, 65, 77, 82, 91]
+  },
+  {
+    "id": 17,
+    "userId": 17,
+    "name": "Zumba для души",
+    "subcategoryId": 55,
+    "description": "Танцы, которые лечат. Зумба — это не просто фитнес, а способ выплеснуть эмоции и зарядиться энергией. Разучим простые связки под зажигательную музыку. Гарантирую улыбку до ушей!",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [9, 18, 25, 41, 53, 66, 75, 88, 94]
+  },
+  {
+    "id": 18,
+    "userId": 18,
+    "name": "Цифровая гигиена",
+    "subcategoryId": 46,
+    "description": "Защити свои данные в сети. Расскажу о паролях, двухфакторной аутентификации, фишинге и том, как не стать жертвой мошенников. Особый курс для ваших родителей — подарок, который защитит их от взломов.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [4, 12, 23, 37, 46, 61, 72, 83, 96]
+  },
+  {
+    "id": 19,
+    "userId": 19,
+    "name": "Огород на подоконнике",
+    "subcategoryId": 16,
+    "description": "Зелень и овощи круглый год. Расскажу, что посадить, как ухаживать и собирать урожай даже зимой. Микрозелень, помидорки черри, перчик — всё это может расти у вас на кухне.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [1, 15, 28, 34, 43, 55, 69, 78, 87, 92, 100]
+  },
+  {
+    "id": 20,
+    "userId": 20,
+    "name": "Портрет на телефон",
+    "subcategoryId": 23,
+    "description": "Как снимать красивые портреты без зеркалки. Свет, позирование, ракурсы и обработка прямо в телефоне. После курса ваши друзья будут просить вас фотографировать их снова и снова.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [6, 17, 26, 32, 48, 54, 63, 76, 84, 95]
+  },
+  {
+    "id": 21,
+    "userId": 21,
+    "name": "Анти-тревога",
+    "subcategoryId": 38,
+    "description": "Когнитивно-поведенческая терапия для самостоятельной работы. Научу техникам, которые помогут справиться с тревожными мыслями, паническими атаками и найти внутреннюю опору. Работаем с установками и страхами.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-4.jpg"
+    ],
+    "likes": [10, 22, 31, 47, 59, 67, 79, 85, 98]
+  },
+  {
+    "id": 22,
+    "userId": 22,
+    "name": "Реставрация мебели",
+    "subcategoryId": 20,
+    "description": "Дайте вещам вторую жизнь. Покажу, как отреставрировать старый комод, обновить стул или покрасить шкаф так, что он станет арт-объектом. Экономия бюджета и уникальный интерьер гарантированы.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [3, 14, 27, 36, 44, 58, 71, 82, 91, 99]
+  },
+  {
+    "id": 23,
+    "userId": 23,
+    "name": "Голос мечты",
+    "subcategoryId": 26,
+    "description": "Постановка голоса для жизни и работы. Научу говорить так, чтобы вас слушали с открытым ртом. Уберем зажимы, поставим дыхание и сделаем голос вашим главным инструментом влияния.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [5, 19, 24, 39, 51, 64, 73, 86, 93]
+  },
+  {
+    "id": 24,
+    "userId": 24,
+    "name": "Инвестиции",
+    "subcategoryId": 101,
+    "description": "С чего начать инвестору. Расскажу об акциях, облигациях, фондах и рисках. Помогу составить первый инвестиционный портфель и не потерять деньги на старте. Без воды и сложных терминов.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-4.jpg"
+    ],
+    "likes": [8, 16, 29, 33, 42, 56, 68, 75, 88, 97]
+  },
+  {
+    "id": 25,
+    "userId": 25,
+    "name": "Флористика для дома",
+    "subcategoryId": 23,
+    "description": "Как составлять букеты, которые выглядят дорого. Научу сочетать цвета, текстуры и ухаживать за срезанными цветами. Сделайте свои подарки незабываемыми.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [2, 13, 21, 38, 47, 53, 62, 74, 83, 90, 100]
+  },
+  {
+    "id": 26,
+    "userId": 26,
+    "name": "Марафон с нуля",
+    "subcategoryId": 52,
+    "description": "Готовимся к первому марафону. Расскажу о плане тренировок, экипировке, питании и восстановлении. Помогу пробежать дистанцию без травм и с удовольствием. Бег меняет жизнь!",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [7, 18, 26, 35, 44, 59, 66, 79, 85, 94]
+  },
+  {
+    "id": 27,
+    "userId": 27,
+    "name": "Макияж за 15 минут",
+    "subcategoryId": 23,
+    "description": "Ежедневный макияж, который подчеркивает достоинства. Научу делать быстрый и красивый мейк, с которым вы будете чувствовать себя уверенно. Никаких масок, только естественная красота.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [1, 2, 5, 8, 11, 15, 23, 37, 49, 57, 63, 77, 81, 92, 96]
+  },
+  {
+    "id": 28,
+    "userId": 28,
+    "name": "Неформальный Питер",
+    "subcategoryId": 31,
+    "description": "Экскурсии по неочевидным местам Петербурга. Покажу дворы, парадные и крыши, о которых не пишут в путеводителях. Узнаете город с другой стороны и влюбитесь в него заново.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-4.jpg"
+    ],
+    "likes": [4, 15, 28, 34, 45, 52, 65, 72, 87, 95]
+  },
+  {
+    "id": 29,
+    "userId": 29,
+    "name": "Дизайн для жизни",
+    "subcategoryId": 20,
+    "description": "Как сделать интерьер уютным без дизайнера. Расскажу о планировке, цвете, свете и зонировании. Помогу организовать пространство так, чтобы в нём хотелось жить, а не просто находиться.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [9, 17, 25, 38, 46, 61, 74, 84, 98]
+  },
+  {
+    "id": 30,
+    "userId": 30,
+    "name": "Йога для всех",
+    "subcategoryId": 36,
+    "description": "Хатха-йога для начинающих. Научу базовым асанам, дыхательным практикам и медитации. Йога станет вашим островком спокойствия в шумном мире. Занимаемся в комфортном темпе.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-4.jpg"
+    ],
+    "likes": [3, 12, 22, 31, 43, 54, 68, 78, 89, 99]
+  },
+  {
+    "id": 31,
+    "userId": 31,
+    "name": "Гончарный круг",
+    "subcategoryId": 22,
+    "description": "Глина лечит. Научу работать за кругом, создавать простые формы и чувствовать материал. Это не про мастерство, а про состояние потока и удовольствие от творчества своими руками.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [6, 19, 27, 36, 48, 59, 64, 75, 83, 92]
+  },
+  {
+    "id": 32,
+    "userId": 32,
+    "name": "Мобильная фотография",
+    "subcategoryId": 23,
+    "description": "Снимаем как профессионалы на телефон. Композиция, свет, цвет и простые лайфхаки для крутых кадров в путешествиях и повседневной жизни. Инстаграм будет гореть!",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [2, 14, 24, 39, 47, 58, 71, 86, 97]
+  },
+  {
+    "id": 33,
+    "userId": 33,
+    "name": "Тексты, которые продают",
+    "subcategoryId": 27,
+    "description": "Копирайтинг для соцсетей и блогов. Научу писать вовлекающие тексты, которые хочется читать до конца. Разберём структуру постов, заголовки и приёмы удержания внимания.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [8, 16, 29, 33, 42, 55, 67, 79, 85, 94]
+  },
+  {
+    "id": 34,
+    "userId": 34,
+    "name": "IT для малого бизнеса",
+    "subcategoryId": 47,
+    "description": "Как настроить IT-инфраструктуру малого бизнеса без лишних затрат. Помогу выбрать оборудование, настроить софт и автоматизировать рутину. Перестаньте платить за то, что можно сделать бесплатно.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [5, 13, 21, 37, 46, 61, 73, 82, 90, 100]
+  },
+  {
+    "id": 35,
+    "userId": 35,
+    "name": "Ивент-менеджмент",
+    "subcategoryId": 101,
+    "description": "Как организовать мероприятие, которое запомнят. Тайминг, подрядчики, бюджет, работа со стрессом и нештатными ситуациями. Проведу по всем этапам подготовки и научу не бояться форс-мажоров.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-4.jpg"
+    ],
+    "likes": [1, 18, 26, 35, 49, 57, 66, 78, 88, 95]
+  },
+  {
+    "id": 36,
+    "userId": 36,
+    "name": "Figma для начинающих",
+    "subcategoryId": 48,
+    "description": "Дизайн интерфейсов с нуля. Научу работать в Figma, создавать прототипы и макеты сайтов и приложений. После курса сможете сами нарисовать дизайн для своего проекта или начать карьеру в IT.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [4, 11, 23, 34, 44, 53, 69, 74, 81, 92, 99]
+  },
+  {
+    "id": 37,
+    "userId": 37,
+    "name": "Стиль за копейки",
+    "subcategoryId": 23,
+    "description": "Как выглядеть дорого при любом бюджете. Научу собирать капсульный гардероб, сочетать вещи и находить качественную одежду по разумным ценам. Шопинг-сопровождение и разбор гардероба.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [7, 15, 28, 38, 45, 56, 62, 77, 86, 97]
+  },
+  {
+    "id": 38,
+    "userId": 38,
+    "name": "Большой теннис",
+    "subcategoryId": 53,
+    "description": "Теннис для любителей. Постановка ударов, работа ног, тактика игры. Тренировки для любого уровня подготовки. Теннис — это шахматы на корте, научу думать и побеждать.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [3, 12, 25, 32, 41, 54, 65, 72, 84, 93]
+  },
+  {
+    "id": 39,
+    "userId": 39,
+    "name": "Испанский для жизни",
+    "subcategoryId": 11,
+    "description": "Разговорный испанский с культурным погружением. Научу не только языку, но и тому, как думать и чувствовать по-испански. Готовим паэлью, смотрим сериалы и обсуждаем традиции.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-4.jpg"
+    ],
+    "likes": [9, 17, 29, 36, 48, 59, 68, 79, 88, 96]
+  },
+  {
+    "id": 40,
+    "userId": 40,
+    "name": "1С с нуля",
+    "subcategoryId": 50,
+    "description": "1С для бухгалтеров и предпринимателей. Научу не бояться программы, делать проводки, закрывать период и формировать отчёты. Поймите 1С и перестаньте платить программистам за ерунду.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [2, 14, 22, 37, 47, 52, 64, 75, 83, 91, 100]
+  },
+  {
+    "id": 41,
+    "userId": 41,
+    "name": "Подростковая психология",
+    "subcategoryId": 38,
+    "description": "Как найти общий язык с подростком. Для родителей и педагогов. Расскажу о возрастных кризисах, буллинге, гаджетах и мотивации. Помогу выстроить доверительные отношения с детьми.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-5-4.jpg"
+    ],
+    "likes": [5, 16, 24, 33, 43, 58, 71, 86, 94]
+  },
+  {
+    "id": 42,
+    "userId": 42,
+    "name": "Каратэ для детей",
+    "subcategoryId": 54,
+    "description": "Каратэ для самых маленьких. Дисциплина, уважение, физическое развитие и умение постоять за себя. Тренировки в игровой форме, без жёсткости, с вниманием к каждому ребёнку.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [8, 19, 27, 35, 46, 55, 63, 77, 85, 98]
+  },
+  {
+    "id": 43,
+    "userId": 43,
+    "name": "Садовый дизайн",
+    "subcategoryId": 16,
+    "description": "Создаём сад мечты. Расскажу о планировке участка, подборе растений, уходе и декоре. Превратите обычный участок в место силы, где хочется проводить каждую свободную минуту.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [1, 13, 21, 38, 44, 57, 69, 74, 82, 90, 99]
+  },
+  {
+    "id": 44,
+    "userId": 44,
+    "name": "Декупаж и кракелюр",
+    "subcategoryId": 22,
+    "description": "Декорирование предметов интерьера в технике декупаж. Обновим старый комод, превратим скучную вазу в арт-объект и создадим уникальные вещи для дома. Творчество без границ.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [6, 15, 26, 34, 49, 61, 72, 88, 95]
+  },
+  {
+    "id": 45,
+    "userId": 45,
+    "name": "Вязание для начинающих",
+    "subcategoryId": 22,
+    "description": "С нуля до первого свитера. Набор петель, лицевые и изнаночные, узоры и убавки. Вязание успокаивает нервы и дарит уютные вещи, согретые теплом ваших рук.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [3, 11, 23, 37, 48, 56, 64, 79, 84, 92, 100]
+  },
+  {
+    "id": 46,
+    "userId": 46,
+    "name": "Сноуборд для новичков",
+    "subcategoryId": 58,
+    "description": "Первые шаги на сноуборде. Научу вставать, тормозить, поворачивать и получать кайф от скольжения. Преодолеем страх скорости и полюбим горы. Индивидуальный подход к каждому.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [4, 18, 25, 39, 47, 59, 68, 75, 87, 96]
+  },
+  {
+    "id": 47,
+    "userId": 47,
+    "name": "Красивая речь",
+    "subcategoryId": 26,
+    "description": "Постановка звуков и работа с речевыми дефектами. Для детей и взрослых. Научу говорить чётко, красиво и уверенно. Избавимся от картавости, шепелявости и страха публичных выступлений.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [7, 14, 22, 36, 42, 53, 66, 78, 85, 93]
+  },
+  {
+    "id": 48,
+    "userId": 48,
+    "name": "Ремонт телефонов",
+    "subcategoryId": 43,
+    "description": "Самостоятельный ремонт гаджетов. Научу менять экраны, аккумуляторы, разъёмы и диагностировать поломки. Экономьте на ремонте и помогайте друзьям. Гаджеты перестанут быть загадкой.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [2, 12, 24, 31, 45, 58, 71, 82, 91, 98]
+  },
+  {
+    "id": 49,
+    "userId": 49,
+    "name": "Zero waste для жизни",
+    "subcategoryId": 16,
+    "description": "Экологичный образ жизни без фанатизма. Расскажу о раздельном сборе, многоразовых альтернативах и том, как сократить мусор, не превращая жизнь в борьбу за экологию. Начнём с малого.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [9, 17, 28, 35, 49, 54, 63, 77, 86, 97]
+  },
+  {
+    "id": 50,
+    "userId": 50,
+    "name": "Винная культура",
+    "subcategoryId": 18,
+    "description": "Винная грамотность для всех. Научу разбираться в вине, выбирать его в магазине и сочетать с едой. Дегустации в дружеской атмосфере, без снобизма и заумных терминов. Просто о сложном.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [5, 16, 27, 34, 41, 56, 67, 73, 84, 95]
+  },
+  {
+    "id": 51,
+    "userId": 51,
+    "name": "Свадебная флористика",
+    "subcategoryId": 22,
+    "description": "Букет невесты и оформление свадьбы цветами. Расскажу о трендах, сочетаниях и стойкости цветов. Помогу создать атмосферу вашего праздника с помощью флористики. Мечты сбываются!",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [3, 15, 22, 38, 47, 59, 68, 79, 88, 96, 100]
+  },
+  {
+    "id": 52,
+    "userId": 52,
+    "name": "Менторство в IT",
+    "subcategoryId": 43,
+    "description": "Помогу войти в IT и не выгореть. Code review, подготовка к собеседованиям, советы по развитию карьеры. Проведу вас от новичка до первого оффера. IT — это просто, когда есть наставник.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [8, 19, 26, 37, 44, 58, 71, 85, 94]
+  },
+  {
+    "id": 53,
+    "userId": 53,
+    "name": "Арт-терапия",
+    "subcategoryId": 28,
+    "description": "Рисование как способ справиться со стрессом. Никаких правил и оценок, только процесс и эмоции. Помогу выразить чувства через творчество и найти внутренний ресурс. Лечим душу красками.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [2, 13, 24, 33, 45, 56, 64, 77, 82, 91, 99]
+  },
+  {
+    "id": 54,
+    "userId": 54,
+    "name": "Рыбалка для начинающих",
+    "subcategoryId": 16,
+    "description": "Всё о рыбалке от А до Я. Снасти, приманки, места и секреты опытных рыбаков. Организую выезды на природу и научу получать удовольствие от процесса. Рыбалка — лучшая медитация.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [6, 17, 29, 36, 48, 61, 73, 86, 95]
+  },
+  {
+    "id": 55,
+    "userId": 55,
+    "name": "Крой и шитьё",
+    "subcategoryId": 22,
+    "description": "Сошьём вашу первую вещь. От снятия мерок до готового изделия. Научу работать на швейной машинке, читать выкройки и воплощать идеи в реальность. Одежда, которая сидит идеально.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [4, 12, 21, 39, 46, 59, 69, 78, 87, 92]
+  },
+  {
+    "id": 56,
+    "userId": 56,
+    "name": "Столярное дело",
+    "subcategoryId": 20,
+    "description": "Работа с деревом для начинающих. Научимся работать ручным и электроинструментом, создадим простые предметы мебели. Дерево — тёплый материал, который хочется трогать. Сделаем что-то своими руками.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [9, 18, 27, 34, 47, 58, 67, 76, 84, 97]
+  },
+  {
+    "id": 57,
+    "userId": 57,
+    "name": "Гобелен своими руками",
+    "subcategoryId": 22,
+    "description": "Ткачество на раме. Создадим авторский гобелен, который украсит ваш дом. Работа с разными фактурами, цветами и материалами. Творчество, которое успокаивает и вдохновляет.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [1, 14, 23, 35, 43, 55, 65, 72, 89, 94, 100]
+  },
+  {
+    "id": 58,
+    "userId": 58,
+    "name": "Шахматы для детей",
+    "subcategoryId": 30,
+    "description": "Обучаем шахматам с нуля. Развиваем логику, память и усидчивость. Индивидуальный подход к каждому ребёнку. Шахматы учат думать на несколько шагов вперёд — навык, который пригодится в жизни.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-4.jpg"
+    ],
+    "likes": [5, 16, 25, 31, 44, 57, 68, 79, 86, 93]
+  },
+  {
+    "id": 59,
+    "userId": 59,
+    "name": "Раннее развитие",
+    "subcategoryId": 30,
+    "description": "Занятия с детьми от 1 года. Помогу мамам организовать развивающую среду дома, подобрать игры и игрушки. Вместе растём и учимся через игру и общение.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-4.jpg"
+    ],
+    "likes": [7, 19, 26, 37, 48, 56, 64, 78, 82, 95]
+  },
+  {
+    "id": 60,
+    "userId": 60,
+    "name": "Авто для чайников",
+    "subcategoryId": 20,
+    "description": "Что нужно знать каждому водителю. Научу базовой диагностике, замене колёс, проверке масла и других жидкостей. Перестаньте бояться открывать капот и будьте готовы к любым неожиданностям на дороге.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [3, 11, 22, 36, 49, 58, 69, 75, 88, 97, 100]
+  },
+  {
+    "id": 61,
+    "userId": 61,
+    "name": "Каллиграфия для всех",
+    "subcategoryId": 22,
+    "description": "Красивый почерк за 10 занятий. Исправим почерк у детей и взрослых, научимся писать аккуратно и с удовольствием. В век гаджетов умение красиво писать становится суперсилой.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [2, 15, 24, 35, 46, 53, 67, 79, 84, 92]
+  },
+  {
+    "id": 62,
+    "userId": 62,
+    "name": "Чайная церемония",
+    "subcategoryId": 18,
+    "description": "Путь чая. Научу разбираться в сортах, правильно заваривать и чувствовать вкус. Чайная церемония как способ замедлиться и побыть в моменте. Пьём чай и говорим о жизни.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [8, 17, 28, 33, 45, 59, 66, 77, 86, 94]
+  },
+  {
+    "id": 63,
+    "userId": 63,
+    "name": "Фортепиано для взрослых",
+    "subcategoryId": 25,
+    "description": "Никогда не поздно начать играть. Научу основам, разберём ваши любимые мелодии и просто получим удовольствие от музыки. Для тех, кто всегда мечтал, но боялся начать.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [4, 12, 21, 38, 47, 58, 71, 85, 91, 99]
+  },
+  {
+    "id": 64,
+    "userId": 64,
+    "name": "Контекстная реклама",
+    "subcategoryId": 102,
+    "description": "Настройка Яндекс.Директ и Google Ads. Научу не сливать бюджеты, собирать семантику и анализировать результаты. Приводите клиентов, а не просто тратьте деньги. Маркетинг, который работает.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-4.jpg"
+    ],
+    "likes": [6, 18, 27, 36, 44, 56, 68, 76, 88, 96]
+  },
+  {
+    "id": 65,
+    "userId": 65,
+    "name": "Экзотический сад",
+    "subcategoryId": 16,
+    "description": "Выращиваем экзоты в средней полосе. Расскажу о лимонах, гранатах, фейхоа и других растениях, которые могут расти у вас в саду или дома. Секреты ухода и зимовки. Удивите соседей!",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [1, 13, 25, 34, 49, 61, 72, 83, 97]
+  },
+  {
+    "id": 66,
+    "userId": 66,
+    "name": "Плавание для взрослых",
+    "subcategoryId": 57,
+    "description": "Научимся плавать с нуля или улучшим технику. Работа с теми, кто боится воды. Индивидуальный подход, поддержка и результат. Плавание — лучший спорт для здоровья и долголетия.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [5, 14, 23, 39, 46, 59, 67, 79, 84, 95]
+  },
+  {
+    "id": 67,
+    "userId": 67,
+    "name": "Натуральное мыло",
+    "subcategoryId": 22,
+    "description": "Мыловарение для начинающих. Создадим мыло ручной работы с натуральными компонентами. Идеи для подарков и домашнего использования. Химия, которая становится творчеством.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [9, 16, 28, 37, 48, 57, 69, 78, 87, 93, 100]
+  },
+  {
+    "id": 68,
+    "userId": 68,
+    "name": "Проектируем дом",
+    "subcategoryId": 20,
+    "description": "Как спроектировать дом своей мечты. Расскажу об архитектурных стилях, планировках, инженерных системах и материалах. Помогу избежать типичных ошибок и создать проект, в котором будет комфортно жить.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [3, 11, 22, 35, 44, 58, 66, 77, 85, 92, 98]
+  },
+  {
+    "id": 69,
+    "userId": 69,
+    "name": "Домашний уход",
+    "subcategoryId": 23,
+    "description": "Уход за кожей в домашних условиях. Научу разбираться в составах, подбирать косметику и делать простые процедуры. Красивая кожа без инъекций и дорогих салонов — реальность.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [7, 19, 26, 33, 47, 56, 68, 74, 86, 94]
+  },
+  {
+    "id": 70,
+    "userId": 70,
+    "name": "Техника речи",
+    "subcategoryId": 26,
+    "description": "Голос как инструмент влияния. Постановка дыхания, снятие зажимов, работа с дикцией. Для тех, кто много говорит и хочет звучать убедительно. Ваш голос — ваша суперсила.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [2, 15, 24, 36, 45, 59, 71, 82, 97]
+  },
+  {
+    "id": 71,
+    "userId": 71,
+    "name": "Фуд-фотография",
+    "subcategoryId": 23,
+    "description": "Как снимать еду так, что захочется съесть экран. Свет, ракурсы, композиция и обработка на телефоне. Для блогеров и всех, кто хочет красиво фотографировать свои блюда.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [4, 13, 21, 38, 48, 57, 64, 79, 88, 95, 99]
+  },
+  {
+    "id": 72,
+    "userId": 72,
+    "name": "Видеомонтаж в DaVinci",
+    "subcategoryId": 24,
+    "description": "Монтаж видео для YouTube и соцсетей. Научу работать в DaVinci Resolve, делать цветокоррекцию и добавлять эффекты. Ваши видео будут выглядеть профессионально даже без дорогой камеры.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [8, 17, 29, 34, 46, 55, 69, 76, 87, 93]
+  },
+  {
+    "id": 73,
+    "userId": 73,
+    "name": "Торты на заказ",
+    "subcategoryId": 18,
+    "description": "Кондитерское искусство для дома. Научу печь бисквиты, готовить кремы и собирать торты, которые выглядят как из магазина, но вкуснее в 100 раз. Удивите близких на праздник.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [1, 12, 25, 37, 49, 58, 67, 78, 84, 92, 100]
+  },
+  {
+    "id": 74,
+    "userId": 74,
+    "name": "Английский для айтишников",
+    "subcategoryId": 9,
+    "description": "Технический английский для работы. Читаем документацию, проходим собеседования, общаемся с заказчиками. Только то, что реально нужно в IT, без лишней грамматики и скучных упражнений.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-3-4.jpg"
+    ],
+    "likes": [6, 14, 23, 36, 44, 59, 71, 85, 96]
+  },
+  {
+    "id": 75,
+    "userId": 75,
+    "name": "Пэчворк",
+    "subcategoryId": 22,
+    "description": "Лоскутное шитьё для начинающих. Создадим уютные одеяла, подушки и пледы из лоскутков. Творчество, которое согревает и дарит вторую жизнь любимым тканям. Каждый лоскуток — история.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [3, 18, 27, 35, 47, 56, 68, 79, 86, 94]
+  },
+  {
+    "id": 76,
+    "userId": 76,
+    "name": "Функциональный тренинг",
+    "subcategoryId": 51,
+    "description": "Тренировки для силы и здоровья. Индивидуальные программы без травм, с учётом ваших целей и особенностей. Подготовка к соревнованиям или просто красивое тело без фанатизма.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [9, 16, 24, 38, 45, 58, 69, 77, 88, 95, 98]
+  },
+  {
+    "id": 77,
+    "userId": 77,
+    "name": "Капсульный гардероб",
+    "subcategoryId": 23,
+    "description": "Составляем гардероб, который работает. Научу выбирать базу, сочетать вещи и выглядеть стильно каждый день. Шопинг без стресса и лишних трат. Минимум вещей — максимум образов.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [2, 11, 22, 33, 46, 57, 64, 78, 82, 91, 99]
+  },
+  {
+    "id": 78,
+    "userId": 78,
+    "name": "Ремонт техники",
+    "subcategoryId": 20,
+    "description": "Самостоятельный ремонт бытовой техники. Диагностика, замена деталей, профилактика. Сэкономьте на мастерах и продлите жизнь своей технике. Холодильники, стиралки, кофемашины — всё починим.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [5, 13, 26, 37, 44, 59, 66, 79, 87, 96]
+  },
+  {
+    "id": 79,
+    "userId": 79,
+    "name": "Витражная роспись",
+    "subcategoryId": 22,
+    "description": "Роспись по стеклу. Создадим витражи, распишем посуду и зеркала. Солнечные зайчики и яркие краски в вашем доме. Творчество, которое преображает пространство.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [7, 15, 28, 35, 48, 58, 71, 85, 93, 100]
+  },
+  {
+    "id": 80,
+    "userId": 80,
+    "name": "SMM с нуля",
+    "subcategoryId": 102,
+    "description": "Ведение соцсетей для бизнеса и блогеров. Научу создавать контент, анализировать статистику и продавать через посты. Инстаграм, ВКонтакте, Telegram — полный комплект.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-4.jpg"
+    ],
+    "likes": [4, 17, 25, 34, 47, 56, 69, 78, 84, 92]
+  },
+  {
+    "id": 81,
+    "userId": 81,
+    "name": "Маникюр для себя",
+    "subcategoryId": 23,
+    "description": "Красивый маникюр в домашних условиях. Научу работать с гель-лаком, делать дизайн и ухаживать за кутикулой. Экономьте на салонах и всегда выглядите ухоженно.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [1, 12, 21, 36, 45, 59, 67, 77, 86, 97]
+  },
+  {
+    "id": 82,
+    "userId": 82,
+    "name": "Нейросети для жизни",
+    "subcategoryId": 43,
+    "description": "AI-инструменты для повседневных задач. Научу писать промты, генерировать картинки, тексты и идеи. Нейросети не заменят вас, но сделают вашу работу в 10 раз быстрее.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [8, 19, 29, 33, 48, 58, 68, 79, 88, 95, 99]
+  },
+  {
+    "id": 83,
+    "userId": 83,
+    "name": "Ручное ткачество",
+    "subcategoryId": 22,
+    "description": "Ткём гобелены и ковры на станке. Медитативное творчество, которое замедляет и успокаивает. Создадим уникальную вещь для вашего дома, которая будет согревать долгими вечерами.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [3, 14, 24, 38, 46, 57, 69, 76, 85, 93]
+  },
+  {
+    "id": 84,
+    "userId": 84,
+    "name": "Бокс для любителей",
+    "subcategoryId": 54,
+    "description": "Постановка удара, защита, работа ног. Тренировки для души и тела. Бокс снимает стресс и даёт уверенность в себе. Приходите выпустить пар и научиться защищаться.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [6, 16, 27, 35, 47, 59, 71, 82, 94, 100]
+  },
+  {
+    "id": 85,
+    "userId": 85,
+    "name": "Лекарственные травы",
+    "subcategoryId": 16,
+    "description": "Сбор и заготовка трав. Научу распознавать растения, собирать их в правильное время и готовить полезные сборы. Природа даёт всё для здоровья, нужно только знать, где искать.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [2, 11, 23, 34, 44, 56, 64, 78, 87, 96]
+  },
+  {
+    "id": 86,
+    "userId": 86,
+    "name": "Кузнечное дело",
+    "subcategoryId": 20,
+    "description": "Основы работы с металлом. Создадим нож, подставку или украшение своими руками. Металл может быть тёплым, если вложить в него душу. Магия огня и молота.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [9, 18, 26, 39, 49, 58, 67, 79, 88, 92]
+  },
+  {
+    "id": 87,
+    "userId": 87,
+    "name": "Кружево на коклюшках",
+    "subcategoryId": 22,
+    "description": "Старинное искусство плетения кружева. Тонкая, кропотливая работа, которая завораживает. Создадим кружевные салфетки и воротнички, которые будут передаваться по наследству.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [4, 15, 22, 37, 46, 55, 66, 77, 84, 95, 98]
+  },
+  {
+    "id": 88,
+    "userId": 88,
+    "name": "Саунд-дизайн",
+    "subcategoryId": 25,
+    "description": "Создание музыки и звуков для видео и игр. Работа в DAW, запись, обработка и сведение. Сделаем звук, который зацепит. Для блогеров, режиссёров и просто творческих людей.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [5, 13, 25, 33, 48, 59, 68, 79, 86, 97]
+  },
+  {
+    "id": 89,
+    "userId": 89,
+    "name": "Декор праздников",
+    "subcategoryId": 22,
+    "description": "Оформление дней рождений и свадеб своими руками. Научу делать красиво без огромного бюджета. Воздушные шары, цветы, ткани — создаём настроение и волшебство.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [7, 17, 28, 36, 47, 57, 71, 85, 94, 99]
+  },
+  {
+    "id": 90,
+    "userId": 90,
+    "name": "Excel для жизни",
+    "subcategoryId": 101,
+    "description": "Таблицы, которые работают. Научу формулам, сводным, макросам и автоматизации. Перестаньте считать на пальцах, заставьте Excel работать за вас. Для учёта, планирования и аналитики.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-1-4.jpg"
+    ],
+    "likes": [1, 12, 24, 38, 45, 56, 69, 78, 87, 93, 100]
+  },
+  {
+    "id": 91,
+    "userId": 91,
+    "name": "Иллюстрация в Procreate",
+    "subcategoryId": 22,
+    "description": "Рисуем на iPad. Научу работать в Procreate, создавать иллюстрации для соцсетей и для души. Цифровое творчество без границ. Для начинающих и тех, кто хочет прокачать навыки.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [3, 14, 21, 34, 49, 58, 67, 79, 88, 95]
+  },
+  {
+    "id": 92,
+    "userId": 92,
+    "name": "Философский клуб",
+    "subcategoryId": 30,
+    "description": "Разговоры о важном. Обсуждаем тексты, учимся мыслить критически и формулировать мысли. Философия не для пыльных библиотек, а для жизни. Ищем ответы на вечные вопросы.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-4.jpg"
+    ],
+    "likes": [6, 18, 27, 36, 44, 59, 71, 82, 96]
+  },
+  {
+    "id": 93,
+    "userId": 93,
+    "name": "Фитнес для мам",
+    "subcategoryId": 51,
+    "description": "Послеродовое восстановление. Помогу вернуть форму, укрепить мышцы и полюбить своё тело. Тренировки с учётом особенностей и без вреда для здоровья. Для мам, которые заботятся о себе.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [2, 11, 23, 35, 47, 56, 68, 77, 85, 94, 99]
+  },
+  {
+    "id": 94,
+    "userId": 94,
+    "name": "Реставрация книг",
+    "subcategoryId": 22,
+    "description": "Возвращаем к жизни старые книги. Научу чистить, подклеивать, восстанавливать переплёт. Подарите вторую жизнь семейным реликвиям. Книги будут жить вечно.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [8, 16, 26, 38, 48, 57, 69, 79, 86, 93, 100]
+  },
+  {
+    "id": 95,
+    "userId": 95,
+    "name": "Хореография",
+    "subcategoryId": 55,
+    "description": "Основы танца для начинающих. Постановка тела, растяжка, музыкальность. Разучим связки и просто получим удовольствие от движения. Танец — язык, на котором говорит душа.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-8-4.jpg"
+    ],
+    "likes": [4, 15, 24, 33, 46, 58, 66, 78, 87, 92]
+  },
+  {
+    "id": 96,
+    "userId": 96,
+    "name": "Ковка металла",
+    "subcategoryId": 20,
+    "description": "Основы кузнечного дела. Создадим простые предметы интерьера из металла. Горн, молот и наковальня — почувствуйте себя настоящим кузнецом. Металл в ваших руках станет податливым.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [5, 13, 22, 37, 49, 59, 71, 84, 97]
+  },
+  {
+    "id": 97,
+    "userId": 97,
+    "name": "Астрология для себя",
+    "subcategoryId": 30,
+    "description": "Разбираем натальную карту. Научу основам астрологии, чтобы вы могли лучше понять себя и свои таланты. Астрология как инструмент самопознания, а не предсказания судьбы.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-4-4.jpg"
+    ],
+    "likes": [9, 17, 28, 35, 45, 56, 67, 79, 88, 95, 98]
+  },
+  {
+    "id": 98,
+    "userId": 98,
+    "name": "Гейм-дизайн",
+    "subcategoryId": 43,
+    "description": "Придумываем игры. Механики, сценарии, тестирование. Создадим прототип настольной или компьютерной игры. Для тех, кто хочет делать игры, а не только играть. Креатив и системное мышление.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-7-4.jpg"
+    ],
+    "likes": [1, 12, 25, 34, 48, 57, 69, 78, 86, 94, 99]
+  },
+  {
+    "id": 99,
+    "userId": 99,
+    "name": "Бисероплетение",
+    "subcategoryId": 28,
+    "description": "Украшения из бисера своими руками. Сплетём браслеты, серьги и колье, которые будут выглядеть как дизайнерские. Мелкая моторика, медитация и красивые вещи в подарок себе и близким.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-2-4.jpg"
+    ],
+    "likes": [3, 14, 23, 36, 47, 58, 71, 82, 93, 100]
+  },
+  {
+    "id": 100,
+    "userId": 100,
+    "name": "Выживание в лесу",
+    "subcategoryId": 16,
+    "description": "Навыки выживания для городских жителей. Ориентирование, разведение огня, поиск воды, укрытие. Выездные тренинги на природе. То, что должен знать каждый, даже если живёт в мегаполисе.",
+    "images": [
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-1.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-2.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-3.jpg",
+      "https://gxnockenqjnuyldrrcox.supabase.co/storage/v1/object/public/skill-images/skill-6-4.jpg"
+    ],
+    "likes": [7, 16, 27, 38, 46, 59, 68, 79, 87, 96]
+  }
+]

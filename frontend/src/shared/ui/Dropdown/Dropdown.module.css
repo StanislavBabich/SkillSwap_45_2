@@ -1,0 +1,195 @@
+/* Контейнер всего дропдауна */
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  font-family: var(--font-family-body, 'Roboto');
+}
+
+.rootOpen {
+  z-index: 30;
+  overflow: visible;
+}
+
+/* Лейбл компонента */
+.label {
+  display: block;
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--text-color, #253017);
+  letter-spacing: 0.32px;
+}
+
+.required {
+  margin-left: 2px;
+  color: var(--color-error, #BF3920);
+}
+
+/* Поле с кнопкой */
+.field {
+  position: relative;
+}
+
+/* Кнопка-триггер */
+.trigger {
+  position: relative;
+  z-index: 21;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 20px;
+  font-size: var(--font-size-sm, 16px);
+  color: var(--text-color, #253017);
+  cursor: pointer;
+  background-color: var(--base-color, #fff);
+  border: 1px solid #69735D;
+  border-radius: var(--border-modal-radius, 12px);
+  transition: border-color 0.2s, border-radius 0.2s;
+}
+
+.trigger:hover:not(:disabled) {
+  border-color: #508826;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid #508826;
+  outline-offset: 2px;
+}
+
+.triggerOpen {
+  border-color: #69735D;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.triggerDisabled {
+  color: var(--color-input-border, #69735D);
+  cursor: not-allowed;
+}
+
+.triggerDisabled:hover {
+  border-color: var(--color-input-border, #69735D);
+}
+
+.triggerError {
+  border-color: var(--color-error, #BF3920);
+}
+
+/* Текст на кнопке */
+.value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-color, #253017);
+  white-space: nowrap;
+}
+
+.valuePlaceholder {
+  color: var(--color-input-border, #69735D);
+}
+
+/* Иконка шеврона */
+.chevron {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.chevronIcon {
+  width: 24px;
+  height: 24px;
+  color: currentcolor;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Выпадающий список */
+.listbox {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-height: 236px;
+  padding: 10px 12px;
+  overflow-y: auto;
+  background-color: var(--base-color, #fff);
+  border: 1px solid #69735D;
+  border-top: none;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+
+
+}
+
+/* Опция */
+.option {
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.option:hover,
+.optionFocused {
+  background-color: var(--color-disabled, #E4E8DF);
+}
+
+.optionDisabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.optionDisabled:hover {
+  background-color: transparent;
+}
+
+/* Стили для чекбоксов и радио внутри опций */
+.option :global(.checkbox-root),
+.option :global(.radio-root) {
+  box-sizing: border-box;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 20px;
+  cursor: pointer;
+}
+
+/* Отключаем hover эффект на самом чекбоксе */
+.option :global(.checkbox-root):hover,
+.option :global(.radio-root):hover {
+  background-color: transparent;
+}
+
+/* Стили для контента чекбокса */
+.option :global(.checkbox-root) .content,
+.option :global(.radio-root) .content {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-color, #253017);
+  cursor: pointer;
+}
+
+/* Helper text и ошибки */
+.helperText {
+  min-height: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-input-border, #69735D);
+}
+
+.errorText {
+  color: var(--color-error, #BF3920);
+}
+

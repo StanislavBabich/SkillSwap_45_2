@@ -1,0 +1,11 @@
+.page {
+    display: grid;
+    grid-template-columns: 324px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.filters {
+    position: sticky;
+    top: 24px;
+}

@@ -1,0 +1,162 @@
+/** ------- МОДАЛКА ------- */
+.modal {
+  max-width: 1024px;
+  padding: 42px 60px 70px;
+}
+
+.content {
+  display: flex;
+  gap: 44px;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 904px;
+}
+
+.modal :global(#modal-title) {
+  margin-bottom: 5px;
+}
+
+.modal :global(#modal-description) {
+  margin-bottom: 40px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  color: var(--text-color);
+  letter-spacing: 0.03em;
+}
+
+/** ------- ЛЕВАЯ КОЛОНКА ------- */
+.textBlock {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 324px;
+  text-align: left;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: var(--heading-h1-font-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--heading-h1-line-height);
+  letter-spacing: -0.01em;
+}
+
+.category {
+  margin-bottom: 18px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  line-height: 20px;
+  color: var(--color-input-border, #69735D);
+  letter-spacing: 0.03em;
+}
+
+.skillDescription {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 0.03em;
+}
+
+.errorMessage {
+  margin-top: 12px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  color: #c03d3d;
+}
+
+/** ------- КНОПКИ ------- */
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.editButton,
+.confirmButton {
+  flex: 1;
+}
+
+.editButton {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  letter-spacing: 0.03em;
+}
+
+.editIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.confirmButton {
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--border-modal-radius, 12px);
+}
+
+/** ------- ПРАВАЯ КОЛОНКА ------- */
+.imagesBlock {
+  display: flex;
+  gap: 24px;
+}
+
+.mainImage {
+  width: 324px;
+  height: 324px;
+  object-fit: cover;
+  border-radius: var(--border-modal-radius, 12px);
+}
+
+.extraColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.extraImage {
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+  border-radius: var(--border-modal-radius, 12px);
+}
+
+/* Контейнер для блюра */
+.moreWrapper {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  overflow: hidden;
+  border-radius: var(--border-modal-radius, 12px);
+}
+
+/* Само изображение - только blur */
+.moreWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
+}
+
+/* Белый overlay 50% равномерный */
+.moreWrapper::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: rgb(255 255 255 / 50%);
+  border-radius: inherit;
+}
+
+/* Текст +N */
+.moreLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-color);
+  pointer-events: none;
+}

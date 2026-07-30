@@ -1,0 +1,192 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  font-family: var(--font-family-body, 'Roboto');
+}
+
+.rootOpen {
+  z-index: 30;
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--text-color, #253017);
+  letter-spacing: 0.32px;
+}
+
+.required {
+  margin-left: 2px;
+  color: var(--color-error, #BF3920);
+}
+
+.field {
+  position: relative;
+}
+
+/* Основной блок ввода */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  background-color: var(--base-color, #fff);
+  border: 1px solid #69735D;
+  border-radius: var(--border-modal-radius, 12px);
+  transition: all 0.2s ease;
+}
+
+/* Состояние фокуса (когда курсор в поле, но список не открыт) */
+.inputWrapperFocused {
+  border-color: var(--color-link-button, #508826);
+  box-shadow: 0 0 0 1px rgb(80 136 38 / 20%); /* Легкая подсветка */
+}
+
+/* Когда открыт - убираем нижние скругления и нижнюю границу */
+.inputWrapperOpen {
+  border-bottom-color: transparent;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Если открыт и в фокусе - сохраняем цвет границы */
+.inputWrapperOpen.inputWrapperFocused {
+  border-color: var(--color-link-button, #508826);
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.inputWrapper.error {
+  border-color: #BF3920;
+}
+
+.inputWrapper.disabled {
+  background-color: #E4E8DF;
+  border-color: var(--color-input-border, #69735D);
+  opacity: 0.6;
+}
+
+.input {
+  flex: 1;
+  padding: 10px 20px;
+  font-size: var(--font-size-sm, 16px);
+  color: var(--text-color, #253017);
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+.input::placeholder {
+  color: var(--color-input-border, #69735D);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}
+
+.chevron {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
+  cursor: pointer; /* Добавляем курсор-указатель */
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Контейнер для выпадающего списка */
+.dropdownContainer {
+  position: absolute;
+  top: calc(100% - 1px);
+  right: 0;
+  left: 0;
+  z-index: 20;
+  overflow: hidden;
+  background-color: var(--base-color, #fff);
+  border: 1px solid #69735D;
+  border-top: none;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  animation: slide-down 0.2s ease;
+}
+
+/* Анимация появления */
+@keyframes slide-down  {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Цвет границы списка соответствует цвету поля */
+.inputWrapperFocused + .dropdownContainer {
+  border-color: var(--color-link-button, #508826);
+  border-top-color: transparent; /* Верхняя граница скрыта */
+}
+
+.inputWrapper.error + .dropdownContainer {
+  border-color: #BF3920;
+  border-top-color: transparent;
+}
+
+.listbox {
+  max-height: 236px;
+  padding: 8px 0;
+  overflow-y: auto;
+}
+
+.option {
+  width: 100%;
+  padding: 8px 20px;
+  font-size: var(--font-size-sm, 16px);
+  color: var(--text-color, #253017);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.option:hover,
+.optionHighlighted {
+  background-color: var(--color-disabled, #E4E8DF);
+}
+
+.optionSelected {
+  font-weight: 500;
+  color: var(--color-link-button, #508826);
+}
+
+.noResults {
+  padding: 12px 20px;
+  color: var(--color-input-border, #69735D);
+  text-align: center;
+}
+
+.errorText {
+  min-height: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-error, #BF3920);
+}
+
+
+

@@ -1,0 +1,190 @@
+.wrapper {
+  display: flex;
+  gap: 24px;
+  padding: 2.5rem 0;
+}
+
+.wrapperEmbedded {
+  gap: 0;
+  padding: 0;
+}
+
+.left {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.avatarSection {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.avatarCaption {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--caption-font-size, 12px);
+  font-weight: var(--caption-font-weight, 400);
+  line-height: var(--caption-line-height, 16px);
+  color: var(--color-caption, #8e8e93);
+  text-align: center;
+  letter-spacing: var(--caption-letter-spacing, 0);
+}
+
+.left :global(button[aria-label='Сменить аватар'])::after {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  z-index: 20;
+  min-width: 190px;
+  padding: 8px 10px;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--caption-font-size, 12px);
+  font-weight: var(--caption-font-weight, 400);
+  line-height: var(--caption-line-height, 16px);
+  color: var(--text-color, #253017);
+  letter-spacing: var(--caption-letter-spacing, 0);
+  white-space: normal;
+  pointer-events: none;
+  content: 'Сгенерировать новый аватар';
+  background-color: var(--base-color, #fff);
+  border: 1px solid var(--color-input-border, #69735d);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 12%);
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.left :global(button[aria-label='Сменить аватар']:hover)::after,
+.left :global(button[aria-label='Сменить аватар']:focus-visible)::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.formContainer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  background: var(--base-color);
+  border-radius: var(--border-modal-radius, 12px);
+}
+
+.row {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.row > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 76px;
+}
+
+.genderWrapper {
+  display: flex;
+}
+
+/* Перезаписываем только label Select (иначе он сжимает кнопку) */
+.genderWrapper :global(label) {
+  display: block;
+  width: 100%;
+}
+
+/* Кнопки */
+.buttons {
+  display: flex;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+/* Правая колонка */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 556px;
+  background: var(--base-color, #fff);
+  border-radius: var(--border-modal-radius, 12px);
+}
+
+/* Белая карточка справа */
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 0;
+}
+
+/* Иллюстрация */
+.illustrationImage {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Блок текста */
+.infoText {
+  max-width: 420px;
+  margin-top: 38px;
+  text-align: center;
+}
+
+/* Заголовок */
+.infoTitle {
+  margin: 0;
+  font-family: var(--font-family-heading, 'Jost');
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-color);
+  letter-spacing: -0.01em;
+}
+
+/* Подзаголовок */
+.infoSubtitle {
+  max-width: 340px;
+  margin: 0;
+  margin-top: 8px;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--font-size-sm);
+  color: var(--text-color);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-color);
+  letter-spacing: 0.02em;
+}
+
+.textarea {
+  width: 100%;
+  height: 4.5rem;
+  min-height: 6.1rem;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--font-size-sm);
+  color: var(--text-color);
+  resize: none;
+  background: var(--base-color);
+  border: 1px solid var(--color-input-border);
+  border-radius: 0.625rem;
+  transition: border-color 0.2s;
+}
