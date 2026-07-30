@@ -1,41 +1,29 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { AsyncStatus, EntityId } from '@/entities/base.ts';
 import categoriesApi from '@/entities/category/api';
-import type { Category, Subcategory } from '@/entities/category/types';
+import type { Category } from '@/entities/category/types';
 
 export interface CategoriesState {
   categories: Category[];
-  subcategories: Subcategory[];
   isLoading: boolean;
   status: AsyncStatus;
   error: string | null;
 }
 
-interface CategoriesPayload {
-  categories: Category[];
-  subcategories: Subcategory[];
-}
-
 const initialState: CategoriesState = {
   categories: [],
-  subcategories: [],
   isLoading: false,
   status: 'idle',
   error: null,
 };
 
-export const initializeCategories = createAsyncThunk<CategoriesPayload, void>(
+export const initializeCategories = createAsyncThunk<Category[], void>(
   'categories/initialize',
   async () => categoriesApi.getAll(),
   {
     condition: (_, { getState }) => {
       const state = (getState() as { categories: CategoriesState }).categories;
-
-      if (state.isLoading) {
-        return false;
-      }
-
-      // Keep categories in memory after first successful fetch.
+      if (state.isLoading) return false;
       return state.status !== 'succeeded';
     },
   }
@@ -45,9 +33,8 @@ const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-    setCategoriesData: (state, action: PayloadAction<CategoriesPayload>) => {
-      state.categories = action.payload.categories;
-      state.subcategories = action.payload.subcategories;
+    setCategoriesData: (state, action: PayloadAction<Category[]>) => {
+      state.categories = action.payload;
     },
     setCategoriesLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
@@ -67,22 +54,18 @@ const categoriesSlice = createSlice({
       .addCase(initializeCategories.fulfilled, (state, action) => {
         state.isLoading = false;
         state.status = 'succeeded';
-        state.categories = action.payload.categories;
-        state.subcategories = action.payload.subcategories;
+        state.categories = action.payload;
       })
       .addCase(initializeCategories.rejected, (state, action) => {
         state.isLoading = false;
         state.status = 'failed';
-        state.error = action.error.message ?? 'Ошибка при загрузка категории';
+        state.error = action.error.message ?? 'Ошибка при загрузке категорий';
       });
   },
   selectors: {
     selectCategories: (state) => state.categories,
-    selectSubcategories: (state) => state.subcategories,
     selectCategoryById: (state, categoryId: EntityId) =>
       state.categories.find((category) => category.id === categoryId),
-    selectSubcategoryById: (state, subcategoryId: EntityId) =>
-      state.subcategories.find((subcategory) => subcategory.id === subcategoryId),
     selectCategoriesLoading: (state) => state.isLoading,
     selectCategoriesStatus: (state) => state.status,
     selectCategoriesError: (state) => state.error,
@@ -92,9 +75,7 @@ const categoriesSlice = createSlice({
 export const { setCategoriesData, setCategoriesLoading, setCategoriesError } = categoriesSlice.actions;
 export const {
   selectCategories,
-  selectSubcategories,
   selectCategoryById,
-  selectSubcategoryById,
   selectCategoriesLoading,
   selectCategoriesStatus,
   selectCategoriesError,

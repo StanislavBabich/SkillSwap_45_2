@@ -12,6 +12,12 @@ async function bootstrap() {
     logger: winstonLogger,
   });
 
+  // Включаем CORS для фронтенда
+  app.enableCors({
+    origin: ['http://localhost:5173'],
+    credentials: true,
+  });
+
   app.use(cookieParser());
   app.setGlobalPrefix('api');
   app.useGlobalFilters(new AllExceptionsFilter());

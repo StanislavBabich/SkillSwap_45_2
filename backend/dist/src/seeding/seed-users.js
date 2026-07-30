@@ -41,11 +41,10 @@ const seed_users_data_1 = require("./data/seed-users.data");
 async function seedUsers(dataSource) {
     const repository = dataSource.getRepository(user_entity_1.User);
     const hashSalt = Number(process.env.HASH_SALT) || 10;
+    await repository.delete({ role: user_enums_1.UserRole.USER });
     for (const data of seed_users_data_1.UsersData) {
         const password = await bcrypt.hash(data.password, hashSalt);
-        const existing = await repository.findOneBy({ email: data.email });
         await repository.save(repository.create({
-            ...existing,
             ...data,
             password,
             role: user_enums_1.UserRole.USER,

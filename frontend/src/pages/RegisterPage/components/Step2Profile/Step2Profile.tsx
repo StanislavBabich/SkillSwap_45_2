@@ -4,23 +4,15 @@ import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 
 import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
-import { DropDownCity } from '@/shared/ui/DropDownCity'; 
+import { DropDownCity } from '@/shared/ui/DropDownCity';
 import { Dropdown } from '@/shared/ui/Dropdown';
 import { Button } from '@/shared/ui/Button';
 import { DatePicker } from '@/shared/ui/DatePicker/DatePicker';
 
 import { AvatarUpload } from './components/AvatarUpload';
 
-import {
-  initializeCities,
-  selectCities,
-} from '@/features/cities/slice';
-
-import {
-  initializeCategories,
-  selectCategories,
-  selectSubcategories,
-} from '@/features/categories/slice';
+import { initializeCities, selectCities } from '@/features/cities/slice';
+import { initializeCategories, selectCategories } from '@/features/categories/slice';
 
 import type { StepProps } from '../../types';
 
@@ -42,7 +34,6 @@ export const Step2Profile = ({
 
   const cities = useAppSelector(selectCities);
   const categories = useAppSelector(selectCategories);
-  const subcategories = useAppSelector(selectSubcategories);
 
   const [errors, setErrors] = useState({
     name: '',
@@ -50,7 +41,6 @@ export const Step2Profile = ({
     gender: '',
     cityId: '',
     categories: '',
-    subcategories: '',
   });
 
   useEffect(() => {
@@ -58,29 +48,20 @@ export const Step2Profile = ({
     dispatch(initializeCategories());
   }, [dispatch]);
 
-  // Раздельное хранение категорий и подкатегорий
-  const [selectedCategories, setSelectedCategories] = useState<number[]>(
-    data.selectedCategories ?? []
-  );
-  const [selectedSubcategories, setSelectedSubcategories] = useState<number[]>(
-    data.selectedSubcategories ?? []
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>(
+    data.selectedCategoryIds?.map(String) ?? []
   );
 
-  // Обновляем данные в родителе при изменении
   useEffect(() => {
-    onUpdate({
-      selectedCategories,
-      selectedSubcategories,
-    });
-  }, [selectedCategories, selectedSubcategories, onUpdate]);
+    onUpdate({ selectedCategoryIds: selectedCategoryIds.map(Number) });
+  }, [selectedCategoryIds, onUpdate]);
 
-  // Фильтруем подкатегории по выбранным категориям
+  // Собираем все подкатегории из выбранных категорий
   const availableSubcategories = useMemo(() => {
-    if (selectedCategories.length === 0) return [];
-    return subcategories.filter(sub => 
-      selectedCategories.includes(sub.categoryId)
-    );
-  }, [subcategories, selectedCategories]);
+    return categories
+      .filter((cat) => selectedCategoryIds.includes(String(cat.id)))
+      .flatMap((cat) => cat.children ?? []);
+  }, [categories, selectedCategoryIds]);
 
   const handleAvatarChange = useCallback(
     (seed: string | null) => {
@@ -105,25 +86,12 @@ export const Step2Profile = ({
     onUpdate({ gender: value as 'male' | 'female' | 'other' });
   };
 
-   const handleCityChange = (value: string) => {
+  const handleCityChange = (value: string) => {
     onUpdate({ cityId: value ? Number(value) : undefined });
   };
 
   const handleCategoriesChange = (categoryIds: string[]) => {
-    const ids = categoryIds.map(Number);
-    setSelectedCategories(ids);
-    
-    // Очищаем подкатегории, которые не относятся к выбранным категориям
-    setSelectedSubcategories(prev => 
-      prev.filter(subId => {
-        const sub = subcategories.find(s => s.id === subId);
-        return sub && ids.includes(sub.categoryId);
-      })
-    );
-  };
-
-  const handleSubcategoriesChange = (subIds: string[]) => {
-    setSelectedSubcategories(subIds.map(Number));
+    setSelectedCategoryIds(categoryIds);
   };
 
   const validate = () => {
@@ -133,19 +101,16 @@ export const Step2Profile = ({
       gender: '',
       cityId: '',
       categories: '',
-      subcategories: '',
     };
 
     if (!data.name.trim()) newErrors.name = 'Введите имя';
     if (!data.dateOfBirth) newErrors.dateOfBirth = 'Выберите дату рождения';
     if (!data.gender) newErrors.gender = 'Выберите пол';
     if (!data.cityId) newErrors.cityId = 'Выберите город';
-    if (selectedCategories.length === 0) newErrors.categories = 'Выберите хотя бы одну категорию';
-    if (selectedSubcategories.length === 0) newErrors.subcategories = 'Выберите хотя бы одну подкатегорию';
+    if (selectedCategoryIds.length === 0) newErrors.categories = 'Выберите хотя бы одну категорию';
 
     setErrors(newErrors);
-
-    return !Object.values(newErrors).some(error => error !== '');
+    return !Object.values(newErrors).some((error) => error !== '');
   };
 
   const handleSubmit = () => {
@@ -187,10 +152,9 @@ export const Step2Profile = ({
               onChange={handleDateChange}
               placeholder="дд.мм.гггг"
               error={errors.dateOfBirth}
-              instantSave={true}      
-              closeOnSelect={true}    
+              instantSave
+              closeOnSelect
             />
-
             <div className={styles.genderWrapper}>
               <Select
                 size="short"
@@ -211,10 +175,7 @@ export const Step2Profile = ({
             label="Город"
             value={data.cityId ? String(data.cityId) : ''}
             onChange={handleCityChange}
-            options={cities.map((c) => ({
-              value: String(c.id),
-              label: c.name,
-            }))}
+            options={cities.map((c) => ({ value: String(c.id), label: c.name }))}
             placeholder="Не указан"
             error={errors.cityId}
             minSearchLength={1}
@@ -222,9 +183,7 @@ export const Step2Profile = ({
           />
 
           <div className={styles.field}>
-            <label className={styles.label} htmlFor="about">
-              О себе
-            </label>
+            <label className={styles.label} htmlFor="about">О себе</label>
             <textarea
               id="about"
               className={styles.textarea}
@@ -239,41 +198,28 @@ export const Step2Profile = ({
             mode="multiple"
             label="Категории, которым хотите научиться"
             placeholder="Выберите категории"
-            value={selectedCategories.map(String)}
+            value={selectedCategoryIds}
             onChange={handleCategoriesChange}
-            options={categories.map((c) => ({
-              value: String(c.id),
-              label: c.name,
-            }))}
+            options={categories.map((c) => ({ value: String(c.id), label: c.name }))}
             error={errors.categories}
-            showCounter={true}
+            showCounter
             counterText="Выбрано: {count}"
           />
 
-          <Dropdown
-            mode="multiple"
-            label="Подкатегории"
-            placeholder="Выберите подкатегории"
-            disabled={selectedCategories.length === 0}
-            value={selectedSubcategories.map(String)}
-            onChange={handleSubcategoriesChange}
-            options={availableSubcategories.map((sub) => ({
-              value: String(sub.id),
-              label: sub.name,
-            }))}
-            error={errors.subcategories}
-            showCounter={true}
-            counterText="Выбрано: {count}"
-          />
+          {availableSubcategories.length > 0 && (
+            <div className={styles.field}>
+              <p className={styles.label}>Подкатегории в выбранных категориях:</p>
+              <div className={styles.tags}>
+                {availableSubcategories.map((sub) => (
+                  <span key={sub.id} className={styles.tag}>{sub.name}</span>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className={styles.buttons}>
-            <Button variant="secondary" onClick={onBack} fullWidth>
-              Назад
-            </Button>
-
-            <Button onClick={handleSubmit} fullWidth>
-              Продолжить
-            </Button>
+            <Button variant="secondary" onClick={onBack} fullWidth>Назад</Button>
+            <Button onClick={handleSubmit} fullWidth>Продолжить</Button>
           </div>
         </div>
       </div>
@@ -283,9 +229,7 @@ export const Step2Profile = ({
           <div className={styles.infoContainer}>
             <img src={userInfoIllustration} className={styles.illustrationImage} alt="" />
             <div className={styles.infoText}>
-              <h3 className={styles.infoTitle}>
-                Расскажите немного о себе
-              </h3>
+              <h3 className={styles.infoTitle}>Расскажите немного о себе</h3>
               <p className={styles.infoSubtitle}>
                 Это поможет другим людям лучше вас узнать, чтобы выбрать для обмена
               </p>

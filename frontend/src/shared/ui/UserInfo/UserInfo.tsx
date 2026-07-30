@@ -16,30 +16,6 @@ export interface UserInfoProps {
   className?: string;
 }
 
-const getAge = (dateOfBirth: string): number | null => {
-  const birthDate = new Date(dateOfBirth);
-  if (Number.isNaN(birthDate.getTime())) return null;
-
-  const now = new Date();
-  let age = now.getFullYear() - birthDate.getFullYear();
-  const monthDiff = now.getMonth() - birthDate.getMonth();
-
-  if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birthDate.getDate())) {
-    age -= 1;
-  }
-
-  return age >= 0 ? age : null;
-};
-
-const formatAge = (age: number): string => {
-  const mod10 = age % 10;
-  const mod100 = age % 100;
-
-  if (mod10 === 1 && mod100 !== 11) return `${age} год`;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${age} года`;
-  return `${age} лет`;
-};
-
 const SIZE_TO_PIXELS = {
   sm: 40,
   md: 56,
@@ -50,35 +26,24 @@ export const UserInfo = ({
   userId,
   size = 'md',
   showCity = true,
-  showAge = true,
+  showAge = false,
   orientation = 'horizontal',
   nameClassName,
   className = '',
 }: UserInfoProps) => {
   const selector = useMemo(() => selectUserWithDetails(userId), [userId]);
   const user = useAppSelector(selector);
-  
-  const cityName = useAppSelector((state) => {
-    if (!user?.cityId) return null;
-    const city = state.cities.items.find((c) => c.id === user.cityId);
-    return city?.name ?? null;
-  });
 
-  // Генерируем аватар: если есть сохранённый avatarSeed - используем его (выбор на регистрации)
   const avatarUrl = useAvatar({
     email: user?.email || `user-${userId}@example.com`,
     gender: user?.gender,
     size: SIZE_TO_PIXELS[size],
-    avatarSeed: user?.avatarSeed,
   });
 
   if (!user) return null;
 
-  const age = getAge(user.dateOfBirth);
   const metadata: string[] = [];
-
-  if (showCity && cityName) metadata.push(cityName);
-  if (showAge && age !== null) metadata.push(formatAge(age));
+  if (showCity && user.city) metadata.push(user.city);
 
   return (
     <div className={clsx(styles.root, styles[`size_${size}`], styles[`orientation_${orientation}`], className)}>

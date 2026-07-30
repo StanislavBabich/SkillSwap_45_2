@@ -7,8 +7,7 @@ import styles from './SuccessModal.module.css';
 export interface SuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
-  /** id навыка для редиректа на /skill/:id */
-  skillId: number;
+  skillId: string;
 }
 
 export const SuccessModal = ({

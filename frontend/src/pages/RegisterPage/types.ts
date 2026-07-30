@@ -8,17 +8,16 @@ export interface Step2Data {
   name: string;
   dateOfBirth?: string;
   gender?: 'male' | 'female' | 'other';
-  cityId?: number;
+  cityId?: string;
   about?: string;
-  selectedCategories: number[];       
-  selectedSubcategories: number[];    
+  selectedCategoryIds: string[];
 }
 
 export interface Step3Data {
   teachSkill: {
     name: string;
-    categoryId: number;
-    subcategoryId: number;
+    categoryId: string;
+    subcategoryId: string;
     description: string;
     images: File[];
   };

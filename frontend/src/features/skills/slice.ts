@@ -1,25 +1,13 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { AsyncStatus, EntityId } from '@/entities/base.ts';
 import skillsApi from '@/entities/skill/api';
-import type { CreateSkillDto, Skill, UpdateSkillDto } from '@/entities/skill/types';
-import { createUserWithSkill } from '@/features/users/thunks';
-import { storage } from '@/shared/lib/storage'; 
+import type { Skill } from '@/entities/skill/types';
 
 export interface SkillsState {
   items: Skill[];
   isLoading: boolean;
   status: AsyncStatus;
   error: string | null;
-}
-
-interface UpdateSkillPayload {
-  skillId: EntityId;
-  dto: UpdateSkillDto;
-}
-
-interface ToggleSkillLikePayload {
-  skillId: EntityId;
-  userId: EntityId;
 }
 
 const initialState: SkillsState = {
@@ -29,17 +17,11 @@ const initialState: SkillsState = {
   error: null,
 };
 
-const getNextId = (items: { id: EntityId }[]): EntityId =>
-  items.length ? Math.max(...items.map((item) => item.id)) + 1 : 1;
-
 export const initializeSkills = createAsyncThunk<Skill[], void>(
   'skills/initialize',
   async () => {
-    const savedSkills = storage.loadSkills(); 
-    if (savedSkills.length > 0) {
-      return savedSkills;
-    }
-    return skillsApi.getSkills();
+    const response = await skillsApi.getAll();
+    return response.data; // SkillsListResponse → берём data
   },
   {
     condition: (_, { getState }) => {
@@ -56,37 +38,17 @@ const skillsSlice = createSlice({
   reducers: {
     setSkills: (state, action: PayloadAction<Skill[]>) => {
       state.items = action.payload;
-      storage.saveSkills(action.payload); 
     },
-    createSkill: (state, action: PayloadAction<CreateSkillDto>) => {
-      const newSkill = {
-        id: getNextId(state.items),
-        ...action.payload,
-      };
-      state.items.push(newSkill);
-      storage.saveSkills(state.items); 
+    addSkill: (state, action: PayloadAction<Skill>) => {
+      state.items.push(action.payload);
     },
-    updateSkill: (state, action: PayloadAction<UpdateSkillPayload>) => {
+    updateSkill: (state, action: PayloadAction<{ skillId: EntityId; dto: Partial<Skill> }>) => {
       const skill = state.items.find((item) => item.id === action.payload.skillId);
       if (!skill) return;
       Object.assign(skill, action.payload.dto);
-      storage.saveSkills(state.items); 
     },
     removeSkill: (state, action: PayloadAction<EntityId>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
-      storage.saveSkills(state.items); 
-    },
-    toggleSkillLike: (state, action: PayloadAction<ToggleSkillLikePayload>) => {
-      const skill = state.items.find((item) => item.id === action.payload.skillId);
-      if (!skill) return;
-
-      const alreadyLiked = skill.likes.includes(action.payload.userId);
-      if (alreadyLiked) {
-        skill.likes = skill.likes.filter((userId) => userId !== action.payload.userId);
-      } else {
-        skill.likes.push(action.payload.userId);
-      }
-      storage.saveSkills(state.items); 
     },
     setSkillsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
@@ -107,22 +69,18 @@ const skillsSlice = createSlice({
         state.items = action.payload;
         state.isLoading = false;
         state.status = 'succeeded';
-        storage.saveSkills(action.payload); 
       })
       .addCase(initializeSkills.rejected, (state, action) => {
         state.isLoading = false;
         state.status = 'failed';
-        state.error = action.error.message ?? 'Failed to load skills';
-      })
-      .addCase(createUserWithSkill.fulfilled, (state, action) => {
-        state.items.push(action.payload.skill);
-        storage.saveSkills(state.items); 
+        state.error = action.error.message ?? 'Ошибка при загрузке навыков';
       });
   },
   selectors: {
     selectAllSkills: (state) => state.items,
     selectSkillById: (state, skillId: EntityId) => state.items.find((skill) => skill.id === skillId),
-    selectSkillsByUserId: (state, userId: EntityId) => state.items.filter((skill) => skill.userId === userId),
+    selectSkillsByOwnerId: (state, ownerId: EntityId) =>
+      state.items.filter((skill) => skill.owner.id === ownerId),
     selectSkillsLoading: (state) => state.isLoading,
     selectSkillsStatus: (state) => state.status,
     selectSkillsError: (state) => state.error,
@@ -131,10 +89,9 @@ const skillsSlice = createSlice({
 
 export const {
   setSkills,
-  createSkill,
+  addSkill,
   updateSkill,
   removeSkill,
-  toggleSkillLike,
   setSkillsLoading,
   setSkillsError,
 } = skillsSlice.actions;
@@ -142,7 +99,7 @@ export const {
 export const {
   selectAllSkills,
   selectSkillById,
-  selectSkillsByUserId,
+  selectSkillsByOwnerId,
   selectSkillsLoading,
   selectSkillsStatus,
   selectSkillsError,
