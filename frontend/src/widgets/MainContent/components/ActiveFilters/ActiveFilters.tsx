@@ -8,9 +8,10 @@ import {
   toggleCategorySelection,
   toggleSubcategorySelection,
   setGenderFilter,
-  toggleCityFilter
+  toggleCityFilter,
 } from '@/features/filters/slice';
 import { selectSkillType } from '@/features/filters/slice';
+import { selectCategories } from '@/features/categories/slice';
 import type { SkillType } from '@/entities/skill/types';
 import type { Gender } from '@/entities/base';
 import styles from './ActiveFilters.module.css';
@@ -21,17 +22,19 @@ interface ActiveFiltersProps {
 
 export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
   const dispatch = useAppDispatch();
-  
+
   const skillType = useAppSelector(selectSkillType);
   const selectedCategoryIds = useAppSelector((state) => state.filters.selectedCategoryIds);
   const gender = useAppSelector((state) => state.filters.gender);
   const selectedCityIds = useAppSelector((state) => state.filters.selectedCityIds);
-  
-  const categories = useAppSelector((state) => state.categories.categories);
-  const subcategories = useAppSelector((state) => state.categories.subcategories);
-  const cities = useAppSelector((state) => state.cities.items);
 
-  // Маппинг для отображения названий фильтров
+  const categories = useAppSelector(selectCategories);
+
+  // Собираем все подкатегории из дерева
+  const allSubcategories = useMemo(() => {
+    return categories.flatMap((cat) => cat.children ?? []);
+  }, [categories]);
+
   const activeFilters = useMemo(() => {
     const filters: Array<{
       id: string;
@@ -39,7 +42,6 @@ export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
       onRemove: () => void;
     }> = [];
 
-    // Фильтр типа навыка
     if (skillType !== 'all') {
       const labels: Record<SkillType, string> = {
         all: 'Все',
@@ -53,31 +55,26 @@ export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
       });
     }
 
-    // Фильтры категорий и подкатегорий
-    selectedCategoryIds.forEach(id => {
-      // Проверяем, является ли ID категорией
-      const category = categories.find(c => c.id === id);
+    selectedCategoryIds.forEach((id) => {
+      const category = categories.find((c) => c.id === id);
       if (category) {
+        const subIds = (category.children ?? []).map((s) => s.id);
         filters.push({
           id: `category-${id}`,
           label: category.name,
-          onRemove: () => {
-            // Для категории нужно убрать все её подкатегории
-            const categorySubs = subcategories
-              .filter(s => s.categoryId === id)
-              .map(s => s.id);
-            dispatch(toggleCategorySelection({
-              categoryId: id,
-              subcategoryIds: categorySubs,
-              isDeselecting: true,
-            }));
-          },
+          onRemove: () =>
+            dispatch(
+              toggleCategorySelection({
+                categoryId: id,
+                subcategoryIds: subIds,
+                isDeselecting: true,
+              }),
+            ),
         });
         return;
       }
 
-      // Если не категория, значит подкатегория
-      const subcategory = subcategories.find(s => s.id === id);
+      const subcategory = allSubcategories.find((s) => s.id === id);
       if (subcategory) {
         filters.push({
           id: `subcategory-${id}`,
@@ -87,12 +84,11 @@ export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
       }
     });
 
-    // Фильтр пола
     if (gender !== 'any') {
       const labels: Record<Gender, string> = {
         male: 'Мужской',
         female: 'Женский',
-        other: 'Другое'
+        other: 'Другое',
       };
       filters.push({
         id: 'gender',
@@ -101,48 +97,30 @@ export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
       });
     }
 
-    // Фильтры городов
-    selectedCityIds.forEach(id => {
-      const city = cities.find(c => c.id === id);
-      if (city) {
-        filters.push({
-          id: `city-${id}`,
-          label: city.name,
-          onRemove: () => dispatch(toggleCityFilter(id)),
-        });
-      }
+    selectedCityIds.forEach((id) => {
+      // Города пока не работают, но оставим структуру
+      filters.push({
+        id: `city-${id}`,
+        label: `Город ${id}`,
+        onRemove: () => dispatch(toggleCityFilter(id)),
+      });
     });
 
     return filters;
-  }, [
-    skillType,
-    selectedCategoryIds,
-    gender,
-    selectedCityIds,
-    categories,
-    subcategories,
-    cities,
-    dispatch,
-  ]);
+  }, [skillType, selectedCategoryIds, gender, selectedCityIds, categories, allSubcategories, dispatch]);
 
   if (activeFilters.length === 0) {
     return null;
   }
 
   return (
-    <div className={clsx(styles.container, className)}> 
+    <div className={clsx(styles.container, className)}>
       <div className={styles.filtersList}>
-        {activeFilters.map(filter => (
-          <Button
-            key={filter.id}
-            variant="tertiary"
-            onClick={filter.onRemove}
-            endIcon={<Icon name="close" size={14} />}
-          >
+        {activeFilters.map((filter) => (
+          <Button key={filter.id} variant="tertiary" onClick={filter.onRemove} endIcon={<Icon name="close" size={14} />}>
             {filter.label}
           </Button>
         ))}
-        
       </div>
     </div>
   );

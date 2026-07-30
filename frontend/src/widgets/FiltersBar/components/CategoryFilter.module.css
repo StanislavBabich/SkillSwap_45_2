@@ -52,7 +52,6 @@
 .categoryRow {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   width: 100%;
 }
@@ -66,7 +65,7 @@
 /* Текст категории (кликабельный для раскрытия) */
 .categoryNameButton {
   flex: 1;
-  padding: 0 8px;
+  padding: 8px;
   font-family: var(--font-family-body, 'Roboto');
   font-size: var(--font-size-sm, 16px);
   font-weight: var(--font-weight-regular, 400);
@@ -81,7 +80,7 @@
 /* Текст категории (некликабельный, если нет подкатегорий) */
 .categoryNameText {
   flex: 1;
-  padding: 8px 8px 8px 0;
+  padding: 8px 8px 8px 8px;
   font-family: var(--font-family-body, 'Roboto');
   font-size: var(--font-size-sm, 16px);
   font-weight: var(--font-weight-regular, 400);
@@ -92,7 +91,7 @@
 /* Шеврон категории: виден при ховере, смотрит вверх / вниз при раскрытии */
 .chevronIcon {
   position: absolute;
-  top: 0.55rem;
+  top: 50%;
   right: 0;
   z-index: 1;
   width: 1.5rem;

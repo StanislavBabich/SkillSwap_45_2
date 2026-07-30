@@ -23,26 +23,59 @@ const selectSkillsByOwnerId = createSelector([selectSkills], (skills) => {
 });
 
 const getPopularityScore = (skillsByOwnerId: Map<EntityId, Skill[]>, userId: EntityId): number =>
-  (skillsByOwnerId.get(userId) ?? []).length; // просто количество навыков
+  (skillsByOwnerId.get(userId) ?? []).length;
 
 export const selectFilteredUsers = createSelector(
-  [selectUsers, selectSkillsByOwnerId, selectFilters],
-  (users, skillsByOwnerId, filters) => {
+  [selectUsers, selectSkillsByOwnerId, selectFilters, selectSkills],
+  (users, skillsByOwnerId, filters, skills) => {
     const search = filters.search.trim().toLowerCase();
 
     return users.filter((user) => {
-      if (filters.gender !== 'any' && user.gender !== filters.gender) {
+      if (filters.gender !== 'any' && user.gender?.toLowerCase() !== filters.gender) {
         return false;
       }
-      
-      // TODO: починить фильтр городов, когда появится ресурс /api/cities
-      //if (filters.selectedCityIds.length > 0 && !filters.selectedCityIds.includes(user.city)) {
-      //  return false;
-      //}
+
+      // Фильтр по категориям
+      if (filters.selectedCategoryIds.length > 0) {
+        const userSkills = skillsByOwnerId.get(user.id) ?? [];
+
+        // Категории из навыков пользователя
+        const teachCategoryIds = new Set(
+          userSkills.flatMap((skill) => [
+            skill.category?.id,
+            ...(skill.category?.id ? [skill.category.id] : []),
+          ])
+        );
+
+        // Категории из wantToLearn
+        const learnCategoryIds = new Set(
+          (user.wantToLearn ?? []).map((cat) => cat.id)
+        );
+
+        let matchesCategory = false;
+
+        if (filters.skillType === 'teach') {
+          // Только навыки
+          matchesCategory = filters.selectedCategoryIds.some((id) => teachCategoryIds.has(id));
+        } else if (filters.skillType === 'learn') {
+          // Только wantToLearn
+          matchesCategory = filters.selectedCategoryIds.some((id) => learnCategoryIds.has(id));
+        } else {
+          // Все — и навыки, и wantToLearn
+          const allCategoryIds = new Set([...teachCategoryIds, ...learnCategoryIds]);
+          matchesCategory = filters.selectedCategoryIds.some((id) => allCategoryIds.has(id));
+        }
+
+        if (!matchesCategory) return false;
+      }
 
       const userSkills = skillsByOwnerId.get(user.id) ?? [];
 
       if (filters.skillType === 'teach' && userSkills.length === 0) {
+        return false;
+      }
+
+      if (filters.skillType === 'learn' && (!user.wantToLearn || user.wantToLearn.length === 0)) {
         return false;
       }
 

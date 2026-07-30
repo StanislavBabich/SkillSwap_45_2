@@ -3,6 +3,7 @@ import type { RootState } from '@/app/store';
 import type { EntityId } from '@/entities/base';
 import type { Skill } from '@/entities/skill/types';
 import type { User } from '@/entities/user/types';
+import { selectFilteredUsers } from '@/features/users/selectors';
 
 const selectSkills = (state: RootState): Skill[] => state.skills.items;
 const selectUsers = (state: RootState): User[] => state.users.items;
@@ -53,9 +54,12 @@ export const selectRecommendedSkills = createSelector(
 );
 
 export const selectFilteredSkillIds = createSelector(
-  [selectSkills, selectUsers],
-  (skills, users) => {
-    return skills.map((skill) => skill.id);
+  [selectSkills, selectFilteredUsers],
+  (skills, filteredUsers) => {
+    const filteredUserIds = new Set(filteredUsers.map((u) => u.id));
+    return skills
+      .filter((skill) => filteredUserIds.has(skill.owner.id))
+      .map((skill) => skill.id);
   }
 );
 
