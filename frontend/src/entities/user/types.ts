@@ -5,16 +5,13 @@ export interface User {
   name: string;
   email: string;
   about: string;
-  cityId: EntityId;
-  dateOfBirth: ISODateString;
-  gender: Gender;          
-  registrationDate: ISODateString;
-  skillInterests: EntityId[];
-  passwordHash: string;
-  /** Seed для генерации аватара (DiceBear); при выборе «Сгенерировать другой» на регистрации */
-  avatarSeed?: string | null;
+  city: string;                    // было cityId: EntityId
+  birthdate: ISODateString;        // было dateOfBirth
+  gender: Gender;
+  avatar: string | null;           // было avatarSeed
+  role: 'USER' | 'ADMIN';          // новое поле
 }
 
 export type UsersResponse = User[];
-export type CreateUserDto = Omit<User, 'id'>;
-export type UpdateUserDto = Partial<Omit<User, 'id'>>;
+export type CreateUserDto = Pick<User, 'name' | 'email'> & { password: string };
+export type UpdateUserDto = Partial<Omit<User, 'id' | 'email' | 'role'>>;

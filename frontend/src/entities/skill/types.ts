@@ -4,14 +4,33 @@ export type SkillType = 'all' | 'learn' | 'teach';
 
 export interface Skill {
   id: EntityId;
-  userId: EntityId;
-  name: string;
-  subcategoryId: EntityId;
+  title: string;                   // было name
   description: string;
   images: string[];
-  likes: EntityId[];
+  category: {                      // было subcategoryId: EntityId
+    id: EntityId;
+    name: string;
+  } | null;
+  owner: {                         // было userId: EntityId
+    id: EntityId;
+    name: string;
+    email: string;
+  };
+  createdAt: string;               // новое поле
+  updatedAt: string;               // новое поле
 }
 
-export type SkillsResponse = Skill[];
-export type CreateSkillDto = Omit<Skill, 'id'>;
-export type UpdateSkillDto = Partial<Omit<Skill, 'id'>>;
+export interface SkillsListResponse {
+  data: Skill[];
+  page: number;
+  totalPages: number;
+}
+
+export type CreateSkillDto = {
+  title: string;
+  description?: string;
+  images?: string[];
+  categoryId?: string;
+};
+
+export type UpdateSkillDto = Partial<CreateSkillDto>;
