@@ -13,6 +13,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Skill } from '../../skills/entities/skill.entity';
+import { Category } from '../../categories/entities/category.entity';
 import { Request } from '../../requests/entities/request.entity';
 import { UserGender, UserRole } from '../user.enums';
 
@@ -75,12 +76,27 @@ export class User {
   @OneToMany(() => Skill, (skill) => skill.owner)
   skills?: Skill[];
 
-  // Заявки где пользователь — отправитель
+  @ApiPropertyOptional({
+    description: 'Категории, которым пользователь хочет научиться',
+  })
+  @ManyToMany(() => Category)
+  @JoinTable({
+    name: 'users_want_to_learn',
+    joinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'category_id',
+      referencedColumnName: 'id',
+    },
+  })
+  wantToLearn!: Category[];
+
   @ApiHideProperty()
   @OneToMany(() => Request, (request) => request.sender)
   sentRequests!: Request[];
 
-  // Заявки, где пользователь — получатель
   @ApiHideProperty()
   @OneToMany(() => Request, (request) => request.receiver)
   receivedRequests!: Request[];

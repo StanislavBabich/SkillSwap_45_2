@@ -8,6 +8,7 @@ export interface SeedCreateUser {
   birthdate?: string;
   city?: string;
   gender?: UserGender;
+  wantToLearnCategories?: string[];
 }
 
 // Маппинг cityId → название города (на основе старых данных)
@@ -53,6 +54,234 @@ const cityMap: Record<number, string> = {
   45: 'Нижний Новгород',
 };
 
+// Маппинг старых subcategory ID → названия подкатегорий
+const subcategoryMap: Record<number, string> = {
+  9: 'Английский',
+  10: 'Французский',
+  11: 'Испанский',
+  12: 'Немецкий',
+  13: 'Китайский',
+  14: 'Японский',
+  15: 'Подготовка к экзаменам',
+  16: 'Уборка и организация',
+  17: 'Домашние финансы',
+  18: 'Приготовление еды',
+  19: 'Домашние растения',
+  20: 'Ремонт',
+  21: 'Хранение вещей',
+  22: 'Рисование и иллюстрация',
+  23: 'Фотография',
+  24: 'Видеомонтаж',
+  25: 'Музыка и звук',
+  26: 'Актёрское мастерство',
+  27: 'Креативное письмо',
+  28: 'Арт-терапия',
+  29: 'Декор и DIY',
+  30: 'Личностное развитие',
+  31: 'Навыки обучения',
+  32: 'Когнитивные техники',
+  33: 'Скорочтение',
+  34: 'Навыки преподавания',
+  35: 'Коучинг',
+  36: 'Йога и медитация',
+  37: 'Питание и ЗОЖ',
+  38: 'Ментальное здоровье',
+  39: 'Осознанность',
+  40: 'Физические тренировки',
+  41: 'Сон и восстановление',
+  42: 'Баланс жизни и работы',
+  43: 'Веб-разработка',
+  44: 'Мобильная разработка',
+  45: 'Data Science',
+  46: 'Кибербезопасность',
+  47: 'DevOps',
+  48: 'UI/UX дизайн',
+  49: 'Тестирование (QA)',
+  50: '1С',
+  51: 'Фитнес',
+  52: 'Бег и триатлон',
+  53: 'Командные виды спорта',
+  54: 'Боевые искусства',
+  55: 'Танцы',
+  56: 'Экстремальный спорт',
+  57: 'Плавание',
+  58: 'Зимние виды спорта',
+  101: 'Управление командой',
+  102: 'Маркетинг и реклама',
+  103: 'Продажи и переговоры',
+  104: 'Личный бренд',
+  105: 'Резюме и собеседование',
+  106: 'Тайм-менеджмент',
+  107: 'Проектное управление',
+  108: 'Предпринимательство',
+};
+
+// Маппинг старых названий подкатегорий → новые названия (из CategoriesData)
+const oldToNewCategoryMap: Record<string, string> = {
+  'Английский': 'Английский язык',
+  'Французский': 'Французский язык',
+  'Испанский': 'Испанский язык',
+  'Немецкий': 'Немецкий язык',
+  'Китайский': 'Китайский язык',
+  'Японский': 'Русский язык',
+  'Подготовка к экзаменам': 'Методика преподавания',
+  'Уборка и организация': 'Тайм-менеджмент',
+  'Домашние финансы': 'Инвестиции',
+  'Приготовление еды': 'Motion-дизайн',
+  'Домашние растения': 'Web-дизайн',
+  'Ремонт': 'Тайм-менеджмент',
+  'Хранение вещей': 'Личная финансовая грамотность',
+  'Рисование и иллюстрация': 'Графический дизайн',
+  'Фотография': 'Маркетинг и реклама',
+  'Видеомонтаж': 'Motion-дизайн',
+  'Музыка и звук': 'Вокал',
+  'Актёрское мастерство': 'Вокал',
+  'Креативное письмо': 'Маркетинг и реклама',
+  'Арт-терапия': 'Графический дизайн',
+  'Декор и DIY': 'Web-дизайн',
+  'Личностное развитие': 'Онлайн-курсы',
+  'Навыки обучения': 'Методика преподавания',
+  'Когнитивные техники': 'Педагогика',
+  'Скорочтение': 'Педагогика',
+  'Навыки преподавания': 'Методика преподавания',
+  'Коучинг': 'Педагогика',
+  'Йога и медитация': 'Графический дизайн',
+  'Питание и ЗОЖ': 'Педагогика',
+  'Ментальное здоровье': 'Личный бренд',
+  'Осознанность': 'Предпринимательство',
+  'Физические тренировки': 'Графический дизайн',
+  'Сон и восстановление': 'Графический дизайн',
+  'Баланс жизни и работы': 'Тайм-менеджмент',
+  'Веб-разработка': 'Frontend',
+  'Мобильная разработка': 'Мобильная разработка',
+  'Data Science': 'Backend',
+  'Кибербезопасность': 'Backend',
+  'DevOps': 'DevOps',
+  'UI/UX дизайн': 'UX/UI',
+  'Тестирование (QA)': 'GameDev',
+  '1С': 'Motion-дизайн',
+  'Фитнес': 'Графический дизайн',
+  'Бег и триатлон': 'Бас-гитара',
+  'Командные виды спорта': 'Графический дизайн',
+  'Боевые искусства': 'Графический дизайн',
+  'Танцы': 'Вокал',
+  'Экстремальный спорт': 'Графический дизайн',
+  'Плавание': 'Графический дизайн',
+  'Зимние виды спорта': 'Бас-гитара',
+  'Управление командой': 'Управление командой',
+  'Маркетинг и реклама': 'Маркетинг и реклама',
+  'Продажи и переговоры': 'Продажи и переговоры',
+  'Личный бренд': 'Личный бренд',
+  'Резюме и собеседование': 'Резюме и собеседование',
+  'Тайм-менеджмент': 'Тайм-менеджмент',
+  'Проектное управление': 'Проектное управление',
+  'Предпринимательство': 'Предпринимательство',
+};
+
+// Старые skillInterests из users.json для каждого пользователя (по порядку)
+const oldSkillInterests: number[][] = [
+  [9, 12, 31],
+  [35, 37, 40],
+  [43, 47, 54],
+  [18, 29, 55],
+  [43, 48, 52],
+  [22, 50, 36],
+  [43, 23, 55],
+  [55, 33, 36],
+  [20, 38, 42],
+  [23, 25, 38],
+  [35, 36, 51],
+  [101, 20, 105],
+  [22, 50, 55],
+  [9, 24, 45],
+  [36, 35, 55],
+  [39, 23, 28],
+  [35, 37, 40],
+  [17, 23, 106],
+  [18, 35, 29],
+  [45, 21, 36],
+  [29, 23, 55],
+  [20, 26, 57],
+  [21, 37, 40],
+  [43, 47, 48],
+  [20, 37, 51],
+  [10, 25, 54],
+  [36, 12, 40],
+  [18, 11, 48],
+  [36, 20, 51],
+  [20, 23, 55],
+  [25, 37, 40],
+  [10, 29, 41],
+  [36, 28, 55],
+  [23, 33, 43],
+  [36, 11, 40],
+  [20, 103, 105],
+  [36, 28, 51],
+  [34, 35, 57],
+  [36, 39, 55],
+  [11, 21, 31],
+  [22, 50, 55],
+  [50, 34, 46],
+  [14, 37, 51],
+  [10, 13, 46],
+  [36, 51, 40],
+  [43, 24, 48],
+  [25, 37, 55],
+  [21, 23, 43],
+  [22, 50, 28],
+  [43, 47, 48],
+  [55, 37, 40],
+  [31, 33, 45],
+  [55, 37, 51],
+  [11, 33, 45],
+  [36, 57, 55],
+  [14, 52, 44],
+  [57, 24, 40],
+  [43, 48, 49],
+  [45, 23, 28],
+  [48, 23, 57],
+  [36, 39, 51],
+  [101, 55, 46],
+  [23, 37, 40],
+  [23, 36, 37],
+  [33, 21, 29],
+  [43, 37, 48],
+  [36, 13, 55],
+  [22, 50, 46],
+  [35, 37, 40],
+  [39, 55, 15],
+  [106, 35, 51],
+  [14, 24, 34],
+  [108, 51, 28],
+  [101, 35, 43],
+  [39, 43, 37],
+  [43, 21, 48],
+  [23, 37, 51],
+  [13, 23, 53],
+  [35, 37, 55],
+  [12, 32, 42],
+  [35, 37, 40],
+  [101, 47, 106],
+  [36, 35, 51],
+  [43, 28, 48],
+  [20, 23, 28],
+  [33, 43, 53],
+  [36, 20, 40],
+  [35, 103, 105],
+  [13, 37, 51],
+  [11, 31, 51],
+  [35, 37, 40],
+  [43, 9, 48],
+  [54, 23, 28],
+  [19, 29, 49],
+  [12, 37, 51],
+  [101, 51, 106],
+  [10, 37, 40],
+  [12, 17, 42],
+  [35, 37, 55],
+  [43, 14, 48],
+];
+
 export const UsersData: SeedCreateUser[] = [
   {
     name: 'Кирилл',
@@ -62,6 +291,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '2000-02-06',
     city: cityMap[4],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[0].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Елена',
@@ -71,6 +301,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1998-02-06',
     city: cityMap[1],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[1].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Сергей',
@@ -80,6 +311,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1970-01-09',
     city: cityMap[2],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[2].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Николай',
@@ -89,6 +321,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '2001-03-11',
     city: cityMap[3],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[3].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Эдуард',
@@ -98,6 +331,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1986-04-06',
     city: cityMap[4],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[4].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Роман',
@@ -107,6 +341,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '2000-02-06',
     city: cityMap[5],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[5].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Анатолий',
@@ -116,6 +351,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '2005-02-06',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[6].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Галина',
@@ -125,6 +361,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1994-05-22',
     city: cityMap[41],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[7].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Ирина',
@@ -134,6 +371,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1960-05-22',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[8].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Арсений',
@@ -143,6 +381,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '2000-02-06',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[9].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Анна',
@@ -152,6 +391,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1987-07-04',
     city: cityMap[3],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[10].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Дмитрий',
@@ -161,6 +401,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1992-08-15',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[11].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Мария',
@@ -170,6 +411,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1990-03-22',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[12].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Алексей',
@@ -179,6 +421,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1985-11-30',
     city: cityMap[44],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[13].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Екатерина',
@@ -188,6 +431,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1988-07-19',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[14].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Владимир',
@@ -197,6 +441,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1978-09-12',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[15].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Ольга',
@@ -206,6 +451,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1991-12-03',
     city: cityMap[27],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[16].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Павел',
@@ -215,6 +461,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1982-04-25',
     city: cityMap[3],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[17].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Татьяна',
@@ -224,6 +471,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1975-06-17',
     city: cityMap[5],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[18].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Игорь',
@@ -233,6 +481,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1989-10-08',
     city: cityMap[2],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[19].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Наталья',
@@ -242,6 +491,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1983-02-14',
     city: cityMap[1],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[20].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Михаил',
@@ -251,6 +501,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1972-12-01',
     city: cityMap[18],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[21].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Светлана',
@@ -260,6 +511,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1985-05-30',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[22].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Виктор',
@@ -269,6 +521,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1980-07-07',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[23].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Людмила',
@@ -278,6 +531,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1987-09-18',
     city: cityMap[27],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[24].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Константин',
@@ -287,6 +541,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1984-11-11',
     city: cityMap[4],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[25].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Алина',
@@ -296,6 +551,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1993-04-03',
     city: cityMap[1],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[26].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Григорий',
@@ -305,6 +561,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1976-08-23',
     city: cityMap[2],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[27].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Валерия',
@@ -314,6 +571,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1990-12-27',
     city: cityMap[1],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[28].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Борис',
@@ -323,6 +581,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1979-03-19',
     city: cityMap[44],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[29].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Ксения',
@@ -332,6 +591,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1986-06-06',
     city: cityMap[5],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[30].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Олег',
@@ -341,6 +601,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1988-10-20',
     city: cityMap[38],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[31].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Полина',
@@ -350,6 +611,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1992-01-15',
     city: cityMap[1],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[32].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Вадим',
@@ -359,6 +621,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1983-09-09',
     city: cityMap[3],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[33].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Жанна',
@@ -368,6 +631,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1987-07-07',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[34].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Артём',
@@ -377,6 +641,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1991-11-11',
     city: cityMap[4],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[35].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Дарья',
@@ -386,6 +651,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1989-04-04',
     city: cityMap[1],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[36].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Евгений',
@@ -395,6 +661,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1984-08-08',
     city: cityMap[27],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[37].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'София',
@@ -404,6 +671,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1993-02-02',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[38].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Максим',
@@ -413,6 +681,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1981-12-12',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[39].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Анастасия',
@@ -422,6 +691,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1990-05-05',
     city: cityMap[3],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[40].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Руслан',
@@ -431,6 +701,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1982-06-06',
     city: cityMap[5],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[41].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Вера',
@@ -440,6 +711,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1978-09-09',
     city: cityMap[14],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[42].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Станислав',
@@ -449,6 +721,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1975-10-10',
     city: cityMap[12],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[43].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Лариса',
@@ -458,6 +731,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1965-11-11',
     city: cityMap[13],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[44].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Василий',
@@ -467,6 +741,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1987-12-12',
     city: cityMap[44],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[45].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Надежда',
@@ -476,6 +751,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1983-03-03',
     city: cityMap[15],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[46].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Пётр',
@@ -485,6 +761,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1992-04-04',
     city: cityMap[16],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[47].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Елизавета',
@@ -494,6 +771,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1991-05-05',
     city: cityMap[17],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[48].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Фёдор',
@@ -503,6 +781,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1980-08-08',
     city: cityMap[27],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[49].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Ульяна',
@@ -512,6 +791,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1989-09-09',
     city: cityMap[18],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[50].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Даниил',
@@ -521,6 +801,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1985-10-10',
     city: cityMap[19],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[51].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Александра',
@@ -530,6 +811,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1982-11-11',
     city: cityMap[20],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[52].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Геннадий',
@@ -539,6 +821,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1973-12-12',
     city: cityMap[21],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[53].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Варвара',
@@ -548,6 +831,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1986-01-01',
     city: cityMap[22],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[54].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Леонид',
@@ -557,6 +841,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1977-02-02',
     city: cityMap[23],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[55].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Марина',
@@ -566,6 +851,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1988-03-03',
     city: cityMap[24],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[56].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Валентин',
@@ -575,6 +861,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1981-04-04',
     city: cityMap[25],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[57].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Таисия',
@@ -584,6 +871,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1992-05-05',
     city: cityMap[26],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[58].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Юрий',
@@ -593,6 +881,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1974-06-06',
     city: cityMap[27],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[59].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Зоя',
@@ -602,6 +891,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1985-07-07',
     city: cityMap[28],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[60].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Аркадий',
@@ -611,6 +901,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1979-08-08',
     city: cityMap[3],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[61].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Нина',
@@ -620,6 +911,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1968-09-09',
     city: cityMap[29],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[62].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Глеб',
@@ -629,6 +921,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1990-10-10',
     city: cityMap[30],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[63].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Раиса',
@@ -638,6 +931,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1962-11-11',
     city: cityMap[31],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[64].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Семён',
@@ -647,6 +941,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1984-12-12',
     city: cityMap[32],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[65].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Лидия',
@@ -656,6 +951,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1976-01-01',
     city: cityMap[33],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[66].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Тимофей',
@@ -665,6 +961,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1980-02-02',
     city: cityMap[34],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[67].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Инна',
@@ -674,6 +971,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1989-03-03',
     city: cityMap[35],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[68].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Виталий',
@@ -683,6 +981,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1983-04-04',
     city: cityMap[36],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[69].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Алла',
@@ -692,6 +991,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1991-05-05',
     city: cityMap[37],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[70].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Ростислав',
@@ -701,6 +1001,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1986-06-06',
     city: cityMap[38],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[71].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Зинаида',
@@ -710,6 +1011,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1964-07-07',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[72].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Альберт',
@@ -719,6 +1021,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1987-08-08',
     city: cityMap[39],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[73].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Клавдия',
@@ -728,6 +1031,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1959-09-09',
     city: cityMap[40],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[74].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Ярослав',
@@ -737,6 +1041,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1989-10-10',
     city: cityMap[41],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[75].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Эмилия',
@@ -746,6 +1051,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1990-11-11',
     city: cityMap[41],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[76].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Тарас',
@@ -755,6 +1061,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1972-12-12',
     city: cityMap[42],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[77].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Мирослава',
@@ -764,6 +1071,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1985-01-01',
     city: cityMap[43],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[78].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Владислав',
@@ -773,6 +1081,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1982-02-02',
     city: cityMap[44],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[79].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Лада',
@@ -782,6 +1091,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1992-03-03',
     city: cityMap[45],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[80].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Богдан',
@@ -791,6 +1101,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1994-04-04',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[81].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Василиса',
@@ -800,6 +1111,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1978-05-05',
     city: cityMap[4],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[82].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Давид',
@@ -809,6 +1121,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1985-06-06',
     city: cityMap[2],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[83].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Евдокия',
@@ -818,6 +1131,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1955-07-07',
     city: cityMap[44],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[84].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Захар',
@@ -827,6 +1141,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1976-08-08',
     city: cityMap[3],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[85].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Фаина',
@@ -836,6 +1151,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1958-09-09',
     city: cityMap[1],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[86].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Эрик',
@@ -845,6 +1161,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1988-10-10',
     city: cityMap[2],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[87].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Юлиана',
@@ -854,6 +1171,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1991-11-11',
     city: cityMap[4],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[88].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Родион',
@@ -863,6 +1181,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1983-12-12',
     city: cityMap[5],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[89].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Майя',
@@ -872,6 +1191,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1987-01-01',
     city: cityMap[1],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[90].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Платон',
@@ -881,6 +1201,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1979-02-02',
     city: cityMap[2],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[91].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Карина',
@@ -890,6 +1211,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1989-03-03',
     city: cityMap[3],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[92].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Иннокентий',
@@ -899,6 +1221,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1970-04-04',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[93].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Агния',
@@ -908,6 +1231,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1980-05-05',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[94].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Кузьма',
@@ -917,6 +1241,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1975-06-06',
     city: cityMap[4],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[95].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Стелла',
@@ -926,6 +1251,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1984-07-07',
     city: cityMap[5],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[96].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Артемий',
@@ -935,6 +1261,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1990-08-08',
     city: cityMap[1],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[97].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Луиза',
@@ -944,6 +1271,7 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1986-09-09',
     city: cityMap[2],
     gender: UserGender.FEMALE,
+    wantToLearnCategories: oldSkillInterests[98].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
   {
     name: 'Добрыня',
@@ -953,5 +1281,6 @@ export const UsersData: SeedCreateUser[] = [
     birthdate: '1982-10-10',
     city: cityMap[44],
     gender: UserGender.MALE,
+    wantToLearnCategories: oldSkillInterests[99].map((id) => oldToNewCategoryMap[subcategoryMap[id]]).filter(Boolean),
   },
 ];

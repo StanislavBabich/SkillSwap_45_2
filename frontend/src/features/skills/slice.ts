@@ -20,8 +20,8 @@ const initialState: SkillsState = {
 export const initializeSkills = createAsyncThunk<Skill[], void>(
   'skills/initialize',
   async () => {
-    const response = await skillsApi.getAll();
-    return response.data; // SkillsListResponse → берём data
+    const response = await skillsApi.getAll({ limit: '200' });
+    return response.data;
   },
   {
     condition: (_, { getState }) => {

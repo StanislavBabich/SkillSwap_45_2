@@ -5,11 +5,15 @@ export interface User {
   name: string;
   email: string;
   about: string;
-  city: string;                    // было cityId: EntityId
-  birthdate: ISODateString;        // было dateOfBirth
+  city: string;
+  birthdate: ISODateString;
   gender: Gender;
-  avatar: string | null;           // было avatarSeed
-  role: 'USER' | 'ADMIN';          // новое поле
+  avatar: string | null;
+  role: 'USER' | 'ADMIN';
+  wantToLearn?: Array<{
+    id: EntityId;
+    name: string;
+  }>;
 }
 
 export type UsersResponse = User[];

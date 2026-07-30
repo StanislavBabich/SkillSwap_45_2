@@ -24,6 +24,7 @@ exports.mockUser = {
     sentRequests: [],
     receivedRequests: [],
     favoriteSkills: [],
+    wantToLearn: [],
     role: user_enums_1.UserRole.USER,
     refreshToken: null,
 };

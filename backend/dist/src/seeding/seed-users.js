@@ -36,18 +36,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.seedUsers = seedUsers;
 const bcrypt = __importStar(require("bcrypt"));
 const user_entity_1 = require("../users/entities/user.entity");
+const category_entity_1 = require("../categories/entities/category.entity");
 const user_enums_1 = require("../users/user.enums");
 const seed_users_data_1 = require("./data/seed-users.data");
 async function seedUsers(dataSource) {
-    const repository = dataSource.getRepository(user_entity_1.User);
+    const userRepository = dataSource.getRepository(user_entity_1.User);
+    const categoryRepository = dataSource.getRepository(category_entity_1.Category);
     const hashSalt = Number(process.env.HASH_SALT) || 10;
-    await repository.delete({ role: user_enums_1.UserRole.USER });
+    await userRepository.delete({ role: user_enums_1.UserRole.USER });
     for (const data of seed_users_data_1.UsersData) {
-        const password = await bcrypt.hash(data.password, hashSalt);
-        await repository.save(repository.create({
-            ...data,
+        const { wantToLearnCategories, ...userFields } = data;
+        const password = await bcrypt.hash(userFields.password, hashSalt);
+        let wantToLearn = [];
+        if (wantToLearnCategories && wantToLearnCategories.length > 0) {
+            const categories = await Promise.all(wantToLearnCategories.map((name) => categoryRepository.findOneBy({ name })));
+            wantToLearn = categories.filter(Boolean);
+        }
+        await userRepository.save(userRepository.create({
+            ...userFields,
             password,
             role: user_enums_1.UserRole.USER,
+            wantToLearn,
         }));
     }
     console.log(`Пользователи: обработано ${seed_users_data_1.UsersData.length}`);

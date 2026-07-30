@@ -36,6 +36,7 @@ export const mockUser: User = {
   sentRequests: [],
   receivedRequests: [],
   favoriteSkills: [],
+  wantToLearn: [],
   role: UserRole.USER,
   refreshToken: null,
 };

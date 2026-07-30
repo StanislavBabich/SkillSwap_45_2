@@ -1,4 +1,5 @@
 import { Skill } from '../../skills/entities/skill.entity';
+import { Category } from '../../categories/entities/category.entity';
 import { Request } from '../../requests/entities/request.entity';
 import { UserGender, UserRole } from '../user.enums';
 export declare class User {
@@ -12,6 +13,7 @@ export declare class User {
     gender?: UserGender | null;
     avatar?: string | null;
     skills?: Skill[];
+    wantToLearn: Category[];
     sentRequests: Request[];
     receivedRequests: Request[];
     favoriteSkills: Skill[];

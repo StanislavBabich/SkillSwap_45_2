@@ -1,6 +1,7 @@
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { Skill } from '../skills/entities/skill.entity';
+import { Category } from '../categories/entities/category.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -8,8 +9,9 @@ import { type TAppConfig } from '../config/app.config';
 export declare class UsersService {
     private readonly userRepository;
     private readonly skillRepository;
+    private readonly categoryRepository;
     private readonly appConf;
-    constructor(userRepository: Repository<User>, skillRepository: Repository<Skill>, appConf: TAppConfig);
+    constructor(userRepository: Repository<User>, skillRepository: Repository<Skill>, categoryRepository: Repository<Category>, appConf: TAppConfig);
     private findUserById;
     create(createUserDto: CreateUserDto): Promise<User>;
     findAll(): Promise<User[]>;
