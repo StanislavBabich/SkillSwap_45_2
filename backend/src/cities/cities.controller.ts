@@ -15,12 +15,19 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { UserRole } from '../users/user.enums';
 import { CitiesService } from './cities.service';
 import { UpdateCityDto } from './dto/update-city.dto';
+import {
+  ApiCitiesController,
+  ApiDeleteCity,
+  ApiUpdateCity,
+} from './cities.swagger';
 
+@ApiCitiesController()
 @Controller('cities')
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
 
   @Patch(':id')
+  @ApiUpdateCity()
   @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles([UserRole.ADMIN])
   update(
@@ -31,6 +38,7 @@ export class CitiesController {
   }
 
   @Delete(':id')
+  @ApiDeleteCity()
   @HttpCode(HttpStatus.NO_CONTENT)
   @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles([UserRole.ADMIN])
