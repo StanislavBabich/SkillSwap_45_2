@@ -7,20 +7,18 @@ import styles from './SuccessModal.module.css';
 export interface SuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
-  skillId: string;
 }
 
 export const SuccessModal = ({
   isOpen,
   onClose,
-  skillId,
 }: SuccessModalProps) => {
   const navigate = useNavigate();
 
   const handleDone = useCallback(() => {
     onClose();
-    navigate(`/skill/${skillId}`);
-  }, [onClose, navigate, skillId]);
+    navigate('/profile');
+  }, [onClose, navigate]);
 
   return (
     <Modal
@@ -29,8 +27,8 @@ export const SuccessModal = ({
       icon={
         <Icon name="done" size={48} className={styles.icon} aria-hidden="true" />
       }
-      title="Ваше предложение создано"
-      description="Теперь вы можете предложить обмен"
+      title="Регистрация завершена!"
+      description="Ваш профиль создан."
       buttonText="Готово"
       onButtonClick={handleDone}
       closeOnEscape

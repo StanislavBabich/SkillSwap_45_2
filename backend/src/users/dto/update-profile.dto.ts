@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsDateString, IsEnum, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsDateString, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { UserGender } from '../user.enums';
 
 export class UpdateProfileDto {
@@ -35,4 +35,14 @@ export class UpdateProfileDto {
   @IsOptional()
   @IsString()
   avatar?: string;
+
+  @ApiPropertyOptional({
+    description: 'ID категорий, которым пользователь хочет научиться',
+    type: [String],
+    example: ['550e8400-e29b-41d4-a716-446655440000'],
+  })
+  @IsOptional()
+  @IsArray()
+  @IsUUID('4', { each: true })
+  wantToLearn?: string[];
 }

@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
-import type { UpdateUserDto, User } from '@/entities/user/types';
-import { useAuth, AuthService } from '@/features/auth';
-import { selectCities } from '@/features/cities/slice';
+import type { User } from '@/entities/user/types';
+import type { Gender } from '@/entities/base';
 import { selectAllSkills } from '@/features/skills/slice';
-import { selectAllUsers, updateUser } from '@/features/users/slice';
+import { setUsers } from '@/features/users/slice';
+import usersApi from '@/entities/user/api';
 import { storage } from '@/shared/lib/storage';
 import { ProfileAvatar } from './components/ProfileAvatar/ProfileAvatar';
 import {
@@ -15,17 +15,19 @@ import {
 import { ProfileMenu } from './components/ProfileMenu/ProfileMenu';
 import styles from './ProfilePage.module.css';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+
 type ComparableProfileState = Omit<ProfileFormState, 'password'>;
 
 const toFormState = (user: User): ProfileFormState => ({
   email: user.email,
   name: user.name,
   password: '',
-  dateOfBirth: user.dateOfBirth || '',
-  gender: user.gender || 'other',
-  cityId: user.cityId || 0,
+  dateOfBirth: user.birthdate || '',
+  gender: (user.gender?.toLowerCase() as Gender) || 'other',
+  city: user.city || '',
   about: user.about || '',
-  avatarSeed: user.avatarSeed ?? null,
+  avatarSeed: null,
 });
 
 const toComparableState = (state: ProfileFormState): ComparableProfileState => ({
@@ -33,7 +35,7 @@ const toComparableState = (state: ProfileFormState): ComparableProfileState => (
   name: state.name,
   dateOfBirth: state.dateOfBirth,
   gender: state.gender,
-  cityId: state.cityId,
+  city: state.city,
   about: state.about,
   avatarSeed: state.avatarSeed,
 });
@@ -54,27 +56,45 @@ const getValidationErrors = (state: ProfileFormState): ProfileFormErrors => {
 
 export const ProfilePage = () => {
   const dispatch = useAppDispatch();
-  const { user: authUser } = useAuth();
 
-  const users = useAppSelector(selectAllUsers);
-  const cities = useAppSelector(selectCities);
   const skills = useAppSelector(selectAllSkills);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const currentUser = useMemo(() => {
-    if (!authUser) {
-      return null;
-    }
+  // Загружаем текущего пользователя через /api/users/me
+  useEffect(() => {
+    const loadUser = async () => {
+      try {
+        const token = storage.getToken();
+        if (!token) {
+          setIsLoading(false);
+          return;
+        }
+        const res = await fetch(`${API_URL}/users/me`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+          const user = await res.json();
+          setCurrentUser(user);
+        }
+      } catch {
+        // ignore
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadUser();
+  }, []);
 
-    return users.find((item) => item.id === authUser.id) ?? null;
-  }, [authUser, users]);
+  // Загружаем список всех пользователей для Redux (на будущее)
+  useEffect(() => {
+    usersApi.getAll().then((data) => dispatch(setUsers(data))).catch(() => {});
+  }, [dispatch]);
 
   const userSkillId = useMemo(() => {
-    if (!authUser) {
-      return null;
-    }
-
-    return skills.find((skill) => skill.userId === authUser.id)?.id ?? null;
-  }, [authUser, skills]);
+    if (!currentUser) return null;
+    return skills.find((skill) => skill.owner?.id === currentUser.id)?.id ?? null;
+  }, [currentUser, skills]);
 
   const [formData, setFormData] = useState<ProfileFormState | null>(null);
   const [savedData, setSavedData] = useState<ComparableProfileState | null>(null);
@@ -98,93 +118,79 @@ export const ProfilePage = () => {
 
   const handleChange = useCallback((patch: Partial<ProfileFormState>) => {
     setFormData((previous) => {
-      if (!previous) {
-        return previous;
-      }
-      return {
-        ...previous,
-        ...patch,
-      };
+      if (!previous) return previous;
+      return { ...previous, ...patch };
     });
 
     setSaveError(null);
 
     setErrors((previous) => {
       const next = { ...previous };
-
       if ('name' in patch && typeof patch.name === 'string' && patch.name.trim()) {
         delete next.name;
       }
-
       if ('password' in patch && typeof patch.password === 'string') {
         if (!patch.password || patch.password.length >= 8) {
           delete next.password;
         }
       }
-
       return next;
     });
   }, []);
 
   const isSaveDisabled = useMemo(() => {
-    if (!formData || !savedData || isSaving) {
-      return true;
-    }
-
+    if (!formData || !savedData || isSaving) return true;
     const comparableState = toComparableState(formData);
     const hasStateChanges = JSON.stringify(comparableState) !== JSON.stringify(savedData);
     const hasNewPassword = formData.password.trim().length > 0;
-
     return !hasStateChanges && !hasNewPassword;
   }, [formData, isSaving, savedData]);
 
   const handleSave = useCallback(async () => {
-    if (!authUser || !currentUser || !formData) {
-      return;
-    }
+    if (!currentUser || !formData) return;
 
     const validationErrors = getValidationErrors(formData);
     setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length > 0) {
-      return;
-    }
+    if (Object.keys(validationErrors).length > 0) return;
 
     setIsSaving(true);
     setSaveError(null);
 
     try {
-      const dto: UpdateUserDto = {
+      const body: Record<string, unknown> = {
         name: formData.name.trim(),
         about: formData.about.trim(),
-        dateOfBirth: formData.dateOfBirth,
-        gender: formData.gender,
-        cityId: formData.cityId,
-        avatarSeed: formData.avatarSeed,
+        birthdate: formData.dateOfBirth,
+        gender: formData.gender?.toUpperCase(),
+        city: formData.city,
       };
 
-      if (formData.password.trim()) {
-        dto.passwordHash = await AuthService.hashPassword(formData.password.trim());
-      }
+      const token = storage.getToken();
+      const res = await fetch(`${API_URL}/users/me`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
 
-      dispatch(
-        updateUser({
-          userId: currentUser.id,
-          dto,
-        })
-      );
+      if (!res.ok) throw new Error('Ошибка сохранения');
+
+      const updatedUser = await res.json();
+      setCurrentUser(updatedUser);
 
       storage.setCurrentUser({
-        id: authUser.id,
-        email: authUser.email,
-        name: dto.name ?? authUser.name,
-        avatar: authUser.avatar ?? null,
+        id: updatedUser.id,
+        email: updatedUser.email,
+        name: updatedUser.name,
+        avatar: updatedUser.avatar ?? null,
       });
 
       const nextFormState: ProfileFormState = {
         ...formData,
-        name: dto.name ?? formData.name,
-        about: dto.about ?? formData.about,
+        name: updatedUser.name ?? formData.name,
+        about: updatedUser.about ?? formData.about,
         password: '',
       };
 
@@ -195,17 +201,9 @@ export const ProfilePage = () => {
     } finally {
       setIsSaving(false);
     }
-  }, [authUser, currentUser, dispatch, formData]);
+  }, [currentUser, formData]);
 
-  if (authUser && !currentUser && users.length > 0) {
-    return (
-      <section className={styles.page}>
-        <div className={styles.state}>Пользователь не найден.</div>
-      </section>
-    );
-  }
-
-  if (!formData) {
+  if (isLoading || !formData) {
     return (
       <section className={styles.page}>
         <div className={styles.state}>Загрузка профиля...</div>
@@ -222,7 +220,6 @@ export const ProfilePage = () => {
       <section className={styles.contentCard}>
         <ProfileForm
           data={formData}
-          cities={cities}
           errors={errors}
           isSaveDisabled={isSaveDisabled}
           isSaving={isSaving}

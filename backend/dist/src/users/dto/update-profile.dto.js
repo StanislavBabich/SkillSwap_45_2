@@ -20,6 +20,7 @@ class UpdateProfileDto {
     city;
     gender;
     avatar;
+    wantToLearn;
 }
 exports.UpdateProfileDto = UpdateProfileDto;
 __decorate([
@@ -61,4 +62,15 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UpdateProfileDto.prototype, "avatar", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({
+        description: 'ID категорий, которым пользователь хочет научиться',
+        type: [String],
+        example: ['550e8400-e29b-41d4-a716-446655440000'],
+    }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsUUID)('4', { each: true }),
+    __metadata("design:type", Array)
+], UpdateProfileDto.prototype, "wantToLearn", void 0);
 //# sourceMappingURL=update-profile.dto.js.map

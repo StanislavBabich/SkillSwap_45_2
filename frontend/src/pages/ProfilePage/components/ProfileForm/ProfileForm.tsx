@@ -1,12 +1,10 @@
 import { useState, type FormEvent } from 'react';
 import clsx from 'clsx';
 import type { Gender } from '@/entities/base';
-import type { City } from '@/entities/city/types';
 import { Button } from '@/shared/ui/Button';
 import { DatePicker } from '@/shared/ui/DatePicker/DatePicker';
 import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
-import { DropDownCity } from '@/shared/ui/DropDownCity'; 
 import { Icon } from '@/shared/ui/Icon';
 import styles from './ProfileForm.module.css';
 
@@ -16,7 +14,7 @@ export interface ProfileFormState {
   password: string;
   dateOfBirth: string;
   gender: Gender;
-  cityId: number;
+  city: string;
   about: string;
   avatarSeed: string | null;
 }
@@ -28,7 +26,7 @@ export interface ProfileFormErrors {
 
 interface ProfileFormProps {
   data: ProfileFormState;
-  cities: City[];
+  cities?: any[];
   errors: ProfileFormErrors;
   isSaveDisabled: boolean;
   isSaving: boolean;
@@ -39,7 +37,6 @@ interface ProfileFormProps {
 
 export const ProfileForm = ({
   data,
-  cities,
   errors,
   isSaveDisabled,
   isSaving,
@@ -126,18 +123,14 @@ export const ProfileForm = ({
           ]}
         />
       </div>
-   
-      <DropDownCity
-            label="Город"
-            value={data.cityId ? String(data.cityId) : ''}
-            onChange={(value) => onChange({ cityId: value ? Number(value) : 0 })}
-            options={cities.map((c) => ({
-              value: String(c.id),
-              label: c.name,
-            }))}
-            minSearchLength={1}
-            maxResults={50}
-          />
+
+      {/* Город — временно Input, пока нет ресурса /api/cities */}
+      <Input
+        label="Город"
+        value={data.city}
+        onChange={(event) => onChange({ city: event.target.value })}
+        endAdornment={editAdornment}
+      />
 
       <div className={styles.textareaGroup}>
         <label htmlFor="profile-about" className={styles.label}>

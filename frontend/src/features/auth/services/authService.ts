@@ -1,87 +1,47 @@
 import { storage } from '@/shared/lib/storage';
-import bcrypt from 'bcryptjs';
-import type { StoredAuthUser, AuthUser, LoginCredentials, RegisterData } from '../types';
+import type { AuthUser, LoginCredentials } from '../types';
 
-const SALT_ROUNDS = 10;
-const MOCK_TOKEN = 'skillswap-auth-token';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 export class AuthService {
-  // Хеширование пароля
-  static async hashPassword(password: string): Promise<string> {
-    return bcrypt.hash(password, SALT_ROUNDS);
-  }
-
-  // Проверка пароля
-  static async verifyPassword(password: string, hash: string): Promise<boolean> {
-    return bcrypt.compare(password, hash);
-  }
-
-  // Проверка уникальности email
-  static checkEmailUnique(users: StoredAuthUser[], email: string): boolean {
-    const normalized = email.trim().toLowerCase();
-    return !users.some((u) => u.email.toLowerCase() === normalized);
-  }
-
-  // Регистрация нового пользователя
-  static async register(userData: RegisterData): Promise<AuthUser> {
-    const users = storage.loadUsers();
-
-    if (!this.checkEmailUnique(users, userData.email)) {
-      throw new Error('Пользователь с таким email уже существует');
+  // Регистрация через API (используется в RegisterPage)
+  static async registerViaApi(email: string, password: string, name: string): Promise<{ accessToken: string; user: AuthUser }> {
+    const res = await fetch(`${API_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password, name }),
+    });
+    if (!res.ok) {
+      const error = await res.json().catch(() => ({}));
+      throw new Error(error.message || 'Ошибка регистрации');
     }
-
-    if (userData.password.length < 8) {
-      throw new Error('Пароль должен быть не менее 8 символов');
-    }
-
-    const passwordHash = await this.hashPassword(userData.password);
-
-    const newUser: StoredAuthUser = {
-      id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
-      email: userData.email.trim().toLowerCase(),
-      name: userData.name,
-      passwordHash,
-      about: userData.about || '',
-      cityId: userData.cityId || 0,
-      gender: userData.gender || 'other',
-      dateOfBirth: userData.dateOfBirth || '',
-      registrationDate: new Date().toISOString().split('T')[0],
-      skillInterests: userData.skillInterests || [],
-      avatarSeed: userData.avatarSeed || null,
-      avatar: null,
-    };
-
-    users.push(newUser);
-    storage.saveUsers(users);
-
-    const { passwordHash: _, ...safeUser } = newUser;
-    storage.setCurrentUser(safeUser);
-    storage.setToken(MOCK_TOKEN);
-    return safeUser;
+    return res.json();
   }
 
-  // Вход пользователя
-  static async login({ email, password }: LoginCredentials): Promise<AuthUser | null> {
-    const users = storage.loadUsers();
-    const user = users.find(u => u.email.toLowerCase() === email.trim().toLowerCase());
+  // Вход через API
+  static async login(credentials: LoginCredentials): Promise<AuthUser | null> {
+    try {
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials),
+      });
+      if (!res.ok) return null;
 
-    if (!user) return null;
-
-    const isValid = await this.verifyPassword(password, user.passwordHash);
-    if (!isValid) return null;
-
-    const { passwordHash: _, ...safeUser } = user;
-    
-    storage.setCurrentUser(safeUser);
-    storage.setToken(MOCK_TOKEN);
-    
-    return safeUser;
+      const data = await res.json();
+      
+      storage.setToken(data.accessToken);
+      storage.setCurrentUser(data.user);
+      
+      return data.user;
+    } catch {
+      return null;
+    }
   }
 
   // Выход
   static logout(): void {
     storage.clearCurrentUser();
-    storage.setToken('');
   }
 
   // Текущий пользователь
@@ -91,6 +51,6 @@ export class AuthService {
 
   // Проверка авторизации
   static isAuthenticated(): boolean {
-    return storage.getCurrentUser() !== null;
+    return storage.getCurrentUser() !== null && storage.getToken() !== null;
   }
 }

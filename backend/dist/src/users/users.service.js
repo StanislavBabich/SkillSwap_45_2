@@ -113,7 +113,18 @@ let UsersService = class UsersService {
     }
     async updateProfile(id, dto) {
         const user = await this.findUserById(id);
-        Object.assign(user, dto);
+        const { wantToLearn, ...rest } = dto;
+        Object.assign(user, rest);
+        if (wantToLearn !== undefined) {
+            if (wantToLearn.length > 0) {
+                user.wantToLearn = await this.categoryRepository.findBy({
+                    id: (0, typeorm_2.In)(wantToLearn),
+                });
+            }
+            else {
+                user.wantToLearn = [];
+            }
+        }
         return this.userRepository.save(user);
     }
     async changePassword(id, dto) {

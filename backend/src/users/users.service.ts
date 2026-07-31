@@ -88,10 +88,23 @@ export class UsersService {
   }
 
   async updateProfile(id: string, dto: UpdateProfileDto): Promise<User> {
-    const user = await this.findUserById(id);
-    Object.assign(user, dto);
-    return this.userRepository.save(user);
+  const user = await this.findUserById(id);
+  const { wantToLearn, ...rest } = dto;
+
+  Object.assign(user, rest);
+
+  if (wantToLearn !== undefined) {
+    if (wantToLearn.length > 0) {
+      user.wantToLearn = await this.categoryRepository.findBy({
+        id: In(wantToLearn),
+      });
+    } else {
+      user.wantToLearn = [];
+    }
   }
+
+  return this.userRepository.save(user);
+}
 
   async changePassword(
     id: string,

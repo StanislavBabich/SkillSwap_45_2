@@ -8,21 +8,13 @@ export interface RegistrationData {
   name: string;
   dateOfBirth?: string;
   gender?: 'male' | 'female' | 'other';
-  cityId?: EntityId;
+  city?: string;
   about?: string;
   selectedCategoryIds: EntityId[];
-  teachSkill: {
-    name: string;
-    categoryId: EntityId;
-    subcategoryId: EntityId;
-    description: string;
-    images: File[];
-  };
 }
 
 export type Step1Data = Pick<RegistrationData, 'email' | 'password'>;
-export type Step2Data = Pick<RegistrationData, 'avatarSeed' | 'name' | 'dateOfBirth' | 'gender' | 'cityId' | 'about' | 'selectedCategoryIds'>;
-export type Step3Data = Pick<RegistrationData, 'teachSkill'>;
+export type Step2Data = Pick<RegistrationData, 'avatarSeed' | 'name' | 'dateOfBirth' | 'gender' | 'city' | 'about' | 'selectedCategoryIds'>;
 
 export interface StepProps {
   data: RegistrationData;
@@ -42,7 +34,7 @@ interface UseRegistrationReturn {
   isStepValid: () => boolean;
 }
 
-const TOTAL_STEPS = 3;
+const TOTAL_STEPS = 2;
 
 const initialData: RegistrationData = {
   email: '',
@@ -50,13 +42,6 @@ const initialData: RegistrationData = {
   avatarSeed: null,
   name: '',
   selectedCategoryIds: [],
-  teachSkill: {
-    name: '',
-    categoryId: '',
-    subcategoryId: '',
-    description: '',
-    images: [],
-  },
 };
 
 export const useRegistration = (): UseRegistrationReturn => {
@@ -82,8 +67,6 @@ export const useRegistration = (): UseRegistrationReturn => {
         return !!(data.email && data.password && data.password.length >= 8);
       case 2:
         return !!(data.name && data.selectedCategoryIds.length > 0);
-      case 3:
-        return !!(data.teachSkill.name && data.teachSkill.categoryId && data.teachSkill.subcategoryId);
       default:
         return true;
     }

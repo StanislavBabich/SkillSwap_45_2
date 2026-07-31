@@ -35,31 +35,35 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    setUsers: (state, action: PayloadAction<User[]>) => {
-      state.items = action.payload;
-    },
-    addUser: (state, action: PayloadAction<User>) => {
-      state.items.push(action.payload);
-    },
-    updateUser: (state, action: PayloadAction<{ userId: EntityId; dto: Partial<User> }>) => {
-      const user = state.items.find((item) => item.id === action.payload.userId);
-      if (!user) return;
-      Object.assign(user, action.payload.dto);
-    },
-    removeUser: (state, action: PayloadAction<EntityId>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
-    },
-    setCurrentUserId: (state, action: PayloadAction<EntityId | null>) => {
-      state.currentUserId = action.payload;
-    },
-    setUsersLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-      state.status = action.payload ? 'loading' : state.status;
-    },
-    setUsersError: (state, action: PayloadAction<string | null>) => {
-      state.error = action.payload;
-    },
+  setUsers: (state, action: PayloadAction<User[]>) => {
+    state.items = action.payload;
   },
+  addUser: (state, action: PayloadAction<User>) => {
+    state.items.push(action.payload);
+  },
+  updateUser: (state, action: PayloadAction<{ userId: EntityId; dto: Partial<User> }>) => {
+    const user = state.items.find((item) => item.id === action.payload.userId);
+    if (!user) return;
+    Object.assign(user, action.payload.dto);
+  },
+  removeUser: (state, action: PayloadAction<EntityId>) => {
+    state.items = state.items.filter((item) => item.id !== action.payload);
+  },
+  setCurrentUserId: (state, action: PayloadAction<EntityId | null>) => {
+    state.currentUserId = action.payload;
+  },
+  setUsersLoading: (state, action: PayloadAction<boolean>) => {
+    state.isLoading = action.payload;
+    state.status = action.payload ? 'loading' : state.status;
+  },
+  setUsersError: (state, action: PayloadAction<string | null>) => {
+    state.error = action.payload;
+  },
+  resetUsersStatus: (state) => {
+    state.status = 'idle';
+    state.isLoading = false;
+  },
+},
   extraReducers: (builder) => {
     builder
       .addCase(initializeUsers.pending, (state) => {
@@ -96,6 +100,7 @@ export const {
   setCurrentUserId,
   setUsersLoading,
   setUsersError,
+  resetUsersStatus,
 } = usersSlice.actions;
 
 export const {

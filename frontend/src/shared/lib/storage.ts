@@ -28,7 +28,7 @@ const isAuthUser = (value: unknown): value is AuthUser => {
   }
 
   return (
-    typeof value.id === 'number' &&
+    typeof value.id === 'string' &&
     typeof value.email === 'string' &&
     typeof value.name === 'string' &&
     (value.avatar === undefined || value.avatar === null || typeof value.avatar === 'string')

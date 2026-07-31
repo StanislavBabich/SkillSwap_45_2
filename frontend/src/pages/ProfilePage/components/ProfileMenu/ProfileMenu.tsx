@@ -4,7 +4,7 @@ import { Icon } from '@/shared/ui/Icon';
 import styles from './ProfileMenu.module.css';
 
 interface ProfileMenuProps {
-  userSkillId: number | null;
+  userSkillId: string | null;
 }
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>

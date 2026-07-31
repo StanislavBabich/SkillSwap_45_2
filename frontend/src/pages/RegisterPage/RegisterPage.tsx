@@ -1,23 +1,34 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import lightbulb from '@/assets/lightbulb.svg';
 import userInfoIllustration from '@/assets/user-info.svg';
-import schoolBoardIllustration from '@/assets/school-board.svg';
-import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import { useAppSelector } from '@/app/store/hooks';
 import { selectCategories } from '@/features/categories/slice';
-import { createUserWithSkill } from '@/features/users/thunks';
 import { storage } from '@/shared/lib/storage';
+import { AuthService } from '@/features/auth';
 import { Step1Account } from './components/Step1Account';
 import { Step2Profile } from './components/Step2Profile/Step2Profile';
-import { Step3Skill } from './components/Step3Skill/Step3Skill';
 import { StepIndicator } from './components/StepIndicator/StepIndicator';
-import { ConfirmModal } from './components/Modals/ConfirmModal';
 import { SuccessModal } from './components/Modals/SuccessModal';
 import { useRegistration } from './hooks/useRegistration';
-import type { RegistrationData } from './types';
 import styles from './RegisterPage.module.css';
 import clsx from 'clsx';
 
-type StepId = 1 | 2 | 3;
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+
+async function updateProfile(token: string, data: Record<string, unknown>): Promise<void> {
+  const res = await fetch(`${API_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) throw new Error('Ошибка обновления профиля');
+}
+
+type StepId = 1 | 2;
 
 const STEP_CONTENT: Record<StepId, { image: string; title: string; subtitle: string }> = {
   1: {
@@ -30,117 +41,99 @@ const STEP_CONTENT: Record<StepId, { image: string; title: string; subtitle: str
     title: 'Расскажите немного о себе',
     subtitle: 'Это поможет другим людям лучше вас узнать, чтобы выбрать для обмена',
   },
-  3: {
-    image: schoolBoardIllustration,
-    title: 'Укажите, чем вы готовы поделиться',
-    subtitle: 'Так другие люди смогут увидеть ваши предложения и предложить вам обмен!',
-  },
 };
 
-const normalizeEmail = (value: string): string => value.trim().toLowerCase();
-
 export const RegisterPage = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { currentStep, data, nextStep, prevStep, updateData, resetData } = useRegistration();
-
-  const users = useAppSelector((state) => state.users.items);
-  const usersLoading = useAppSelector((state) => state.users.isLoading);
   const categories = useAppSelector(selectCategories);
 
-  const [emailAlreadyUsed, setEmailAlreadyUsed] = useState(false);
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
-  const [createdSkillId, setCreatedSkillId] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [authToken, setAuthToken] = useState<string | null>(null);
 
   const currentStepTyped = currentStep as StepId;
   const stepContent = STEP_CONTENT[currentStepTyped];
 
   const handleUpdate = useCallback(
-    (patch: Partial<RegistrationData>) => {
-      if (typeof patch.email === 'string') setEmailAlreadyUsed(false);
-      if (patch.teachSkill) setSubmitError(null);
-      updateData(patch);
-    },
+    (patch: Partial<typeof data>) => updateData(patch),
     [updateData]
   );
 
-  const isEmailTaken = useCallback(
-    (email: string) => {
-      const normalized = normalizeEmail(email);
-      if (!normalized) return false;
-      const existsInStore = users.some((user) => normalizeEmail(user.email) === normalized);
-      if (existsInStore) return true;
-      return storage.loadUsers().some((user) => normalizeEmail(user.email) === normalized);
-    },
-    [users]
-  );
-
-  const handleStep1Next = useCallback(() => {
-    if (isEmailTaken(data.email)) {
-      setEmailAlreadyUsed(true);
-      return;
-    }
-    setEmailAlreadyUsed(false);
-    nextStep();
-  }, [data.email, isEmailTaken, nextStep]);
-
-  const handleStep3Next = useCallback(() => {
-    setSubmitError(null);
-    setIsConfirmOpen(true);
-  }, []);
-
-  const confirmData = useMemo(() => {
-    const category = categories.find((item) => item.id === data.teachSkill.categoryId);
-    return {
-      name: data.teachSkill.name,
-      categoryName: category?.name ?? 'Категория не выбрана',
-      subcategoryName: 'Подкатегория не выбрана',
-      description: data.teachSkill.description || 'Описание не указано',
-      images: data.teachSkill.images ?? [],
-    };
-  }, [categories, data.teachSkill]);
-
-  const handleConfirmRegistration = useCallback(async () => {
-    if (isSubmitting) return;
+  const handleStep1Next = useCallback(async () => {
     setSubmitError(null);
     setIsSubmitting(true);
     try {
-      const result = await dispatch(createUserWithSkill(data)).unwrap();
-      setCreatedSkillId(result.skill.id);
-      setIsConfirmOpen(false);
-      setIsSuccessOpen(true);
+      const result = await AuthService.registerViaApi(data.email, data.password, data.name || data.email.split('@')[0]);
+      setAuthToken(result.accessToken);
+
+      storage.setToken(result.accessToken);
+      storage.setCurrentUser(result.user);
+
+      nextStep();
     } catch (error) {
-      if (typeof error === 'string') setSubmitError(error);
-      else if (error instanceof Error) setSubmitError(error.message);
-      else setSubmitError('Не удалось завершить регистрацию');
+      if (error instanceof Error) {
+        setSubmitError(error.message);
+      } else {
+        setSubmitError('Не удалось зарегистрироваться');
+      }
     } finally {
       setIsSubmitting(false);
     }
-  }, [data, dispatch, isSubmitting]);
+  }, [data.email, data.password, data.name, nextStep]);
+
+  const handleStep2Submit = useCallback(async () => {
+    if (!authToken) return;
+    setSubmitError(null);
+    setIsSubmitting(true);
+    try {
+      await updateProfile(authToken, {
+        name: data.name,
+        about: data.about,
+        birthdate: data.dateOfBirth,
+        gender: data.gender?.toUpperCase(),
+        city: data.city,
+        wantToLearn: data.selectedCategoryIds,
+      });
+      setIsSuccessOpen(true);
+    } catch (error) {
+      if (error instanceof Error) {
+        setSubmitError(error.message);
+      } else {
+        setSubmitError('Не удалось обновить профиль');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [authToken, data]);
 
   const handleSuccessClose = useCallback(() => {
     setIsSuccessOpen(false);
-    setCreatedSkillId(null);
-    setSubmitError(null);
-    setEmailAlreadyUsed(false);
     resetData();
-  }, [resetData]);
+    navigate('/profile');
+  }, [resetData, navigate]);
 
   const renderStep = () => {
     switch (currentStepTyped) {
       case 1:
         return (
           <div className={styles.stepCard}>
-            <Step1Account data={data} onUpdate={handleUpdate} onNext={handleStep1Next} onBack={prevStep} emailAlreadyUsed={emailAlreadyUsed} />
-            {usersLoading && <p className={styles.hint}>Загружаем пользователей для проверки email…</p>}
+            <Step1Account data={data} onUpdate={handleUpdate} onNext={handleStep1Next} onBack={prevStep} />
+            {isSubmitting && <p className={styles.hint}>Регистрация...</p>}
           </div>
         );
       case 2:
-        return <Step2Profile data={data} onUpdate={handleUpdate} onNext={nextStep} onBack={prevStep} embedded />;
-      case 3:
-        return <Step3Skill data={data} onUpdate={handleUpdate} onNext={handleStep3Next} onBack={prevStep} embedded />;
+        return (
+          <Step2Profile
+            data={data}
+            onUpdate={handleUpdate}
+            onNext={handleStep2Submit}
+            onBack={prevStep}
+            isSubmitting={isSubmitting}
+            embedded
+          />
+        );
       default:
         return null;
     }
@@ -150,10 +143,10 @@ export const RegisterPage = () => {
     <>
       <section className={styles.page}>
         <div className={styles.headerBlock}>
-          <StepIndicator currentStep={currentStepTyped} />
+          <StepIndicator currentStep={currentStepTyped} totalSteps={2} />
         </div>
         <div className={clsx(styles.leftColumn, styles.section)}>
-          {submitError && !isConfirmOpen && <p className={styles.errorBanner} role="alert">{submitError}</p>}
+          {submitError && <p className={styles.errorBanner} role="alert">{submitError}</p>}
           <div className={styles.stepWrap}>{renderStep()}</div>
         </div>
         <aside className={clsx(styles.rightColumn, styles.section)}>
@@ -164,16 +157,7 @@ export const RegisterPage = () => {
           </div>
         </aside>
       </section>
-      <ConfirmModal
-        isOpen={isConfirmOpen}
-        onClose={() => { if (!isSubmitting) setIsConfirmOpen(false); }}
-        data={confirmData}
-        onEdit={() => setIsConfirmOpen(false)}
-        onConfirm={handleConfirmRegistration}
-        isConfirming={isSubmitting}
-        errorMessage={submitError}
-      />
-      <SuccessModal isOpen={isSuccessOpen && createdSkillId !== null} onClose={handleSuccessClose} skillId={createdSkillId ?? ''} />
+      <SuccessModal isOpen={isSuccessOpen} onClose={handleSuccessClose} />
     </>
   );
 };
