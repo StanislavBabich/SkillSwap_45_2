@@ -23,4 +23,12 @@ export class CitiesService {
 
     return this.cityRepository.save(city);
   }
+
+  async remove(id: string): Promise<void> {
+    const result = await this.cityRepository.delete(id);
+
+    if (!result.affected) {
+      throw new NotFoundException(`City with id ${id} not found`);
+    }
+  }
 }

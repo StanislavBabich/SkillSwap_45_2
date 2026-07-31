@@ -7,12 +7,15 @@ import { City } from './entities/city.entity';
 
 describe('CitiesService', () => {
   let service: CitiesService;
-  let repository: jest.Mocked<Pick<Repository<City>, 'preload' | 'save'>>;
+  let repository: jest.Mocked<
+    Pick<Repository<City>, 'preload' | 'save' | 'delete'>
+  >;
 
   beforeEach(async () => {
     repository = {
       preload: jest.fn(),
       save: jest.fn(),
+      delete: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -54,5 +57,21 @@ describe('CitiesService', () => {
       }),
     ).rejects.toBeInstanceOf(NotFoundException);
     expect(repository.save).not.toHaveBeenCalled();
+  });
+
+  it('deletes an existing city', async () => {
+    const id = '550e8400-e29b-41d4-a716-446655440000';
+    repository.delete.mockResolvedValue({ raw: [], affected: 1 });
+
+    await expect(service.remove(id)).resolves.toBeUndefined();
+    expect(repository.delete).toHaveBeenCalledWith(id);
+  });
+
+  it('throws NotFoundException when deleting a missing city', async () => {
+    repository.delete.mockResolvedValue({ raw: [], affected: 0 });
+
+    await expect(
+      service.remove('550e8400-e29b-41d4-a716-446655440000'),
+    ).rejects.toBeInstanceOf(NotFoundException);
   });
 });

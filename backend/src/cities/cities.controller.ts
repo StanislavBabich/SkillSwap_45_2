@@ -1,6 +1,9 @@
 import {
   Body,
   Controller,
+  Delete,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   Patch,
@@ -25,5 +28,13 @@ export class CitiesController {
     @Body() updateCityDto: UpdateCityDto,
   ) {
     return this.citiesService.update(id, updateCityDto);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Roles([UserRole.ADMIN])
+  remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
+    return this.citiesService.remove(id);
   }
 }
