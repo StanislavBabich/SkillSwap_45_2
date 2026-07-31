@@ -4,6 +4,7 @@ import { useAppSelector } from '@/app/store/hooks';
 import type { EntityId } from '@/entities/base';
 import { selectUserWithDetails } from '@/features/users/selectors';
 import { useAvatar } from '@/shared/hooks/useAvatar';
+import { storage } from '@/shared/lib/storage';
 import styles from './UserInfo.module.css';
 
 export interface UserInfoProps {
@@ -58,10 +59,16 @@ export const UserInfo = ({
   const selector = useMemo(() => selectUserWithDetails(userId), [userId]);
   const user = useAppSelector(selector);
 
+  // Пробуем получить сохранённый avatarSeed из localStorage
+  const storedUser = storage.getCurrentUser();
+  const avatarSeed =
+    user?.id === storedUser?.id ? (storedUser as any)?.avatarSeed ?? null : null;
+
   const avatarUrl = useAvatar({
     email: user?.email || `user-${userId}@example.com`,
     gender: user?.gender,
     size: SIZE_TO_PIXELS[size],
+    avatarSeed,
   });
 
   if (!user) return null;

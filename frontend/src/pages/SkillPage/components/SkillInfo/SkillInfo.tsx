@@ -1,8 +1,5 @@
-import { useMemo } from 'react';
-
 import type { EntityId } from '@/entities/base';
-import { useAppSelector } from '@/app/store/hooks';
-import { selectSkillWithDetails } from '@/features/skills/selectors';
+import type { Skill } from '@/entities/skill/types';
 import { Headline } from '@/shared/ui';
 import { ActionButtons } from '../ActionButtons/ActionButtons';
 import SkillGallery from '../SkillGallery';
@@ -12,17 +9,13 @@ import style from './SkillInfo.module.css';
 
 type SkillInfoProps = {
   skillId: EntityId;
+  skill: Skill;
   onExchangeClick: () => void;
-  onIncomingClick?: () => void; // Добавляем обработчик для входящих заявок
+  onIncomingClick?: () => void;
 };
 
-export const SkillInfo = ({ skillId, onExchangeClick, onIncomingClick }: SkillInfoProps) => {
-  const skillSelector = useMemo(() => selectSkillWithDetails(skillId), [skillId]);
-  const skill = useAppSelector(skillSelector);
-
-  if (!skill) return null;
-
-  const category = [skill.category?.name, skill.subcategory?.name].filter(Boolean).join(' / ');
+export const SkillInfo = ({ skillId, skill, onExchangeClick, onIncomingClick }: SkillInfoProps) => {
+  const category = skill.category?.name ?? '';
 
   return (
     <div className={style.content}>
@@ -33,8 +26,8 @@ export const SkillInfo = ({ skillId, onExchangeClick, onIncomingClick }: SkillIn
       <div className={style.body}>
         <div className={style.info}>
           <div className={style.text}>
-            <Headline level={1}>{skill.name}</Headline>
-            <p className={style.category}>{category}</p>
+            <Headline level={1}>{skill.title}</Headline>
+            {category && <p className={style.category}>{category}</p>}
             <p className={style.description}>{skill.description}</p>
           </div>
 

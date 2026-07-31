@@ -6,7 +6,7 @@ const selectNotificationItems = (state: RootState): Notification[] =>
   state.notifications?.items ?? [];
 
 export const selectUnreadCount = createSelector(
-  [selectNotificationItems, (_state: RootState, userId?: number) => userId],
+  [selectNotificationItems, (_state: RootState, userId?: string) => userId],
   (items, userId): number => {
     if (!userId) return 0;
     return items.filter((n) => !n.isRead && n.userId === userId).length;

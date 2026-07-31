@@ -4,6 +4,7 @@ import { useAppSelector } from '@/app/store/hooks';
 import { selectUnreadCount } from '@/features/notifications';
 import { selectUserById } from '@/features/users/slice';
 import { useAvatar } from '@/shared/hooks/useAvatar';
+import { storage } from '@/shared/lib/storage';
 import { Icon } from '@/shared/ui/Icon';
 import { NotificationModal } from '@/widgets/Notifications';
 import { UserDropdown } from './components/UserDropdown/UserDropdown';
@@ -11,7 +12,7 @@ import styles from './UserMenu.module.css';
 
 interface UserMenuProps {
   user: {
-    id: number;
+    id: string;
     email: string;
     gender?: 'male' | 'female' | 'other';
     name?: string;
@@ -40,12 +41,15 @@ export const UserMenu = ({ user }: UserMenuProps) => {
   const effectiveGender = persistedUser?.gender ?? user.gender;
   const effectiveName = persistedUser?.name ?? user.name;
 
-  // Генерация аватара через DiceBear
+  // Берём avatarSeed из localStorage
+  const storedUser = storage.getCurrentUser();
+  const avatarSeed = storedUser?.avatarSeed ?? null;
+
   const avatarUrl = useAvatar({
     email: effectiveEmail || '',
     gender: effectiveGender,
     size: 48,
-    avatarSeed: persistedUser?.avatarSeed ?? null,
+    avatarSeed,
   });
 
   // Закрытие по клику вне меню
@@ -104,7 +108,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
 
   return (
     <div className={styles.userMenu} ref={menuRef}>
-      {/* Иконка уведомлений (колокольчик + красный кружок) и выпадающая панель */}
+      {/* Иконка уведомлений */}
       <div className={styles.bellPanelAnchor}>
         <div className={styles.bellWrapper}>
           <button
@@ -141,7 +145,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
         />
       </div>
 
-      {/* Иконка избранного (сердечко) */}
+      {/* Иконка избранного */}
       <button
         className={styles.iconButton}
         onClick={handleFavoritesClick}
@@ -156,7 +160,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
         />
       </button>
 
-      {/* Имя и аватар - открывает выпадающее меню */}
+      {/* Имя и аватар */}
       <div className={styles.userInfo}>
         <button
           className={styles.userButton}
@@ -177,7 +181,6 @@ export const UserMenu = ({ user }: UserMenuProps) => {
           />
         </button>
 
-        {/* Выпадающее меню */}
         {isDropdownOpen && (
           <UserDropdown onClose={() => setIsDropdownOpen(false)} />
         )}

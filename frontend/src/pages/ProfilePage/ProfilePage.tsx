@@ -27,7 +27,7 @@ const toFormState = (user: User): ProfileFormState => ({
   gender: (user.gender?.toLowerCase() as Gender) || 'other',
   city: user.city || '',
   about: user.about || '',
-  avatarSeed: null,
+  avatarSeed: (storage.getCurrentUser() as any)?.avatarSeed ?? null,
 });
 
 const toComparableState = (state: ProfileFormState): ComparableProfileState => ({
@@ -86,7 +86,7 @@ export const ProfilePage = () => {
     loadUser();
   }, []);
 
-  // Загружаем список всех пользователей для Redux (на будущее)
+  // Загружаем список всех пользователей для Redux
   useEffect(() => {
     usersApi.getAll().then((data) => dispatch(setUsers(data))).catch(() => {});
   }, [dispatch]);
@@ -123,6 +123,15 @@ export const ProfilePage = () => {
     });
 
     setSaveError(null);
+
+    // Сохраняем avatarSeed в localStorage при изменении
+    if (patch.avatarSeed !== undefined) {
+      const stored = storage.getCurrentUser();
+      if (stored) {
+        (stored as any).avatarSeed = patch.avatarSeed;
+        storage.setCurrentUser(stored);
+      }
+    }
 
     setErrors((previous) => {
       const next = { ...previous };
@@ -180,12 +189,15 @@ export const ProfilePage = () => {
       const updatedUser = await res.json();
       setCurrentUser(updatedUser);
 
+      // Сохраняем в localStorage, включая avatarSeed
+      const stored = storage.getCurrentUser();
       storage.setCurrentUser({
         id: updatedUser.id,
         email: updatedUser.email,
         name: updatedUser.name,
         avatar: updatedUser.avatar ?? null,
-      });
+        avatarSeed: (stored as any)?.avatarSeed ?? formData.avatarSeed,
+      } as any);
 
       const nextFormState: ProfileFormState = {
         ...formData,

@@ -4,14 +4,10 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import type { EntityId } from '@/entities/base';
 import type { RootState } from '@/app/store';
 import type { Skill } from '@/entities/skill/types';
+import type { User } from '@/entities/user/types';
 import { useAppSelector } from '@/app/store/hooks';
 
-import { 
-  selectSkillWithDetails, 
-  selectSimilarSkills
-} from '@/features/skills/selectors';
 import { useAuth } from '@/features/auth';
-import { selectAllExchangeRequests } from '@/features/exchangeRequests/selectors';
 import { selectUserById } from '@/features/users/slice';
 
 import { UserSidebar } from './components/UserSidebar';
@@ -20,6 +16,8 @@ import { SimilarSkills } from './components/SimilarSkills';
 import { ExchangeModal } from './components/ExchangeModal';
 
 import styles from './SkillPage.module.css';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 export const SkillPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -30,20 +28,61 @@ export const SkillPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<'create' | 'incoming'>('create');
 
+  const [skill, setSkill] = useState<Skill | null>(null);
+  const [owner, setOwner] = useState<User | null>(null);
+  const [similarSkills, setSimilarSkills] = useState<Skill[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const skillId: EntityId | null = id ?? null;
 
-  // Селекторы
-  const skillSelector = useMemo(
-    () => (skillId ? selectSkillWithDetails(skillId) : () => null),
-    [skillId]
-  );
-  const skill = useAppSelector(skillSelector);
+  // Загружаем навык напрямую с API
+  useEffect(() => {
+    if (!skillId) {
+      setIsLoading(false);
+      return;
+    }
 
-  const similarSkillsSelector = useMemo(
-    () => (skillId ? selectSimilarSkills(skillId) : () => []),
-    [skillId]
-  );
-  const similarSkills = useAppSelector(similarSkillsSelector);
+    const loadSkill = async () => {
+      try {
+        const res = await fetch(`${API_URL}/skills/${skillId}`);
+        if (!res.ok) throw new Error('Навык не найден');
+        const data = await res.json();
+        setSkill(data);
+      } catch {
+        setSkill(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadSkill();
+  }, [skillId]);
+
+  // Загружаем владельца навыка
+  useEffect(() => {
+    if (!skill?.owner?.id) return;
+    fetch(`${API_URL}/users/${skill.owner.id}`)
+      .then((r) => r.json())
+      .then(setOwner)
+      .catch(() => {});
+  }, [skill?.owner?.id]);
+
+  // Загружаем похожие навыки
+  useEffect(() => {
+    if (!skill?.category?.id) return;
+
+    const loadSimilar = async () => {
+      try {
+        const res = await fetch(`${API_URL}/skills?category=${skill.category!.id}&limit=5`);
+        if (res.ok) {
+          const data = await res.json();
+          setSimilarSkills(data.data?.filter((s: Skill) => s.id !== skill.id) ?? []);
+        }
+      } catch {
+        // ignore
+      }
+    };
+    loadSimilar();
+  }, [skill?.category?.id]);
 
   const fromUserSelector = useMemo(
     () => (authUser ? (state: RootState) => selectUserById(state, authUser.id) : () => null),
@@ -51,13 +90,6 @@ export const SkillPage = () => {
   );
   const fromUser = useAppSelector(fromUserSelector);
 
-  const toUserSelector = useMemo(
-    () => (skill?.owner?.id ? (state: RootState) => selectUserById(state, skill.owner.id) : () => null),
-    [skill?.owner?.id]
-  );
-  const toUser = useAppSelector(toUserSelector);
-
-  // Навык текущего пользователя для предложения обмена
   const proposerSkillId = useAppSelector(
     useMemo(() => {
       if (!authUser) return () => undefined;
@@ -70,14 +102,12 @@ export const SkillPage = () => {
     }, [authUser])
   );
 
-  // TODO: адаптировать под новую модель Request
-  const incomingRequest = useMemo(() => null, []);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   if (skillId == null) return <div>Некорректный id</div>;
+  if (isLoading) return <div>Загрузка...</div>;
   if (!skill) return <div>Навык не найден</div>;
 
   const handleExchangeClick = () => {
@@ -89,31 +119,27 @@ export const SkillPage = () => {
     setIsModalOpen(true);
   };
 
-  const handleIncomingClick = () => {
-    if (!authUser || !incomingRequest) return;
-    setModalMode('incoming');
-    setIsModalOpen(true);
-  };
-
   const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <div className={styles.page}>
       <section className={styles.card}>
         <aside className={styles.sidebar}>
-          <UserSidebar skillId={skillId} />
+          <UserSidebar skillId={skillId} skill={skill} user={owner} />
         </aside>
         <main className={styles.main}>
           <SkillInfo
             skillId={skillId}
+            skill={skill}
             onExchangeClick={handleExchangeClick}
-            onIncomingClick={incomingRequest ? handleIncomingClick : undefined}
           />
         </main>
       </section>
-      <section className={styles.similar}>
-        <SimilarSkills skills={similarSkills} />
-      </section>
+      {similarSkills.length > 0 && (
+        <section className={styles.similar}>
+          <SimilarSkills skills={similarSkills} />
+        </section>
+      )}
       {authUser && skill && (
         <ExchangeModal
           isOpen={isModalOpen}
@@ -123,7 +149,7 @@ export const SkillPage = () => {
           toUserId={skill.owner.id}
           mode={modalMode}
           fromUserName={fromUser?.name}
-          toUserName={toUser?.name}
+          toUserName={owner?.name}
           skillName={skill.title}
           proposerSkillId={proposerSkillId}
         />

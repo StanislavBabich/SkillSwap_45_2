@@ -1,48 +1,42 @@
-import { useMemo } from 'react';
-import clsx from 'clsx';
-
-import { useAppSelector } from '@/app/store/hooks';
 import type { EntityId } from '@/entities/base';
+import type { Skill } from '@/entities/skill/types';
+import type { User } from '@/entities/user/types';
+import clsx from 'clsx';
 import { Tag, UserInfo } from '@/shared/ui';
-import { selectSkillWithDetails } from '@/features/skills/selectors';
-
 import styles from './UserSidebar.module.css';
 
 export interface UserSidebarProps {
   skillId: EntityId;
+  skill: Skill;
+  user: User | null;
   className?: string;
 }
 
-export const UserSidebar = ({ skillId, className }: UserSidebarProps) => {
-  const skillSelector = useMemo(() => selectSkillWithDetails(skillId), [skillId]);
-  const data = useAppSelector(skillSelector);
+export const UserSidebar = ({ skillId, skill, user, className }: UserSidebarProps) => {
+  if (!user) return null;
 
-  if (!data || !data.user) {
-    return null;
-  }
-
-  const wantToLearn = data.user.wantToLearn ?? [];
+  const wantToLearn = user.wantToLearn ?? [];
   const visibleWantToLearn = wantToLearn.slice(0, 5);
   const overflowCount = wantToLearn.length - 5;
 
   return (
     <div className={clsx(styles.root, className)}>
       <UserInfo
-        userId={data.user.id}
+        userId={user.id}
         size="md"
         showCity
         orientation="horizontal"
         nameClassName={styles.name}
         className={styles.userInfo}
       />
-      {data.user.about && (
-        <p className={styles.about}>{data.user.about}</p>
+      {user.about && (
+        <p className={styles.about}>{user.about}</p>
       )}
       <div className={styles.categories}>
         <section className={styles.section}>
           <h4 className={styles.categoryTitle}>Может научить</h4>
           <div className={styles.tags}>
-            <Tag categoryName={data.category?.name}>{data.title}</Tag>
+            <Tag categoryName={skill.category?.name}>{skill.title}</Tag>
           </div>
         </section>
         {wantToLearn.length > 0 && (

@@ -11,11 +11,11 @@ import { NotFoundPage } from '@/pages/NotFoundPage';
 import { ServerErrorPage } from '@/pages/ServerErrorPage';
 import { AboutPage } from '@/pages/AboutPage';
 import { RegisterPage } from '@pages/RegisterPage';
+import { CreateSkillPage } from '@pages/CreateSkillPage';
 
 export const AppRouter = () => {
   return (
     <Routes>
-      {/* Публичные маршруты с обычным Layout */}
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="about" element={<AboutPage />} />
@@ -30,7 +30,15 @@ export const AppRouter = () => {
           }
         />
 
-        {/* Защищённый favorites */}
+        <Route
+          path="create-skill"
+          element={
+            <PrivateRoute>
+              <CreateSkillPage />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="favorites"
           element={
@@ -44,7 +52,6 @@ export const AppRouter = () => {
         <Route path="server-error" element={<ServerErrorPage />} />
       </Route>
 
-      {/* Маршруты авторизации со специальным AuthLayout */}
       <Route
         path="/login"
         element={

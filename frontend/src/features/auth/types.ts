@@ -20,6 +20,7 @@ export interface AuthUser {
   email: string;
   name: string;
   avatar?: string | null;
+  avatarSeed?: string | null;
 }
 
 export interface AuthResponse {
