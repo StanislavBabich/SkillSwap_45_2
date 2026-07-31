@@ -4,11 +4,12 @@ import clsx from 'clsx';
 
 import type { EntityId } from '@/entities/base';
 import { SkillCard } from '@/widgets/SkillCard';
+import type { Skill } from '@/entities/skill/types';
 
 import styles from './SimilarSkills.module.css';
 
 export interface SimilarSkillsProps {
-  skills: { id: number }[];
+  skills: Skill[];
   limit?: number;
 }
 

@@ -3,12 +3,12 @@ export type NotificationType = 'exchange_offer' | 'exchange_accepted' | 'exchang
 export interface Notification {
   id: string;
   type: NotificationType;
-  userId: number;           // Кому адресовано уведомление
-  fromUserId: number;       // От кого
-  fromUserName: string;     // Имя отправителя
-  exchangeId?: string;      // ID обмена (опционально)
-  skillId: number;          // ID навыка, на который предлагают обмен (навык получателя)
-  targetSkillId?: number;   // ID навыка, который предлагают в обмен (навык отправителя)
+  userId: string;
+  fromUserId: string;
+  fromUserName: string;
+  exchangeId?: string;
+  skillId: string;
+  targetSkillId?: string;
   message: string;
   isRead: boolean;
   createdAt: string;

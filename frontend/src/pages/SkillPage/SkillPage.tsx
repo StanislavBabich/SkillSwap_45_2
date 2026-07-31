@@ -29,12 +29,8 @@ export const SkillPage = () => {
   const { user: authUser } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<'create' | 'incoming'>('create');
-  const [offeredSkillId, setOfferedSkillId] = useState<number | undefined>();
 
-  const skillId: EntityId | null = useMemo(() => {
-    const num = Number(id);
-    return id && !Number.isNaN(num) ? (num as EntityId) : null;
-  }, [id]);
+  const skillId: EntityId | null = id ?? null;
 
   // Селекторы
   const skillSelector = useMemo(
@@ -50,38 +46,32 @@ export const SkillPage = () => {
   const similarSkills = useAppSelector(similarSkillsSelector);
 
   const fromUserSelector = useMemo(
-  () => (authUser ? (state: RootState) => selectUserById(state, authUser.id) : () => null),
-  [authUser]
- );
+    () => (authUser ? (state: RootState) => selectUserById(state, authUser.id) : () => null),
+    [authUser]
+  );
   const fromUser = useAppSelector(fromUserSelector);
 
   const toUserSelector = useMemo(
-  () => (skill?.userId ? (state: RootState) => selectUserById(state, skill.userId) : () => null),
-  [skill?.userId]
+    () => (skill?.owner?.id ? (state: RootState) => selectUserById(state, skill.owner.id) : () => null),
+    [skill?.owner?.id]
   );
   const toUser = useAppSelector(toUserSelector);
 
-  // получаем навык пользователя напрямую из store
+  // Навык текущего пользователя для предложения обмена
   const proposerSkillId = useAppSelector(
-  useMemo(() => {
-    if (!authUser) return () => undefined;
-    return (state: RootState) => {
-      const userSkills = state.skills.items.filter(
-        (s: Skill) => s.userId === authUser.id
-      );
-      return userSkills[0]?.id;
-    };
-  }, [authUser])
-);
+    useMemo(() => {
+      if (!authUser) return () => undefined;
+      return (state: RootState) => {
+        const userSkills = state.skills.items.filter(
+          (s: Skill) => s.owner?.id === authUser.id
+        );
+        return userSkills[0]?.id;
+      };
+    }, [authUser])
+  );
 
-  const allRequests = useAppSelector(selectAllExchangeRequests);
-
-  const incomingRequest = useMemo(() => {
-    if (!authUser || !skillId) return null;
-    return allRequests.find(
-      (req) => req.toUserId === authUser.id && req.skillId === skillId && req.status === 'pending'
-    );
-  }, [allRequests, authUser, skillId]);
+  // TODO: адаптировать под новую модель Request
+  const incomingRequest = useMemo(() => null, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -101,7 +91,6 @@ export const SkillPage = () => {
 
   const handleIncomingClick = () => {
     if (!authUser || !incomingRequest) return;
-    setOfferedSkillId(incomingRequest.fromUserId);
     setModalMode('incoming');
     setIsModalOpen(true);
   };
@@ -131,12 +120,11 @@ export const SkillPage = () => {
           onClose={handleCloseModal}
           skillId={skillId}
           fromUserId={authUser.id}
-          toUserId={skill.userId}
+          toUserId={skill.owner.id}
           mode={modalMode}
-          offeredSkillId={offeredSkillId}
           fromUserName={fromUser?.name}
           toUserName={toUser?.name}
-          skillName={skill.name}
+          skillName={skill.title}
           proposerSkillId={proposerSkillId}
         />
       )}

@@ -21,6 +21,10 @@ export const UserSidebar = ({ skillId, className }: UserSidebarProps) => {
     return null;
   }
 
+  const wantToLearn = data.user.wantToLearn ?? [];
+  const visibleWantToLearn = wantToLearn.slice(0, 5);
+  const overflowCount = wantToLearn.length - 5;
+
   return (
     <div className={clsx(styles.root, className)}>
       <UserInfo
@@ -36,20 +40,21 @@ export const UserSidebar = ({ skillId, className }: UserSidebarProps) => {
       )}
       <div className={styles.categories}>
         <section className={styles.section}>
-          <h4 className={styles.categoryTitle}>Навык</h4>
+          <h4 className={styles.categoryTitle}>Может научить</h4>
           <div className={styles.tags}>
-            <Tag variant="default">
-              {data.title}
-            </Tag>
+            <Tag categoryName={data.category?.name}>{data.title}</Tag>
           </div>
         </section>
-        {data.category && (
+        {wantToLearn.length > 0 && (
           <section className={styles.section}>
-            <h4 className={styles.categoryTitle}>Категория</h4>
+            <h4 className={styles.categoryTitle}>Хочет научиться</h4>
             <div className={styles.tags}>
-              <Tag variant="default">
-                {data.category.name}
-              </Tag>
+              {visibleWantToLearn.map((cat) => (
+                <Tag key={cat.id} categoryName={cat.name}>
+                  {cat.name}
+                </Tag>
+              ))}
+              {overflowCount > 0 && <Tag overflow={overflowCount}>+{overflowCount}</Tag>}
             </div>
           </section>
         )}

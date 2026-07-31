@@ -16,7 +16,7 @@ export interface RegisterData {
 }
 
 export interface AuthUser {
-  id: number;
+  id: string;
   email: string;
   name: string;
   avatar?: string | null;

@@ -41,8 +41,9 @@ const saveToStorage = (items: ExchangeRequest[]): void => {
   }
 };
 
-const getNextId = (items: { id: EntityId }[]): EntityId =>
-  items.length ? Math.max(...items.map((i) => i.id)) + 1 : 1;
+const getNextId = (): string => {
+  return `req-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+};
 
 const getToday = (): string => new Date().toISOString();
 
@@ -53,7 +54,7 @@ export interface ExchangeRequestsState {
 }
 
 const initialState: ExchangeRequestsState = {
-  items: loadFromStorage(), // загружаем при старте
+  items: loadFromStorage(),
   isLoading: false,
   error: null,
 };
@@ -68,13 +69,14 @@ const exchangeRequestsSlice = createSlice({
 
     createExchangeRequest(state, action: PayloadAction<CreateExchangeRequestDto>) {
       const newItem: ExchangeRequest = {
-        id: getNextId(state.items),
-        fromUserId: action.payload.fromUserId,
-        toUserId: action.payload.toUserId,
-        skillId: action.payload.skillId,
-        status: action.payload.status ?? 'pending',
+        id: getNextId(),
+        sender: { id: '', name: '', email: '', avatar: null, role: '' },
+        receiver: { id: action.payload.receiverId, name: '', email: '', avatar: null, role: '' },
+        offeredSkill: { id: action.payload.offeredSkillId, title: '', description: '' },
+        requestedSkill: { id: action.payload.requestedSkillId, title: '', description: '' },
+        status: 'pending',
+        isRead: false,
         createdAt: getToday(),
-        updatedAt: getToday(),
       };
 
       state.items.push(newItem);
@@ -89,7 +91,6 @@ const exchangeRequestsSlice = createSlice({
       if (!item) return;
 
       item.status = action.payload.status;
-      item.updatedAt = getToday();
       saveToStorage(state.items);
     },
 
@@ -100,7 +101,7 @@ const exchangeRequestsSlice = createSlice({
       const item = state.items.find((i) => i.id === action.payload.id);
       if (!item) return;
 
-      Object.assign(item, action.payload.dto, { updatedAt: getToday() });
+      Object.assign(item, action.payload.dto);
       saveToStorage(state.items);
     },
 

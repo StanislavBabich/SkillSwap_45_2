@@ -9,21 +9,15 @@ import styles from './ExchangeModal.module.css';
 export type ExchangeModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  skillId: number;
-  fromUserId: number;
-  toUserId: number;
-  /** Режим модалки: 'create' - создание новой заявки, 'incoming' - просмотр входящей */
+  skillId: string;
+  fromUserId: string;
+  toUserId: string;
   mode?: 'create' | 'incoming';
-  /** ID навыка, который предложили (для режима incoming) */
-  offeredSkillId?: number;
-  /** Имя пользователя, который предлагает обмен */
+  offeredSkillId?: string;
   fromUserName?: string;
-  /** Имя пользователя, которому предлагают обмен */
   toUserName?: string;
-  /** Название навыка */
   skillName?: string;
-  /** ID навыка, который предлагает отправитель (для уведомлений) */
-  proposerSkillId?: number;
+  proposerSkillId?: string;
 };
 
 export const ExchangeModal = ({
@@ -43,42 +37,38 @@ export const ExchangeModal = ({
 
   const handleConfirm = () => {
     if (mode === 'create') {
-      // Создаем заявку
       dispatch(
-        createExchangeRequest({
-          skillId,
-          fromUserId,
-          toUserId,
-          status: 'pending',
-        })
-      );
+  createExchangeRequest({
+    receiverId: toUserId,
+    offeredSkillId: proposerSkillId ?? '',
+    requestedSkillId: skillId,
+  })
+);
 
-      // Уведомление для ПОЛУЧАТЕЛЯ (toUserId)
       dispatch(
         addNotification({
           id: `notif-${Date.now()}-${toUserId}`,
           type: 'exchange_offer',
-          userId: toUserId,                // Кому адресовано - получатель
-          fromUserId: fromUserId,           // От кого - отправитель
+          userId: toUserId,
+          fromUserId: fromUserId,
           fromUserName: fromUserName,
-          skillId: skillId,                 // ID навыка получателя (на который предлагают обмен)
-          targetSkillId: proposerSkillId,    // ID навыка отправителя (который предлагают)
+          skillId: skillId,
+          targetSkillId: proposerSkillId,
           message: `${fromUserName} предлагает вам обмен`,
           isRead: false,
           createdAt: new Date().toISOString(),
         })
       );
 
-      // Уведомление для ОТПРАВИТЕЛЯ (fromUserId)
       dispatch(
         addNotification({
           id: `notif-${Date.now()}-${fromUserId}`,
           type: 'exchange_offer',
-          userId: fromUserId,               // Кому адресовано - отправитель
-          fromUserId: fromUserId,            // От кого - отправитель (для единообразия)
+          userId: fromUserId,
+          fromUserId: fromUserId,
           fromUserName: fromUserName,
-          skillId: skillId,                  // ID навыка получателя (на который предложили обмен)
-          targetSkillId: proposerSkillId,     // ID навыка отправителя (который предлагает)
+          skillId: skillId,
+          targetSkillId: proposerSkillId,
           message: `Вы предложили обмен пользователю ${toUserName}`,
           isRead: false,
           createdAt: new Date().toISOString(),
@@ -93,9 +83,7 @@ export const ExchangeModal = ({
   };
 
   const getTitle = () => {
-    if (mode === 'incoming') {
-      return 'Вам предложили обмен';
-    }
+    if (mode === 'incoming') return 'Вам предложили обмен';
     return 'Вы предложили обмен';
   };
 
@@ -107,9 +95,7 @@ export const ExchangeModal = ({
   };
 
   const getButtonText = () => {
-    if (mode === 'incoming') {
-      return 'Перейти';
-    }
+    if (mode === 'incoming') return 'Перейти';
     return 'Готово';
   };
 

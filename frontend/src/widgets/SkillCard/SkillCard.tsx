@@ -58,7 +58,7 @@ export const SkillCard = ({
             Может научить:
           </Headline>
           <div className={styles.tags}>
-            <Tag variant="default">{skill.title}</Tag>
+            <Tag categoryName={skill.category?.name}>{skill.title}</Tag>
           </div>
         </div>
 
@@ -69,7 +69,7 @@ export const SkillCard = ({
             </Headline>
             <div className={styles.tags}>
               {visibleWantToLearn.map((cat) => (
-                <Tag key={cat.id} variant="default">
+                <Tag key={cat.id} categoryName={cat.name}>
                   {cat.name}
                 </Tag>
               ))}

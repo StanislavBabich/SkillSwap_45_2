@@ -29,6 +29,10 @@ export const useAvatar = ({
   size = 56,
   avatarSeed,
 }: UseAvatarProps) => {
+  const normalizedGender = (typeof gender === 'string'
+    ? gender.toLowerCase()
+    : 'other') as Gender;
+
   const avatarUrl = useMemo(() => {
     try {
       const normalizedSeed =
@@ -46,14 +50,14 @@ export const useAvatar = ({
 
       // Добавляем настройки в зависимости от пола
       let genderOptions = {};
-      if (gender === 'female') {
+      if (normalizedGender === 'female') {
         genderOptions = {
           hair: ['long06', 'long07', 'long08', 'long09', 'long11', 'long12', 'long13', 'long16', 'long18', 'long19'],
           mouth: ['variant01', 'variant02', 'variant05', 'variant06', 'variant10', 'variant12', 'variant17', 'variant18', 'variant19'],
           earrings: ['variant01', 'variant02'], 
           earringsProbability: 30,
         };
-      } else if (gender === 'male') {
+      } else if (normalizedGender === 'male') {
         genderOptions = {
           hair: ['short16', 'short15', 'short14', 'short13', 'short12', 'short10', 'short09', 'short08', 'short07', 'short06', 'short04', 'short03', 'long26', 'short01', 'short02'],
           mouth: ['variant02', 'variant01', 'variant10', 'variant29'],
@@ -63,7 +67,6 @@ export const useAvatar = ({
       } else {
         genderOptions = {
           // Оставляем без явных указаний, чтобы использовались случайные значения библиотеки
-          // или можно задать свой нейтральный набор
         };
       }
 
@@ -78,7 +81,7 @@ export const useAvatar = ({
       const initials = email.charAt(0).toUpperCase();
       return `https://ui-avatars.com/api/?name=${initials}&background=random&size=${size}`;
     }
-  }, [email, gender, size, avatarSeed]);
+  }, [email, normalizedGender, size, avatarSeed]);
 
   return avatarUrl;
 };
