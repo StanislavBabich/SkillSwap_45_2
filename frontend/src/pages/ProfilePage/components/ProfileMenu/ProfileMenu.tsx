@@ -22,7 +22,6 @@ export const ProfileMenu = ({ userSkillId }: ProfileMenuProps) => {
         </li>
 
         <li>
-
           <button type="button" className={clsx(styles.item, styles.itemDisabled)} disabled>
             <Icon name="exchanges" size={24} className={styles.icon} aria-hidden="true" />
             <span>Мои обмены</span>
@@ -37,21 +36,10 @@ export const ProfileMenu = ({ userSkillId }: ProfileMenuProps) => {
         </li>
 
         <li>
-          {userSkillId ? (
-            <NavLink to={`/skill/${userSkillId}`} className={navLinkClass}>
-              <Icon name="skills" size={24} className={styles.icon} aria-hidden="true" />
-              <span>Мой навык</span>
-            </NavLink>
-          ) : (
-            <button
-              type="button"
-              className={clsx(styles.item, styles.itemDisabled)}
-              disabled
-            >
-              <Icon name="skills" size={24} className={styles.icon} aria-hidden="true" />
-              <span>Мой навык</span>
-            </button>
-          )}
+          <NavLink to="/my-skills" className={navLinkClass}>
+            <Icon name="skills" size={24} className={styles.icon} aria-hidden="true" />
+            <span>Мои навыки</span>
+          </NavLink>
         </li>
 
         <li>

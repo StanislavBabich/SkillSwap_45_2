@@ -12,6 +12,7 @@ import { ServerErrorPage } from '@/pages/ServerErrorPage';
 import { AboutPage } from '@/pages/AboutPage';
 import { RegisterPage } from '@pages/RegisterPage';
 import { CreateSkillPage } from '@pages/CreateSkillPage';
+import { MySkillsPage } from '@pages/MySkillsPage';
 
 export const AppRouter = () => {
   return (
@@ -38,6 +39,15 @@ export const AppRouter = () => {
             </PrivateRoute>
           }
         />
+
+        <Route
+  path="my-skills"
+  element={
+    <PrivateRoute>
+      <MySkillsPage />
+    </PrivateRoute>
+  }
+/>
 
         <Route
           path="favorites"
