@@ -19,16 +19,19 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 type ComparableProfileState = Omit<ProfileFormState, 'password'>;
 
-const toFormState = (user: User): ProfileFormState => ({
-  email: user.email,
-  name: user.name,
-  password: '',
-  dateOfBirth: user.birthdate || '',
-  gender: (user.gender?.toLowerCase() as Gender) || 'other',
-  city: user.city || '',
-  about: user.about || '',
-  avatarSeed: (storage.getCurrentUser() as any)?.avatarSeed ?? null,
-});
+const toFormState = (user: User): ProfileFormState => {
+  console.log('[ProfilePage] toFormState - localStorage avatarSeed:', (storage.getCurrentUser() as any)?.avatarSeed);
+  return {
+    email: user.email,
+    name: user.name,
+    password: '',
+    dateOfBirth: user.birthdate || '',
+    gender: (user.gender?.toLowerCase() as Gender) || 'other',
+    city: user.city || '',
+    about: user.about || '',
+    avatarSeed: (storage.getCurrentUser() as any)?.avatarSeed ?? null,
+  };
+};
 
 const toComparableState = (state: ProfileFormState): ComparableProfileState => ({
   email: state.email,

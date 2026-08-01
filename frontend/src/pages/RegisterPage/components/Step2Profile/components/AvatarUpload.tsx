@@ -6,17 +6,11 @@ import { Icon } from '@/shared/ui/Icon';
 import styles from './AvatarUpload.module.css';
 
 export interface AvatarUploadProps {
-  /** Email пользователя для генерации DiceBear */
   email: string;
-  /** Пол пользователя для генерации */
   gender?: 'male' | 'female' | 'other';
-  /** Callback при изменении аватара (передаём seed) */
   onChange: (seed: string | null) => void;
-  /** Текущий seed (опционально) */
   value?: string | null;
-  /** Режим отображения компонента */
   variant?: 'default' | 'iconOnly';
-  /** Размер превью аватара (в px) */
   avatarSize?: number;
 }
 
@@ -29,19 +23,19 @@ export const AvatarUpload = ({
   avatarSize,
 }: AvatarUploadProps) => {
   const [refreshKey, setRefreshKey] = useState(0);
-  const [pendingSeed, setPendingSeed] = useState<string | null>(null);
+  const [prevGender, setPrevGender] = useState(gender);
   const previewSize = avatarSize ?? (variant === 'iconOnly' ? 244 : 120);
-  
-  // Если value нет, создаём начальный seed при монтировании
-  useEffect(() => {
-    if (!value) {
-      const initialSeed = `avatar-${email}-${Date.now()}`;
-      onChange(initialSeed);
-    }
-  }, [value, email, onChange]); 
 
-  // Используем value если есть, иначе fallback с refreshKey
-  const effectiveSeed = value ?? `avatar-${email}-${refreshKey}`;
+  // При смене пола — генерируем новый seed
+  useEffect(() => {
+    if (gender !== prevGender) {
+      setPrevGender(gender);
+      const newSeed = `avatar-${email}-${Date.now()}`;
+      onChange(newSeed);
+    }
+  }, [gender, prevGender, email, onChange]);
+  
+  const effectiveSeed = value || `avatar-${email}`;
 
   const avatarUrl = useAvatar({
     email,
@@ -50,19 +44,11 @@ export const AvatarUpload = ({
     size: previewSize,
   });
 
-  // Обработчик клика — только увеличиваем ключ
   const handleRefresh = () => {
-    setRefreshKey(prev => prev + 1);
-    setPendingSeed(`avatar-${email}-${Date.now()}-${refreshKey + 1}`);
+    const newKey = refreshKey + 1;
+    setRefreshKey(newKey);
+    onChange(`avatar-${email}-${Date.now()}-${newKey}`);
   };
-
-  // Отдельный эффект для вызова onChange после рендера
-  useEffect(() => {
-    if (pendingSeed) {
-      onChange(pendingSeed);
-      setPendingSeed(null);
-    }
-  }, [pendingSeed, onChange]);
 
   if (variant === 'iconOnly') {
     return (

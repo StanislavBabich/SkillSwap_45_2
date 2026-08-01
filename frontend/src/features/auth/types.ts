@@ -21,6 +21,7 @@ export interface AuthUser {
   name: string;
   avatar?: string | null;
   avatarSeed?: string | null;
+  gender?: 'male' | 'female' | 'other';
 }
 
 export interface AuthResponse {

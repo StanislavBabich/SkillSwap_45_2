@@ -96,6 +96,19 @@ export const RegisterPage = () => {
         city: data.city,
         wantToLearn: data.selectedCategoryIds,
       });
+
+      const stored = storage.getCurrentUser();
+      const finalSeed = data.avatarSeed || `avatar-${data.email}-${Date.now()}`;
+
+      storage.setCurrentUser({
+        ...stored,
+        name: data.name || stored?.name || '',
+        email: stored?.email || data.email,
+        id: stored?.id || '',
+        gender: data.gender || stored?.gender || 'other',
+        avatarSeed: finalSeed,
+      });
+
       setIsSuccessOpen(true);
     } catch (error) {
       if (error instanceof Error) {

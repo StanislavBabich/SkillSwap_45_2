@@ -4,7 +4,6 @@ import type { AuthUser, LoginCredentials } from '../types';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 export class AuthService {
-  // Регистрация через API (используется в RegisterPage)
   static async registerViaApi(email: string, password: string, name: string): Promise<{ accessToken: string; user: AuthUser }> {
     const res = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',
@@ -18,7 +17,6 @@ export class AuthService {
     return res.json();
   }
 
-  // Вход через API
   static async login(credentials: LoginCredentials): Promise<AuthUser | null> {
     try {
       const res = await fetch(`${API_URL}/auth/login`, {
@@ -30,8 +28,15 @@ export class AuthService {
 
       const data = await res.json();
       
+      // Сохраняем существующий avatarSeed, если он был в localStorage
+      const existingUser = storage.getCurrentUser();
+      const avatarSeed = existingUser?.avatarSeed ?? null;
+
       storage.setToken(data.accessToken);
-      storage.setCurrentUser(data.user);
+      storage.setCurrentUser({
+        ...data.user,
+        avatarSeed, // не теряем seed при логине
+      });
       
       return data.user;
     } catch {
@@ -39,17 +44,14 @@ export class AuthService {
     }
   }
 
-  // Выход
   static logout(): void {
     storage.clearCurrentUser();
   }
 
-  // Текущий пользователь
   static getCurrentUser(): AuthUser | null {
     return storage.getCurrentUser();
   }
 
-  // Проверка авторизации
   static isAuthenticated(): boolean {
     return storage.getCurrentUser() !== null && storage.getToken() !== null;
   }

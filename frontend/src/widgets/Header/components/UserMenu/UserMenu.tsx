@@ -4,7 +4,7 @@ import { useAppSelector } from '@/app/store/hooks';
 import { selectUnreadCount } from '@/features/notifications';
 import { selectUserById } from '@/features/users/slice';
 import { useAvatar } from '@/shared/hooks/useAvatar';
-import { storage } from '@/shared/lib/storage';
+import { storage, AUTH_SESSION_EVENT } from '@/shared/lib/storage';
 import { Icon } from '@/shared/ui/Icon';
 import { NotificationModal } from '@/widgets/Notifications';
 import { UserDropdown } from './components/UserDropdown/UserDropdown';
@@ -30,6 +30,13 @@ export const UserMenu = ({ user }: UserMenuProps) => {
   const unreadCount = useAppSelector((state) => selectUnreadCount(state, user.id));
   const hasUnread = unreadCount > 0;
 
+  const [, forceUpdate] = useState(0);
+  useEffect(() => {
+    const handler = () => forceUpdate((n) => n + 1);
+    window.addEventListener(AUTH_SESSION_EVENT, handler);
+    return () => window.removeEventListener(AUTH_SESSION_EVENT, handler);
+  }, []);
+
   const handleNotificationsOpen = useCallback(() => {
     setIsNotificationsOpen(true);
   }, []);
@@ -37,22 +44,19 @@ export const UserMenu = ({ user }: UserMenuProps) => {
     setIsNotificationsOpen(false);
   }, []);
 
-  const effectiveEmail = persistedUser?.email ?? user.email;
-  const effectiveGender = persistedUser?.gender ?? user.gender;
-  const effectiveName = persistedUser?.name ?? user.name;
-
-  // Берём avatarSeed из localStorage
   const storedUser = storage.getCurrentUser();
+  const effectiveEmail = persistedUser?.email ?? storedUser?.email ?? user.email;
+  const effectiveGender = (storedUser?.gender as 'male' | 'female' | 'other') ?? user.gender ?? 'other';
+  const effectiveName = persistedUser?.name ?? storedUser?.name ?? user.name;
   const avatarSeed = storedUser?.avatarSeed ?? null;
 
   const avatarUrl = useAvatar({
     email: effectiveEmail || '',
     gender: effectiveGender,
-    size: 48,
+    size: 244,
     avatarSeed,
   });
 
-  // Закрытие по клику вне меню
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -64,7 +68,6 @@ export const UserMenu = ({ user }: UserMenuProps) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Закрытие по Escape
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -77,7 +80,6 @@ export const UserMenu = ({ user }: UserMenuProps) => {
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
-  // Закрытие панели уведомлений по клику вне
   useEffect(() => {
     if (!isNotificationsOpen) return;
     const handleClickOutside = (event: MouseEvent) => {
@@ -94,12 +96,10 @@ export const UserMenu = ({ user }: UserMenuProps) => {
       document.removeEventListener('mousedown', handleClickOutside);
   }, [isNotificationsOpen, handleNotificationsClose]);
 
-  // Переход на избранное
   const handleFavoritesClick = () => {
     navigate('/favorites');
   };
 
-  // Получаем имя пользователя
   const getUserName = () => {
     if (effectiveName) return effectiveName;
     if (effectiveEmail) return effectiveEmail.split('@')[0];
@@ -108,7 +108,6 @@ export const UserMenu = ({ user }: UserMenuProps) => {
 
   return (
     <div className={styles.userMenu} ref={menuRef}>
-      {/* Иконка уведомлений */}
       <div className={styles.bellPanelAnchor}>
         <div className={styles.bellWrapper}>
           <button
@@ -145,7 +144,6 @@ export const UserMenu = ({ user }: UserMenuProps) => {
         />
       </div>
 
-      {/* Иконка избранного */}
       <button
         className={styles.iconButton}
         onClick={handleFavoritesClick}
@@ -160,7 +158,6 @@ export const UserMenu = ({ user }: UserMenuProps) => {
         />
       </button>
 
-      {/* Имя и аватар */}
       <div className={styles.userInfo}>
         <button
           className={styles.userButton}
