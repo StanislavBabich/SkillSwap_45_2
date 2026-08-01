@@ -24,6 +24,7 @@ async function seedSkills(dataSource) {
             ...existing,
             title: data.title,
             description: data.description,
+            images: data.images || [],
             owner,
             category,
         }));

@@ -32,9 +32,7 @@ export const useAvatar = ({
   const normalizedGender = (typeof gender === 'string'
     ? gender.toLowerCase()
     : 'other') as Gender;
-
-    console.log('[useAvatar] seed:', avatarSeed, 'email:', email, 'size:', size, 'gender:', normalizedGender, 'avatarSeed type:', typeof avatarSeed);
-
+    
   const avatarUrl = useMemo(() => {
     try {
       const normalizedSeed =

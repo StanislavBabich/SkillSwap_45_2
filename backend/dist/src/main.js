@@ -7,6 +7,7 @@ const core_1 = require("@nestjs/core");
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const path_1 = require("path");
 const app_module_1 = require("./app.module");
 const app_config_1 = require("./config/app.config");
 const logger_module_1 = require("./logger/logger.module");
@@ -19,6 +20,12 @@ async function bootstrap() {
         origin: ['http://localhost:5173'],
         credentials: true,
     });
+    const publicPath = (0, path_1.join)(process.cwd(), 'public');
+    const uploadsPath = (0, path_1.join)(process.cwd(), 'public', 'uploads');
+    console.log('Public path:', publicPath);
+    console.log('Uploads path:', uploadsPath);
+    app.useStaticAssets(publicPath, { prefix: '/' });
+    app.useStaticAssets(uploadsPath, { prefix: '/uploads' });
     app.use((0, cookie_parser_1.default)());
     app.setGlobalPrefix('api');
     app.useGlobalFilters(new all_exceptions_filter_1.AllExceptionsFilter());

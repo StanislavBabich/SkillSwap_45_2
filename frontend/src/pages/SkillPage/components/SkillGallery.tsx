@@ -5,6 +5,8 @@ import styles from './SkillGallery.module.css';
 import LeftIcon from '@/assets/chevron-left.svg';
 import RightIcon from '@/assets/chevron-right.svg';
 
+const BASE_URL = 'http://localhost:3000';
+
 interface SkillGalleryProps {
   images: string[];
 }
@@ -16,7 +18,11 @@ const getThumbnailUrl = (url: string): string => {
   return url;
 };
 
-// Кастомная левая стрелка — библиотека передаёт просто функцию onClick
+const getFullUrl = (url: string): string => {
+  if (url.startsWith('http')) return url;
+  return `${BASE_URL}${url}`;
+};
+
 const CustomLeftNav = (onClick: () => void) => (
   <button 
     className={styles.customArrowLeft} 
@@ -27,7 +33,6 @@ const CustomLeftNav = (onClick: () => void) => (
   </button>
 );
 
-// Кастомная правая стрелка
 const CustomRightNav = (onClick: () => void) => (
   <button 
     className={styles.customArrowRight} 
@@ -52,8 +57,8 @@ const SkillGallery = ({ images }: SkillGalleryProps) => {
   }
 
   const galleryItems = images.map((url) => ({
-    original: url,
-    thumbnail: getThumbnailUrl(url),
+    original: getFullUrl(url),
+    thumbnail: getFullUrl(getThumbnailUrl(url)),
     originalAlt: `Изображение навыка`,
     thumbnailAlt: `Миниатюра`,
   }));

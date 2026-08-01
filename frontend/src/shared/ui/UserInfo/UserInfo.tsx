@@ -41,6 +41,12 @@ const formatAge = (age: number): string => {
   return `${age} лет`;
 };
 
+const SIZE_TO_PIXELS = {
+  sm: 40,
+  md: 56,
+  lg: 80,
+} as const;
+
 export const UserInfo = ({
   userId,
   size = 'md',
@@ -60,7 +66,7 @@ export const UserInfo = ({
   const avatarUrl = useAvatar({
     email: user?.email || `user-${userId}@example.com`,
     gender: user?.gender,
-    size: 244,
+    size: SIZE_TO_PIXELS[size],
     avatarSeed,
   });
 
@@ -72,7 +78,7 @@ export const UserInfo = ({
   if (showAge && age !== null) metadata.push(formatAge(age));
 
   return (
-    <div className={clsx(styles.root, styles[`orientation_${orientation}`], className)}>
+    <div className={clsx(styles.root, styles[`size_${size}`], styles[`orientation_${orientation}`], className)}>
       <img 
         className={styles.avatar} 
         src={avatarUrl} 
