@@ -52,20 +52,24 @@ const typeorm_2 = require("typeorm");
 const bcrypt = __importStar(require("bcrypt"));
 const user_entity_1 = require("./entities/user.entity");
 const skill_entity_1 = require("../skills/entities/skill.entity");
+const category_entity_1 = require("../categories/entities/category.entity");
 const app_config_1 = require("../config/app.config");
 const entity_not_found_exception_1 = require("../common/exceptions/entity-not-found.exception");
 let UsersService = class UsersService {
     userRepository;
     skillRepository;
+    categoryRepository;
     appConf;
-    constructor(userRepository, skillRepository, appConf) {
+    constructor(userRepository, skillRepository, categoryRepository, appConf) {
         this.userRepository = userRepository;
         this.skillRepository = skillRepository;
+        this.categoryRepository = categoryRepository;
         this.appConf = appConf;
     }
     async findUserById(id) {
         const user = await this.userRepository.findOne({
             where: { id },
+            relations: { wantToLearn: true },
         });
         if (!user) {
             throw new entity_not_found_exception_1.EntityNotFoundException('User', id);
@@ -74,9 +78,14 @@ let UsersService = class UsersService {
     }
     async create(createUserDto) {
         try {
-            const { favoriteSkills, ...userData } = createUserDto;
+            const { favoriteSkills, wantToLearn, ...userData } = createUserDto;
             void favoriteSkills;
             const user = this.userRepository.create(userData);
+            if (wantToLearn && wantToLearn.length > 0) {
+                user.wantToLearn = await this.categoryRepository.findBy({
+                    id: (0, typeorm_2.In)(wantToLearn),
+                });
+            }
             return this.userRepository.save(user);
         }
         catch (error) {
@@ -90,7 +99,9 @@ let UsersService = class UsersService {
         }
     }
     async findAll() {
-        return this.userRepository.find();
+        return this.userRepository.find({
+            relations: { wantToLearn: true },
+        });
     }
     async findOne(id) {
         return this.findUserById(id);
@@ -102,7 +113,18 @@ let UsersService = class UsersService {
     }
     async updateProfile(id, dto) {
         const user = await this.findUserById(id);
-        Object.assign(user, dto);
+        const { wantToLearn, ...rest } = dto;
+        Object.assign(user, rest);
+        if (wantToLearn !== undefined) {
+            if (wantToLearn.length > 0) {
+                user.wantToLearn = await this.categoryRepository.findBy({
+                    id: (0, typeorm_2.In)(wantToLearn),
+                });
+            }
+            else {
+                user.wantToLearn = [];
+            }
+        }
         return this.userRepository.save(user);
     }
     async changePassword(id, dto) {
@@ -169,8 +191,10 @@ exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
     __param(1, (0, typeorm_1.InjectRepository)(skill_entity_1.Skill)),
-    __param(2, (0, common_1.Inject)(app_config_1.appConfig.KEY)),
+    __param(2, (0, typeorm_1.InjectRepository)(category_entity_1.Category)),
+    __param(3, (0, common_1.Inject)(app_config_1.appConfig.KEY)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository, Object])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

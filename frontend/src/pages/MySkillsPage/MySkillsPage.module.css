@@ -1,0 +1,65 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: var(--text-color);
+}
+
+.state {
+  font-size: 16px;
+  color: var(--color-caption);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 60px 0;
+}
+
+.emptyText {
+  font-size: 18px;
+  color: var(--color-caption);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.addCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 300px;
+  border: 2px dashed var(--color-input-border);
+  border-radius: 12px;
+  background: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.addCard:hover {
+  border-color: var(--color-accent);
+}
+
+.addIcon {
+  font-size: 48px;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.addText {
+  font-size: 16px;
+  color: var(--color-accent);
+}

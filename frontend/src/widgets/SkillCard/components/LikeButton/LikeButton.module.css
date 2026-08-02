@@ -1,0 +1,189 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: var(--text-color, #253017);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  isolation: isolate;
+  transition:
+    color 0.16s ease,
+    background-color 0.16s ease,
+    transform 0.12s ease;
+}
+
+.root::after {
+  position: absolute;
+  z-index: -1;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  content: '';
+  background: rgb(191 57 32 / 30%);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.root:focus-visible {
+  outline: 2px solid var(--focus-color, #1a73e8);
+  outline-offset: 2px;
+}
+
+.root:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.22s ease;
+}
+
+.iconOutline {
+  opacity: 1;
+  fill: none;
+  stroke: currentcolor;
+  stroke-linejoin: round;
+  transition:
+    opacity 0.2s ease,
+    stroke 0.2s ease;
+}
+
+.iconOutlineActive {
+  opacity: 0;
+  fill: none;
+  stroke-linejoin: round;
+  transition: opacity 0.2s ease;
+}
+
+.iconFill {
+  opacity: 0;
+  transform: scale(0.72);
+  transform-origin: center;
+  transform-box: fill-box;
+  transition:
+    opacity 0.2s ease,
+    transform 0.22s ease;
+}
+
+.root:hover:not(:disabled) .icon {
+  transform: scale(1.06);
+}
+
+.size_sm {
+  width: 24px;
+  height: 24px;
+}
+
+.size_sm .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.size_md {
+  width: 24px;
+  height: 24px;
+}
+
+.size_md .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.liked {
+  color: var(--color-error, #bf3920);
+}
+
+.liked .iconOutline {
+  opacity: 0;
+}
+
+.liked .iconOutlineActive {
+  opacity: 1;
+}
+
+.liked .iconFill {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.favorite {
+  color: var(--text-color, #253017);
+}
+
+.animate {
+  animation: like-pop 380ms cubic-bezier(0.21, 0.9, 0.23, 1);
+}
+
+.animate .icon {
+  animation: like-heartbeat 380ms cubic-bezier(0.21, 0.9, 0.23, 1);
+}
+
+.animate::after {
+  animation: like-wave 380ms ease-out;
+}
+
+.count {
+  font-size: var(--font-size-xs, 12px);
+}
+
+@keyframes like-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  35% {
+    transform: scale(1.12) rotate(-6deg);
+  }
+
+  58% {
+    transform: scale(0.96) rotate(4deg);
+  }
+
+  78% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes like-heartbeat {
+  0% {
+    filter: drop-shadow(0 0 0 rgb(191 57 32 / 0%));
+  }
+
+  40% {
+    filter: drop-shadow(0 0 8px rgb(191 57 32 / 32%));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 0 rgb(191 57 32 / 0%));
+  }
+}
+
+@keyframes like-wave {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.4);
+  }
+
+  70% {
+    opacity: 0.16;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(3.2);
+  }
+}

@@ -14,8 +14,6 @@ import { UsersModule } from './users/users.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { SkillsModule } from './skills/skills.module';
 import { FilesModule } from './files/files.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { CategoriesModule } from './categories/categories.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { RequestsModule } from './requests/requests.module';
@@ -33,11 +31,6 @@ import { CitiesModule } from './cities/cities.module';
       imports: [ConfigModule],
       inject: [dbConfig.KEY],
       useFactory: (config: TDbConfig) => config,
-    }),
-
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
-      serveRoot: '/',
     }),
 
     UsersModule,

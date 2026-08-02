@@ -1,0 +1,36 @@
+.root {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.root :global(button[aria-label='Сменить аватар'])::after {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  z-index: 20;
+  min-width: 190px;
+  padding: 8px 10px;
+  font-family: var(--font-family-body);
+  font-size: var(--caption-font-size, 12px);
+  font-weight: var(--caption-font-weight, 400);
+  line-height: var(--caption-line-height, 16px);
+  color: var(--text-color, #253017);
+  letter-spacing: var(--caption-letter-spacing, 0);
+  white-space: normal;
+  pointer-events: none;
+  content: 'Сгенерировать новый аватар';
+  background-color: var(--base-color, #fff);
+  border: 1px solid var(--color-input-border, #69735d);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 12%);
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.root :global(button[aria-label='Сменить аватар']:hover)::after,
+.root :global(button[aria-label='Сменить аватар']:focus-visible)::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}

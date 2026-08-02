@@ -20,8 +20,6 @@ const users_module_1 = require("./users/users.module");
 const logger_middleware_1 = require("./common/middleware/logger.middleware");
 const skills_module_1 = require("./skills/skills.module");
 const files_module_1 = require("./files/files.module");
-const serve_static_1 = require("@nestjs/serve-static");
-const path_1 = require("path");
 const categories_module_1 = require("./categories/categories.module");
 const notifications_module_1 = require("./notifications/notifications.module");
 const requests_module_1 = require("./requests/requests.module");
@@ -43,10 +41,6 @@ exports.AppModule = AppModule = __decorate([
                 imports: [config_1.ConfigModule],
                 inject: [db_config_1.dbConfig.KEY],
                 useFactory: (config) => config,
-            }),
-            serve_static_1.ServeStaticModule.forRoot({
-                rootPath: (0, path_1.join)(__dirname, '..', 'public'),
-                serveRoot: '/',
             }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,

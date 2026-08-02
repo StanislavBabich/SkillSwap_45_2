@@ -26,6 +26,7 @@ export async function seedSkills(dataSource: DataSource): Promise<void> {
         ...existing,
         title: data.title,
         description: data.description,
+        images: data.images || [],
         owner,
         category,
       }),

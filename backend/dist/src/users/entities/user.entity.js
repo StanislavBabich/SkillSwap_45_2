@@ -14,6 +14,7 @@ const class_transformer_1 = require("class-transformer");
 const swagger_1 = require("@nestjs/swagger");
 const typeorm_1 = require("typeorm");
 const skill_entity_1 = require("../../skills/entities/skill.entity");
+const category_entity_1 = require("../../categories/entities/category.entity");
 const request_entity_1 = require("../../requests/entities/request.entity");
 const user_enums_1 = require("../user.enums");
 let User = class User {
@@ -27,6 +28,7 @@ let User = class User {
     gender;
     avatar;
     skills;
+    wantToLearn;
     sentRequests;
     receivedRequests;
     favoriteSkills;
@@ -101,6 +103,24 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => skill_entity_1.Skill, (skill) => skill.owner),
     __metadata("design:type", Array)
 ], User.prototype, "skills", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({
+        description: 'Категории, которым пользователь хочет научиться',
+    }),
+    (0, typeorm_1.ManyToMany)(() => category_entity_1.Category),
+    (0, typeorm_1.JoinTable)({
+        name: 'users_want_to_learn',
+        joinColumn: {
+            name: 'user_id',
+            referencedColumnName: 'id',
+        },
+        inverseJoinColumn: {
+            name: 'category_id',
+            referencedColumnName: 'id',
+        },
+    }),
+    __metadata("design:type", Array)
+], User.prototype, "wantToLearn", void 0);
 __decorate([
     (0, swagger_1.ApiHideProperty)(),
     (0, typeorm_1.OneToMany)(() => request_entity_1.Request, (request) => request.sender),

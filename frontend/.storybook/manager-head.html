@@ -1,0 +1,94 @@
+<style>
+  :root {
+    --sb-sidebar-hover: #DEEBC5;
+    --sb-sidebar-bg: #F9FAF7;
+    --sb-sidebar-border: #E4E8DF;
+    --sb-sidebar-text: #253017;
+    --sb-sidebar-muted: #69735D;
+    --sb-sidebar-selected: #508826;
+  }
+
+  .sidebar-container,
+  .sb-sidebar {
+    background: var(--sb-sidebar-bg) !important;
+    border-right: 1px solid var(--sb-sidebar-border) !important;
+  }
+
+  .sidebar-header,
+  .sb-sidebar-header {
+    padding: 12px 12px 8px !important;
+    color: var(--sb-sidebar-text) !important;
+  }
+
+  .sidebar-header input,
+  .sb-sidebar-header input,
+  .sidebar-search input,
+  .sb-sidebar-search input {
+    border-radius: 10px !important;
+    border: 1px solid var(--sb-sidebar-border) !important;
+    background: #fff !important;
+    color: var(--sb-sidebar-text) !important;
+  }
+
+  .sidebar-subheading,
+  .sb-sidebar-subheading,
+  .sidebar-subheading button,
+  .sb-sidebar-subheading button {
+    color: var(--sb-sidebar-muted) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.2px !important;
+  }
+
+  .sidebar-item,
+  .sb-sidebar-item,
+  [data-item-id] {
+    border-radius: 8px !important;
+    margin: 2px 8px !important;
+    padding: 6px 10px !important;
+    color: var(--sb-sidebar-text) !important;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .sidebar-item[data-selected='true'],
+  .sidebar-item[data-selected='true'] > a,
+  .sidebar-item[data-selected='true'] > button,
+  .sb-sidebar-item[data-selected='true'],
+  .sb-sidebar-item[data-selected='true'] > a,
+  .sb-sidebar-item[data-selected='true'] > button,
+  [data-item-id][data-selected='true'] {
+    background: var(--sb-sidebar-selected) !important;
+    color: #fff !important;
+  }
+
+  .sidebar-item[data-selected='true'] svg,
+  .sb-sidebar-item[data-selected='true'] svg,
+  [data-item-id][data-selected='true'] svg {
+    color: #fff !important;
+    fill: #fff !important;
+  }
+
+  .sidebar-item:hover,
+  .sidebar-item:focus-within,
+  .sidebar-item > a:hover,
+  .sidebar-item > a:focus-visible,
+  .sidebar-item > button:hover,
+  .sidebar-item > button:focus-visible,
+  .sidebar-item[data-selected='true'],
+  .sidebar-item[data-selected='true']:hover,
+  .sb-sidebar-item:hover,
+  .sb-sidebar-item:focus-within,
+  .sb-sidebar-item > a:hover,
+  .sb-sidebar-item > a:focus-visible,
+  .sb-sidebar-item > button:hover,
+  .sb-sidebar-item > button:focus-visible,
+  [data-item-id]:hover,
+  [data-item-id]:focus-within {
+    background-color: var(--sb-sidebar-hover) !important;
+  }
+
+  .sidebar-item:hover svg,
+  .sb-sidebar-item:hover svg,
+  [data-item-id]:hover svg {
+    color: var(--sb-sidebar-text) !important;
+  }
+</style>

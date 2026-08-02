@@ -1,0 +1,48 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--text-color, #253017);
+  white-space: nowrap;
+  border-radius: 20px;
+}
+
+/* Варианты фона - используем CSS переменные из design-tokens.css */
+.tag_business {
+  background-color: var(--color-tag-business);
+}
+
+.tag_art { 
+  background-color: var(--color-tag-art);
+}
+
+.tag_language {
+  background-color: var(--color-tag-language); 
+}
+
+.tag_education {
+  background-color: var(--color-tag-education);
+}
+
+.tag_home {
+  background-color: var(--color-tag-home);
+}
+
+.tag_tech {
+  background-color: var(--color-tag-tech);
+}
+
+.tag_sport {
+  background-color: var(--color-tag-sport);
+}
+
+.tag_health {
+  background-color: var(--color-tag-health);
+}
+
+.tag_overflow {
+  background-color: var(--color-tag-overflow); 
+}

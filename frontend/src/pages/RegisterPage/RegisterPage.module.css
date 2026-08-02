@@ -1,0 +1,95 @@
+.page {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+    width: min(100%, 1136px);
+}
+
+.headerBlock {
+    grid-column: 1/-1;
+}
+
+.section {
+    padding: 132px 60px;
+    background-color: var(--base-color);
+    border-radius: var(--border-modal-radius, 12px);
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    padding: 40px 60px;
+}
+
+.title {
+    margin: 0;
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+}
+
+.subtitle {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-caption);
+}
+
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: var(--base-color);
+    border-radius: var(--border-modal-radius, 12px);
+}
+
+.copy {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.copyTitle {
+    margin: 0;
+    font-family: var(--font-family-heading), sans-serif;;
+    font-size: var(--heading-h2-font-size);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+    letter-spacing: -0.01rem;
+}
+
+.copyText {
+    margin: 0;
+    font-family: var(--font-family-body, 'Roboto'), sans-serif;
+    font-size: var(--font-size-sm);
+    color: var(--text-color);
+    letter-spacing: 0.02rem;
+}
+
+.errorBanner {
+    padding: 12px 14px;
+    margin: 0 0 12px;
+    font-family: var(--font-family-body), sans-serif;;
+    font-size: var(--font-size-xs);
+    color: #a42828;
+    background: rgb(230 85 85 / 10%);
+    border: 1px solid rgb(230 85 85 / 24%);
+    border-radius: 10px;
+}
+
+.hint {
+    margin: 12px 0 0;
+    font-family: var(--font-family-body), sans-serif;
+    font-size: var(--font-size-xs);
+    color: var(--color-caption);
+}
+
+:global(.dark-theme) .illustration,
+:global([data-theme="dark"]) .illustration {
+  filter: brightness(2.5);
+}

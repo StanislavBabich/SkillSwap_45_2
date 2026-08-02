@@ -1,0 +1,1 @@
+export { MySkillsPage } from './MySkillsPage';

@@ -6,10 +6,11 @@ import {
   Inject,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, QueryFailedError } from 'typeorm';
+import { In, Repository, QueryFailedError } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { Skill } from '../skills/entities/skill.entity';
+import { Category } from '../categories/entities/category.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -24,6 +25,8 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
     @InjectRepository(Skill)
     private readonly skillRepository: Repository<Skill>,
+    @InjectRepository(Category)
+    private readonly categoryRepository: Repository<Category>,
     @Inject(appConfig.KEY)
     private readonly appConf: TAppConfig,
   ) {}
@@ -31,6 +34,7 @@ export class UsersService {
   private async findUserById(id: string): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { id },
+      relations: { wantToLearn: true },
     });
 
     if (!user) {
@@ -42,10 +46,16 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     try {
-      const { favoriteSkills, ...userData } = createUserDto;
+      const { favoriteSkills, wantToLearn, ...userData } = createUserDto;
       void favoriteSkills;
 
       const user = this.userRepository.create(userData);
+
+      if (wantToLearn && wantToLearn.length > 0) {
+        user.wantToLearn = await this.categoryRepository.findBy({
+          id: In(wantToLearn),
+        });
+      }
 
       return this.userRepository.save(user);
     } catch (error) {
@@ -62,7 +72,9 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    return this.userRepository.find();
+    return this.userRepository.find({
+      relations: { wantToLearn: true },
+    });
   }
 
   async findOne(id: string): Promise<User> {
@@ -76,10 +88,23 @@ export class UsersService {
   }
 
   async updateProfile(id: string, dto: UpdateProfileDto): Promise<User> {
-    const user = await this.findUserById(id);
-    Object.assign(user, dto);
-    return this.userRepository.save(user);
+  const user = await this.findUserById(id);
+  const { wantToLearn, ...rest } = dto;
+
+  Object.assign(user, rest);
+
+  if (wantToLearn !== undefined) {
+    if (wantToLearn.length > 0) {
+      user.wantToLearn = await this.categoryRepository.findBy({
+        id: In(wantToLearn),
+      });
+    } else {
+      user.wantToLearn = [];
+    }
   }
+
+  return this.userRepository.save(user);
+}
 
   async changePassword(
     id: string,
@@ -141,7 +166,6 @@ export class UsersService {
     await this.userRepository.update(userId, { refreshToken: null });
   }
 
-  // Добавить навык в избранное пользователя
   async addFavoriteSkill(userId: string, skillId: string): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { id: userId },

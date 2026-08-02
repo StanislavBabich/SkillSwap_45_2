@@ -1,0 +1,44 @@
+.root {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  color: var(--text-color);
+  background: var(--base-color);
+  border-radius: 16px;
+}
+
+.icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.content {
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-heading);
+  font-size: var(--heading-h3-font-size);
+  font-weight: var(--heading-font-weight);
+  line-height: var(--heading-h3-line-height);
+  letter-spacing: var(--heading-h3-letter-spacing);
+}
+
+/* Описание */
+.description {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  letter-spacing: var(--body-letter-spacing);
+  opacity: 0.8;
+}
+
+/* Блок действия (кнопка) */
+.action {
+  margin-top: 8px;
+}

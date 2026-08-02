@@ -1,0 +1,87 @@
+.link {
+  font-family: var(--font-family-body);
+  font-size: var(--text-control-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--text-control-line-height);
+  color: inherit;
+  letter-spacing: var(--text-control-letter-spacing);
+  text-decoration: none;
+}
+
+/* focus */
+.link:focus-visible {
+  outline: 2px solid var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* ---------- Variants ---------- */
+
+/* Зеленая ссылка (фильтры, действия) */
+.primary {
+  color: var(--color-link-button);
+}
+
+/* Обычная навигация */
+.secondary {
+  color: var(--text-color);
+}
+
+/* Текстовая ссылка */
+.text {
+  color: var(--text-color);
+}
+
+/* Active state (NavLink) */
+.active {
+  text-decoration: underline;
+}
+
+/* ---------- Sizes ---------- */
+
+.sm {
+  font-size: var(--text-control-font-size);
+  line-height: var(--text-control-line-height);
+  letter-spacing: var(--text-control-letter-spacing);
+}
+
+.md {
+  font-size: var(--text-control-font-size);
+  line-height: var(--text-control-line-height);
+  letter-spacing: var(--text-control-letter-spacing);
+}
+
+.lg {
+  font-size: var(--text-control-font-size);
+  line-height: var(--text-control-line-height);
+  letter-spacing: var(--text-control-letter-spacing);
+}
+
+/* ---------- Underline behavior ---------- */
+
+.underline-always {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.underline-hover {
+  text-decoration: none;
+}
+
+.link.underline-hover:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.underline-never {
+  text-decoration: none;
+}
+
+/* чтобы глобальные a:hover не пробивали never */
+.link.underline-never:hover {
+  text-decoration: none;
+}
+
+/* visited — только для внешних ссылок */
+.link:visited {
+  color: inherit;
+}

@@ -6,4 +6,5 @@ export declare class UpdateProfileDto {
     city?: string;
     gender?: UserGender;
     avatar?: string;
+    wantToLearn?: string[];
 }

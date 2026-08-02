@@ -1,0 +1,108 @@
+@font-face {
+   font-family: Jost;
+   font-style: normal;
+   font-weight: 600;
+   src: url('/src/assets/fonts/Jost-SemiBold.woff2') format('woff2'),
+        url('/src/assets/fonts/Jost-SemiBold.woff') format('woff');
+   font-display: swap;
+ }
+ 
+ @font-face {
+   font-family: Jost;
+   font-style: medium;
+   font-weight: 500;
+   src: url('/src/assets/fonts/Jost-Medium.woff2') format('woff2'),
+        url('/src/assets/fonts/Jost-Medium.woff') format('woff');
+   font-display: swap;
+ }
+
+ @font-face {
+   font-family: Roboto;
+   font-style: normal;
+   font-weight: 400;
+   src: url('/src/assets/fonts/Roboto-Regular.woff2') format('woff2'),
+        url('/src/assets/fonts/Roboto-Regular.woff') format('woff');
+   font-display: swap;
+ }
+
+  @font-face {
+   font-family: Roboto;
+   font-style: medium;
+   font-weight: 500;
+   src: url('/src/assets/fonts/Roboto-Medium.woff2') format('woff2'),
+        url('/src/assets/fonts/Roboto-Medium.woff') format('woff');
+   font-display: swap;
+ }
+ 
+
+ 
+ :root {
+   /* ===============================
+      Font families
+      =============================== */
+ 
+   /* Headings: Jost */
+   --font-family-heading: 'Jost';
+ 
+   /* UI / Body: Roboto */
+   --font-family-body: 'Roboto';
+ 
+   /* ===============================
+      Font weights (по макету)
+      =============================== */
+   --font-weight-regular: 400;
+   --font-weight-medium: 500;
+   --font-weight-semibold: 600; /* для логотипа */
+ 
+  /* ===============================
+      Font sizes (по макету)
+      =============================== */
+   --font-size-xl: 32px;
+   --font-size-lg: 24px;
+   --font-size-md: 20px;
+   --font-size-sm: 16px;
+   --font-size-xs: 12px;
+ 
+   /* ===============================
+      Headings (Jost Medium)   
+      =============================== */
+ 
+   /* H1 — Jost Medium — 32 / 40 */
+   --heading-h1-font-size: 32px;
+   --heading-h1-line-height: 40px;
+   --heading-h1-letter-spacing: 0;
+ 
+   /* H2 — Jost Medium — 24 / 28 */
+   --heading-h2-font-size: 24px;
+   --heading-h2-line-height: 28px;
+   --heading-h2-letter-spacing: 0;
+ 
+   /* H3 — Jost Medium — 20 / 24 */
+   --heading-h3-font-size: 20px;
+   --heading-h3-line-height: 24px;
+   --heading-h3-letter-spacing: 0;
+ 
+   /* H4 — Roboto Medium — 16 / 24 */
+   --heading-h4-font-size: 16px;
+   --heading-h4-line-height: 24px;
+   --heading-h4-letter-spacing: 0;
+ 
+   /* Общий вес для заголовков (H1–H4) */
+   --heading-font-weight: var(--font-weight-medium);
+ 
+   /* ===============================
+      Body / Caption (Roboto)
+      =============================== */
+ 
+   /* Body — Roboto Regular — 16 / 24 */
+   --body-font-size: 16px;
+   --body-line-height: 24px;
+   --body-letter-spacing: 0;
+   --body-font-weight: var(--font-weight-regular);
+ 
+   /* Caption — Roboto Regular — 12 / 16 */
+   --caption-font-size: 12px;
+   --caption-line-height: 16px;
+   --caption-letter-spacing: 0;
+   --caption-font-weight: var(--font-weight-regular);
+ }

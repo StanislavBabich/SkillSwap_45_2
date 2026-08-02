@@ -1,0 +1,110 @@
+.header {
+  width: 100%;
+  padding: 36px 36px 20px;
+  font-family: var(--font-family-body, Roboto, sans-serif);
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.5;
+  color: var(--text-color, #253017);
+  background-color: var(--bg-color, #f9faf7);
+}
+
+.nav {
+  display: flex;
+  gap: 34px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navList {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  list-style: none;
+}
+
+.navList li {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navLink {
+  font-family: var(--font-family-body, Roboto, sans-serif);
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--text-color, #253017);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--color-primary, #508826);
+}
+
+.chevronIcon {
+  align-self: center;
+  margin-left: 4px;
+  color: var(--text-color, #253017);
+  transition: color 0.2s ease;
+}
+
+.navList li:hover .chevronIcon {
+  color: var(--color-primary, #508826);
+}
+
+.input {
+  width: 100%;
+}
+
+/* Кнопка темы (обновленная) */
+.themeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: var(--text-color, #253017);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.themeButton:hover {
+  color: var(--color-primary, #508826);
+  transform: rotate(15deg);
+}
+
+.themeIcon {
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* пружинистая анимация */
+}
+
+.themeIcon.sun {
+  transform: rotate(180deg);
+}
+
+.themeButton:hover .themeIcon {
+  transform: rotate(30deg);
+}
+
+.themeButton:hover .themeIcon.sun {
+  transform: rotate(210deg); /* 180 + 30 */
+}
+
+.authButtons {
+  display: flex;
+  gap: 8px;
+  max-width: 308px;
+  max-height: 48px;
+}
+

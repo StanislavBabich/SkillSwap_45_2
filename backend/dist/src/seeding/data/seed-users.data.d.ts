@@ -7,5 +7,6 @@ export interface SeedCreateUser {
     birthdate?: string;
     city?: string;
     gender?: UserGender;
+    wantToLearnCategories?: string[];
 }
 export declare const UsersData: SeedCreateUser[];
