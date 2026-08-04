@@ -11,6 +11,7 @@ const MAIN_PAGE_PREVIEW_LIMIT = 3;
 const selectUsers = (state: RootState): User[] => state.users.items;
 const selectSkills = (state: RootState): Skill[] => state.skills.items;
 const selectFilters = (state: RootState) => state.filters;
+const selectCities = (state: RootState) => state.cities.items;
 
 const selectSkillsByOwnerId = createSelector([selectSkills], (skills) => {
   const map = new Map<EntityId, Skill[]>();
@@ -26,12 +27,22 @@ const getPopularityScore = (skillsByOwnerId: Map<EntityId, Skill[]>, userId: Ent
   (skillsByOwnerId.get(userId) ?? []).length;
 
 export const selectFilteredUsers = createSelector(
-  [selectUsers, selectSkillsByOwnerId, selectFilters, selectSkills],
-  (users, skillsByOwnerId, filters, skills) => {
+  [selectUsers, selectSkillsByOwnerId, selectFilters, selectCities],
+  (users, skillsByOwnerId, filters, cities) => {
     const search = filters.search.trim().toLowerCase();
+    const selectedCityNames = new Set(
+      cities
+        .filter((city) => filters.selectedCityIds.includes(city.id))
+        .map((city) => city.name.toLocaleLowerCase())
+    );
 
     return users.filter((user) => {
       if (filters.gender !== 'any' && user.gender?.toLowerCase() !== filters.gender) {
+        return false;
+      }
+
+      if (filters.selectedCityIds.length > 0 &&
+          (!user.city || !selectedCityNames.has(user.city.toLocaleLowerCase()))) {
         return false;
       }
 

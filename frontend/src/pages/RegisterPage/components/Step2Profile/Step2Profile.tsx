@@ -7,10 +7,12 @@ import { Select } from '@/shared/ui/Select';
 import { Dropdown } from '@/shared/ui/Dropdown';
 import { Button } from '@/shared/ui/Button';
 import { DatePicker } from '@/shared/ui/DatePicker/DatePicker';
+import { DropDownCity } from '@/shared/ui/DropDownCity';
 
 import { AvatarUpload } from './components/AvatarUpload';
 
 import { initializeCategories, selectCategories } from '@/features/categories/slice';
+import { initializeCities, selectCities } from '@/features/cities/slice';
 
 import type { StepProps } from '../../hooks/useRegistration';
 
@@ -32,6 +34,7 @@ export const Step2Profile = ({
 }: Step2ProfileProps) => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(selectCategories);
+  const cities = useAppSelector(selectCities);
 
   const [errors, setErrors] = useState({
     name: '',
@@ -43,6 +46,7 @@ export const Step2Profile = ({
 
   useEffect(() => {
     dispatch(initializeCategories());
+    dispatch(initializeCities());
   }, [dispatch]);
 
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<string[]>(
@@ -69,7 +73,7 @@ export const Step2Profile = ({
   const handleAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => onUpdate({ about: e.target.value });
   const handleDateChange = (value: string) => onUpdate({ dateOfBirth: value });
   const handleGenderChange = (value: string) => onUpdate({ gender: value as 'male' | 'female' | 'other' });
-  const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => onUpdate({ city: e.target.value });
+  const handleCityChange = (city: string) => onUpdate({ city });
   const handleCategoriesChange = (categoryIds: string[]) => {
     setSelectedCategoryIds(categoryIds);
     // Очищаем выбранные подкатегории, которые не относятся к выбранным категориям
@@ -124,18 +128,15 @@ export const Step2Profile = ({
             </div>
           </div>
 
-          {/* Город — временно простой Input, пока нет ресурса /api/cities 
-           <DropDownCity
+          <DropDownCity
             label="Город"
-            value={data.cityId ? String(data.cityId) : ''}
+            value={data.city || ''}
             onChange={handleCityChange}
-            options={cities.map((c) => ({ value: String(c.id), label: c.name }))}
+            options={cities.map((city) => ({ value: city.name, label: city.name }))}
             placeholder="Не указан"
             minSearchLength={1}
             maxResults={50}
           />
-          */}
-          <Input label="Город" placeholder="Введите ваш город" value={data.city || ''} onChange={handleCityChange} />
 
           <div className={styles.field}>
             <label className={styles.label} htmlFor="about">О себе</label>

@@ -7,9 +7,9 @@ async function fetchCitiesInternal(): Promise<CitiesResponse> {
   return fetchJson<CitiesResponse>(getApiUrl('/cities'));
 }
 
-const citiesApi = {
-  getAll: memoizeRequest(fetchCitiesInternal),
-};
+const getCitiesRequest = memoizeRequest(fetchCitiesInternal);
+
+const citiesApi = { getAll: getCitiesRequest, getCities: getCitiesRequest };
 
 export const getCities = citiesApi.getAll;
 
