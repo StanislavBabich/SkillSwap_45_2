@@ -1,18 +1,20 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { CitiesService } from './cities.service';
 import { City } from './entities/city.entity';
 
 describe('CitiesService', () => {
   let service: CitiesService;
   let repository: jest.Mocked<
-    Pick<Repository<City>, 'preload' | 'save' | 'delete'>
+    Pick<Repository<City>, 'find' | 'create' | 'preload' | 'save' | 'delete'>
   >;
 
   beforeEach(async () => {
     repository = {
+      find: jest.fn(),
+      create: jest.fn(),
       preload: jest.fn(),
       save: jest.fn(),
       delete: jest.fn(),
@@ -26,6 +28,44 @@ describe('CitiesService', () => {
     }).compile();
 
     service = module.get(CitiesService);
+  });
+
+  it('returns no more than 10 cities sorted by name', async () => {
+    repository.find.mockResolvedValue([]);
+
+    await expect(service.findAll({})).resolves.toEqual([]);
+    expect(repository.find).toHaveBeenCalledWith({
+      where: undefined,
+      order: { name: 'ASC' },
+      take: 10,
+    });
+  });
+
+  it('filters cities by a case-insensitive name substring', async () => {
+    repository.find.mockResolvedValue([]);
+
+    await service.findAll({ search: 'моск' });
+
+    expect(repository.find).toHaveBeenCalledWith({
+      where: { name: ILike('%моск%') },
+      order: { name: 'ASC' },
+      take: 10,
+    });
+  });
+
+  it('creates and returns a city', async () => {
+    const city = {
+      id: '550e8400-e29b-41d4-a716-446655440000',
+      name: 'Москва',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    repository.create.mockReturnValue(city);
+    repository.save.mockResolvedValue(city);
+
+    await expect(service.create({ name: city.name })).resolves.toEqual(city);
+    expect(repository.create).toHaveBeenCalledWith({ name: city.name });
+    expect(repository.save).toHaveBeenCalledWith(city);
   });
 
   it('updates and returns a city', async () => {

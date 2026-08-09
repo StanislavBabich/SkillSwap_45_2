@@ -2,11 +2,14 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   HttpCode,
   HttpStatus,
   Param,
   ParseUUIDPipe,
   Patch,
+  Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { AccessTokenGuard } from '../auth/guards/access-token.guard';
@@ -15,9 +18,13 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { UserRole } from '../users/user.enums';
 import { CitiesService } from './cities.service';
 import { UpdateCityDto } from './dto/update-city.dto';
+import { CreateCityDto } from './dto/create-city.dto';
+import { FindCitiesQueryDto } from './dto/find-cities-query.dto';
 import {
   ApiCitiesController,
+  ApiCreateCity,
   ApiDeleteCity,
+  ApiGetCities,
   ApiUpdateCity,
 } from './cities.swagger';
 
@@ -25,6 +32,20 @@ import {
 @Controller('cities')
 export class CitiesController {
   constructor(private readonly citiesService: CitiesService) {}
+
+  @Get()
+  @ApiGetCities()
+  findAll(@Query() query: FindCitiesQueryDto) {
+    return this.citiesService.findAll(query);
+  }
+
+  @Post()
+  @ApiCreateCity()
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Roles([UserRole.ADMIN])
+  create(@Body() createCityDto: CreateCityDto) {
+    return this.citiesService.create(createCityDto);
+  }
 
   @Patch(':id')
   @ApiUpdateCity()
