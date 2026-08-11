@@ -6,6 +6,8 @@ import { DatePicker } from '@/shared/ui/DatePicker/DatePicker';
 import { Input } from '@/shared/ui/Input';
 import { Select } from '@/shared/ui/Select';
 import { Icon } from '@/shared/ui/Icon';
+import { DropDownCity } from '@/shared/ui/DropDownCity';
+import type { City } from '@/entities/city/types';
 import styles from './ProfileForm.module.css';
 
 export interface ProfileFormState {
@@ -26,22 +28,25 @@ export interface ProfileFormErrors {
 
 interface ProfileFormProps {
   data: ProfileFormState;
-  cities?: any[];
+  cities: City[];
   errors: ProfileFormErrors;
   isSaveDisabled: boolean;
   isSaving: boolean;
   saveError: string | null;
   onChange: (patch: Partial<ProfileFormState>) => void;
+  onCitySearch: (search: string) => void;
   onSave: () => void;
 }
 
 export const ProfileForm = ({
   data,
+  cities,
   errors,
   isSaveDisabled,
   isSaving,
   saveError,
   onChange,
+  onCitySearch,
   onSave,
 }: ProfileFormProps) => {
   const [isPasswordInputVisible, setIsPasswordInputVisible] = useState(false);
@@ -124,12 +129,20 @@ export const ProfileForm = ({
         />
       </div>
 
-      {/* Город — временно Input, пока нет ресурса /api/cities */}
-      <Input
+      <DropDownCity
         label="Город"
         value={data.city}
-        onChange={(event) => onChange({ city: event.target.value })}
-        endAdornment={editAdornment}
+        onChange={(city) => onChange({ city })}
+        onSearch={onCitySearch}
+        options={[
+          ...(data.city && !cities.some((city) => city.name === data.city)
+            ? [{ value: data.city, label: data.city }]
+            : []),
+          ...cities.map((city) => ({ value: city.name, label: city.name })),
+        ]}
+        placeholder="Не указан"
+        minSearchLength={1}
+        maxResults={50}
       />
 
       <div className={styles.textareaGroup}>

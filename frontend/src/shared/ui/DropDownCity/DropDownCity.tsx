@@ -11,6 +11,7 @@ export type CityOption = {
 export interface DropDownCityProps {
   value?: string;
   onChange?: (value: string) => void;
+  onSearch?: (search: string) => void;
   options: CityOption[];
   placeholder?: string;
   label?: string;
@@ -27,6 +28,7 @@ export interface DropDownCityProps {
 export const DropDownCity = ({
   value,
   onChange,
+  onSearch,
   options,
   placeholder = 'Выберите город',
   label,
@@ -69,6 +71,14 @@ export const DropDownCity = ({
     setFilteredOptions(filtered);
     setHighlightedIndex(filtered.length > 0 ? 0 : -1);
   }, [searchTerm, options, minSearchLength, maxResults]);
+
+  useEffect(() => {
+    const search = searchTerm.trim();
+    if (!onSearch || search.length < minSearchLength) return;
+
+    const timeoutId = window.setTimeout(() => onSearch(search), 250);
+    return () => window.clearTimeout(timeoutId);
+  }, [searchTerm, minSearchLength, onSearch]);
 
   // Закрытие при клике вне
   useEffect(() => {

@@ -12,6 +12,7 @@ import {
 } from '@/features/filters/slice';
 import { selectSkillType } from '@/features/filters/slice';
 import { selectCategories } from '@/features/categories/slice';
+import { selectCities } from '@/features/cities/slice';
 import type { SkillType } from '@/entities/skill/types';
 import type { Gender } from '@/entities/base';
 import styles from './ActiveFilters.module.css';
@@ -29,6 +30,7 @@ export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
   const selectedCityIds = useAppSelector((state) => state.filters.selectedCityIds);
 
   const categories = useAppSelector(selectCategories);
+  const cities = useAppSelector(selectCities);
 
   // Собираем все подкатегории из дерева
   const allSubcategories = useMemo(() => {
@@ -98,16 +100,17 @@ export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
     }
 
     selectedCityIds.forEach((id) => {
-      // Города пока не работают, но оставим структуру
+      const city = cities.find((item) => item.id === id);
+      if (!city) return;
       filters.push({
         id: `city-${id}`,
-        label: `Город ${id}`,
+        label: city.name,
         onRemove: () => dispatch(toggleCityFilter(id)),
       });
     });
 
     return filters;
-  }, [skillType, selectedCategoryIds, gender, selectedCityIds, categories, allSubcategories, dispatch]);
+  }, [skillType, selectedCategoryIds, gender, selectedCityIds, categories, cities, allSubcategories, dispatch]);
 
   if (activeFilters.length === 0) {
     return null;

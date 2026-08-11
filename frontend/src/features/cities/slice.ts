@@ -30,6 +30,11 @@ export const initializeCities = createAsyncThunk<City[], void>('cities/initializ
   },
 });
 
+export const searchCities = createAsyncThunk<City[], string>(
+  'cities/search',
+  async (search) => citiesApi.search(search)
+);
+
 const citiesSlice = createSlice({
   name: 'cities',
   initialState,
@@ -61,6 +66,10 @@ const citiesSlice = createSlice({
         state.isLoading = false;
         state.status = 'failed';
         state.error = action.error.message ?? 'Failed to load cities';
+      })
+      .addCase(searchCities.fulfilled, (state, action) => {
+        const knownIds = new Set(state.items.map((city) => city.id));
+        state.items.push(...action.payload.filter((city) => !knownIds.has(city.id)));
       });
   },
   selectors: {

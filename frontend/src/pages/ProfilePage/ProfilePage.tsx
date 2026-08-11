@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import type { User } from '@/entities/user/types';
 import type { Gender } from '@/entities/base';
 import { selectAllSkills } from '@/features/skills/slice';
 import { setUsers } from '@/features/users/slice';
+import { initializeCities, searchCities, selectCities } from '@/features/cities/slice';
 import usersApi from '@/entities/user/api';
 import { storage } from '@/shared/lib/storage';
 import { ProfileAvatar } from './components/ProfileAvatar/ProfileAvatar';
@@ -61,6 +62,7 @@ export const ProfilePage = () => {
   const dispatch = useAppDispatch();
 
   const skills = useAppSelector(selectAllSkills);
+  const cities = useAppSelector(selectCities);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -92,6 +94,7 @@ export const ProfilePage = () => {
   // Загружаем список всех пользователей для Redux
   useEffect(() => {
     usersApi.getAll().then((data) => dispatch(setUsers(data))).catch(() => {});
+    dispatch(initializeCities());
   }, [dispatch]);
 
   const userSkillId = useMemo(() => {
@@ -149,6 +152,13 @@ export const ProfilePage = () => {
       return next;
     });
   }, []);
+
+  const handleCitySearch = useCallback(
+    (search: string) => {
+      void dispatch(searchCities(search));
+    },
+    [dispatch]
+  );
 
   const isSaveDisabled = useMemo(() => {
     if (!formData || !savedData || isSaving) return true;
@@ -235,6 +245,8 @@ export const ProfilePage = () => {
       <section className={styles.contentCard}>
         <ProfileForm
           data={formData}
+          cities={cities}
+          onCitySearch={handleCitySearch}
           errors={errors}
           isSaveDisabled={isSaveDisabled}
           isSaving={isSaving}

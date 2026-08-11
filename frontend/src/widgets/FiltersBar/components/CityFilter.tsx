@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import { initializeCities, selectCities } from '@/features/cities/slice';
 import { toggleCityFilter } from '@/features/filters/slice';
 import type { City } from '@/entities/city/types';
+import type { EntityId } from '@/entities/base';
 import styles from './CityFilter.module.css';
 
 const VISIBLE_CITIES_COUNT = 5;
@@ -30,7 +31,7 @@ export const CityFilter = () => {
   const initialCities = cities.slice(0, VISIBLE_CITIES_COUNT);
   const extraCities = cities.slice(VISIBLE_CITIES_COUNT);
 
-  const handleCityToggle = (cityId: number) => {
+  const handleCityToggle = (cityId: EntityId) => {
     dispatch(toggleCityFilter(cityId));
   };
 
