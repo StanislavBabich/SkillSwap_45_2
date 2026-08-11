@@ -23,7 +23,8 @@
     "seed:users": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts users",
     "seed:categories": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts categories",
     "seed:skills": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts skills",
-    "seed:admin": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts admin"
+    "seed:admin": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts admin",
+    "seed:cities": "ts-node -r tsconfig-paths/register src/seeding/run-seed.ts cities"
   },
   "dependencies": {
     "@nestjs-modules/mailer": "^2.3.7",
