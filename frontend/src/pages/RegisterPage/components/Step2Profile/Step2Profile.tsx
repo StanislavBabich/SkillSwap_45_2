@@ -12,7 +12,7 @@ import { DropDownCity } from '@/shared/ui/DropDownCity';
 import { AvatarUpload } from './components/AvatarUpload';
 
 import { initializeCategories, selectCategories } from '@/features/categories/slice';
-import { initializeCities, selectCities } from '@/features/cities/slice';
+import { initializeCities, searchCities, selectCities } from '@/features/cities/slice';
 
 import type { StepProps } from '../../hooks/useRegistration';
 
@@ -74,6 +74,12 @@ export const Step2Profile = ({
   const handleDateChange = (value: string) => onUpdate({ dateOfBirth: value });
   const handleGenderChange = (value: string) => onUpdate({ gender: value as 'male' | 'female' | 'other' });
   const handleCityChange = (city: string) => onUpdate({ city });
+  const handleCitySearch = useCallback(
+    (search: string) => {
+      void dispatch(searchCities(search));
+    },
+    [dispatch]
+  );
   const handleCategoriesChange = (categoryIds: string[]) => {
     setSelectedCategoryIds(categoryIds);
     // Очищаем выбранные подкатегории, которые не относятся к выбранным категориям
@@ -132,6 +138,7 @@ export const Step2Profile = ({
             label="Город"
             value={data.city || ''}
             onChange={handleCityChange}
+            onSearch={handleCitySearch}
             options={cities.map((city) => ({ value: city.name, label: city.name }))}
             placeholder="Не указан"
             minSearchLength={1}

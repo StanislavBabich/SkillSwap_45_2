@@ -4,7 +4,7 @@ import type { User } from '@/entities/user/types';
 import type { Gender } from '@/entities/base';
 import { selectAllSkills } from '@/features/skills/slice';
 import { setUsers } from '@/features/users/slice';
-import { initializeCities, selectCities } from '@/features/cities/slice';
+import { initializeCities, searchCities, selectCities } from '@/features/cities/slice';
 import usersApi from '@/entities/user/api';
 import { storage } from '@/shared/lib/storage';
 import { ProfileAvatar } from './components/ProfileAvatar/ProfileAvatar';
@@ -153,6 +153,13 @@ export const ProfilePage = () => {
     });
   }, []);
 
+  const handleCitySearch = useCallback(
+    (search: string) => {
+      void dispatch(searchCities(search));
+    },
+    [dispatch]
+  );
+
   const isSaveDisabled = useMemo(() => {
     if (!formData || !savedData || isSaving) return true;
     const comparableState = toComparableState(formData);
@@ -239,6 +246,7 @@ export const ProfilePage = () => {
         <ProfileForm
           data={formData}
           cities={cities}
+          onCitySearch={handleCitySearch}
           errors={errors}
           isSaveDisabled={isSaveDisabled}
           isSaving={isSaving}

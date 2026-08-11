@@ -34,6 +34,7 @@ interface ProfileFormProps {
   isSaving: boolean;
   saveError: string | null;
   onChange: (patch: Partial<ProfileFormState>) => void;
+  onCitySearch: (search: string) => void;
   onSave: () => void;
 }
 
@@ -45,6 +46,7 @@ export const ProfileForm = ({
   isSaving,
   saveError,
   onChange,
+  onCitySearch,
   onSave,
 }: ProfileFormProps) => {
   const [isPasswordInputVisible, setIsPasswordInputVisible] = useState(false);
@@ -131,7 +133,13 @@ export const ProfileForm = ({
         label="Город"
         value={data.city}
         onChange={(city) => onChange({ city })}
-        options={cities.map((city) => ({ value: city.name, label: city.name }))}
+        onSearch={onCitySearch}
+        options={[
+          ...(data.city && !cities.some((city) => city.name === data.city)
+            ? [{ value: data.city, label: data.city }]
+            : []),
+          ...cities.map((city) => ({ value: city.name, label: city.name })),
+        ]}
         placeholder="Не указан"
         minSearchLength={1}
         maxResults={50}
