@@ -67,6 +67,7 @@ export const mockCategoryRepository = () => ({
   findOne: createMock<Promise<Category | null>>(),
   findOneBy: createMock<Promise<Category | null>>(),
   find: createMock<Promise<Category[]>>(),
+  findBy: createMock<Promise<Category[]>>(),
   create: createMock<Category>(),
   save: createMock<Promise<Category>>(),
   update: createMock<Promise<UpdateResult>>(),
