@@ -9,6 +9,7 @@ import * as bcrypt from 'bcrypt';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { Skill } from '../skills/entities/skill.entity';
+import { Category } from '../categories/entities/category.entity';
 import { UpdateResult } from 'typeorm';
 import { EntityNotFoundException } from '../common/exceptions/entity-not-found.exception';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -22,6 +23,7 @@ import {
 import {
   mockUserRepository,
   mockSkillRepository,
+  mockCategoryRepository,
 } from '../mocks/mock-repositories';
 
 jest.mock('bcrypt', () => ({ compare: jest.fn(), hash: jest.fn() }));
@@ -30,16 +32,19 @@ describe('UsersService', () => {
   let service: UsersService;
   let userRepo: ReturnType<typeof mockUserRepository>;
   let skillRepo: ReturnType<typeof mockSkillRepository>;
+  let categoryRepo: ReturnType<typeof mockCategoryRepository>;
 
   beforeEach(async () => {
     userRepo = mockUserRepository();
     skillRepo = mockSkillRepository();
+    categoryRepo = mockCategoryRepository();
 
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         UsersService,
         { provide: getRepositoryToken(User), useValue: userRepo },
         { provide: getRepositoryToken(Skill), useValue: skillRepo },
+        { provide: getRepositoryToken(Category), useValue: categoryRepo },
         { provide: appConfig.KEY, useValue: mockAppConfig },
       ],
     }).compile();
