@@ -3,6 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 import { join } from 'path';
 import { AppModule } from './app.module';
 import { appConfig, TAppConfig } from './config/app.config';
@@ -13,6 +14,8 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: winstonLogger,
   });
+
+  app.use(helmet());
 
   app.enableCors({
     origin: ['http://localhost:5173'],
