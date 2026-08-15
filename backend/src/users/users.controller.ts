@@ -26,6 +26,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UsersService } from './users.service';
 import { AccessTokenGuard } from '../auth/guards/access-token.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { UserRole } from './user.enums';
 
 @ApiUsersController()
 @Controller('users')
@@ -34,6 +37,8 @@ export class UsersController {
 
   @Post()
   @ApiCreateUser()
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Roles([UserRole.ADMIN])
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }

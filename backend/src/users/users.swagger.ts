@@ -5,6 +5,7 @@ import {
   ApiBody,
   ApiConflictResponse,
   ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
@@ -21,7 +22,8 @@ export function ApiUsersController() {
 
 export function ApiCreateUser() {
   return applyDecorators(
-    ApiOperation({ summary: 'Create a user' }),
+    ApiBearerAuth(),
+    ApiOperation({ summary: 'Create a user (admin only)' }),
     ApiCreatedResponse({
       description: 'User created successfully',
       type: User,
@@ -30,6 +32,8 @@ export function ApiCreateUser() {
     ApiConflictResponse({
       description: 'A user with this email already exists',
     }),
+    ApiUnauthorizedResponse({ description: 'Authentication required' }),
+    ApiForbiddenResponse({ description: 'Administrator access required' }),
   );
 }
 
