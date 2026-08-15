@@ -20,12 +20,12 @@ import {
   ApiUpdateUser,
   ApiUsersController,
 } from './users.swagger';
-import { Request } from 'express';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UsersService } from './users.service';
 import { AccessTokenGuard } from '../auth/guards/access-token.guard';
+import { AuthRequest } from '../auth/auth.types';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { UserRole } from './user.enums';
@@ -52,24 +52,24 @@ export class UsersController {
   @UseGuards(AccessTokenGuard)
   @Get('me')
   @ApiGetCurrentUser()
-  getMe(@Req() req: Request) {
-    const userId = (req.user as { sub: string }).sub;
+  getMe(@Req() req: AuthRequest) {
+    const userId = req.user.sub;
     return this.usersService.findOne(userId);
   }
 
   @UseGuards(AccessTokenGuard)
   @Patch('me')
   @ApiUpdateCurrentUser()
-  updateMe(@Req() req: Request, @Body() dto: UpdateProfileDto) {
-    const userId = (req.user as { sub: string }).sub;
+  updateMe(@Req() req: AuthRequest, @Body() dto: UpdateProfileDto) {
+    const userId = req.user.sub;
     return this.usersService.updateProfile(userId, dto);
   }
 
   @UseGuards(AccessTokenGuard)
   @Patch('me/password')
   @ApiChangeCurrentUserPassword()
-  changePassword(@Req() req: Request, @Body() dto: ChangePasswordDto) {
-    const userId = (req.user as { sub: string }).sub;
+  changePassword(@Req() req: AuthRequest, @Body() dto: ChangePasswordDto) {
+    const userId = req.user.sub;
     return this.usersService.changePassword(userId, dto);
   }
 
