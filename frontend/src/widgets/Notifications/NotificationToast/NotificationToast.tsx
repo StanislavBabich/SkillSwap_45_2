@@ -52,6 +52,8 @@ export function NotificationToast({ notification, onClose }: NotificationToastPr
   const handleClick = () => {
     if (notification.exchangeId) {
       navigate(`/exchange/${notification.exchangeId}`);
+    } else if (notification.type.startsWith('exchange_')) {
+      navigate('/requests');
     }
     handleClose();
   };
@@ -66,7 +68,7 @@ export function NotificationToast({ notification, onClose }: NotificationToastPr
       role="alert"
       className={clsx(styles.toast, visible && styles.visible, hiding && styles.hiding)}
       style={{
-        left: layoutLeftOffset
+        left: layoutLeftOffset,
       }}
       onClick={handleClick}
       onKeyDown={(e) => {

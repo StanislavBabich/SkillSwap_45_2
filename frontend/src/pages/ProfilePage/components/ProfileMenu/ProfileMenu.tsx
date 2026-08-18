@@ -3,22 +3,18 @@ import clsx from 'clsx';
 import { Icon } from '@/shared/ui/Icon';
 import styles from './ProfileMenu.module.css';
 
-interface ProfileMenuProps {
-  userSkillId: string | null;
-}
-
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   clsx(styles.item, isActive && styles.itemActive);
 
-export const ProfileMenu = ({ userSkillId }: ProfileMenuProps) => {
+export const ProfileMenu = () => {
   return (
     <nav className={styles.menu} aria-label="Меню профиля">
       <ul className={styles.list}>
         <li>
-          <button type="button" className={clsx(styles.item, styles.itemDisabled)} disabled>
+          <NavLink to="/requests" className={navLinkClass}>
             <Icon name="requests" size={24} className={styles.icon} aria-hidden="true" />
             <span>Заявки</span>
-          </button>
+          </NavLink>
         </li>
 
         <li>

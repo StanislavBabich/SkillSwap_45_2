@@ -2,7 +2,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import type { User } from '@/entities/user/types';
 import type { Gender } from '@/entities/base';
-import { selectAllSkills } from '@/features/skills/slice';
 import { setUsers } from '@/features/users/slice';
 import { initializeCities, searchCities, selectCities } from '@/features/cities/slice';
 import usersApi from '@/entities/user/api';
@@ -21,7 +20,10 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 type ComparableProfileState = Omit<ProfileFormState, 'password'>;
 
 const toFormState = (user: User): ProfileFormState => {
-  console.log('[ProfilePage] toFormState - localStorage avatarSeed:', (storage.getCurrentUser() as any)?.avatarSeed);
+  console.log(
+    '[ProfilePage] toFormState - localStorage avatarSeed:',
+    (storage.getCurrentUser() as any)?.avatarSeed
+  );
   return {
     email: user.email,
     name: user.name,
@@ -61,7 +63,6 @@ const getValidationErrors = (state: ProfileFormState): ProfileFormErrors => {
 export const ProfilePage = () => {
   const dispatch = useAppDispatch();
 
-  const skills = useAppSelector(selectAllSkills);
   const cities = useAppSelector(selectCities);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -93,14 +94,12 @@ export const ProfilePage = () => {
 
   // Загружаем список всех пользователей для Redux
   useEffect(() => {
-    usersApi.getAll().then((data) => dispatch(setUsers(data))).catch(() => {});
+    usersApi
+      .getAll()
+      .then((data) => dispatch(setUsers(data)))
+      .catch(() => {});
     dispatch(initializeCities());
   }, [dispatch]);
-
-  const userSkillId = useMemo(() => {
-    if (!currentUser) return null;
-    return skills.find((skill) => skill.owner?.id === currentUser.id)?.id ?? null;
-  }, [currentUser, skills]);
 
   const [formData, setFormData] = useState<ProfileFormState | null>(null);
   const [savedData, setSavedData] = useState<ComparableProfileState | null>(null);
@@ -239,7 +238,7 @@ export const ProfilePage = () => {
   return (
     <section className={styles.page}>
       <aside className={styles.menuCard}>
-        <ProfileMenu userSkillId={userSkillId} />
+        <ProfileMenu />
       </aside>
 
       <section className={styles.contentCard}>
