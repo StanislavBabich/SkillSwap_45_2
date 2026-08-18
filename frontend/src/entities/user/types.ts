@@ -1,4 +1,5 @@
 import type { EntityId, ISODateString, Gender } from '@/entities/base.ts';
+import type { Skill } from '@/entities/skill/types';
 
 export interface User {
   id: EntityId;
@@ -14,6 +15,7 @@ export interface User {
     id: EntityId;
     name: string;
   }>;
+  favoriteSkills?: Skill[];
 }
 
 export type UsersResponse = User[];

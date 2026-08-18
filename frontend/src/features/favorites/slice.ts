@@ -1,5 +1,9 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { EntityId } from '@/entities/base.ts';
+import type { Skill } from '@/entities/skill/types';
+import skillsApi from '@/entities/skill/api';
+import usersApi from '@/entities/user/api';
+import { storage } from '@/shared/lib/storage';
 import type {
   AddFavoriteUserDto,
   RemoveFavoriteUserDto,
@@ -8,11 +12,49 @@ import type {
 
 export interface FavoritesState {
   byOwnerId: Record<EntityId, EntityId[]>;
+  skillIds?: EntityId[];
+  status?: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error?: string | null;
 }
 
 const initialState: FavoritesState = {
   byOwnerId: {},
+  skillIds: [],
+  status: 'idle',
+  error: null,
 };
+
+export const initializeFavoriteSkills = createAsyncThunk<Skill[]>(
+  'favorites/initializeSkills',
+  async () => {
+    const token = storage.getToken();
+    if (!token) return [];
+    const user = await usersApi.getMe(token);
+    return user.favoriteSkills ?? [];
+  },
+  {
+    condition: (_, { getState }) => {
+      const state = (getState() as { favorites: FavoritesState }).favorites;
+      return state.status !== 'loading';
+    },
+  }
+);
+
+export const toggleFavoriteSkill = createAsyncThunk<
+  { skillId: EntityId; isFavorite: boolean },
+  { skillId: EntityId; isFavorite: boolean }
+>('favorites/toggleSkill', async ({ skillId, isFavorite }) => {
+  const token = storage.getToken();
+  if (!token) throw new Error('Требуется авторизация');
+
+  if (isFavorite) {
+    await skillsApi.removeFromFavorites(skillId, token);
+  } else {
+    await skillsApi.addToFavorites(skillId, token);
+  }
+
+  return { skillId, isFavorite: !isFavorite };
+});
 
 const getFavoriteUserIds = (state: FavoritesState, ownerUserId: EntityId): EntityId[] =>
   state.byOwnerId[ownerUserId] ?? [];
@@ -55,7 +97,29 @@ const favoritesSlice = createSlice({
     },
     clearAllFavorites: (state) => {
       state.byOwnerId = {};
+      state.skillIds = [];
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(initializeFavoriteSkills.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(initializeFavoriteSkills.fulfilled, (state, action) => {
+        state.skillIds = action.payload.map((skill) => skill.id);
+        state.status = 'succeeded';
+      })
+      .addCase(initializeFavoriteSkills.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message ?? 'Не удалось загрузить избранное';
+      })
+      .addCase(toggleFavoriteSkill.fulfilled, (state, action) => {
+        const ids = state.skillIds ?? [];
+        state.skillIds = action.payload.isFavorite
+          ? Array.from(new Set([...ids, action.payload.skillId]))
+          : ids.filter((id) => id !== action.payload.skillId);
+      });
   },
   selectors: {
     selectFavoritesByOwnerMap: (state) => state.byOwnerId,
@@ -94,3 +158,9 @@ export const selectIsUserFavorite = (
   ownerUserId: EntityId,
   targetUserId: EntityId
 ): boolean => selectIsUserFavoriteState(state, ownerUserId, targetUserId);
+
+export const selectFavoriteSkillIds = (state: { favorites: FavoritesState }): EntityId[] =>
+  state.favorites.skillIds ?? [];
+
+export const selectFavoriteSkillsStatus = (state: { favorites: FavoritesState }) =>
+  state.favorites.status ?? 'idle';

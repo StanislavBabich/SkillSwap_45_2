@@ -1,5 +1,7 @@
-import { useAppSelector } from '@/app/store/hooks';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import type { EntityId } from '@/entities/base';
+import { initializeFavoriteSkills, selectFavoriteSkillsStatus } from '@/features/favorites/slice';
 import { selectFavoriteSkills } from '@/features/skills/selectors';
 import { Button, Headline } from '@/shared/ui';
 import { SkillCard } from '@/widgets/SkillCard';
@@ -9,9 +11,15 @@ import illustration from '../../assets/school-board.svg';
 
 export const FavoritesPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const favoriteSkills = useAppSelector(selectFavoriteSkills);
+  const status = useAppSelector(selectFavoriteSkillsStatus);
   const favoritesCount = favoriteSkills.length;
+
+  useEffect(() => {
+    void dispatch(initializeFavoriteSkills());
+  }, [dispatch]);
 
   const handleGoToCatalog = () => {
     navigate('/');
@@ -28,7 +36,9 @@ export const FavoritesPage = () => {
           Избранное: <span>{favoritesCount}</span>
         </Headline>
       </div>
-      {favoritesCount === 0 ? (
+      {status === 'loading' ? (
+        <p className={styles.text}>Загружаем избранное...</p>
+      ) : favoritesCount === 0 ? (
         <div className={styles.container}>
         <img src={illustration} alt="Нет избранных навыков" className={styles.images} />
         <p className={styles.text}>У вас нет избранных навыков. Добавьте понравившиеся навыки</p>

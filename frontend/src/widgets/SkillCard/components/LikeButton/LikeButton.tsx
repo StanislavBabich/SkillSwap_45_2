@@ -1,9 +1,16 @@
-import { useId, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useId, useState } from 'react';
 import clsx from 'clsx';
 
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
 import type { EntityId } from '@/entities/base';
 import { AuthService } from '@/features/auth';
+import {
+  initializeFavoriteSkills,
+  selectFavoriteSkillIds,
+  selectFavoriteSkillsStatus,
+  toggleFavoriteSkill,
+} from '@/features/favorites/slice';
+import { selectSkillById } from '@/features/skills/slice';
 
 import styles from './LikeButton.module.css';
 
@@ -14,26 +21,36 @@ export interface LikeButtonProps {
 }
 
 export const LikeButton = ({ skillId, size = 'md', onToggle }: LikeButtonProps) => {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const gradientId = useId();
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  const [displayCount, setDisplayCount] = useState(0);
-  const currentUserId = AuthService.getCurrentUser()?.id ?? null;
+  const [isPending, setIsPending] = useState(false);
+  const favoriteSkillIds = useAppSelector(selectFavoriteSkillIds);
+  const favoritesStatus = useAppSelector(selectFavoriteSkillsStatus);
+  const skill = useAppSelector((state) => selectSkillById(state, skillId));
+  const isLiked = favoriteSkillIds.includes(skillId);
+  const displayCount = skill?.favoriteCount ?? 0;
+  const isAuthenticated = AuthService.isAuthenticated();
 
-  const handleToggle = () => {
-    if (currentUserId === null) {
-      navigate('/login');
-      return;
-    }
+  useEffect(() => {
+    if (isAuthenticated) void dispatch(initializeFavoriteSkills());
+  }, [dispatch, isAuthenticated]);
+
+  const handleToggle = async () => {
+    if (!isAuthenticated || isPending || favoritesStatus === 'loading') return;
 
     setIsAnimating(true);
     window.setTimeout(() => setIsAnimating(false), 220);
 
-    const nextIsLiked = !isLiked;
-    setIsLiked(nextIsLiked);
-    setDisplayCount((prev) => prev + (nextIsLiked ? 1 : -1));
-    onToggle?.(skillId, nextIsLiked);
+    setIsPending(true);
+    try {
+      const result = await dispatch(toggleFavoriteSkill({ skillId, isFavorite: isLiked })).unwrap();
+      onToggle?.(skillId, result.isFavorite);
+    } catch {
+      // Состояние меняется только после успешного ответа сервера.
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -41,6 +58,7 @@ export const LikeButton = ({ skillId, size = 'md', onToggle }: LikeButtonProps) 
       type="button"
       className={clsx(styles.root, styles[`size_${size}`], isLiked && styles.liked, isAnimating && styles.animate)}
       onClick={handleToggle}
+      disabled={!isAuthenticated || isPending || favoritesStatus === 'loading'}
       aria-label={`${isLiked ? 'Убрать из избранного' : 'Добавить в избранное'} (${displayCount})`}
       aria-pressed={isLiked}
     >

@@ -3,10 +3,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  ManyToMany,
   OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   JoinColumn,
+  VirtualColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Request } from '../../requests/entities/request.entity';
@@ -39,6 +41,16 @@ export class Skill {
   })
   @JoinColumn({ name: 'owner_id' })
   owner!: User;
+
+  @ManyToMany(() => User, (user) => user.favoriteSkills)
+  favoritedBy?: User[];
+
+  @VirtualColumn({
+    type: 'int',
+    query: (alias) =>
+      `(SELECT COUNT(*) FROM "users_favorite_skills" "favorites" WHERE "favorites"."skill_id" = ${alias}."id")`,
+  })
+  favoriteCount?: number;
 
   // Где этот скилл — предлагаемый
   @OneToMany(() => Request, (request) => request.offeredSkill)

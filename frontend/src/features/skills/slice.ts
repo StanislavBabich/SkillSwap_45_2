@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/tool
 import type { AsyncStatus, EntityId } from '@/entities/base.ts';
 import skillsApi from '@/entities/skill/api';
 import type { Skill } from '@/entities/skill/types';
+import { initializeFavoriteSkills, toggleFavoriteSkill } from '@/features/favorites/slice';
 
 export interface SkillsState {
   items: Skill[];
@@ -74,6 +75,22 @@ const skillsSlice = createSlice({
         state.isLoading = false;
         state.status = 'failed';
         state.error = action.error.message ?? 'Ошибка при загрузке навыков';
+      })
+      .addCase(initializeFavoriteSkills.fulfilled, (state, action) => {
+        for (const favoriteSkill of action.payload) {
+          const index = state.items.findIndex((skill) => skill.id === favoriteSkill.id);
+          if (index === -1) state.items.push(favoriteSkill);
+          else state.items[index] = favoriteSkill;
+        }
+      })
+      .addCase(toggleFavoriteSkill.fulfilled, (state, action) => {
+        const skill = state.items.find((item) => item.id === action.payload.skillId);
+        if (skill) {
+          skill.favoriteCount = Math.max(
+            0,
+            (skill.favoriteCount ?? 0) + (action.payload.isFavorite ? 1 : -1)
+          );
+        }
       });
   },
   selectors: {
