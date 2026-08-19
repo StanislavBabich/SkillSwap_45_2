@@ -1,7 +1,6 @@
 import type { EntityId } from '@/entities/base.ts';
 import { getApiUrl } from '@shared/api/db.ts';
 import { fetchJson } from '@shared/api/fetchJson.ts';
-import memoizeRequest from '@shared/api/memoizeRequest.ts';
 import type { Skill, SkillsListResponse, CreateSkillDto } from './types';
 
 async function fetchSkillsInternal(params?: Record<string, string>): Promise<SkillsListResponse> {

@@ -102,7 +102,7 @@ export class User {
   receivedRequests!: Request[];
 
   @ApiHideProperty()
-  @ManyToMany(() => Skill)
+  @ManyToMany(() => Skill, (skill) => skill.favoritedBy)
   @JoinTable({
     name: 'users_favorite_skills',
     joinColumn: {

@@ -81,6 +81,23 @@ export class UsersService {
     return this.findUserById(id);
   }
 
+  async findCurrentUser(id: string): Promise<User> {
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.wantToLearn', 'wantToLearn')
+      .leftJoinAndSelect('user.favoriteSkills', 'favoriteSkill')
+      .leftJoinAndSelect('favoriteSkill.owner', 'favoriteSkillOwner')
+      .leftJoinAndSelect('favoriteSkill.category', 'favoriteSkillCategory')
+      .where('user.id = :id', { id })
+      .getOne();
+
+    if (!user) {
+      throw new EntityNotFoundException('User', id);
+    }
+
+    return user;
+  }
+
   async findByEmail(email: string): Promise<User | null> {
     return this.userRepository.findOne({
       where: { email },

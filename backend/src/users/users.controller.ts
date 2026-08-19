@@ -54,7 +54,7 @@ export class UsersController {
   @ApiGetCurrentUser()
   getMe(@Req() req: AuthRequest) {
     const userId = req.user.sub;
-    return this.usersService.findOne(userId);
+    return this.usersService.findCurrentUser(userId);
   }
 
   @UseGuards(AccessTokenGuard)

@@ -535,6 +535,18 @@ describe('SkillsController (e2e)', () => {
         .post(`/api/skills/${skillId}/favorite`)
         .set('Authorization', `Bearer ${userAccessToken}`)
         .expect(201);
+
+      const meResponse = await request(httpServer)
+        .get('/api/users/me')
+        .set('Authorization', `Bearer ${userAccessToken}`)
+        .expect(200);
+
+      expect(Array.isArray(meResponse.body.favoriteSkills)).toBe(true);
+      expect(
+        meResponse.body.favoriteSkills.some(
+          (skill: { id: string }) => skill.id === skillId,
+        ),
+      ).toBe(true);
     });
 
     it('возвращает 409 при повторном добавлении', async () => {
@@ -597,6 +609,17 @@ describe('SkillsController (e2e)', () => {
         .delete(`/api/skills/${skillId}/favorite`)
         .set('Authorization', `Bearer ${userAccessToken}`)
         .expect(200);
+
+      const meResponse = await request(httpServer)
+        .get('/api/users/me')
+        .set('Authorization', `Bearer ${userAccessToken}`)
+        .expect(200);
+
+      expect(
+        meResponse.body.favoriteSkills.some(
+          (skill: { id: string }) => skill.id === skillId,
+        ),
+      ).toBe(false);
     });
 
     it('возвращает 404 при удалении не избранного навыка', async () => {

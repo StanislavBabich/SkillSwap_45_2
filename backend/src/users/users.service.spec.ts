@@ -52,6 +52,22 @@ describe('UsersService', () => {
     service = module.get<UsersService>(UsersService);
   });
 
+  describe('findCurrentUser', () => {
+    it('должен возвращать пользователя с избранными навыками', async () => {
+      const userWithFavorites = { ...mockUser, favoriteSkills: [mockSkill] };
+      const queryBuilder = userRepo.createQueryBuilder();
+      queryBuilder.getOne.mockResolvedValue(userWithFavorites);
+
+      const result = await service.findCurrentUser(mockUser.id);
+
+      expect(result.favoriteSkills).toEqual([mockSkill]);
+      expect(queryBuilder.leftJoinAndSelect).toHaveBeenCalledWith(
+        'user.favoriteSkills',
+        'favoriteSkill',
+      );
+    });
+  });
+
   describe('create', () => {
     it('должен создавать нового пользователя', async () => {
       userRepo.create.mockReturnValue(mockUser);

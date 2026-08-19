@@ -6,6 +6,7 @@ import { initializeCities } from '@/features/cities/slice.ts';
 import { initializeSkills } from '@/features/skills/slice.ts';
 import { initializeUsers } from '@/features/users/slice.ts';
 import { useAppDispatch } from '@/app/store/hooks.ts';
+import { initializeFavoriteSkills } from '@/features/favorites/slice.ts';
 
 export const RouterProvider = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ export const RouterProvider = () => {
     void dispatch(initializeSkills());
     void dispatch(initializeCities());
     void dispatch(initializeCategories());
+    void dispatch(initializeFavoriteSkills());
   }, [dispatch]);
 
   return (

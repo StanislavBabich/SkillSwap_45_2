@@ -96,12 +96,11 @@ export const selectSimilarSkills = (skillId: EntityId) =>
 
 /** Избранные навыки текущего пользователя */
 export const selectFavoriteSkills = createSelector(
-  [selectSkills, (_state: RootState, userId: EntityId | null) => userId],
-  (skills, userId): Skill[] => {
-    if (!userId) return [];
-    // Избранное теперь на бекенде, нужен отдельный запрос
-    return [];
-  }
+  [selectSkills, (state: RootState) => state.favorites.skillIds ?? []],
+  (skills, favoriteSkillIds): Skill[] =>
+    favoriteSkillIds
+      .map((id) => skills.find((skill) => skill.id === id))
+      .filter((skill): skill is Skill => skill !== undefined)
 );
 
 /** Навыки пользователя */

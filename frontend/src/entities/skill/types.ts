@@ -18,6 +18,7 @@ export interface Skill {
   };
   createdAt: string;               // новое поле
   updatedAt: string;               // новое поле
+  favoriteCount?: number;
 }
 
 export interface SkillsListResponse {
