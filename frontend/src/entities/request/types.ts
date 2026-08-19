@@ -40,3 +40,5 @@ export interface CreateSkillShareRequestDto {
   offeredSkillId: EntityId;
   requestedSkillId: EntityId;
 }
+
+export type UpdateSkillShareRequestDto = Partial<Omit<SkillShareRequest, 'id'>>;

@@ -1,7 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { EntityId } from '@/entities/base.ts';
 import type {
-  CreateSkillShareRequestDto,
   SkillShareRequest,
   SkillShareRequestStatus,
   UpdateSkillShareRequestDto,
@@ -25,29 +24,12 @@ interface UpdateRequestPayload {
   dto: UpdateSkillShareRequestDto;
 }
 
-const getNextId = (items: { id: EntityId }[]): EntityId =>
-  items.length ? Math.max(...items.map((item) => item.id)) + 1 : 1;
-
-const getTodayDate = (): string => new Date().toISOString().split('T')[0];
-
-
 const requestsSlice = createSlice({
   name: 'requests',
   initialState,
   reducers: {
     setRequests: (state, action: PayloadAction<SkillShareRequest[]>) => {
       state.items = action.payload;
-    },
-    createRequest: (state, action: PayloadAction<CreateSkillShareRequestDto>) => {
-      state.items.push({
-        id: getNextId(state.items),
-        fromUserId: action.payload.fromUserId,
-        toUserId: action.payload.toUserId,
-        skillId: action.payload.skillId,
-        status: action.payload.status ?? 'pending',
-        createdAt: getTodayDate(),
-        updatedAt: getTodayDate()
-      });
     },
     updateRequestStatus: (state, action: PayloadAction<UpdateRequestStatusPayload>) => {
       const request = state.items.find((item) => item.id === action.payload.requestId);
@@ -77,23 +59,17 @@ const requestsSlice = createSlice({
     selectRequestById: (state, requestId: EntityId) =>
       state.items.find((request) => request.id === requestId),
     selectRequestsByFromUserId: (state, fromUserId: EntityId) =>
-      state.items.filter((request) => request.fromUserId === fromUserId),
+      state.items.filter((request) => request.sender.id === fromUserId),
     selectRequestsByToUserId: (state, toUserId: EntityId) =>
-      state.items.filter((request) => request.toUserId === toUserId),
+      state.items.filter((request) => request.receiver.id === toUserId),
     selectRequestsByStatus: (state, status: SkillShareRequestStatus) =>
       state.items.filter((request) => request.status === status),
     selectPendingRequests: (state) => state.items.filter((request) => request.status === 'pending'),
   },
 });
 
-export const {
-  setRequests,
-  createRequest,
-  updateRequestStatus,
-  updateRequest,
-  removeRequest,
-  clearRequests,
-} = requestsSlice.actions;
+export const { setRequests, updateRequestStatus, updateRequest, removeRequest, clearRequests } =
+  requestsSlice.actions;
 
 export const {
   selectAllRequests,
@@ -101,7 +77,7 @@ export const {
   selectRequestsByFromUserId,
   selectRequestsByStatus,
   selectPendingRequests,
-  selectRequestsByToUserId
+  selectRequestsByToUserId,
 } = requestsSlice.selectors;
 
 export const requestsReducer = requestsSlice.reducer;

@@ -13,6 +13,7 @@ import { AboutPage } from '@/pages/AboutPage';
 import { RegisterPage } from '@pages/RegisterPage';
 import { CreateSkillPage } from '@pages/CreateSkillPage';
 import { MySkillsPage } from '@pages/MySkillsPage';
+import { RequestsPage } from '@/pages/RequestsPage';
 
 export const AppRouter = () => {
   return (
@@ -48,6 +49,15 @@ export const AppRouter = () => {
     </PrivateRoute>
   }
 />
+
+        <Route
+          path="requests"
+          element={
+            <PrivateRoute>
+              <RequestsPage />
+            </PrivateRoute>
+          }
+        />
 
         <Route
           path="favorites"

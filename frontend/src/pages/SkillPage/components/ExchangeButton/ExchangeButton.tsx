@@ -1,8 +1,7 @@
-import clsx from 'clsx';
 import { useAuth } from '@/features/auth';
 
 import { Button } from '@/shared/ui/Button';
-import { Icon } from '@/shared/ui/Icon';
+import type { SkillShareRequestStatus } from '@/entities/request/types';
 
 import styles from './ExchangeButton.module.css';
 
@@ -10,27 +9,54 @@ type Props = {
   skillId: string;
   onClick: () => void;
   onIncomingClick?: () => void;
+  isOwner: boolean;
+  activeStatus?: SkillShareRequestStatus | null;
+  hasOfferedSkill: boolean;
 };
 
-export const ExchangeButton = ({ skillId, onClick, onIncomingClick }: Props) => {
-  const { user: authUser } = useAuth();
-  const currentUserId = authUser?.id ?? null;
+const statusText: Partial<Record<SkillShareRequestStatus, string>> = {
+  pending: 'Заявка ожидает ответа',
+  accepted: 'Заявка принята',
+  inProgress: 'Обмен начат',
+};
 
-  // TODO: заменить на API-запросы для проверки заявок
-  const isOwner = false; // временно
-  const outgoingRequest = null;
-  const incomingRequest = null;
+export const ExchangeButton = ({ onClick, isOwner, activeStatus, hasOfferedSkill }: Props) => {
+  const { user: authUser } = useAuth();
 
   if (isOwner) {
     return (
+      <Button variant="secondary" size="large" fullWidth disabled className={styles.exchangeButton}>
+        Это ваш навык
+      </Button>
+    );
+  }
+
+  if (!authUser) {
+    return (
       <Button
-        variant="secondary"
+        variant="primary"
         size="large"
         fullWidth
-        disabled
         className={styles.exchangeButton}
+        onClick={onClick}
       >
-        Это ваш навык
+        Войти, чтобы предложить обмен
+      </Button>
+    );
+  }
+
+  if (activeStatus && statusText[activeStatus]) {
+    return (
+      <Button variant="secondary" size="large" fullWidth disabled className={styles.exchangeButton}>
+        {statusText[activeStatus]}
+      </Button>
+    );
+  }
+
+  if (!hasOfferedSkill) {
+    return (
+      <Button variant="secondary" size="large" fullWidth disabled className={styles.exchangeButton}>
+        Добавьте свой навык для обмена
       </Button>
     );
   }

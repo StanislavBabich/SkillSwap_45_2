@@ -1,0 +1,108 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 324px;
+  min-height: 368px;
+  padding: 20px;
+  background: var(--base-color, #fff);
+  border-radius: 24px;
+}
+
+.header,
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  gap: 12px;
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.name {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date,
+.statusLabel {
+  font-family: var(--font-family-body, Roboto, sans-serif);
+  font-size: var(--caption-font-size, 12px);
+  line-height: var(--caption-line-height, 16px);
+  color: var(--color-caption, #8e8e93);
+}
+
+.skillsSections {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.sectionTitle {
+  margin: 0;
+}
+
+.skillTag {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: var(--color-tag-education, #e7f2f6);
+}
+
+.statusRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.pending {
+  background: var(--color-tag-language, #ebe5c5);
+}
+
+.accepted,
+.inProgress,
+.done {
+  background: var(--color-tag-health, #e9f7e7);
+}
+
+.rejected {
+  background: var(--color-tag-sport, #ffeaea);
+}
+
+.actions {
+  gap: 8px;
+}
+
+@media (width <= 720px) {
+  .card {
+    width: 100%;
+    max-width: 324px;
+    border-radius: 20px;
+  }
+}

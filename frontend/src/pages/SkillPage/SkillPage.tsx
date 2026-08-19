@@ -9,6 +9,8 @@ import { useAppSelector } from '@/app/store/hooks';
 
 import { useAuth } from '@/features/auth';
 import { selectUserById } from '@/features/users/slice';
+import { requestsApi } from '@/entities/request/api';
+import type { SkillShareRequest } from '@/entities/request/types';
 
 import { UserSidebar } from './components/UserSidebar';
 import { SkillInfo } from './components/SkillInfo';
@@ -32,6 +34,8 @@ export const SkillPage = () => {
   const [owner, setOwner] = useState<User | null>(null);
   const [similarSkills, setSimilarSkills] = useState<Skill[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [proposerSkillId, setProposerSkillId] = useState<string | undefined>();
+  const [activeRequest, setActiveRequest] = useState<SkillShareRequest | null>(null);
 
   const skillId: EntityId | null = id ?? null;
 
@@ -90,17 +94,25 @@ export const SkillPage = () => {
   );
   const fromUser = useAppSelector(fromUserSelector);
 
-  const proposerSkillId = useAppSelector(
-    useMemo(() => {
-      if (!authUser) return () => undefined;
-      return (state: RootState) => {
-        const userSkills = state.skills.items.filter(
-          (s: Skill) => s.owner?.id === authUser.id
+  useEffect(() => {
+    if (!authUser || !skillId) return;
+    const loadExchangeState = async () => {
+      try {
+        const [skillsResponse, outgoing] = await Promise.all([
+          fetch(`${API_URL}/skills?limit=200`).then((response) => response.json()),
+          requestsApi.getOutgoing(),
+        ]);
+        const ownSkill = (skillsResponse.data ?? []).find(
+          (item: Skill) => item.owner?.id === authUser.id
         );
-        return userSkills[0]?.id;
-      };
-    }, [authUser])
-  );
+        setProposerSkillId(ownSkill?.id);
+        setActiveRequest(outgoing.find((request) => request.requestedSkill.id === skillId) ?? null);
+      } catch {
+        setProposerSkillId(undefined);
+      }
+    };
+    void loadExchangeState();
+  }, [authUser, skillId]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -132,6 +144,9 @@ export const SkillPage = () => {
             skillId={skillId}
             skill={skill}
             onExchangeClick={handleExchangeClick}
+            isOwner={authUser?.id === skill.owner.id}
+            activeRequestStatus={activeRequest?.status}
+            hasOfferedSkill={Boolean(proposerSkillId)}
           />
         </main>
       </section>
@@ -145,13 +160,12 @@ export const SkillPage = () => {
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           skillId={skillId}
-          fromUserId={authUser.id}
           toUserId={skill.owner.id}
           mode={modalMode}
           fromUserName={fromUser?.name}
           toUserName={owner?.name}
-          skillName={skill.title}
           proposerSkillId={proposerSkillId}
+          onCreated={setActiveRequest}
         />
       )}
     </div>

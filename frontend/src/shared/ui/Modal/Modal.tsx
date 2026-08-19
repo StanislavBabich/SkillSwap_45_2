@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
-import { Button } from '@/shared/ui/Button'; 
+import { Button } from '@/shared/ui/Button';
 import styles from './Modal.module.css';
 
 const FOCUSABLE_SELECTOR =
@@ -10,45 +10,49 @@ const FOCUSABLE_SELECTOR =
 export interface ModalProps {
   /** Открыта ли модалка */
   isOpen: boolean;
-  
+
   /** Закрытие модалки */
   onClose: () => void;
-  
+
   /** Иконка  */
   icon?: ReactNode;
-  
+
   /** Заголовок */
   title?: string;
-  
+
   /** Текст описания */
   description?: string;
-  
+
   /** Контент (если нужен кастомный) */
   children?: ReactNode;
-  
+
   /** Текст кнопки */
   buttonText?: string;
-  
+
   /** Вариант кнопки */
   buttonVariant?: 'primary' | 'secondary' | 'text';
-  
+
   /** Размер кнопки */
   buttonFullWidth?: boolean;
-  
+
   /** Обработчик кнопки */
   onButtonClick?: () => void;
-  
+
+  buttonDisabled?: boolean;
+
+  buttonLoading?: boolean;
+
   /** Закрывать по Escape */
   closeOnEscape?: boolean;
-  
+
   /** Закрывать по клику на оверлей */
   closeOnOverlayClick?: boolean;
-  
+
   /** Дополнительные классы */
   className?: string;
 
   /** Скрывать системную кнопку */
-  hideButton?: boolean;  // ← ДОБАВЛЕНО
+  hideButton?: boolean; // ← ДОБАВЛЕНО
 }
 
 export const Modal = ({
@@ -62,10 +66,12 @@ export const Modal = ({
   buttonVariant = 'primary',
   buttonFullWidth = true,
   onButtonClick,
+  buttonDisabled = false,
+  buttonLoading = false,
   closeOnEscape = true,
   closeOnOverlayClick = true,
   className,
-  hideButton,                 // ← ДОБАВЛЕНО
+  hideButton, // ← ДОБАВЛЕНО
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
@@ -154,11 +160,7 @@ export const Modal = ({
   if (!isOpen) return null;
 
   return createPortal(
-    <div
-      className={styles.overlay}
-      onClick={handleOverlayClick}
-      role="presentation"
-    >
+    <div className={styles.overlay} onClick={handleOverlayClick} role="presentation">
       <div
         ref={modalRef}
         className={clsx(styles.modal, className)}
@@ -169,34 +171,34 @@ export const Modal = ({
         onClick={(e) => e.stopPropagation()}
       >
         {icon && <div className={styles.iconWrapper}>{icon}</div>}
-        
+
         {title && (
           <h2 id="modal-title" className={styles.title}>
             {title}
           </h2>
         )}
-        
+
         {description && (
           <p id="modal-description" className={styles.description}>
             {description}
           </p>
         )}
-        
+
         {children}
-        
-      
-        {!hideButton && (           /* ← ДОБАВЛЕНО УСЛОВИЕ */
+
+        {!hideButton /* ← ДОБАВЛЕНО УСЛОВИЕ */ && (
           <Button
             variant={buttonVariant}
             fullWidth={buttonFullWidth}
             onClick={onButtonClick || onClose}
+            disabled={buttonDisabled}
+            isLoading={buttonLoading}
             className={styles.button}
             autoFocus
           >
             {buttonText}
           </Button>
         )}
-
       </div>
     </div>,
     document.body

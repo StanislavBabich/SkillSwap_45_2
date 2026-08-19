@@ -6,20 +6,20 @@ import { Header } from '@/widgets/Header';
 import { Footer } from '@/widgets/Footer';
 import { NotificationToast } from '@/widgets/Notifications';
 import { storage } from '@/shared/lib/storage';
+import { useRequestNotifications } from '@/features/notifications/useRequestNotifications';
 import styles from './Layout.module.css';
 
 export const Layout = () => {
+  useRequestNotifications();
   const allUnread = useAppSelector(selectUnreadNotifications);
   const [dismissedFromToastIds, setDismissedFromToastIds] = useState<string[]>([]);
-  
+
   const currentUser = storage.getCurrentUser();
   const currentUserId = currentUser?.id;
 
   // Используем useMemo чтобы избежать лишних ререндеров
   const unread = useMemo(() => {
-    return currentUserId 
-      ? allUnread.filter(n => n.userId === currentUserId)
-      : [];
+    return currentUserId ? allUnread.filter((n) => n.userId === currentUserId) : [];
   }, [allUnread, currentUserId]);
 
   // useMemo для toast
@@ -31,9 +31,7 @@ export const Layout = () => {
 
   // Очищаем dismissed от уведомлений, которых больше нет в списке
   useEffect(() => {
-    setDismissedFromToastIds((prev) => 
-      prev.filter((id) => unread.some((n) => n.id === id))
-    );
+    setDismissedFromToastIds((prev) => prev.filter((id) => unread.some((n) => n.id === id)));
   }, [unread]); // Зависимость только от unread
 
   const handleToastClose = (notificationId: string) => {
@@ -47,9 +45,7 @@ export const Layout = () => {
         <Outlet />
       </main>
       <Footer />
-      {toastToShow && (
-        <NotificationToast notification={toastToShow} onClose={handleToastClose} />
-      )}
+      {toastToShow && <NotificationToast notification={toastToShow} onClose={handleToastClose} />}
     </div>
   );
 };

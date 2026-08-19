@@ -35,20 +35,16 @@ export const NotificationModal = forwardRef<HTMLDivElement, NotificationModalPro
   function NotificationModal({ isOpen, onClose }, ref) {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    
+
     const currentUser = storage.getCurrentUser();
     const currentUserId = currentUser?.id;
 
     const allUnread = useAppSelector(selectUnreadNotifications);
     const allRead = useAppSelector(selectReadNotifications);
-    
-    const unread = currentUserId 
-      ? allUnread.filter(n => n.userId === currentUserId)
-      : [];
-      
-    const read = currentUserId
-      ? allRead.filter(n => n.userId === currentUserId)
-      : [];
+
+    const unread = currentUserId ? allUnread.filter((n) => n.userId === currentUserId) : [];
+
+    const read = currentUserId ? allRead.filter((n) => n.userId === currentUserId) : [];
 
     useEffect(() => {
       const handleEscape = (e: KeyboardEvent) => {
@@ -62,17 +58,22 @@ export const NotificationModal = forwardRef<HTMLDivElement, NotificationModalPro
 
     const handleMarkAllRead = () => {
       if (currentUserId) {
-        dispatch(markAllAsRead(currentUserId)); 
+        dispatch(markAllAsRead(currentUserId));
       }
     };
 
     const handleClearRead = () => {
       if (currentUserId) {
-        dispatch(clearRead(currentUserId)); 
+        dispatch(clearRead(currentUserId));
       }
     };
 
     const handleGoClick = (notification: Notification) => {
+      if (!notification.skillId) {
+        navigate('/requests');
+        onClose();
+        return;
+      }
       if (notification.message.startsWith('Вы')) {
         navigate(`/skill/${notification.skillId}`);
       } else {
@@ -90,12 +91,7 @@ export const NotificationModal = forwardRef<HTMLDivElement, NotificationModalPro
         <div key={n.id} className={styles.item}>
           <div className={styles.itemRow}>
             <div className={styles.itemContent}>
-              <Icon
-                name="bulb"
-                size={33}
-                className={styles.itemIcon}
-                aria-hidden="true"
-              />
+              <Icon name="bulb" size={33} className={styles.itemIcon} aria-hidden="true" />
               <div className={styles.itemMain}>
                 <p className={styles.itemMessage}>{getNotificationDisplayMessage(n)}</p>
                 <p className={styles.itemHint}>{getNotificationHint(n)}</p>
@@ -118,15 +114,7 @@ export const NotificationModal = forwardRef<HTMLDivElement, NotificationModalPro
     }
 
     function renderSection(options: NotificationModalSectionOptions) {
-      const {
-        title,
-        titleId,
-        actionLabel,
-        onAction,
-        items,
-        emptyText,
-        showGoButton,
-      } = options;
+      const { title, titleId, actionLabel, onAction, items, emptyText, showGoButton } = options;
       return (
         <section className={styles.section}>
           <header className={styles.sectionHeader}>

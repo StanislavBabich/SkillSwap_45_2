@@ -64,17 +64,17 @@ const notificationsSlice = createSlice({
       }
     },
     // помечаем как прочитанные только уведомления указанного пользователя
-    markAllAsRead: (state, action: PayloadAction<number>) => {
+    markAllAsRead: (state, action: PayloadAction<string>) => {
       const userId = action.payload;
       let changed = false;
-      
+
       state.items.forEach((n) => {
         if (n.userId === userId && !n.isRead) {
           n.isRead = true;
           changed = true;
         }
       });
-      
+
       if (changed) {
         state.unreadCount = getUnreadCount(state.items);
         saveToStorage(state.items);
@@ -87,12 +87,12 @@ const notificationsSlice = createSlice({
       saveToStorage(state.items);
     },
     // очищаем только прочитанные уведомления указанного пользователя
-    clearRead: (state, action: PayloadAction<number>) => {
+    clearRead: (state, action: PayloadAction<string>) => {
       const userId = action.payload;
       const previousLength = state.items.length;
-      
+
       state.items = state.items.filter((n) => !(n.userId === userId && n.isRead));
-      
+
       if (previousLength !== state.items.length) {
         state.unreadCount = getUnreadCount(state.items);
         saveToStorage(state.items);
