@@ -1,0 +1,136 @@
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.inputLabel {
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 24px;
+  color: var(--text-color, #253017);
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  background-color: var(--base-color, #fff);
+  border: 1px solid var(--color-input-border, #69735D);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.inputContainer:focus-within {
+  outline: none;
+}
+
+.variant_default {
+  border-color: var(--color-input-border, #69735D);
+}
+
+.inputError {
+  border-color: var(--color-error, #bf3920);
+}
+
+.inputSuccess {
+  border-color: var(--color-input-border, #69735D);
+}
+
+.inputDisabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.inputLoading {
+  opacity: 0.7;
+}
+
+.inputField {
+  flex: 1;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--font-size-sm, 16px);
+  color: var(--text-color, #253017);
+  caret-color: var(--color-link-button, #508826);
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+.inputField:disabled {
+  cursor: not-allowed;
+}
+
+.inputAdornmentStart {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.inputAdornmentEnd {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  min-width: 24px;
+}
+
+.inputIconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.inputIconButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.inputSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-input-spinner, rgb(37 48 23 / 10%));
+  border-top: 2px solid var(--text-color, #253017);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.inputHelper {
+  min-height: 13px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs, 12px);
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 16px;
+  color: var(--text-color, #253017);
+}
+
+.helperError {
+  color: var(--color-error, #bf3920);
+}
+
+.helperSuccess {
+  color: var(--color-link-button);
+}
+
+.inputIcon {
+  display: block;
+}

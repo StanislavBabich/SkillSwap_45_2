@@ -1,0 +1,13 @@
+.sectionList {
+    list-style: none;
+}
+
+.sectionHeader {
+    margin-block-end: 32px;
+}
+
+.sectionListItem {
+    display: flex;
+    flex-direction: column;
+    margin-block-end: 40px;
+}

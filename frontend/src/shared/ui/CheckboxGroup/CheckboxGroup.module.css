@@ -1,0 +1,56 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.label {
+  margin-bottom: 0.9em;
+  font-family: var(--font-family-heading, 'Jost');
+  font-size: var(--heading-h3-font-size, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: var(--heading-h3-line-height, 24px);
+  color: var(--text-color, #253017);
+}
+
+.required {
+  color: var(--color-error, #bf3920);
+}
+
+.counter {
+  margin-left: 0.25em;
+  font-size: var(--font-size-sm, 16px);
+  color: var(--text-color, #253017);
+  opacity: 0.7;
+}
+
+.description {
+  margin-bottom: 0.75em;
+  font-size: var(--font-size-sm, 16px);
+  color: var(--text-color, #253017);
+  opacity: 0.8;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-left: 0.15rem;
+}
+
+.horizontal .options {
+  flex-direction: row;
+}
+
+.grid .options {
+  display: grid;
+  gap: 0.75em;
+}
+
+.error {
+  margin-top: 0.75em;
+  font-size: var(--font-size-xs, 12px);
+  color: var(--color-error, #bf3920);
+}

@@ -1,0 +1,95 @@
+.page {
+  display: grid;
+  grid-template-columns: 308px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.menuCard {
+  position: sticky;
+  top: 24px;
+  padding: 24px 20px;
+  background: var(--base-color, #fff);
+  border-radius: 24px;
+}
+
+.content {
+  min-width: 0;
+  padding: 36px;
+  background: var(--base-color, #fff);
+  border-radius: 24px;
+}
+
+.title {
+  margin: 0 0 24px;
+  font-family: var(--font-family-heading, Jost, sans-serif);
+  font-size: var(--heading-h1-font-size, 32px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-disabled, #e4e8df);
+}
+
+.tab,
+.activeTab {
+  padding: 12px 18px;
+  color: var(--color-caption, #8e8e93);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+}
+
+.activeTab {
+  color: var(--text-color, #253017);
+  border-bottom-color: var(--color-link-button, #508826);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 324px));
+  gap: 24px;
+}
+
+.state {
+  padding: 48px 16px;
+  color: var(--color-caption, #8e8e93);
+  text-align: center;
+}
+
+.success,
+.error {
+  padding: 12px 16px;
+  margin: 0 0 20px;
+  border-radius: 12px;
+}
+
+.success {
+  background: var(--color-tag-health, #e9f7e7);
+}
+
+.error {
+  color: var(--color-error, #bf3920);
+  background: var(--color-tag-sport, #ffeaea);
+}
+
+@media (width <= 980px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .menuCard {
+    position: static;
+  }
+}
+
+@media (width <= 680px) {
+  .content {
+    padding: 24px 16px;
+  }
+}

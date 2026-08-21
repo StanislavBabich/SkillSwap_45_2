@@ -1,0 +1,57 @@
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 77px;
+  align-items: stretch;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.exchangeButton {
+  width: 100%;
+  margin-top: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.category {
+  margin: 4px 0 20px;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--caption-font-size, 12px);
+  font-weight: var(--font-weight-regular, 400);
+  line-height: var(--caption-line-height, 16px);
+  color: var(--color-input-border, #69735d);
+  letter-spacing: 0.03em;
+}
+
+.description {
+  margin: 0 0 28px;
+  font-family: var(--font-family-body, 'Roboto');
+  font-weight: var(--font-weight-regular, 400);
+  line-height: var(--body-line-height, 24px);
+}
+
+.icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  gap: 16px;
+  justify-content: end;
+  margin: 0 0 24px;
+}
+

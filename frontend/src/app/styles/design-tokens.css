@@ -1,0 +1,60 @@
+:root {
+  /* colors */
+  --bg-color: #f9faf7;
+  --base-color: #fff;
+  --text-color: #253017;
+  --color-caption: #8E8E93;
+  --color-disabled-text:#9CA197;
+  --color-toggle: #B2B9A9;
+  --color-link-button: #508826;
+  --color-button-hover: #DEEBC5;
+  --color-accent: #abd27a;
+  --color-alarm: #E0796E;
+  --color-error: #bf3920;
+  --color-input-border: #69735d;
+  --color-button-muted: #e4e8df;
+  --color-input-spinner: rgb(37 48 23 / 10%);
+  --color-input-caret: #508826;
+  --color-disabled: #E4E8DF;  
+
+  /* category-bg-colors */
+  --color-tag-business: #eee7f7;
+  --color-tag-art: #f7e7f2;
+  --color-tag-language: #ebe5c5;
+  --color-tag-education: #e7f2f6;
+  --color-tag-home: #f7ebe5;
+  --color-tag-health: #e9f7e7;
+  --color-tag-tech: #dbe3f5;
+  --color-tag-sport: #ffeaea;
+  --color-tag-overflow: #e8ecf7;
+  --focus-color: #1a73e8;
+  --color-overlay: #8e8e8e99;
+  --border-modal-radius: 12px;
+}
+
+/* Темная тема */
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --base-color: #1e1e1e;
+  --text-color: #f1f1f1;
+  --color-accent: #7aa94f;
+  --color-accent-alt: #3a3f2d;
+  --color-error: #ff6b4a;
+  --color-input-border: #444;
+  --color-button-muted: #2a2a2a;
+  --color-input-spinner: rgb(255 255 255 / 10%);
+  --color-input-caret: #9bc26b;
+  --color-caption: #b0b0b0;
+  --color-overlay: rgb(0 0 0 / 60%);
+  --color-button-hover: #6e7b55;
+  --color-disabled: #6e7b55;
+  --color-tag-business: #322b3a;
+  --color-tag-art: #3a2e37;
+  --color-tag-language: #3d392b;
+  --color-tag-education: #2e3a3d;
+  --color-tag-home: #3d332e;
+  --color-tag-health: #2e3d2e;
+  --color-tag-tech: #2d3142;
+  --color-tag-sport: #422e2e;
+  --color-tag-overflow: #2f3142;
+}

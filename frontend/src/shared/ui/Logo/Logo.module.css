@@ -1,0 +1,13 @@
+.logo {
+  display: flex;
+  gap: 12px;
+  align-items: center; 
+}
+
+.logoText {
+  font-family: var(--font-family-heading);
+  font-size: var(--heading-h2-font-size);
+  font-weight: 600;
+  line-height: var(--heading-h2-line-height);
+}
+

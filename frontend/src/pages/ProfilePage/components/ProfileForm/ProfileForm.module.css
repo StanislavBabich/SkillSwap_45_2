@@ -1,0 +1,148 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.emailPasswordGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 218px 218px;
+  gap: 24px;
+  align-items: end;
+}
+
+.rowField {
+  width: 218px;
+  min-width: 218px;
+}
+
+.dateField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dateFieldLabel {
+  margin-bottom: 0;
+  line-height: 24px;
+}
+
+.selectFieldLabel {
+  margin-bottom: 0;
+  line-height: 24px;
+}
+
+.selectFieldTrigger {
+  box-sizing: border-box;
+  height: 48px;
+  min-height: 48px;
+  line-height: 24px;
+}
+
+.compactFieldValue {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  line-height: 24px;
+}
+
+.cityField {
+  width: 100%;
+  min-width: 0;
+}
+
+.changePasswordButton {
+  align-self: flex-start;
+  padding: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--heading-h4-font-size, 16px);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--heading-h4-line-height, 24px);
+  color: var(--text-link-button-pressed, #508826);
+  letter-spacing: var(--heading-h4-letter-spacing, 0.32px);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.changePasswordButton:focus-visible {
+  outline: 1px solid var(--color-link-button, #508826);
+  outline-offset: 2px;
+}
+
+.textareaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 16px;
+  color: var(--text-color, #253017);
+}
+
+.editIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--color-input-border, #69735d);
+}
+
+.textareaWrapper {
+  position: relative;
+}
+
+.textareaEdit {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  display: inline-flex;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: 12px 52px 12px 14px;
+  font: inherit;
+  line-height: 1.45;
+  color: var(--text-color, #253017);
+  resize: vertical;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid var(--color-input-border, #69735d);
+  border-radius: var(--border-modal-radius, 12px);
+}
+
+.textarea:focus-visible {
+  border-color: var(--color-link-button, #508826);
+  box-shadow: 0 0 0 2px rgb(80 136 38 / 15%);
+}
+
+.saveError {
+  font-size: 14px;
+  color: var(--color-error, #bf3920);
+}
+
+.saveButton {
+  margin-top: 16px;
+}
+
+@media (width <= 768px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .rowField {
+    width: 100%;
+    min-width: 0;
+  }
+}

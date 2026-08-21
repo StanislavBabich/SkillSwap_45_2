@@ -1,0 +1,31 @@
+.container {
+ margin-top: 15px;
+ margin-bottom: 40px;
+}
+
+.filtersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Темная тема */
+:global(.dark-theme) .filterButton {
+  color: var(--color-text-dark, #e0e0e0);
+  background-color: var(--color-background-secondary-dark, #2a2a2a);
+  border-color: var(--color-border-dark, #444);
+}
+
+:global(.dark-theme) .filterButton:hover {
+  background-color: var(--color-background-tertiary-dark, #3a3a3a);
+  border-color: var(--color-border-hover-dark, #666);
+}
+
+:global(.dark-theme) .clearAllButton {
+  color: var(--color-text-secondary-dark, #aaa);
+}
+
+:global(.dark-theme) .clearAllButton:hover {
+  color: var(--color-text-dark, #fff);
+}

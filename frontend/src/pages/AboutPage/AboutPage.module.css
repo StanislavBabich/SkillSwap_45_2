@@ -1,0 +1,60 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-heading, 'Jost');
+  font-size: var(--heading-h2-font-size, 24px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: 28px;
+  color: var(--text-color, #253017);
+}
+
+.text {
+  margin: 0;
+  font-family: var(--font-family-body, 'Roboto');
+  font-size: var(--font-size-sm, 16px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--text-color, #253017);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 колонки одинаковой ширины */
+  gap: 24px;
+}
+
+.card {
+  box-sizing: border-box;
+  padding: 25px;
+  background: var(--base-color, #fff);
+  border-radius: 20px;
+}
+
+.metainfo {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  flex-shrink: 0; 
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.ul {
+  margin-left: 20px;
+}

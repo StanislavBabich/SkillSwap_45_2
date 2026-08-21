@@ -1,0 +1,72 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 324px;
+  padding: 20px;
+  background: var(--base-color, #fff);
+  border-radius: 24px;
+}
+
+.variant_compact {
+  gap: 16px;
+  width: 280px;
+  padding: 16px;
+}
+
+.variant_featured {
+  width: 360px;
+  padding: 24px;
+  background: var(--bg-color, #f9faf7);
+}
+
+.like {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.skillsSections {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--text-color, #253017);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.actions {
+  margin-top: auto;
+}
+
+@media (width <= 720px) {
+  .card {
+    width: 100%;
+    max-width: 324px;
+    border-radius: 20px;
+  }
+
+  .like {
+    top: 16px;
+    right: 16px;
+  }
+
+  .userInfo {
+    padding-right: 40px;
+  }
+}

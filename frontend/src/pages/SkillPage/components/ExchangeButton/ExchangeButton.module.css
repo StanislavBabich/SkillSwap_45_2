@@ -1,0 +1,15 @@
+.exchangeButton {
+  width: 100%;
+  margin-top: auto;
+  cursor: pointer;
+}
+
+.requested {
+  pointer-events: none;
+  opacity: 1;
+}
+
+.clockIcon {
+  width: 24px;
+  height: 24px;
+}

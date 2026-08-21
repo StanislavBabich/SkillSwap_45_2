@@ -1,0 +1,12 @@
+.modal {
+  min-width: 34.75rem;
+  padding: 4.6875rem 3.75rem 3.875rem;
+
+}
+
+.modal .icon {
+  display: block;
+  width: 4.6875rem;
+  height: 4.6875rem;
+  margin-bottom: 0.625rem;
+}
