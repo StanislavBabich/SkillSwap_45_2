@@ -1,7 +1,7 @@
 # compiled output
 /dist
 /backend/dist
-/backend/nest-runtime
+/backend/api/_nest
 node_modules/
 /build
 /public

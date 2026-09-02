@@ -1,7 +1,11 @@
 {
   "functions": {
+    "api/index.js": {
+      "includeFiles": "_nest/**",
+      "maxDuration": 30
+    },
     "api/[[...path]].js": {
-      "includeFiles": "nest-runtime/**",
+      "includeFiles": "_nest/**",
       "maxDuration": 30
     }
   }
