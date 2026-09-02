@@ -45,7 +45,11 @@ export async function createExpressServer(): Promise<Express> {
   }
 
   app.use(cookieParser());
-  app.setGlobalPrefix('api');
+
+  // Vercel maps api/[[...path]] so "/api/users" arrives as "/users".
+  if (!process.env.VERCEL) {
+    app.setGlobalPrefix('api');
+  }
 
   app.useGlobalFilters(new AllExceptionsFilter());
 
@@ -57,7 +61,7 @@ export async function createExpressServer(): Promise<Express> {
     .build();
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api/docs', app, swaggerDocument);
+  SwaggerModule.setup(process.env.VERCEL ? 'docs' : 'api/docs', app, swaggerDocument);
 
   app.useGlobalPipes(
     new ValidationPipe({
