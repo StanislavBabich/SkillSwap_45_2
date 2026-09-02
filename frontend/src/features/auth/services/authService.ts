@@ -1,9 +1,20 @@
 import { storage } from '@/shared/lib/storage';
-import type { AuthUser, LoginCredentials } from '../types';
+import type { AuthUser, LoginCredentials, RegisterData } from '../types';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 export class AuthService {
+  static async register(data: RegisterData): Promise<AuthUser> {
+    const result = await this.registerViaApi(
+      data.email,
+      data.password,
+      data.name,
+    );
+    storage.setToken(result.accessToken);
+    storage.setCurrentUser(result.user);
+    return result.user;
+  }
+
   static async registerViaApi(email: string, password: string, name: string): Promise<{ accessToken: string; user: AuthUser }> {
     const res = await fetch(`${API_URL}/auth/register`, {
       method: 'POST',

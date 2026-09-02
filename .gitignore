@@ -1,7 +1,7 @@
 # compiled output
 /dist
 /backend/dist
-/node_modules
+node_modules/
 /build
 /public
 

@@ -32,5 +32,6 @@
     "types": ["jest", "@testing-library/jest-dom"]
   },
   "include": ["src", ".storybook"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
