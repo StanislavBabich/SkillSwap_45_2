@@ -39,14 +39,14 @@ export const SimilarSkills = ({ skills, limit }: SimilarSkillsProps) => {
 
   return (
     <section className={styles.root}>
-      <h2 className={styles.title}>Похожие предложения</h2>
+      <h2 className={styles.title}>Similar offers</h2>
 
       <div className={styles.gridWrapper}>
         {showLeftButton && (
           <button
             type="button"
             className={clsx(styles.navButton, styles.navButtonLeft)}
-            aria-label="Предыдущие"
+            aria-label="Previous"
             onClick={() => setOffset((o) => o - 1)}
           >
             ‹
@@ -70,7 +70,7 @@ export const SimilarSkills = ({ skills, limit }: SimilarSkillsProps) => {
           <button
             type="button"
             className={clsx(styles.navButton, styles.navButtonRight)}
-            aria-label="Следующие"
+            aria-label="Next"
             onClick={() => setOffset((o) => o + 1)}
           >
             ›

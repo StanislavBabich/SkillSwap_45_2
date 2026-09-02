@@ -191,31 +191,31 @@ describe('filters selectors', () => {
 
   describe('selectFiltersDescription', () => {
     test('returns fallback if no filters active', () => {
-      expect(selectFiltersDescription(baseState)).toBe('нет активных фильтров');
+      expect(selectFiltersDescription(baseState)).toBe('no active filters');
     });
 
     test('returns description for search filter', () => {
       expect(selectFiltersDescription({
         filters: { ...baseState.filters, search: 'hello' }
-      })).toBe('поиск: "hello"');
+      })).toBe('search: "hello"');
     });
 
     test('returns description for skillType', () => {
       expect(selectFiltersDescription({
         filters: { ...baseState.filters, skillType: 'learn' }
-      })).toBe('режим: хочу научиться');
+      })).toBe('mode: want to learn');
     });
 
     test('returns description for gender', () => {
       expect(selectFiltersDescription({
         filters: { ...baseState.filters, gender: 'male' }
-      })).toBe('пол: male');
+      })).toBe('gender: male');
     });
 
     test('returns description for categories', () => {
       expect(selectFiltersDescription({
         filters: { ...baseState.filters, selectedCategoryIds: [1, 2] }
-      })).toBe('категории: 2 выбрано');
+      })).toBe('categories: 2 selected');
     });
 
     test('returns combined description for all filters', () => {
@@ -229,7 +229,7 @@ describe('filters selectors', () => {
           selectedCityIds: [10, 20],
         }
       })).toBe(
-        'поиск: "x", режим: могу научить, пол: female, категории: 1 выбрано, города: 2 выбрано'
+        'search: "x", mode: can teach, gender: female, categories: 1 selected, cities: 2 selected'
       );
     });
   });

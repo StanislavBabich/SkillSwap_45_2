@@ -35,7 +35,7 @@
   letter-spacing: var(--caption-letter-spacing, 0);
 }
 
-.left :global(button[aria-label='Сменить аватар'])::after {
+.left :global(button[aria-label='Change avatar'])::after {
   position: absolute;
   top: calc(100% + 8px);
   left: 50%;
@@ -50,7 +50,7 @@
   letter-spacing: var(--caption-letter-spacing, 0);
   white-space: normal;
   pointer-events: none;
-  content: 'Сгенерировать новый аватар';
+  content: 'Generate a new avatar';
   background-color: var(--base-color, #fff);
   border: 1px solid var(--color-input-border, #69735d);
   border-radius: 10px;
@@ -60,8 +60,8 @@
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.left :global(button[aria-label='Сменить аватар']:hover)::after,
-.left :global(button[aria-label='Сменить аватар']:focus-visible)::after {
+.left :global(button[aria-label='Change avatar']:hover)::after,
+.left :global(button[aria-label='Change avatar']:focus-visible)::after {
   opacity: 1;
   transform: translate(-50%, 0);
 }

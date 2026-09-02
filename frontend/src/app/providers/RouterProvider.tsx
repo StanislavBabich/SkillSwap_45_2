@@ -21,7 +21,7 @@ export const RouterProvider = () => {
 
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Загрузка...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <AppRouter />
       </Suspense>
     </BrowserRouter>

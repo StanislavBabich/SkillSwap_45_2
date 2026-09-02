@@ -18,7 +18,7 @@ function FiltersBar() {
     <div className={styles.sidebar}>
       <div className={styles.top}>
         <h2 className={styles.title}>
-          Фильтры {hasActiveFilters && <span>({selectedFiltersCount})</span>}
+          Filters {hasActiveFilters && <span>({selectedFiltersCount})</span>}
         </h2>
         
         {hasActiveFilters && (
@@ -28,7 +28,7 @@ function FiltersBar() {
             variant="text"
             onClick={() => dispatch(resetFilters())}
           >
-            Сбросить
+            Reset
           </Button>
         )}
       </div>

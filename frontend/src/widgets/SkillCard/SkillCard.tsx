@@ -55,7 +55,7 @@ export const SkillCard = ({
       <div className={styles.skillsSections}>
         <div className={styles.section}>
           <Headline level={4} className={styles.sectionTitle}>
-            Может научить:
+            Can teach:
           </Headline>
           <div className={styles.tags}>
             <Tag categoryName={skill.category?.name}>{skill.title}</Tag>
@@ -65,7 +65,7 @@ export const SkillCard = ({
         {wantToLearn.length > 0 && (
           <div className={styles.section}>
             <Headline level={4} className={styles.sectionTitle}>
-              Хочет научиться:
+              Wants to learn:
             </Headline>
             <div className={styles.tags}>
               {visibleWantToLearn.map((cat) => (
@@ -87,7 +87,7 @@ export const SkillCard = ({
         className={styles.actions}
         onClick={handleOpenDetails}
       >
-        Подробнее
+        More details
       </Button>
     </article>
   );

@@ -26,8 +26,8 @@ export const ExchangeModal = ({
   toUserId,
   mode = 'create',
   offeredSkillId,
-  fromUserName = 'Пользователь',
-  toUserName = 'Пользователь',
+  fromUserName = 'User',
+  toUserName = 'User',
   proposerSkillId,
   onCreated,
 }: ExchangeModalProps) => {
@@ -62,7 +62,7 @@ export const ExchangeModal = ({
         onCreated?.(request);
       } catch (error) {
         setResult('error');
-        setErrorMessage(error instanceof Error ? error.message : 'Не удалось отправить заявку');
+        setErrorMessage(error instanceof Error ? error.message : 'Failed to send request');
       } finally {
         setIsSubmitting(false);
       }
@@ -73,27 +73,27 @@ export const ExchangeModal = ({
   };
 
   const getTitle = () => {
-    if (mode === 'incoming') return 'Вам предложили обмен';
-    if (result === 'success') return 'Заявка отправлена';
-    if (result === 'error') return 'Не удалось отправить заявку';
-    return 'Предложить обмен';
+    if (mode === 'incoming') return 'You have been offered a swap';
+    if (result === 'success') return 'Request sent';
+    if (result === 'error') return 'Failed to send request';
+    return 'Propose a swap';
   };
 
   const getDescription = () => {
     if (mode === 'incoming') {
-      return `Пользователь ${fromUserName} хочет обменяться с вами. Нажмите «Перейти», чтобы посмотреть его навык.`;
+      return `${fromUserName} wants to swap with you. Click “Go” to view their skill.`;
     }
     if (result === 'success')
-      return `Заявка отправлена пользователю ${toUserName}. Дождитесь ответа.`;
+      return `Request sent to ${toUserName}. Please wait for a response.`;
     if (result === 'error') return errorMessage;
-    return 'После отправки получатель увидит заявку во входящих и получит уведомление.';
+    return 'After sending, the recipient will see the request in Incoming and get a notification.';
   };
 
   const getButtonText = () => {
-    if (mode === 'incoming') return 'Перейти';
-    if (result === 'success') return 'Готово';
-    if (result === 'error') return 'Повторить';
-    return 'Отправить заявку';
+    if (mode === 'incoming') return 'Go';
+    if (result === 'success') return 'Done';
+    if (result === 'error') return 'Try again';
+    return 'Send request';
   };
 
   return (

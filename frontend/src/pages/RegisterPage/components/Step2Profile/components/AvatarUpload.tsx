@@ -62,7 +62,7 @@ export const AvatarUpload = ({
           <button
             type="button"
             className={styles.iconOnlyActionButton}
-            aria-label="Сменить аватар"
+            aria-label="Change avatar"
             onClick={handleRefresh}
           >
             <Icon name="avatar-generate" className={styles.iconOnlyActionIcon} aria-hidden="true" />
@@ -87,13 +87,13 @@ export const AvatarUpload = ({
             className={styles.actionButton}
             startIcon={<Icon name="refresh" size={18} className={styles.icon} />}
           >
-            Сгенерировать другой
+            Generate another
           </Button>
         </div>
       </div>
 
       <p className={styles.hint}>
-        Аватар генерируется автоматически. Нажимайте «Сгенерировать другой» чтобы изменить.
+        Avatar is generated automatically. Click “Generate another” to change it.
       </p>
     </div>
   );

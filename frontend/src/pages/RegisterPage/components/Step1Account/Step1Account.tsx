@@ -41,18 +41,18 @@ export const Step1Account = ({
 
   const emailError =
     (emailTouched || submitted) && !email.trim()
-      ? 'Введите email'
+      ? 'Enter email'
       : (emailTouched || submitted) && !isValidEmail(email)
-        ? 'Неверный формат email'
+        ? 'Invalid email format'
         : (emailTouched || submitted) && emailAlreadyUsed && isValidEmail(email)
-          ? 'Email уже используется'
+          ? 'Email is already in use'
           : undefined;
 
   const passwordError =
     (passwordTouched || submitted) && !password
-      ? 'Введите пароль'
+      ? 'Enter password'
       : (passwordTouched || submitted) && !isValidPassword(password)
-        ? 'Пароль должен содержать не менее 8 знаков'
+        ? 'Password must be at least 8 characters'
         : undefined;
 
   const isFormValid =
@@ -78,7 +78,7 @@ export const Step1Account = ({
           className={styles.socialButton}
           startIcon={<img src={GoogleIcon} alt="" className={styles.socialIcon} />}
         >
-          Продолжить с Google
+          Continue with Google
         </Button>
         <Button
           type="button"
@@ -87,19 +87,19 @@ export const Step1Account = ({
           className={styles.socialButton}
           startIcon={<img src={AppleIcon} alt="" className={styles.socialIcon} />}
         >
-          Продолжить с Apple
+          Continue with Apple
         </Button>
       </div>
 
       <div className={styles.divider}>
-        <span className={styles.dividerText}>или</span>
+        <span className={styles.dividerText}>or</span>
       </div>
 
       <div className={styles.fields}>
         <Input
           type="email"
           label="Email"
-          placeholder="Введите email"
+          placeholder="Enter email"
           value={email}
           onChange={(e) => onUpdate({ email: e.target.value })}
           onBlur={() => setEmailTouched(true)}
@@ -108,8 +108,8 @@ export const Step1Account = ({
         />
         <Input
           type="password"
-          label="Пароль"
-          placeholder="Придумайте надёжный пароль"
+          label="Password"
+          placeholder="Create a strong password"
           value={password}
           onChange={(e) => onUpdate({ password: e.target.value })}
           onFocus={() => setPasswordFocused(true)}
@@ -121,9 +121,9 @@ export const Step1Account = ({
           success={!passwordError && !!password && isValidPassword(password)}
           helperText={
             passwordFocused && !passwordError           
-              ? `Пароль должен содержать не менее ${MIN_PASSWORD_LENGTH} знаков`
+              ? `Password must be at least ${MIN_PASSWORD_LENGTH} characters`
               : !passwordError && password && isValidPassword(password)
-                ? 'Надёжный'
+                ? 'Strong'
                 : undefined
           }
           autoComplete="new-password"
@@ -137,7 +137,7 @@ export const Step1Account = ({
         fullWidth
         disabled={!isFormValid}
       >
-        Далее
+        Continue
       </Button>
     </form>
   );

@@ -14,13 +14,13 @@ async function run(): Promise<void> {
     await seedCategories(SeedingDataSource);
     await seedSkills(SeedingDataSource);
     await seedAdmin(SeedingDataSource);
-    console.log('Все сиды успешно выполнены');
+    console.log('All seeds completed successfully');
   } finally {
     await SeedingDataSource.destroy();
   }
 }
 
 run().catch((error: unknown) => {
-  console.error('Ошибка выполнения сидов', error);
+  console.error('Seed execution error', error);
   process.exitCode = 1;
 });

@@ -28,7 +28,7 @@ const meta = {
   args: {
     variant: 'primary',
     size: 'medium',
-    children: 'Подробнее',
+    children: 'More details',
     fullWidth: false,
     disabled: false,
     isLoading: false,
@@ -75,8 +75,8 @@ export const States: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
-      <Button startIcon={<ArrowIcon />}>Назад</Button>
-      <Button endIcon={<ArrowIcon />}>Далее</Button>
+      <Button startIcon={<ArrowIcon />}>Back</Button>
+      <Button endIcon={<ArrowIcon />}>Next</Button>
     </div>
   ),
 };
@@ -84,7 +84,7 @@ export const WithIcons: Story = {
 export const AsLink: Story = {
   render: () => (
     <Button as="a" href="https://example.com" target="_blank" rel="noreferrer">
-      Открыть ссылку
+      Open link
     </Button>
   ),
 };
@@ -92,7 +92,7 @@ export const AsLink: Story = {
 export const FullWidth: Story = {
   render: () => (
     <div style={{ width: 320 }}>
-      <Button fullWidth>Кнопка на всю ширину</Button>
+      <Button fullWidth>Full-width button</Button>
     </div>
   ),
 };

@@ -6,16 +6,16 @@ import '@/app/styles/globals.css';
 import { Select, type SelectOption } from './Select';
 
 const genderOptions: SelectOption[] = [
-  { value: 'not-set', label: 'Не указан' },
-  { value: 'male', label: 'Мужской' },
-  { value: 'female', label: 'Женский' },
+  { value: 'not-set', label: 'Not specified' },
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' },
 ];
 
 const cityOptions: SelectOption[] = [
-  { value: 'msk', label: 'Москва' },
-  { value: 'spb', label: 'Санкт-Петербург' },
-  { value: 'sam', label: 'Самара' },
-  { value: 'srt', label: 'Саратов' },
+  { value: 'msk', label: 'Moscow' },
+  { value: 'spb', label: 'Saint Petersburg' },
+  { value: 'sam', label: 'Samara' },
+  { value: 'srt', label: 'Saratov' },
 ];
 
 const meta = {
@@ -28,7 +28,7 @@ const meta = {
     size: { control: 'inline-radio', options: ['short', 'standard', 'long'] },
   },
   args: {
-    placeholder: 'Выберите значение',
+    placeholder: 'Select a value',
     size: 'standard',
   },
 } satisfies Meta<typeof Select>;
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Uncontroll: Story = {
   args: {
-    label: 'Пол',
+    label: 'Gender',
     options: genderOptions,
     defaultValue: genderOptions[0]?.value,
   },
@@ -51,7 +51,7 @@ export const Controll: Story = {
     return (
       <Select
         {...args}
-        label="Город"
+        label="City"
         options={cityOptions}
         value={value}
         onChange={setValue}
@@ -62,7 +62,7 @@ export const Controll: Story = {
 
 export const Disable: Story = {
   args: {
-    label: 'Город',
+    label: 'City',
     options: cityOptions,
     disabled: true,
   },
@@ -75,11 +75,11 @@ export const Error: Story = {
     return (
       <Select
         {...args}
-        label="Город"
+        label="City"
         options={cityOptions}
         value={value}
         onChange={setValue}
-        error={!value ? 'Обязательное поле' : undefined}
+        error={!value ? 'Required field' : undefined}
       />
     );
   },
@@ -87,19 +87,19 @@ export const Error: Story = {
 
 export const UnknowController: Story = {
   args: {
-    label: 'Город',
+    label: 'City',
     options: cityOptions,
     value: 'unknown-value',
-    unknownValuePlaceholder: 'Значение не найдено',
+    unknownValuePlaceholder: 'Value not found',
   },
 };
 
 export const Size: Story = {
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <Select {...args} label="Город" options={cityOptions} size="short" />
-      <Select {...args} label="Город" options={cityOptions} size="standard" />
-      <Select {...args} label="Город" options={cityOptions} size="long" />
+      <Select {...args} label="City" options={cityOptions} size="short" />
+      <Select {...args} label="City" options={cityOptions} size="standard" />
+      <Select {...args} label="City" options={cityOptions} size="long" />
     </div>
   ),
 };

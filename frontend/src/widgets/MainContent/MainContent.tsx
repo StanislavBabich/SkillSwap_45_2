@@ -80,21 +80,21 @@ export const MainContent = () => {
 
   return (
     <section className={styles.content}>
-      {isLoading ? <p className={styles.stateMessage}>Загрузка данных...</p> : null}
-      {errorMessage ? <p className={styles.errorMessage}>Ошибка: {errorMessage}</p> : null}
+      {isLoading ? <p className={styles.stateMessage}>Loading data...</p> : null}
+      {errorMessage ? <p className={styles.errorMessage}>Error: {errorMessage}</p> : null}
       {mode === 'single' ? (
         <>
           <ActiveFilters className={styles.activeFilters} />
           <SectionHeader
-            title="Подходящие предложения"
+            title="Matching offers"
             appearance="filtered"
             showAction
             className={styles.sectionHeader}
-            actionLabel={sortType === 'new' ? 'Сначала старые' : 'Сначала новые'}
+            actionLabel={sortType === 'new' ? 'Oldest first' : 'Newest first'}
             onActionClick={handleSortChange}
           />
           {displaySkillIds.length === 0 ? (
-            <EmptyState title="Ничего не найдено" description="Попробуйте изменить фильтры или поисковый запрос." />
+            <EmptyState title="Nothing found" description="Try changing the filters or search query." />
           ) : (
             <SectionGrid skillIds={displaySkillIds} onSkillClick={handleSkillClick} infiniteScroll step={21} />
           )}
@@ -104,10 +104,10 @@ export const MainContent = () => {
           {(!selectedSection || selectedSection === 'popular') && (
             <li className={styles.sectionListItem}>
               <SectionHeader
-                title="Популярное"
+                title="Popular"
                 className={styles.sectionHeader}
                 showAction={!selectedSection && allSkillsSorted.length > 3}
-                actionLabel="Смотреть все"
+                actionLabel="See all"
                 onActionClick={() => setSelectedSection('popular')}
                 isBackMode={selectedSection === 'popular'}
                 onBackClick={handleBackToMain}
@@ -125,10 +125,10 @@ export const MainContent = () => {
           {(!selectedSection || selectedSection === 'new') && (
             <li className={styles.sectionListItem}>
               <SectionHeader
-                title="Новое"
+                title="New"
                 className={styles.sectionHeader}
                 showAction={!selectedSection && allSkillsSorted.length > 3}
-                actionLabel="Смотреть все"
+                actionLabel="See all"
                 onActionClick={() => setSelectedSection('new')}
                 isBackMode={selectedSection === 'new'}
                 onBackClick={handleBackToMain}
@@ -145,7 +145,7 @@ export const MainContent = () => {
           )}
           {(!selectedSection || selectedSection === 'recommended') && (
             <li className={styles.sectionListItem}>
-              <SectionHeader title="Рекомендуем" className={styles.sectionHeader} />
+              <SectionHeader title="Recommended" className={styles.sectionHeader} />
               <SectionGrid
                 skillIds={recommendedSkills}
                 onSkillClick={handleSkillClick}

@@ -39,7 +39,7 @@ async function bootstrap() {
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('SkillSwap API')
-    .setDescription('API платформы обмена навыками SkillSwap')
+    .setDescription('SkillSwap skill exchange platform API')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

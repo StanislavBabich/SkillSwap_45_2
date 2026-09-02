@@ -66,9 +66,9 @@ export function Step3Skill({ data, onUpdate, onNext, onBack, embedded = false }:
     [teachSkill, onUpdate]
   );
 
-  const nameError = submitted && !teachSkill.name.trim() ? 'Введите название навыка' : undefined;
-  const categoryError = submitted && !teachSkill.categoryId ? 'Выберите категорию' : undefined;
-  const subcategoryError = submitted && teachSkill.categoryId && !teachSkill.subcategoryId ? 'Выберите подкатегорию' : undefined;
+  const nameError = submitted && !teachSkill.name.trim() ? 'Enter a skill name' : undefined;
+  const categoryError = submitted && !teachSkill.categoryId ? 'Select a category' : undefined;
+  const subcategoryError = submitted && teachSkill.categoryId && !teachSkill.subcategoryId ? 'Select a subcategory' : undefined;
 
   const isFormValid =
     Boolean(teachSkill.name.trim()) && Boolean(teachSkill.categoryId) && Boolean(teachSkill.subcategoryId) && teachSkill.description.length <= DESCRIPTION_MAX_LENGTH;
@@ -88,21 +88,21 @@ export function Step3Skill({ data, onUpdate, onNext, onBack, embedded = false }:
       <div className={clsx(styles.columns, embedded && styles.columnsEmbedded)}>
         <div className={styles.left}>
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
-            <Input label="Название навыка" placeholder="Введите название вашего навыка" value={teachSkill.name} onChange={handleNameChange} error={nameError ?? false} />
+            <Input label="Skill name" placeholder="Enter your skill name" value={teachSkill.name} onChange={handleNameChange} error={nameError ?? false} />
             <div className={styles.formBody}>
               {loadError && <p className={styles.loadError} role="alert">{loadError}</p>}
-              <Select label="Категория навыка" placeholder="Выберите категорию навыка" options={categoryOptions} value={teachSkill.categoryId} onChange={handleCategoryChange} error={categoryError} />
-              <Select label="Подкатегория навыка" placeholder="Выберите подкатегорию навыка" options={subcategoryOptions} value={teachSkill.subcategoryId} onChange={handleSubcategoryChange} error={subcategoryError} disabled={!teachSkill.categoryId} />
+              <Select label="Skill category" placeholder="Select a skill category" options={categoryOptions} value={teachSkill.categoryId} onChange={handleCategoryChange} error={categoryError} />
+              <Select label="Skill subcategory" placeholder="Select a skill subcategory" options={subcategoryOptions} value={teachSkill.subcategoryId} onChange={handleSubcategoryChange} error={subcategoryError} disabled={!teachSkill.categoryId} />
               <div className={styles.field}>
-                <label className={styles.label} htmlFor="skill-description">Описание</label>
-                <textarea id="skill-description" className={styles.textarea} placeholder="Коротко опишите, чему можете научить" value={teachSkill.description} onChange={handleDescriptionChange} maxLength={DESCRIPTION_MAX_LENGTH} rows={3} />
+                <label className={styles.label} htmlFor="skill-description">Description</label>
+                <textarea id="skill-description" className={styles.textarea} placeholder="Briefly describe what you can teach" value={teachSkill.description} onChange={handleDescriptionChange} maxLength={DESCRIPTION_MAX_LENGTH} rows={3} />
               </div>
               <div className={styles.field}>
                 <ImageUpload value={teachSkill.images} onChange={handleImagesChange} />
               </div>
               <div className={styles.actions}>
-                <Button type="button" variant="secondary" onClick={onBack}>Назад</Button>
-                <Button type="submit" variant="primary" disabled={!isFormValid}>Продолжить</Button>
+                <Button type="button" variant="secondary" onClick={onBack}>Back</Button>
+                <Button type="submit" variant="primary" disabled={!isFormValid}>Continue</Button>
               </div>
             </div>
           </form>
@@ -111,8 +111,8 @@ export function Step3Skill({ data, onUpdate, onNext, onBack, embedded = false }:
           <div className={styles.right}>
             <img src={schoolBoardIcon} alt="" className={styles.illustration} aria-hidden />
             <div className={styles.copyBlock}>
-              <p className={styles.title}>Укажите, чем вы готовы поделиться</p>
-              <p className={styles.subtitle}>Так другие люди смогут увидеть ваши предложения и предложить вам обмен!</p>
+              <p className={styles.title}>Tell us what you are ready to share</p>
+              <p className={styles.subtitle}>This way others can see your offers and propose a swap!</p>
             </div>
           </div>
         )}

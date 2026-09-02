@@ -13,11 +13,11 @@ type RequestCardProps = {
 };
 
 const statusLabels: Record<SkillShareRequestStatus, string> = {
-  pending: 'Ожидает ответа',
-  accepted: 'Принята',
-  rejected: 'Отклонена',
-  inProgress: 'Обмен начат',
-  done: 'Завершена',
+  pending: 'Awaiting response',
+  accepted: 'Accepted',
+  rejected: 'Declined',
+  inProgress: 'Swap started',
+  done: 'Completed',
 };
 
 const RequestAvatar = ({
@@ -30,7 +30,7 @@ const RequestAvatar = ({
   name: string;
 }) => {
   const fallback = useAvatar({ email, size: 64 });
-  return <img className={styles.avatar} src={src || fallback} alt={`Аватар: ${name}`} />;
+  return <img className={styles.avatar} src={src || fallback} alt={`Avatar: ${name}`} />;
 };
 
 export const RequestCard = ({
@@ -43,7 +43,7 @@ export const RequestCard = ({
 }: RequestCardProps) => {
   const person = direction === 'incoming' ? request.sender : request.receiver;
   const isPending = request.status === 'pending';
-  const formattedDate = new Intl.DateTimeFormat('ru-RU', {
+  const formattedDate = new Intl.DateTimeFormat('en-US', {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
@@ -66,21 +66,21 @@ export const RequestCard = ({
       <div className={styles.skillsSections}>
         <div className={styles.section}>
           <Headline level={4} className={styles.sectionTitle}>
-            Предлагает:
+            Offers:
           </Headline>
           <Tag className={styles.skillTag}>{request.offeredSkill.title}</Tag>
         </div>
 
         <div className={styles.section}>
           <Headline level={4} className={styles.sectionTitle}>
-            Хочет научиться:
+            Wants to learn:
           </Headline>
           <Tag className={styles.skillTag}>{request.requestedSkill.title}</Tag>
         </div>
       </div>
 
       <div className={styles.statusRow}>
-        <span className={styles.statusLabel}>Статус</span>
+        <span className={styles.statusLabel}>Status</span>
         <Tag className={`${styles.status} ${styles[request.status]}`}>
           {statusLabels[request.status]}
         </Tag>
@@ -90,16 +90,16 @@ export const RequestCard = ({
         {direction === 'incoming' && isPending && (
           <>
             <Button fullWidth variant="primary" disabled={isUpdating} onClick={onAccept}>
-              Принять
+              Accept
             </Button>
             <Button fullWidth variant="secondary" disabled={isUpdating} onClick={onReject}>
-              Отклонить
+              Decline
             </Button>
           </>
         )}
         {direction === 'outgoing' && (
           <Button fullWidth variant="secondary" disabled={isUpdating} onClick={onDelete}>
-            Удалить
+            Delete
           </Button>
         )}
       </div>

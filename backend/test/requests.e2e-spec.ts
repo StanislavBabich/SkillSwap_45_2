@@ -276,13 +276,13 @@ describe('RequestsController (e2e)', () => {
     offeredSkill = await createSkill(
       senderAccessToken,
       `E2E Offered Skill ${testId}`,
-      'Навык, который предлагает отправитель',
+      'Skill offered by the sender',
     );
 
     requestedSkill = await createSkill(
       receiverAccessToken,
       `E2E Requested Skill ${testId}`,
-      'Навык, который хочет получить отправитель',
+      'Skill the sender wants to receive',
     );
   });
 
@@ -412,7 +412,7 @@ describe('RequestsController (e2e)', () => {
       expect(body).toEqual(
         expect.objectContaining({
           statusCode: 400,
-          message: 'Нельзя отправить заявку самому себе',
+          message: 'You cannot send a request to yourself',
         }),
       );
     });
@@ -668,7 +668,7 @@ describe('RequestsController (e2e)', () => {
       expect(body).toEqual(
         expect.objectContaining({
           statusCode: 400,
-          message: `Заявка уже имеет статус ${RequestStatus.IN_PROGRESS}`,
+          message: `Request already has status ${RequestStatus.IN_PROGRESS}`,
         }),
       );
     });

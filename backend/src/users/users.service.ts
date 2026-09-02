@@ -63,7 +63,7 @@ export class UsersService {
         const driverError = error as unknown as { driverError?: DriverError };
         if (driverError?.driverError?.code === '23505') {
           throw new ConflictException(
-            'Пользователь с таким email уже существует',
+            'A user with this email already exists',
           );
         }
       }
@@ -144,7 +144,7 @@ export class UsersService {
       user.password,
     );
     if (!isOldPasswordValid) {
-      throw new UnauthorizedException('Неверный текущий пароль');
+      throw new UnauthorizedException('Invalid current password');
     }
 
     const hashedPassword = await bcrypt.hash(
@@ -153,7 +153,7 @@ export class UsersService {
     );
     await this.userRepository.update(id, { password: hashedPassword });
 
-    return { message: 'Пароль успешно изменён' };
+    return { message: 'Password changed successfully' };
   }
 
   async update(
@@ -206,7 +206,7 @@ export class UsersService {
     );
 
     if (isAlreadyFavorite) {
-      throw new BadRequestException('Навык уже добавлен в избранное');
+      throw new BadRequestException('Skill is already in favorites');
     }
 
     user.favoriteSkills.push(skill);

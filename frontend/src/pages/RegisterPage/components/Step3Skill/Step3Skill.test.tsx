@@ -19,13 +19,13 @@ const mockUseAppSelector = hooks.useAppSelector as jest.Mock;
 // Моки категорий
 
 const mockCategories = [
-  { id: 1, name: "Категория A", color: "#000", icon: "iconA" },
-  { id: 2, name: "Категория B", color: "#111", icon: "iconB" },
+  { id: 1, name: "Category A", color: "#000", icon: "iconA" },
+  { id: 2, name: "Category B", color: "#111", icon: "iconB" },
 ];
 
 const mockSubcategories = [
-  { id: 10, name: "Подкат A1", categoryId: 1 },
-  { id: 11, name: "Подкат B1", categoryId: 2 },
+  { id: 10, name: "Subcat A1", categoryId: 1 },
+  { id: 11, name: "Subcat B1", categoryId: 2 },
 ];
 
 beforeEach(() => {
@@ -114,14 +114,14 @@ test("renders main fields", () => {
   setup();
 
   expect(
-    screen.getByPlaceholderText("Введите название вашего навыка")
+    screen.getByPlaceholderText("Enter your skill name")
   ).toBeInTheDocument();
 
-  expect(screen.getByLabelText("Категория навыка")).toBeInTheDocument();
-  expect(screen.getByLabelText("Подкатегория навыка")).toBeInTheDocument();
+  expect(screen.getByLabelText("Skill category")).toBeInTheDocument();
+  expect(screen.getByLabelText("Skill subcategory")).toBeInTheDocument();
 
   expect(
-    screen.getByPlaceholderText("Коротко опишите, чему можете научить")
+    screen.getByPlaceholderText("Briefly describe what you can teach")
   ).toBeInTheDocument();
 });
 
@@ -135,12 +135,12 @@ fireEvent.submit(form);
   await waitFor(() => {
     // проверяем ошибку имени
     expect(
-      screen.getByText("Введите название навыка")
+      screen.getByText("Enter a skill name")
     ).toBeInTheDocument();
 
     // проверяем ошибку категории
     expect(
-      screen.getByText("Выберите категорию")
+      screen.getByText("Select a category")
     ).toBeInTheDocument();
   });
 });
@@ -152,12 +152,12 @@ test("changing category resets subcategory", () => {
     subcategoryId: 11,
   });
 
-  const catSelect = screen.getByLabelText("Категория навыка");
+  const catSelect = screen.getByLabelText("Skill category");
   fireEvent.click(catSelect);
 
   // выбираем пункт меню по ролям, избегая дубликатов
   fireEvent.click(
-    screen.getByRole("option", { name: "Категория A" })
+    screen.getByRole("option", { name: "Category A" })
   );
 
   updateRender();
@@ -173,19 +173,19 @@ test("changing subcategory triggers onUpdate", () => {
     subcategoryId: 0,
   });
 
-  const catSelect = screen.getByLabelText("Категория навыка");
+  const catSelect = screen.getByLabelText("Skill category");
   fireEvent.click(catSelect);
 
   fireEvent.click(
-    screen.getByRole("option", { name: "Категория A" })
+    screen.getByRole("option", { name: "Category A" })
   );
   updateRender();
 
-  const subSelect = screen.getByLabelText("Подкатегория навыка");
+  const subSelect = screen.getByLabelText("Skill subcategory");
   fireEvent.click(subSelect);
 
   fireEvent.click(
-    screen.getByRole("option", { name: "Подкат A1" })
+    screen.getByRole("option", { name: "Subcat A1" })
   );
   updateRender();
 
@@ -199,22 +199,22 @@ test("valid form enables submit and calls onNext", () => {
   const { onNext, updateRender } = setup();
 
   const nameInput = screen.getByPlaceholderText(
-    "Введите название вашего навыка"
+    "Enter your skill name"
   );
   fireEvent.change(nameInput, { target: { value: "React" } });
   updateRender();
 
-  const catSelect = screen.getByLabelText("Категория навыка");
+  const catSelect = screen.getByLabelText("Skill category");
   fireEvent.click(catSelect);
-  fireEvent.click(screen.getByRole("option", { name: "Категория A" }));
+  fireEvent.click(screen.getByRole("option", { name: "Category A" }));
   updateRender();
 
-  const subSelect = screen.getByLabelText("Подкатегория навыка");
+  const subSelect = screen.getByLabelText("Skill subcategory");
   fireEvent.click(subSelect);
-  fireEvent.click(screen.getByRole("option", { name: "Подкат A1" }));
+  fireEvent.click(screen.getByRole("option", { name: "Subcat A1" }));
   updateRender();
 
-  const submitBtn = screen.getByRole("button", { name: /продолжить/i });
+  const submitBtn = screen.getByRole("button", { name: /continue/i });
   expect(submitBtn).not.toBeDisabled();
 
   fireEvent.click(submitBtn);

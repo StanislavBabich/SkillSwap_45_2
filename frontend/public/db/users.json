@@ -1,1302 +1,1702 @@
 [
   {
     "id": 1,
-    "name": "Кирилл",
+    "name": "Kirill",
     "email": "kirill.fedotov@mail.ru",
     "avatarSeed": "avatar-kirillfedotov-1a2b3c",
-    "about": "Основал стартап в сфере edtech, сейчас активно развиваю его. Верю в силу нетворкинга и взаимного обучения. Готов делиться опытом в маркетинге и не только.",
+    "about": "I founded an edtech startup and am actively growing it. I believe in the power of networking and mutual learning. Happy to share marketing experience and more.",
     "cityId": 4,
     "dateOfBirth": "2000-02-06",
     "gender": "male",
     "registrationDate": "2025-01-15",
-    "skillInterests": [9, 12, 31],
+    "skillInterests": [
+      9,
+      12,
+      31
+    ],
     "passwordHash": "$2b$10$KVTYzFMxscodONsiaGbtTehMj7XNH9UwNHlectv9CTdggHy6UN.tG"
   },
   {
     "id": 2,
-    "name": "Елена",
+    "name": "Elena",
     "email": "elena.volkova@yandex.ru",
     "avatarSeed": "avatar-elenavolkova-4d5e6f",
-    "about": "Изучала немецкий через музыку Rammstein, чтение Кафки в оригинале и просмотр немецких сериалов. Верю, что язык нужно чувствовать, а не просто заучивать. Создаю индивидуальный подход для каждого ученика.",
+    "about": "I learned German through Rammstein, reading Kafka in the original, and watching German series. I believe a language should be felt, not just memorized. I create an individual approach for every student.",
     "cityId": 1,
     "dateOfBirth": "1998-02-06",
     "gender": "female",
     "registrationDate": "2025-02-18",
-    "skillInterests": [35, 37, 40],
+    "skillInterests": [
+      35,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$kD3QLL4tdOvEgtDu2SfDYO6zi4HSG5oNtr7uKyTCE4111SmES8Kw2"
   },
   {
     "id": 3,
-    "name": "Сергей",
+    "name": "Sergey",
     "email": "sergey.ivanov@inbox.ru",
     "avatarSeed": "avatar-sergeyivanov-7g8h9i",
-    "about": "За свою карьеру подготовил сотни студентов и молодых специалистов. Сейчас сосредоточился на менторстве: помогаю начинающим преподавателям найти свой стиль и избежать профессионального выгорания.",
+    "about": "Over my career I have trained hundreds of students and young specialists. I now focus on mentoring: I help beginning teachers find their style and avoid burnout.",
     "cityId": 2,
     "dateOfBirth": "1970-01-09",
     "gender": "male",
     "registrationDate": "2025-01-22",
-    "skillInterests": [43, 47, 54],
+    "skillInterests": [
+      43,
+      47,
+      54
+    ],
     "passwordHash": "$2b$10$Pios562bJHA.e45Vq9M.geq3GUL8rG/N2BmAKKDdRBh9UojsvH0E6"
   },
   {
     "id": 4,
-    "name": "Николай",
+    "name": "Nikolay",
     "email": "nikolay.petrov@list.ru",
     "avatarSeed": "avatar-nikolaypetrov-0j1k2l",
-    "about": "Биолог по образованию, растениевод по призванию. Начал с кактуса на подоконнике в общаге, а теперь в моей квартире — настоящие джунгли. Доказываю, что «зелёный палец» — это не врождённый дар, а навык, которому можно научиться",
+    "about": "A biologist by training, a plant grower by calling. I started with a cactus on a dorm windowsill, and now my apartment is a real jungle. I prove that a green thumb is not an inborn gift, but a skill you can learn.",
     "cityId": 3,
     "dateOfBirth": "2001-03-11",
     "gender": "male",
     "registrationDate": "2025-03-05",
-    "skillInterests": [18, 29, 55],
+    "skillInterests": [
+      18,
+      29,
+      55
+    ],
     "passwordHash": "$2b$10$qk0xBZIueJzx/DftV42fuuWKssvRH0d2QCBVFvNDVWzWljhNUatPi"
   },
   {
     "id": 5,
-    "name": "Эдуард",
+    "name": "Eduard",
     "email": "eduard.smirnov@mail.ru",
     "avatarSeed": "avatar-eduardsmirnov-3m4n5o",
-    "about": "Работал в опере, но всегда верил, что классика может быть современной. Написал и поставил свой мюзикл — попытку соединить глубину оперы с энергией рока. Играю на скрипке, пою баритоном и учу других находить свой уникальный голос в мире музыки.",
+    "about": "I worked in opera but always believed classical music can be modern. I wrote and staged my own musical — an attempt to join the depth of opera with the energy of rock. I play violin, sing baritone, and teach others to find their unique voice in music.",
     "cityId": 4,
     "dateOfBirth": "1986-04-06",
     "gender": "male",
     "registrationDate": "2025-04-12",
-    "skillInterests": [43, 48, 52],
+    "skillInterests": [
+      43,
+      48,
+      52
+    ],
     "passwordHash": "$2b$10$W/pLHaZLHiVn5Ury9G3k/.HiL6TsCPCYInrbsP1m1V6op6mmZpg2m"
   },
   {
     "id": 6,
-    "name": "Роман",
+    "name": "Roman",
     "email": "roman.kozlov@yandex.ru",
     "avatarSeed": "avatar-romankozlov-6p7q8r",
-    "about": "Для меня кулинария — это не рецепты, а язык. Язык, на котором говорят память, сезон и настроение. Учился у YouTube-шефов, у уличных food-маркетов и у бабушек на рынке. Хочу научить других чувствовать еду, а не просто следовать инструкциям.",
+    "about": "For me cooking is not recipes, it is a language. A language of memory, season, and mood. I learned from YouTube chefs, street food markets, and grandmothers at the market. I want to teach others to feel food, not just follow instructions.",
     "cityId": 5,
     "dateOfBirth": "2000-02-06",
     "gender": "male",
     "registrationDate": "2025-05-20",
-    "skillInterests": [22, 50, 36],
+    "skillInterests": [
+      22,
+      50,
+      36
+    ],
     "passwordHash": "$2b$10$epL8V4rwvmkNpGx694WBMu8gmKey2oCnlXFdvq5VzjtWwSMoDakwC"
   },
   {
     "id": 7,
-    "name": "Анатолий",
+    "name": "Anatoly",
     "email": "anatoly.novikov@gmail.com",
     "avatarSeed": "avatar-anatolynovikov-9s0t1u",
-    "about": "Цифровое поколение, которое нашло ответы не в гаджетах, а в дыхании. Показываю, как медитация и асаны могут снять тревожность перед экзаменами, улучшить концентрацию и просто сделать день светлее. Мой девиз: «Баланс — это суперсила в мире хаоса».",
+    "about": "A digital generation that found answers not in gadgets, but in breathing. I show how meditation and asanas can ease exam anxiety, improve focus, and simply make the day brighter. My motto: “Balance is a superpower in a world of chaos.”",
     "cityId": 1,
     "dateOfBirth": "2005-02-06",
     "gender": "male",
     "registrationDate": "2025-06-08",
-    "skillInterests": [43, 23, 55],
+    "skillInterests": [
+      43,
+      23,
+      55
+    ],
     "passwordHash": "$2b$10$gqAXXaBWG//egrC0Aa4fZ.nN9ACidu2ZPv/hAONWlNK6ZfhKX8MyW"
   },
   {
     "id": 8,
-    "name": "Галина",
+    "name": "Galina",
     "email": "galina.morozova@mail.ru",
     "avatarSeed": "avatar-galinamorozova-2v3w4x",
-    "about": "Переехала в Сочи и превратила старую квартиру в свой райский уголок. Прошла путь от «боюсь сверлить стену» до «сама меняю проводку». Верю в силу DIY (Do It Yourself) не как способ сэкономить, а как терапию и способ обрести уверенность. Научу вас дружить с инструментами и видеть в проблеме — возможность для творчества.",
+    "about": "I moved to Sochi and turned an old apartment into my little paradise. I went from “I’m afraid to drill a wall” to “I rewire the place myself.” I believe in DIY not as a way to save money, but as therapy and a path to confidence. I will teach you to befriend tools and see a problem as a chance to create.",
     "cityId": 41,
     "dateOfBirth": "1994-05-22",
     "gender": "female",
     "registrationDate": "2025-07-15",
-    "skillInterests": [55, 33, 36],
+    "skillInterests": [
+      55,
+      33,
+      36
+    ],
     "passwordHash": "$2b$10$ITE/eEwSEJOVOuie6/G4Dumq7sHXXr/9mWFZxnDT2lzd8MfHGgGGK"
   },
   {
     "id": 9,
-    "name": "Ирина",
+    "name": "Irina",
     "email": "irina.vasilieva@yandex.ru",
     "avatarSeed": "avatar-irinasilieva-5y6z7a",
-    "about": "Художник-педагог. Живу и работаю в Петербурге. За долгую карьеру выработала собственную методику, которая снимает страх перед чистым листом. Верю, что искусство — это не профессия, а состояние души, доступное всем.",
+    "about": "An artist and teacher. I live and work in Saint Petersburg. Over a long career I developed a method that removes the fear of a blank page. I believe art is not a profession, but a state of mind available to everyone.",
     "cityId": 2,
     "dateOfBirth": "1960-05-22",
     "gender": "female",
     "registrationDate": "2025-08-23",
-    "skillInterests": [20, 38, 42],
+    "skillInterests": [
+      20,
+      38,
+      42
+    ],
     "passwordHash": "$2b$10$B21D6bZ5kYD6E6Hct6t.Ke0SxjMJf7bSjSKkAQAYt1RvcSGddkZs2"
   },
   {
     "id": 10,
-    "name": "Арсений",
+    "name": "Arseny",
     "email": "arseny.volkov@list.ru",
     "avatarSeed": "avatar-arsenyvolkov-8b9c0d",
-    "about": "Молодой руководитель, который устал от токсичных практик «сверху». Собрал и систематизировал приёмы скрытого контроля, микроменеджмента и создания зависимостей в командах. Моя цель — дать инструменты для построения прозрачного и результативного лидерства через понимание тёмной стороны",
+    "about": "A young leader tired of toxic top-down practices. I collected and systematized techniques of hidden control, micromanagement, and creating dependency in teams. My goal is to give tools for transparent, effective leadership through understanding the dark side.",
     "cityId": 1,
     "dateOfBirth": "2000-02-06",
     "gender": "male",
     "registrationDate": "2025-09-30",
-    "skillInterests": [23, 25, 38],
+    "skillInterests": [
+      23,
+      25,
+      38
+    ],
     "passwordHash": "$2b$10$yhURl0LpL5AMMYeP3oaeDuwOvCZP7TDTHtuy20iZcKnKbyAGPR7S2"
   },
   {
     "id": 11,
-    "name": "Анна",
+    "name": "Anna",
     "email": "anna.sokolova@inbox.ru",
     "avatarSeed": "avatar-annasokolova-1e2f3g",
-    "about": "По образованию — психолог, по карьере — переговорщик. Специализируюсь на самых сложных случаях: урегулирование конфликтов с ключевыми клиентами, выход из тупиковых переговоров, «спасение» проваленных сделок. Учу читать не только контракты, но и людей: жесты, интонации, скрытые мотивы.",
+    "about": "A psychologist by education, a negotiator by career. I specialize in the hardest cases: resolving conflicts with key clients, getting out of dead-end talks, and “saving” failed deals. I teach how to read not only contracts, but people: gestures, tone, hidden motives.",
     "cityId": 3,
     "dateOfBirth": "1987-07-04",
     "gender": "female",
     "registrationDate": "2025-10-10",
-    "skillInterests": [35, 36, 51],
+    "skillInterests": [
+      35,
+      36,
+      51
+    ],
     "passwordHash": "$2b$10$nDB1zMCkRLF6X9z8fHevy.tns1C6KUgPyDDAmF2N9Hf92Ybm6mjvm"
   },
   {
     "id": 12,
-    "name": "Дмитрий",
+    "name": "Dmitry",
     "email": "dmitry.aleksandrov@mail.ru",
     "avatarSeed": "avatar-dmitryaleksandrov-4h5i6j",
-    "about": "Full-stack разработчик с 7-летним опытом. Специализируюсь на React, Node.js и TypeScript. Веду технический блог и помогаю junior-разработчикам быстрее вливаться в профессию. Верю, что лучший способ изучить технологию — объяснить её другому.",
+    "about": "A full-stack developer with 7 years of experience. I specialize in React, Node.js, and TypeScript. I write a technical blog and help junior developers grow into the profession faster. I believe the best way to learn a technology is to explain it to someone else.",
     "cityId": 1,
     "dateOfBirth": "1992-08-15",
     "gender": "male",
     "registrationDate": "2025-02-28",
-    "skillInterests": [101, 20, 105],
+    "skillInterests": [
+      101,
+      20,
+      105
+    ],
     "passwordHash": "$2b$10$K64PyK/RNp1j4tIqoGEpq.CZLScnvYq.g4kzRGnQpJcxqIoif1eHS"
   },
   {
     "id": 13,
-    "name": "Мария",
+    "name": "Maria",
     "email": "maria.pavlova@yandex.ru",
     "avatarSeed": "avatar-mariapavlova-7k8l9m",
-    "about": "Сертифицированный нутрициолог и health-коуч. Помогаю наладить отношения с едой без жёстких диет и срывов. Считаю, что здоровое питание должно быть вкусным и приносить удовольствие, а не стресс.",
+    "about": "A certified nutritionist and health coach. I help people build a healthier relationship with food without strict diets and binge-and-bust cycles. I believe healthy eating should be tasty and enjoyable, not stressful.",
     "cityId": 2,
     "dateOfBirth": "1990-03-22",
     "gender": "female",
     "registrationDate": "2025-03-17",
-    "skillInterests": [22, 50, 55],
+    "skillInterests": [
+      22,
+      50,
+      55
+    ],
     "passwordHash": "$2b$10$3JKCQdLxKngL7cd7wjDDvO0XXmddc2QKomXD6E/dkByBuGHoavCiu"
   },
   {
     "id": 14,
-    "name": "Алексей",
+    "name": "Alexey",
     "email": "alexey.efimov@gmail.com",
     "avatarSeed": "avatar-alexeyefimov-0n9k2p",
-    "about": "Инженер-строитель, который устал от типовых решений. Сейчас проектирую и строю небольшие архитектурные объекты из дерева. Готов поделиться знаниями о материалах, технологиях и о том, как построить дом своей мечты без лишних затрат.",
+    "about": "A civil engineer tired of cookie-cutter solutions. I now design and build small wooden architectural projects. Happy to share knowledge about materials, techniques, and how to build your dream house without extra costs.",
     "cityId": 44,
     "dateOfBirth": "1985-11-30",
     "gender": "male",
     "registrationDate": "2025-04-05",
-    "skillInterests": [9, 24, 45],
+    "skillInterests": [
+      9,
+      24,
+      45
+    ],
     "passwordHash": "$2b$10$Wjyr5r.VdJH8ccdbtkzGru/cLY6QRhCZxsYNUPya6zObFbvCrxujO"
   },
   {
     "id": 15,
-    "name": "Екатерина",
+    "name": "Ekaterina",
     "email": "ekaterina.kuzmina@list.ru",
     "avatarSeed": "avatar-ekaterinakuzmina-3q4r5s",
-    "about": "Преподаватель английского языка с международным сертификатом CELTA. Жила и работала в Лондоне. Специализируюсь на Business English и подготовке к международным экзаменам. На своих занятиях создаю атмосферу, в которой не страшно говорить и ошибаться.",
+    "about": "An English teacher with an international CELTA certificate. I lived and worked in London. I specialize in Business English and exam prep. In my lessons I create an atmosphere where it is not scary to speak and make mistakes.",
     "cityId": 2,
     "dateOfBirth": "1988-07-19",
     "gender": "female",
     "registrationDate": "2025-05-22",
-    "skillInterests": [36, 35, 55],
+    "skillInterests": [
+      36,
+      35,
+      55
+    ],
     "passwordHash": "$2b$10$e5Vg5L7zvHqQtymlUVpFHuaMvAIQJVLKElBXg8Veo3C4KF63rUi52"
   },
   {
     "id": 16,
-    "name": "Владимир",
+    "name": "Vladimir",
     "email": "vladimir.popov@inbox.ru",
     "avatarSeed": "avatar-vladimirpopov-6t7u8v",
-    "about": "Шеф-повар с 15-летним стажем. Работал в ресторанах Москвы и Парижа. Сейчас преподаю кулинарное искусство и помогаю раскрыть талант даже тем, кто не умеет варить пельмени. Моя философия: «Готовить просто — сложно, но можно научить каждого».",
+    "about": "A chef with 15 years of experience. I worked in restaurants in Moscow and Paris. I now teach culinary arts and help unlock talent even in people who cannot boil dumplings. My philosophy: “Cooking simply is hard — but everyone can learn.”",
     "cityId": 1,
     "dateOfBirth": "1978-09-12",
     "gender": "male",
     "registrationDate": "2025-06-30",
-    "skillInterests": [39, 23, 28],
+    "skillInterests": [
+      39,
+      23,
+      28
+    ],
     "passwordHash": "$2b$10$d518oTTba0vEuIH.9jKI0ezXGfSIDaUqFWL6hgVSCeV8.6M.L2v6i"
   },
   {
     "id": 17,
-    "name": "Ольга",
+    "name": "Olga",
     "email": "olga.nikolaeva@mail.ru",
     "avatarSeed": "avatar-olganikolaeva-9w0x1y",
-    "about": "Хореограф и инструктор по зумбе. За моими плечами 10 лет работы в фитнес-индустрии и собственный танцевальный коллектив. Доказываю, что танцевать могут все, главное — найти свой ритм и музыку, которая зажигает сердце.",
+    "about": "A choreographer and Zumba instructor. I have 10 years in the fitness industry and my own dance company. I prove that everyone can dance — the key is finding your rhythm and music that lights up your heart.",
     "cityId": 27,
     "dateOfBirth": "1991-12-03",
     "gender": "female",
     "registrationDate": "2025-07-14",
-    "skillInterests": [35, 37, 40],
+    "skillInterests": [
+      35,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$iIVcGq2VlwD0u5jAROdQPO6f78KTF0UF3BpsNoQTgbubi0XoHXcde"
   },
   {
     "id": 18,
-    "name": "Павел",
+    "name": "Pavel",
     "email": "pavel.fedorov@yandex.ru",
     "avatarSeed": "avatar-pavelfedorov-2z3a4b",
-    "about": "Специалист по кибербезопасности. Помогаю компаниям защищаться от хакерских атак и обучаю сотрудников цифровой гигиене. В свободное время веду курс по безопасности для пожилых людей — считаю это своей миссией.",
+    "about": "A cybersecurity specialist. I help companies defend against attacks and teach employees digital hygiene. In my free time I run a security course for older adults — I consider it my mission.",
     "cityId": 3,
     "dateOfBirth": "1982-04-25",
     "gender": "male",
     "registrationDate": "2025-08-08",
-    "skillInterests": [17, 23, 106],
+    "skillInterests": [
+      17,
+      23,
+      106
+    ],
     "passwordHash": "$2b$10$iQD1W9ooevE9NSzvnKjpBe8c7P5lOEpQUS3y5v4QlEIFad37MBPZe"
   },
   {
     "id": 19,
-    "name": "Татьяна",
+    "name": "Tatyana",
     "email": "tatiana.semenova@gmail.com",
     "avatarSeed": "avatar-tatianasemenova-5c6d7e",
-    "about": "Садовод-любитель с 20-летним стажем. Выращиваю всё: от петрушки на подоконнике до экзотических растений в теплице. Создала клуб садоводов в своём районе и готова делиться секретами богатого урожая даже с теми, у кого «руки не из того места».",
+    "about": "An amateur gardener with 20 years of experience. I grow everything from parsley on a windowsill to exotic plants in a greenhouse. I started a local gardeners’ club and am happy to share harvest secrets even with people who think they have two left hands.",
     "cityId": 5,
     "dateOfBirth": "1975-06-17",
     "gender": "female",
     "registrationDate": "2025-09-19",
-    "skillInterests": [18, 35, 29],
+    "skillInterests": [
+      18,
+      35,
+      29
+    ],
     "passwordHash": "$2b$10$pV7YU.XWJ4RrbIyxo.Y5bOLA4pxOsHg4/XhHcGcad.hQC.XF8RhRO"
   },
   {
     "id": 20,
-    "name": "Игорь",
+    "name": "Igor",
     "email": "igor.andreev@list.ru",
     "avatarSeed": "avatar-igorandreev-8f9g0h",
-    "about": "Фотограф-портретист. Работал с известными блогерами и артистами, но больше всего люблю снимать обычных людей и показывать им их красоту. Учу видеть кадр в повседневности и не бояться камеры.",
+    "about": "A portrait photographer. I have worked with well-known bloggers and artists, but I love shooting ordinary people most of all and showing them their beauty. I teach how to see a frame in everyday life and not be afraid of the camera.",
     "cityId": 2,
     "dateOfBirth": "1989-10-08",
     "gender": "male",
     "registrationDate": "2025-10-25",
-    "skillInterests": [45, 21, 36],
+    "skillInterests": [
+      45,
+      21,
+      36
+    ],
     "passwordHash": "$2b$10$4Pk5fL4vsmbGWb5XRGG0j.RyhYtZ18DRJu81LGLEnWHiSm7x/X9s2"
   },
   {
     "id": 21,
-    "name": "Наталья",
+    "name": "Natalya",
     "email": "natalia.karpova@mail.ru",
     "avatarSeed": "avatar-nataliakarpova-1i2j3k",
-    "about": "Практикующий психолог, специалист по когнитивно-поведенческой терапии. Помогаю справиться с тревожностью, выгоранием и найти опору внутри себя. Верю, что психическое здоровье так же важно, как физическое.",
+    "about": "A practicing psychologist specializing in cognitive behavioral therapy. I help people cope with anxiety and burnout and find an inner foothold. I believe mental health is as important as physical health.",
     "cityId": 1,
     "dateOfBirth": "1983-02-14",
     "gender": "female",
     "registrationDate": "2025-11-05",
-    "skillInterests": [29, 23, 55],
+    "skillInterests": [
+      29,
+      23,
+      55
+    ],
     "passwordHash": "$2b$10$zBDMoporMIntzZ4MXC3jWuJGL1szzusuKHtNZFs1SuSs91OW8bSti"
   },
   {
     "id": 22,
-    "name": "Михаил",
+    "name": "Mikhail",
     "email": "mikhail.zhukov@yandex.ru",
     "avatarSeed": "avatar-mikhailzhukov-4l5m6n",
-    "about": "Мастер по ремонту и реставрации мебели. Возвращаю к жизни старые комоды, стулья и шкафы, которые кажутся безнадёжными. Учу бережному отношению к вещам и тому, как дать вторую жизнь любимому предмету интерьера.",
+    "about": "A furniture repair and restoration craftsman. I bring old chests of drawers, chairs, and wardrobes back to life when they seem hopeless. I teach care for things and how to give a beloved interior piece a second life.",
     "cityId": 18,
     "dateOfBirth": "1972-12-01",
     "gender": "male",
     "registrationDate": "2025-12-01",
-    "skillInterests": [20, 26, 57],
+    "skillInterests": [
+      20,
+      26,
+      57
+    ],
     "passwordHash": "$2b$10$t/lvDJTIywz/24HFhBGGx.uJPMEyfoxLksXVQu9o9u7ouXsNNn70q"
   },
   {
     "id": 23,
-    "name": "Светлана",
+    "name": "Svetlana",
     "email": "svetlana.mikhaylova@inbox.ru",
     "avatarSeed": "avatar-svetlanamikhaylova-7o8p9q",
-    "about": "Voice-тренер и преподаватель сценической речи. Работаю с журналистами, блогерами и всеми, кто хочет, чтобы их слушали с открытым ртом. Помогаю найти свой природный голос и избавиться от страха публичных выступлений.",
+    "about": "A voice coach and stage speech teacher. I work with journalists, bloggers, and anyone who wants to be listened to with full attention. I help people find their natural voice and overcome the fear of public speaking.",
     "cityId": 2,
     "dateOfBirth": "1985-05-30",
     "gender": "female",
     "registrationDate": "2026-01-10",
-    "skillInterests": [21, 37, 40],
+    "skillInterests": [
+      21,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$unRoPZ9A9XmYAyi9LPGhEODSdBczSu8gOe6L3bcKgajdUiwzPr5I2"
   },
   {
     "id": 24,
-    "name": "Виктор",
+    "name": "Viktor",
     "email": "viktor.kozlovsky@gmail.com",
     "avatarSeed": "avatar-viktorkozlovsky-0r1s2t",
-    "about": "Инвестор и финансовый консультант. Управляю капиталом более 10 лет. Считаю, что финансовая грамотность должна прививаться со школы. Провожу бесплатные вебинары для начинающих инвесторов и объясняю сложные вещи простым языком.",
+    "about": "An investor and financial advisor. I have managed capital for more than 10 years. I believe financial literacy should start at school. I run free webinars for beginning investors and explain complex things in simple language.",
     "cityId": 1,
     "dateOfBirth": "1980-07-07",
     "gender": "male",
     "registrationDate": "2026-02-05",
-    "skillInterests": [43, 47, 48],
+    "skillInterests": [
+      43,
+      47,
+      48
+    ],
     "passwordHash": "$2b$10$ij.OT7fqBlRI4NJL14h2CO9CT2u98wofMc94d3YHdRJlt4msV9DjC"
   },
   {
     "id": 25,
-    "name": "Людмила",
+    "name": "Lyudmila",
     "email": "lyudmila.bogdanova@mail.ru",
     "avatarSeed": "avatar-lyudmilabogdanova-3u4v5w",
-    "about": "Флорист-дизайнер. Создаю букеты, которые говорят без слов. Учу составлять композиции не по правилам, а по чувству. Верю, что цветы — это самый быстрый способ сделать день лучше.",
+    "about": "A florist and designer. I create bouquets that speak without words. I teach composing arrangements by feeling, not by rules. I believe flowers are the fastest way to make a day better.",
     "cityId": 27,
     "dateOfBirth": "1987-09-18",
     "gender": "female",
     "registrationDate": "2026-01-15",
-    "skillInterests": [20, 37, 51],
+    "skillInterests": [
+      20,
+      37,
+      51
+    ],
     "passwordHash": "$2b$10$PDSGuT48xcBhpNkF3oMkK.rFMeJe/HuVrT3P6i11B9MJ3L8vv25JW"
   },
   {
     "id": 26,
-    "name": "Константин",
+    "name": "Konstantin",
     "email": "konstantin.orlov@yandex.ru",
     "avatarSeed": "avatar-konstantinorlov-6x7y8z",
-    "about": "Тренер по бегу и организатор любительских забегов. Помогаю подготовиться к первому марафону с нуля. Доказываю, что бегать может каждый, независимо от возраста и комплекции. Главное — правильная мотивация и техника.",
+    "about": "A running coach and organizer of amateur races. I help people prepare for their first marathon from scratch. I prove that anyone can run, regardless of age or build. The key is the right motivation and technique.",
     "cityId": 4,
     "dateOfBirth": "1984-11-11",
     "gender": "male",
     "registrationDate": "2025-08-20",
-    "skillInterests": [10, 25, 54],
+    "skillInterests": [
+      10,
+      25,
+      54
+    ],
     "passwordHash": "$2b$10$wWL7FGVxReOXYOwTOMPykuoPYuGu1rd2ZI3SjcJTTYrJs3eqwGfIO"
   },
   {
     "id": 27,
-    "name": "Алина",
+    "name": "Alina",
     "email": "alina.zakharova@list.ru",
     "avatarSeed": "avatar-alinazakharova-9a0b1c",
-    "about": "Визажист и бьюти-блогер. Специализируюсь на естественном макияже. Учу подчёркивать достоинства, а не рисовать новое лицо. Считаю, что косметика — это инструмент для уверенности, а не маска.",
+    "about": "A makeup artist and beauty blogger. I specialize in natural makeup. I teach how to highlight your features, not paint a new face. I believe cosmetics are a tool for confidence, not a mask.",
     "cityId": 1,
     "dateOfBirth": "1993-04-03",
     "gender": "female",
     "registrationDate": "2025-09-12",
-    "skillInterests": [36, 12, 40],
+    "skillInterests": [
+      36,
+      12,
+      40
+    ],
     "passwordHash": "$2b$10$ylUbrKbH3qb7ScVMMlxFle8effO1RwQd0u5Vv8KwD6UApcI9Xxtt6"
   },
   {
     "id": 28,
-    "name": "Григорий",
+    "name": "Grigory",
     "email": "grigory.efremov@gmail.com",
     "avatarSeed": "avatar-grigoryefremov-2d3e4f",
-    "about": "Историк и экскурсовод. Влюблён в свой город и знаю о нём всё, даже то, что не пишут в путеводителях. Вожу нестандартные экскурсии и показываю город глазами местного жителя.",
+    "about": "A historian and tour guide. I am in love with my city and know everything about it, even what guidebooks leave out. I lead unconventional tours and show the city through a local’s eyes.",
     "cityId": 2,
     "dateOfBirth": "1976-08-23",
     "gender": "male",
     "registrationDate": "2025-07-03",
-    "skillInterests": [18, 11, 48],
+    "skillInterests": [
+      18,
+      11,
+      48
+    ],
     "passwordHash": "$2b$10$y3MixgimTFXqd8.vh9oV/.cEuRe31bIJ7aPn17tvF4Vq/l7UbqRYS"
   },
   {
     "id": 29,
-    "name": "Валерия",
+    "name": "Valeria",
     "email": "valeriya.titova@inbox.ru",
     "avatarSeed": "avatar-valeriyatitova-5g6h7i",
-    "about": "Дизайнер интерьеров. Помогаю создавать уютные и функциональные пространства даже в маленьких квартирах. Считаю, что хороший дизайн должен быть доступен каждому, а не только избранным.",
+    "about": "An interior designer. I help create cozy, functional spaces even in small apartments. I believe good design should be available to everyone, not only a chosen few.",
     "cityId": 1,
     "dateOfBirth": "1990-12-27",
     "gender": "female",
     "registrationDate": "2025-10-18",
-    "skillInterests": [36, 20, 51],
+    "skillInterests": [
+      36,
+      20,
+      51
+    ],
     "passwordHash": "$2b$10$bUJWATT4kkJDUFvKkBTc8uueNRgEzYTPUNZPjf5kJddICDSTiVUJa"
   },
   {
     "id": 30,
-    "name": "Борис",
+    "name": "Boris",
     "email": "boris.grigoriev@mail.ru",
     "avatarSeed": "avatar-borisgrigoriev-8j9k0l",
-    "about": "Мастер йоги и медитации. 10 лет практики в Индии и Непале. Помогаю найти внутренний покой и баланс в безумном ритме большого города. Учу дышать правильно и жить осознанно.",
+    "about": "A yoga and meditation teacher. 10 years of practice in India and Nepal. I help people find inner calm and balance in the frantic pace of a big city. I teach how to breathe properly and live mindfully.",
     "cityId": 44,
     "dateOfBirth": "1979-03-19",
     "gender": "male",
     "registrationDate": "2025-11-22",
-    "skillInterests": [20, 23, 55],
+    "skillInterests": [
+      20,
+      23,
+      55
+    ],
     "passwordHash": "$2b$10$CNhN7sghlYBsLSeOQtMML.M8sP0GkdNufA3//YsJIM3TSSBAHI6R."
   },
   {
     "id": 31,
-    "name": "Ксения",
+    "name": "Ksenia",
     "email": "kseniya.filatova@yandex.ru",
     "avatarSeed": "avatar-kseniyafilatova-1m2n3o",
-    "about": "Керамист и гончар. Создаю посуду ручной работы и уют в доме. Верю в терапевтический эффект глины — когда работаешь с ней руками, успокаивается ум. Учу с нуля даже тех, кто никогда не держал глину в руках.",
+    "about": "A ceramicist and potter. I make handmade tableware and cozy home pieces. I believe in the therapeutic effect of clay — working with your hands calms the mind. I teach from scratch, even people who have never held clay.",
     "cityId": 5,
     "dateOfBirth": "1986-06-06",
     "gender": "female",
     "registrationDate": "2025-12-09",
-    "skillInterests": [25, 37, 40],
+    "skillInterests": [
+      25,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$j9NLgu/qqRp4sgKcPNyqsOJRWqtsNug5L6Mowj6jgkjGb1C9cW0yu"
   },
   {
     "id": 32,
-    "name": "Олег",
+    "name": "Oleg",
     "email": "oleg.makarov@list.ru",
     "avatarSeed": "avatar-olegmakarov-4p5q6r",
-    "about": "Бортпроводник и фотограф. Объездил полмира и научился общаться с людьми на любом языке. Учу искусству путешествовать дёшево и интересно, а также фотографировать так, чтобы друзья завидовали.",
+    "about": "A flight attendant and photographer. I have traveled half the world and learned to talk to people in any language. I teach the art of traveling cheaply and interestingly, and taking photos that make friends jealous.",
     "cityId": 38,
     "dateOfBirth": "1988-10-20",
     "gender": "male",
     "registrationDate": "2025-06-27",
-    "skillInterests": [10, 29, 41],
+    "skillInterests": [
+      10,
+      29,
+      41
+    ],
     "passwordHash": "$2b$10$Ujnhu6KmaZRttKs3OY22L.naZSBry36ML8c6SNeeZx0g5.rkOPxlK"
   },
   {
     "id": 33,
-    "name": "Полина",
+    "name": "Polina",
     "email": "polina.krylova@gmail.com",
     "avatarSeed": "avatar-polinakrylova-7s8t9u",
-    "about": "Копирайтер и редактор. Пишу тексты, которые продают и вдохновляют. Помогаю блогерам и бизнесу найти свой голос и говорить с аудиторией на одном языке. Учу писать просто о сложном.",
+    "about": "A copywriter and editor. I write texts that sell and inspire. I help bloggers and businesses find their voice and speak the audience’s language. I teach how to write simply about complex things.",
     "cityId": 1,
     "dateOfBirth": "1992-01-15",
     "gender": "female",
     "registrationDate": "2025-04-30",
-    "skillInterests": [36, 28, 55],
+    "skillInterests": [
+      36,
+      28,
+      55
+    ],
     "passwordHash": "$2b$10$Sd/DijtKAG3P7NgFKyV9.esDw39uIZqwD3A430XoA9./5v9cGTOjq"
   },
   {
     "id": 34,
-    "name": "Вадим",
+    "name": "Vadim",
     "email": "vadim.kiselev@inbox.ru",
     "avatarSeed": "avatar-vadimkiselev-0v1w2x",
-    "about": "Системный администратор, который обожает автоматизировать рутину. Помогаю small business настроить IT-инфраструктуру и не платить за то, что можно сделать бесплатно. Веду канал о полезных программах и лайфхаках.",
+    "about": "A system administrator who loves automating routine work. I help small businesses set up IT infrastructure and stop paying for things that can be done for free. I run a channel about useful software and life hacks.",
     "cityId": 3,
     "dateOfBirth": "1983-09-09",
     "gender": "male",
     "registrationDate": "2025-05-14",
-    "skillInterests": [23, 33, 43],
+    "skillInterests": [
+      23,
+      33,
+      43
+    ],
     "passwordHash": "$2b$10$zcHTfYNFghmmyZLkfUc7QeJAdlZ2sgYJL/YTTqq040mh423PAy7Y2"
   },
   {
     "id": 35,
-    "name": "Жанна",
+    "name": "Zhanna",
     "email": "zhanna.eremina@mail.ru",
     "avatarSeed": "avatar-zhannaeremina-3y4z5a",
-    "about": "Организатор мероприятий и свадебный координатор. Считаю, что идеальное событие — это событие, на котором гости не думают об организации. Делюсь секретами тайминга, подрядчиков и работы со стрессом.",
+    "about": "An event organizer and wedding coordinator. I believe a perfect event is one where guests never think about the organization. I share secrets of timing, vendors, and working with stress.",
     "cityId": 2,
     "dateOfBirth": "1987-07-07",
     "gender": "female",
     "registrationDate": "2025-03-25",
-    "skillInterests": [36, 11, 40],
+    "skillInterests": [
+      36,
+      11,
+      40
+    ],
     "passwordHash": "$2b$10$gXhuuSOlh9AM4A7.94M/x.f8tk8TQjZG1.oddlFqTgOzYlpxDnTny"
   },
   {
     "id": 36,
-    "name": "Артём",
+    "name": "Artem",
     "email": "artem.gerasimov@yandex.ru",
     "avatarSeed": "avatar-artemgerasimov-6b7c8d",
-    "about": "UI/UX дизайнер. Проектирую удобные интерфейсы для мобильных приложений и сайтов. Верю, что хороший дизайн незаметен, а плохой бросается в глаза. Учу основам композиции, типографики и работе с Figma.",
+    "about": "A UI/UX designer. I design convenient interfaces for mobile apps and websites. I believe good design is invisible, and bad design jumps out at you. I teach the basics of composition, typography, and working in Figma.",
     "cityId": 4,
     "dateOfBirth": "1991-11-11",
     "gender": "male",
     "registrationDate": "2025-09-01",
-    "skillInterests": [20, 103, 105],
+    "skillInterests": [
+      20,
+      103,
+      105
+    ],
     "passwordHash": "$2b$10$CZIAa4W8gAJWUJn6KwiFY.Gn4rujdow8SF/8CSLi55heJZfSqP7G."
   },
   {
     "id": 37,
-    "name": "Дарья",
+    "name": "Darya",
     "email": "darya.gromova@list.ru",
     "avatarSeed": "avatar-daryagromova-9e0f1g",
-    "about": "Стилист-имиджмейкер. Помогаю найти свой стиль и собрать базовый гардероб без лишних трат. Учу не следовать слепо моде, а понимать, что идёт именно вам. Провожу разборы гардероба и совместные шопинги.",
+    "about": "A stylist and image consultant. I help people find their style and build a basic wardrobe without overspending. I teach not to follow fashion blindly, but to understand what actually suits you. I do wardrobe reviews and shopping sessions.",
     "cityId": 1,
     "dateOfBirth": "1989-04-04",
     "gender": "female",
     "registrationDate": "2025-10-07",
-    "skillInterests": [36, 28, 51],
+    "skillInterests": [
+      36,
+      28,
+      51
+    ],
     "passwordHash": "$2b$10$N.ex9skKo.RIACNg2PCzc.f8Ctm2Gc/gWrRXg9/H0OKJ3LY5iOJxe"
   },
   {
     "id": 38,
-    "name": "Евгений",
+    "name": "Evgeny",
     "email": "evgeny.mironov@gmail.com",
     "avatarSeed": "avatar-evgenymironov-2h3i4j",
-    "about": "Тренер по теннису. Занимаюсь с детьми и взрослыми любого уровня подготовки. Считаю, что теннис — это не просто спорт, а шахматы на корте. Учу думать и просчитывать соперника.",
+    "about": "A tennis coach. I work with children and adults of any level. I believe tennis is not just a sport, but chess on a court. I teach how to think and read an opponent.",
     "cityId": 27,
     "dateOfBirth": "1984-08-08",
     "gender": "male",
     "registrationDate": "2025-07-19",
-    "skillInterests": [34, 35, 57],
+    "skillInterests": [
+      34,
+      35,
+      57
+    ],
     "passwordHash": "$2b$10$Xa2UMghqILTqMSvcfRJraOROuMWMdpzEMS/CGMUsBA0od4K/e44um"
   },
   {
     "id": 39,
-    "name": "София",
+    "name": "Sofia",
     "email": "sofia.andreeva@inbox.ru",
     "avatarSeed": "avatar-sofiaandreeva-5k6l7m",
-    "about": "Преподаватель испанского языка. Жила в Барселоне 5 лет. Влюблена в испанскую культуру, кухню и темперамент. Учу не только языку, но и тому, как думать и чувствовать по-испански.",
+    "about": "A Spanish teacher. I lived in Barcelona for 5 years. I am in love with Spanish culture, food, and temperament. I teach not only the language, but how to think and feel in Spanish.",
     "cityId": 2,
     "dateOfBirth": "1993-02-02",
     "gender": "female",
     "registrationDate": "2025-08-28",
-    "skillInterests": [36, 39, 55],
+    "skillInterests": [
+      36,
+      39,
+      55
+    ],
     "passwordHash": "$2b$10$gf1NdrtvMTWIjwvLEqXGs.xY6VSrxjESoupFoVV6Bk3Y9u.fu/9WW"
   },
   {
     "id": 40,
-    "name": "Максим",
+    "name": "Maxim",
     "email": "maxim.soloviev@mail.ru",
     "avatarSeed": "avatar-maximsoloviev-8n9o0p",
-    "about": "Специалист по 1С и автоматизации учёта. Помогаю бухгалтерам и предпринимателям подружиться с программами и перестать бояться кнопок. Считаю, что 1С может быть удобной, если её правильно настроить.",
+    "about": "A 1C and accounting automation specialist. I help accountants and entrepreneurs make friends with software and stop fearing buttons. I believe 1C can be convenient if it is set up properly.",
     "cityId": 1,
     "dateOfBirth": "1981-12-12",
     "gender": "male",
     "registrationDate": "2025-11-15",
-    "skillInterests": [11, 21, 31],
+    "skillInterests": [
+      11,
+      21,
+      31
+    ],
     "passwordHash": "$2b$10$VPCePS0PDpfJwso5qBWshOsxF4COBqZ8PwcI6SOxub2ogZ9Rm9Ep2"
   },
   {
     "id": 41,
-    "name": "Анастасия",
+    "name": "Anastasia",
     "email": "anastasia.zueva@yandex.ru",
     "avatarSeed": "avatar-anastasiazueva-1q2r3s",
-    "about": "Психолог для подростков. Помогаю найти общий язык с родителями, справиться с буллингом и полюбить себя. Работаю в современном подходе — без нравоучений, с уважением к личным границам.",
+    "about": "A psychologist for teenagers. I help them find a common language with parents, cope with bullying, and learn to like themselves. I work in a modern approach — no lectures, with respect for personal boundaries.",
     "cityId": 3,
     "dateOfBirth": "1990-05-05",
     "gender": "female",
     "registrationDate": "2026-01-20",
-    "skillInterests": [22, 50, 55],
+    "skillInterests": [
+      22,
+      50,
+      55
+    ],
     "passwordHash": "$2b$10$QbQQn1aZDQryaikXjDB9suuW76QHLm89/wDH08.XYk2ZCZfshNvXK"
   },
   {
     "id": 42,
-    "name": "Руслан",
+    "name": "Ruslan",
     "email": "ruslan.ignatov@gmail.com",
     "avatarSeed": "avatar-ruslanignatov-4t5u6v",
-    "about": "Каратист, обладатель чёрного пояса. Тренирую детей и взрослых. Считаю, что восточные единоборства — это путь воспитания духа через тело. Учу дисциплине, уважению и умению постоять за себя.",
+    "about": "A karateka with a black belt. I train children and adults. I believe martial arts are a path of cultivating the spirit through the body. I teach discipline, respect, and the ability to stand up for yourself.",
     "cityId": 5,
     "dateOfBirth": "1982-06-06",
     "gender": "male",
     "registrationDate": "2025-05-05",
-    "skillInterests": [50, 34, 46],
+    "skillInterests": [
+      50,
+      34,
+      46
+    ],
     "passwordHash": "$2b$10$DLk9WN60NnsxA21sEKcq4.0xpy2As.0r.L0ixnbIa/WLTv1C3QMt6"
   },
   {
     "id": 43,
-    "name": "Вера",
+    "name": "Vera",
     "email": "vera.belova@list.ru",
     "avatarSeed": "avatar-verabelova-7w8x9y",
-    "about": "Садовый дизайнер. Помогаю превратить обычный участок в райский сад, который радует глаз круглый год. Учу сочетать растения, планировать посадки и ухаживать за садом без фанатизма.",
+    "about": "A garden designer. I help turn an ordinary plot into a paradise garden that looks good all year. I teach how to combine plants, plan plantings, and care for a garden without obsession.",
     "cityId": 14,
     "dateOfBirth": "1978-09-09",
     "gender": "female",
     "registrationDate": "2025-06-12",
-    "skillInterests": [14, 37, 51],
+    "skillInterests": [
+      14,
+      37,
+      51
+    ],
     "passwordHash": "$2b$10$VwdVhxQ1IqShAnoeWVi9ZOT93FWtrYWPy6.IzdFSBazEiy3B8b.ze"
   },
   {
     "id": 44,
-    "name": "Станислав",
+    "name": "Stanislav",
     "email": "stanislav.kuzmin@inbox.ru",
     "avatarSeed": "avatar-stanislavkuzmin-0z1a2b",
-    "about": "Реставратор деревянной мебели. Возвращаю к жизни бабушкины комоды и стулья из IKEA, которым хочется дать вторую жизнь. Учу работать с деревом, красками и лаком без специальной мастерской.",
+    "about": "A wooden furniture restorer. I bring grandmother’s chests of drawers and IKEA chairs back to life when they deserve a second chance. I teach working with wood, paints, and varnish without a special workshop.",
     "cityId": 12,
     "dateOfBirth": "1975-10-10",
     "gender": "male",
     "registrationDate": "2025-09-09",
-    "skillInterests": [10, 13, 46],
+    "skillInterests": [
+      10,
+      13,
+      46
+    ],
     "passwordHash": "$2b$10$TYaDb9JTTEcgQ0FEynawI.AXYnAXRW0wnOVdhz.Dz.uqCRT5eXP12"
   },
   {
     "id": 45,
-    "name": "Лариса",
+    "name": "Larisa",
     "email": "larisa.vinogradova@mail.ru",
     "avatarSeed": "avatar-larisavinogradova-3c4d5e",
-    "about": "Вязальщица. Вяжу спицами и крючком уже 30 лет. Создаю вещи, которые хранят тепло рук. Учу с нуля — от набора петель до сложных узоров. Считаю, что вязание — это лучшая терапия от стресса.",
+    "about": "A knitter. I have knitted with needles and crochet for 30 years. I make things that keep the warmth of hands. I teach from scratch — from casting on to complex patterns. I believe knitting is the best therapy for stress.",
     "cityId": 13,
     "dateOfBirth": "1965-11-11",
     "gender": "female",
     "registrationDate": "2025-10-10",
-    "skillInterests": [36, 51, 40],
+    "skillInterests": [
+      36,
+      51,
+      40
+    ],
     "passwordHash": "$2b$10$zJZmgKzG2Jdpdn6UmCscgebZvu7PP27yw.HfKGzT4XpYbmUQN9GJW"
   },
   {
     "id": 46,
-    "name": "Василий",
+    "name": "Vasily",
     "email": "vasily.tarasov@yandex.ru",
     "avatarSeed": "avatar-vasilytarasov-6f7g8h",
-    "about": "Инструктор по сноуборду. Зимой живу в горах, летом — учу кататься на роликах. Помогаю преодолеть страх скорости и получить кайф от скольжения. Считаю, что научиться кататься можно в любом возрасте.",
+    "about": "A snowboard instructor. In winter I live in the mountains; in summer I teach roller skating. I help people overcome the fear of speed and enjoy sliding. I believe you can learn at any age.",
     "cityId": 44,
     "dateOfBirth": "1987-12-12",
     "gender": "male",
     "registrationDate": "2025-11-11",
-    "skillInterests": [43, 24, 48],
+    "skillInterests": [
+      43,
+      24,
+      48
+    ],
     "passwordHash": "$2b$10$gnBXkQjI/w1hCJZKi/C44uDfgRpgbBjLJNXpgp0CE9Hz/1nMJCrtW"
   },
   {
     "id": 47,
-    "name": "Надежда",
+    "name": "Nadezhda",
     "email": "nadezhda.frolova@list.ru",
     "avatarSeed": "avatar-nadezhdafrolova-9i0j1k",
-    "about": "Логопед-дефектолог. Работаю с детьми и взрослыми. Помогаю поставить звуки, исправить дефекты речи и говорить красиво и уверенно. Верю, что красивый голос и речь открывают многие двери.",
+    "about": "A speech therapist. I work with children and adults. I help set sounds, correct speech issues, and speak beautifully and confidently. I believe a beautiful voice and speech open many doors.",
     "cityId": 15,
     "dateOfBirth": "1983-03-03",
     "gender": "female",
     "registrationDate": "2025-12-12",
-    "skillInterests": [25, 37, 55],
+    "skillInterests": [
+      25,
+      37,
+      55
+    ],
     "passwordHash": "$2b$10$qkrTjgssuuRNDZDrpJ7GlOa/v8nBWQONiES/dku.aWpEnbZb.rPUu"
   },
   {
     "id": 48,
-    "name": "Пётр",
+    "name": "Pyotr",
     "email": "petr.volodin@gmail.com",
     "avatarSeed": "avatar-petrvolodin-2l3m4n",
-    "about": "Мастер по ремонту телефонов и ноутбуков. Могу починить почти всё — от разбитого экрана до сложных поломок материнской платы. Учу не бояться разбирать технику и экономить на ремонте.",
+    "about": "A phone and laptop repair technician. I can fix almost anything — from a cracked screen to complex motherboard failures. I teach people not to be afraid of taking gadgets apart and to save on repairs.",
     "cityId": 16,
     "dateOfBirth": "1992-04-04",
     "gender": "male",
     "registrationDate": "2026-01-01",
-    "skillInterests": [21, 23, 43],
+    "skillInterests": [
+      21,
+      23,
+      43
+    ],
     "passwordHash": "$2b$10$4JUrTMf.dfyrofyW5OB9.uxYc30UrED0Yi3.MZFcxkxDy9fWQja2W"
   },
   {
     "id": 49,
-    "name": "Елизавета",
+    "name": "Elizaveta",
     "email": "elizaveta.ershova@inbox.ru",
     "avatarSeed": "avatar-elizavetaershova-5o6p7q",
-    "about": "Эколог. Занимаюсь раздельным сбором отходов и экологичным образом жизни. Помогаю сделать первый шаг к zero waste без фанатизма и чувства вины. Считаю, что заботиться о планете может каждый.",
+    "about": "An ecologist. I practice waste sorting and a more sustainable lifestyle. I help people take the first step toward zero waste without fanaticism or guilt. I believe anyone can care for the planet.",
     "cityId": 17,
     "dateOfBirth": "1991-05-05",
     "gender": "female",
     "registrationDate": "2025-07-07",
-    "skillInterests": [22, 50, 28],
+    "skillInterests": [
+      22,
+      50,
+      28
+    ],
     "passwordHash": "$2b$10$nGbLQF/fYZYfAhvW5650suz.8SBfqsHAP.Yq33NEAdFAOo08ZFzbi"
   },
   {
     "id": 50,
-    "name": "Фёдор",
+    "name": "Fyodor",
     "email": "fedor.antonov@mail.ru",
     "avatarSeed": "avatar-fedorantonov-8r9s0t",
-    "about": "Сомелье и винный эксперт. Провожу дегустации и учу разбираться в вине без снобизма. Помогаю выбирать вино к ужину и не теряться в винном магазине. Считаю, что хорошее вино должно быть доступным.",
+    "about": "A sommelier and wine expert. I host tastings and teach people to understand wine without snobbery. I help choose wine for dinner and not get lost in a wine shop. I believe good wine should be accessible.",
     "cityId": 27,
     "dateOfBirth": "1980-08-08",
     "gender": "male",
     "registrationDate": "2025-08-08",
-    "skillInterests": [43, 47, 48],
+    "skillInterests": [
+      43,
+      47,
+      48
+    ],
     "passwordHash": "$2b$10$aQEepeVVH9xi64A.cErYGu6efdQuP3dz8Z9sT4MzA2IiRdQgASU6S"
   },
   {
     "id": 51,
-    "name": "Ульяна",
+    "name": "Ulyana",
     "email": "ulyana.kalashnikova@yandex.ru",
     "avatarSeed": "avatar-ulyanakalashnikova-1u2v3w",
-    "about": "Флорист. Создаю букеты и композиции для особенных событий. Учу составлять букеты так, чтобы они радовали как можно дольше. Верю, что цветы — это язык, на котором говорят без слов.",
+    "about": "A florist. I create bouquets and arrangements for special events. I teach how to compose bouquets so they last as long as possible. I believe flowers are a language spoken without words.",
     "cityId": 18,
     "dateOfBirth": "1989-09-09",
     "gender": "female",
     "registrationDate": "2025-09-09",
-    "skillInterests": [55, 37, 40],
+    "skillInterests": [
+      55,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$jagdbMWRVOTKvBH7hA21i.dcOBsob.6gaPJwpIR5AHeRTcYo1a7pu"
   },
   {
     "id": 52,
-    "name": "Даниил",
+    "name": "Daniil",
     "email": "daniil.gorbunov@gmail.com",
     "avatarSeed": "avatar-daniilgorbunov-4x5y6z",
-    "about": "Программист и ментор. Помогаю junior-разработчикам найти первую работу и не выгореть в процессе. Провожу code review и mock-собеседования. Считаю, что лучший способ вырасти — учить других.",
+    "about": "A programmer and mentor. I help junior developers find their first job and not burn out along the way. I do code reviews and mock interviews. I believe the best way to grow is to teach others.",
     "cityId": 19,
     "dateOfBirth": "1985-10-10",
     "gender": "male",
     "registrationDate": "2025-10-10",
-    "skillInterests": [31, 33, 45],
+    "skillInterests": [
+      31,
+      33,
+      45
+    ],
     "passwordHash": "$2b$10$/PPKeDSGGwq8sSZ5EezSLuYP0MazHPQUgPO/sIvvy/dM4Q4cDxu9y"
   },
   {
     "id": 53,
-    "name": "Александра",
+    "name": "Alexandra",
     "email": "aleksandra.sorokina@list.ru",
     "avatarSeed": "avatar-aleksandrasorokina-7a8b9c",
-    "about": "Арт-терапевт. Помогаю выражать эмоции через творчество. Работаю с детьми и взрослыми, которые переживают стресс или потерю. Верю, что рисовать могут все, даже те, кто думает иначе.",
+    "about": "An art therapist. I help people express emotions through creativity. I work with children and adults going through stress or loss. I believe everyone can draw, even those who think otherwise.",
     "cityId": 20,
     "dateOfBirth": "1982-11-11",
     "gender": "female",
     "registrationDate": "2025-11-11",
-    "skillInterests": [55, 37, 51],
+    "skillInterests": [
+      55,
+      37,
+      51
+    ],
     "passwordHash": "$2b$10$DQNKRJPaw1Tww1ljT8qrZe0bIlxigxdmFDL3Q0unClgiMk8pfeZVy"
   },
   {
     "id": 54,
-    "name": "Геннадий",
+    "name": "Gennady",
     "email": "gennady.nesterov@inbox.ru",
     "avatarSeed": "avatar-gennadynesterov-0d1e2f",
-    "about": "Рыбак со стажем. Знаю всё о рыбалке — от поплавочной удочки до спиннинга. Организую выезды на рыбалку и учу читать воду, выбирать снасти и находить рыбу. Считаю, что рыбалка — это медитация.",
+    "about": "An experienced angler. I know everything about fishing — from a float rod to spinning. I organize fishing trips and teach how to read water, choose gear, and find fish. I believe fishing is meditation.",
     "cityId": 21,
     "dateOfBirth": "1973-12-12",
     "gender": "male",
     "registrationDate": "2025-12-12",
-    "skillInterests": [11, 33, 45],
+    "skillInterests": [
+      11,
+      33,
+      45
+    ],
     "passwordHash": "$2b$10$aEx7P3SdRuZh19xdiTzk3ORbi0mMXVCqSUd91wo/8ZWdKkf/8DF5u"
   },
   {
     "id": 55,
-    "name": "Варвара",
+    "name": "Varvara",
     "email": "varvara.ustinova@mail.ru",
     "avatarSeed": "avatar-varvaraustinova-3g4h5i",
-    "about": "Модельер-конструктор. Шью одежду на заказ и учу крою и шитью с нуля. Помогаю воплотить в жизнь любые идеи — от платья мечты до удобных брюк. Верю, что шить может научиться каждый.",
+    "about": "A fashion designer and pattern maker. I sew custom clothing and teach cutting and sewing from scratch. I help bring any idea to life — from a dream dress to comfortable trousers. I believe anyone can learn to sew.",
     "cityId": 22,
     "dateOfBirth": "1986-01-01",
     "gender": "female",
     "registrationDate": "2026-01-01",
-    "skillInterests": [36, 57, 55],
+    "skillInterests": [
+      36,
+      57,
+      55
+    ],
     "passwordHash": "$2b$10$Mfd.kSadwTHpPfsGyNBGAuiryyWqOTXkk0CmCcaw5u7Pz6Fj3jCau"
   },
   {
     "id": 56,
-    "name": "Леонид",
+    "name": "Leonid",
     "email": "leonid.fomin@yandex.ru",
     "avatarSeed": "avatar-leonidfomin-6j7k8l",
-    "about": "Столяр-краснодеревщик. Создаю мебель из массива дерева, которая будет служить веками. Учу работать с деревом ручным инструментом и чувствовать материал. Считаю, что дерево — живой материал, с которым нужно говорить.",
+    "about": "A cabinetmaker. I create solid-wood furniture that will last for centuries. I teach working with wood using hand tools and feeling the material. I believe wood is a living material you need to talk to.",
     "cityId": 23,
     "dateOfBirth": "1977-02-02",
     "gender": "male",
     "registrationDate": "2025-02-02",
-    "skillInterests": [14, 52, 44],
+    "skillInterests": [
+      14,
+      52,
+      44
+    ],
     "passwordHash": "$2b$10$krXp2rbmfTNQW6Wt5AU.s.LyUUj.8UvyWbrKqQWB09tTbztimTjYG"
   },
   {
     "id": 57,
-    "name": "Марина",
+    "name": "Marina",
     "email": "marina.kulagina@list.ru",
     "avatarSeed": "avatar-marinakulagina-9m0n1o",
-    "about": "Художник по текстилю. Создаю авторские гобелены и панно. Учу ткачеству на раме и работе с разными фактурами. Верю, что текстиль делает дом тёплым и живым.",
+    "about": "A textile artist. I create original tapestries and panels. I teach frame weaving and working with different textures. I believe textiles make a home warm and alive.",
     "cityId": 24,
     "dateOfBirth": "1988-03-03",
     "gender": "female",
     "registrationDate": "2025-03-03",
-    "skillInterests": [57, 24, 40],
+    "skillInterests": [
+      57,
+      24,
+      40
+    ],
     "passwordHash": "$2b$10$0pStO5ap48R28qO.aIXMeuFAYQARkYgLOij.htDma5VUGiD.cXQkm"
   },
   {
     "id": 58,
-    "name": "Валентин",
+    "name": "Valentin",
     "email": "valentin.belov@gmail.com",
     "avatarSeed": "avatar-valentinbelov-2p3q4r",
-    "about": "Шахматист и тренер. Кандидат в мастера спорта. Учу игре в шахматы детей и взрослых. Считаю, что шахматы развивают логику, память и умение принимать решения. Помогаю подготовиться к турнирам.",
+    "about": "A chess player and coach. Candidate Master of Sport. I teach chess to children and adults. I believe chess develops logic, memory, and decision-making. I help people prepare for tournaments.",
     "cityId": 25,
     "dateOfBirth": "1981-04-04",
     "gender": "male",
     "registrationDate": "2025-04-04",
-    "skillInterests": [43, 48, 49],
+    "skillInterests": [
+      43,
+      48,
+      49
+    ],
     "passwordHash": "$2b$10$vkhfpqXWdEXOGSGI..luoe/Dtn5EcVymQM51pMu1N9aBWe9BuFZ0C"
   },
   {
     "id": 59,
-    "name": "Таисия",
+    "name": "Taisiya",
     "email": "taisiya.ermakova@inbox.ru",
     "avatarSeed": "avatar-taisiyaermakova-5s6t7u",
-    "about": "Педагог раннего развития. Занимаюсь с детьми от 1 года до 4 лет. Помогаю мамам понять своего ребёнка и организовать развивающую среду дома. Верю, что лучшие игрушки — те, что сделаны своими руками.",
+    "about": "An early-development teacher. I work with children from 1 to 4 years old. I help mothers understand their child and organize a developmental environment at home. I believe the best toys are the ones you make with your own hands.",
     "cityId": 26,
     "dateOfBirth": "1992-05-05",
     "gender": "female",
     "registrationDate": "2025-05-05",
-    "skillInterests": [45, 23, 28],
+    "skillInterests": [
+      45,
+      23,
+      28
+    ],
     "passwordHash": "$2b$10$.LI8tBnXl9YK.S.lKp.PFOp6fP9tjPeaShWCn1lzD6UF7CL4Boooi"
   },
   {
     "id": 60,
-    "name": "Юрий",
+    "name": "Yury",
     "email": "yury.denisov@mail.ru",
     "avatarSeed": "avatar-yurydenisov-8v9w0x",
-    "about": "Автомеханик. Ремонтирую автомобили любых марок и учу автовладельцев базовой диагностике. Считаю, что каждый водитель должен понимать, что происходит под капотом, и уметь менять колесо.",
+    "about": "A car mechanic. I repair cars of any brand and teach owners basic diagnostics. I believe every driver should understand what happens under the hood and know how to change a tire.",
     "cityId": 27,
     "dateOfBirth": "1974-06-06",
     "gender": "male",
     "registrationDate": "2025-06-06",
-    "skillInterests": [48, 23, 57],
+    "skillInterests": [
+      48,
+      23,
+      57
+    ],
     "passwordHash": "$2b$10$ppAErL3okeloJpCvpKGlaee8Us5e4Xl3LE0vV0TX4iONpdifff5zq"
   },
   {
     "id": 61,
-    "name": "Зоя",
+    "name": "Zoya",
     "email": "zoya.polyakova@yandex.ru",
     "avatarSeed": "avatar-zoyapolyakova-1y2z3a",
-    "about": "Каллиграф. Учу красиво писать детей и взрослых. Считаю, что в век цифровых технологий умение писать от руки становится суперспособностью. Помогаю исправить почерк и найти свой стиль.",
+    "about": "A calligrapher. I teach children and adults to write beautifully. I believe that in the digital age, handwriting is becoming a superpower. I help correct handwriting and find a personal style.",
     "cityId": 28,
     "dateOfBirth": "1985-07-07",
     "gender": "female",
     "registrationDate": "2025-07-07",
-    "skillInterests": [36, 39, 51],
+    "skillInterests": [
+      36,
+      39,
+      51
+    ],
     "passwordHash": "$2b$10$NTpIwubisnlhupE7Lvv/ceCcd7DSE4yO3YXMpmqmEL6M6IZYoff.S"
   },
   {
     "id": 62,
-    "name": "Аркадий",
+    "name": "Arkady",
     "email": "arkady.shevelev@list.ru",
     "avatarSeed": "avatar-arkadyshevelev-4b5c6d",
-    "about": "Сомелье чая. Провожу чайные церемонии и дегустации. Учу разбираться в сортах чая, правильно заваривать и чувствовать вкус. Считаю, что чай — это целая философия и путь к осознанности.",
+    "about": "A tea sommelier. I host tea ceremonies and tastings. I teach how to understand tea varieties, brew properly, and taste. I believe tea is a whole philosophy and a path to mindfulness.",
     "cityId": 3,
     "dateOfBirth": "1979-08-08",
     "gender": "male",
     "registrationDate": "2025-08-08",
-    "skillInterests": [101, 55, 46],
+    "skillInterests": [
+      101,
+      55,
+      46
+    ],
     "passwordHash": "$2b$10$rHMGg8kqI6KJYARTkz28PejpBDwQxSQl2Z.5kDOdKaNIaT9THvFuO"
   },
   {
     "id": 63,
-    "name": "Нина",
+    "name": "Nina",
     "email": "nina.koroleva@gmail.com",
     "avatarSeed": "avatar-ninakoroleva-7e8f9g",
-    "about": "Музыкальный педагог. Обучаю игре на фортепиано детей и взрослых. Считаю, что никогда не поздно начать заниматься музыкой. Помогаю подобрать репертуар по душе — от классики до современности.",
+    "about": "A music teacher. I teach piano to children and adults. I believe it is never too late to start music. I help choose a repertoire you love — from classical to contemporary.",
     "cityId": 29,
     "dateOfBirth": "1968-09-09",
     "gender": "female",
     "registrationDate": "2025-09-09",
-    "skillInterests": [23, 37, 40],
+    "skillInterests": [
+      23,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$vCuOxM.L049oLHHKncboBeCuGrfmwv1cHuGnAza34ZVRtkV014E.u"
   },
   {
     "id": 64,
-    "name": "Глеб",
+    "name": "Gleb",
     "email": "gleb.ershkov@inbox.ru",
     "avatarSeed": "avatar-glebershkov-0h1i2j",
-    "about": "Специалист по контекстной рекламе. Настраиваю Яндекс.Директ и Google Ads. Помогаю бизнесу не сливать бюджеты и получать клиентов. Учу основам таргетинга и аналитике.",
+    "about": "A contextual advertising specialist. I set up Yandex Direct and Google Ads. I help businesses stop wasting budgets and get clients. I teach targeting basics and analytics.",
     "cityId": 30,
     "dateOfBirth": "1990-10-10",
     "gender": "male",
     "registrationDate": "2025-10-10",
-    "skillInterests": [23, 36, 37],
+    "skillInterests": [
+      23,
+      36,
+      37
+    ],
     "passwordHash": "$2b$10$AaAwTUo8EP7RW.g6ldxF0uJATwLNmu.xrISpF08p69rTZ7VLccXIa"
   },
   {
     "id": 65,
-    "name": "Раиса",
+    "name": "Raisa",
     "email": "raisa.vasilieva@mail.ru",
     "avatarSeed": "avatar-raisaVasilieva-3k4l5m",
-    "about": "Садовод-опытник. Выращиваю экзотические растения в средней полосе. Делюсь опытом и секретами, как заставить цвести даже капризные культуры. Считаю, что нет нерастущих растений — есть неподходящие условия.",
+    "about": "An experimental gardener. I grow exotic plants in a temperate climate. I share experience and secrets of making even fussy crops bloom. I believe there are no plants that will not grow — only unsuitable conditions.",
     "cityId": 31,
     "dateOfBirth": "1962-11-11",
     "gender": "female",
     "registrationDate": "2025-11-11",
-    "skillInterests": [33, 21, 29],
+    "skillInterests": [
+      33,
+      21,
+      29
+    ],
     "passwordHash": "$2b$10$GkAuQziGTEvE0.EAtSoRcuKdmzG4Kve45hzuzgMS1qRTx1IUTpfDq"
   },
   {
     "id": 66,
-    "name": "Семён",
+    "name": "Semyon",
     "email": "semyon.andrianov@yandex.ru",
     "avatarSeed": "avatar-semyonandrianov-6n7o8p",
-    "about": "Тренер по плаванию. Работаю с детьми и взрослыми, которые боятся воды. Помогаю научиться держаться на воде и полюбить плавание. Считаю, что плавать может научиться каждый, независимо от возраста.",
+    "about": "A swimming coach. I work with children and adults who are afraid of water. I help people stay afloat and fall in love with swimming. I believe anyone can learn to swim, regardless of age.",
     "cityId": 32,
     "dateOfBirth": "1984-12-12",
     "gender": "male",
     "registrationDate": "2025-12-12",
-    "skillInterests": [43, 37, 48],
+    "skillInterests": [
+      43,
+      37,
+      48
+    ],
     "passwordHash": "$2b$10$kbeHGO4UXFkGCHeDMSxlzuZBrGyY6IaHBweOyq5zMYM1wsk7K/r8i"
   },
   {
     "id": 67,
-    "name": "Лидия",
+    "name": "Lidia",
     "email": "lidia.bogdanova@list.ru",
     "avatarSeed": "avatar-lidiabogdanova-9q0r1s",
-    "about": "Мастер по мыловарению. Создаю натуральное мыло и косметику ручной работы. Учу делать безопасную косметику дома. Считаю, что натуральный уход может быть доступным и эффективным.",
+    "about": "A soap-making artisan. I create natural handmade soap and cosmetics. I teach how to make safe cosmetics at home. I believe natural care can be affordable and effective.",
     "cityId": 33,
     "dateOfBirth": "1976-01-01",
     "gender": "female",
     "registrationDate": "2026-01-01",
-    "skillInterests": [36, 13, 55],
+    "skillInterests": [
+      36,
+      13,
+      55
+    ],
     "passwordHash": "$2b$10$.58zdR0l50hKmA2IrJYGBeUhszMfqwO4MELro33g4iL2vllCAFbOe"
   },
   {
     "id": 68,
-    "name": "Тимофей",
+    "name": "Timofey",
     "email": "timofey.sergeev@gmail.com",
     "avatarSeed": "avatar-timofeysergeev-2t3u4v",
-    "about": "Архитектор. Проектирую частные дома и интерьеры. Помогаю воплотить мечту о доме в реальность, учитывая бюджет и пожелания. Учу основам проектирования и работе с пространством.",
+    "about": "An architect. I design private houses and interiors. I help turn a dream home into reality within budget and wishes. I teach design basics and working with space.",
     "cityId": 34,
     "dateOfBirth": "1980-02-02",
     "gender": "male",
     "registrationDate": "2025-02-02",
-    "skillInterests": [22, 50, 46],
+    "skillInterests": [
+      22,
+      50,
+      46
+    ],
     "passwordHash": "$2b$10$moJRxFohGTohIDAFg2KC1OConO6wqRE8H5Ah5qXHdWhWlNFhph6T2"
   },
   {
     "id": 69,
-    "name": "Инна",
+    "name": "Inna",
     "email": "inna.zhuravleva@inbox.ru",
     "avatarSeed": "avatar-innazhuravleva-5w6x7y",
-    "about": "Косметолог-эстетист. Провожу уходовые процедуры и учу домашнему уходу. Помогаю подобрать косметику и разобраться в составах. Считаю, что красивая кожа — это результат регулярной заботы, а не дорогих процедур.",
+    "about": "An aesthetician. I provide care treatments and teach home skincare. I help choose cosmetics and understand ingredients. I believe beautiful skin is the result of regular care, not expensive procedures.",
     "cityId": 35,
     "dateOfBirth": "1989-03-03",
     "gender": "female",
     "registrationDate": "2025-03-03",
-    "skillInterests": [35, 37, 40],
+    "skillInterests": [
+      35,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$ZeQmi6Zs7T7CG9PHkwOZ9elFodCKKVNBvgcXACwUqpA72onus9rBO"
   },
   {
     "id": 70,
-    "name": "Виталий",
+    "name": "Vitaliy",
     "email": "vitaly.karpov@mail.ru",
     "avatarSeed": "avatar-vitalykarpov-8z9a0b",
-    "about": "Специалист по голосу и речи. Работаю с дикторами, блогерами и всеми, кто много говорит. Помогаю снять зажимы, поставить дыхание и сделать голос уверенным. Верю, что голос — это визитная карточка.",
+    "about": "A voice and speech specialist. I work with announcers, bloggers, and anyone who talks a lot. I help release tension, set breathing, and make the voice confident. I believe the voice is a calling card.",
     "cityId": 36,
     "dateOfBirth": "1983-04-04",
     "gender": "male",
     "registrationDate": "2025-04-04",
-    "skillInterests": [39, 55, 15],
+    "skillInterests": [
+      39,
+      55,
+      15
+    ],
     "passwordHash": "$2b$10$guiyCXSmsO92jmVzHiZvIu9/L/OXVU97VYeJXDIEbMrvsaVEkvCCi"
   },
   {
     "id": 71,
-    "name": "Алла",
+    "name": "Alla",
     "email": "alla.morozova@yandex.ru",
     "avatarSeed": "avatar-allamorozova-1c2d3e",
-    "about": "Фуд-блогер и фотограф. Снимаю еду так, что хочется съесть экран. Учу красиво фотографировать еду на телефон и вести блог без профессиональной камеры. Считаю, что аппетитные фото может делать каждый.",
+    "about": "A food blogger and photographer. I shoot food so that you want to eat the screen. I teach how to photograph food beautifully on a phone and run a blog without a professional camera. I believe anyone can take appetizing photos.",
     "cityId": 37,
     "dateOfBirth": "1991-05-05",
     "gender": "female",
     "registrationDate": "2025-05-05",
-    "skillInterests": [106, 35, 51],
+    "skillInterests": [
+      106,
+      35,
+      51
+    ],
     "passwordHash": "$2b$10$HKs7mSycqoe9Cajf1zP/8.bMdrsdmIzPQT76Q6qwYqzjoeTvvWs9K"
   },
   {
     "id": 72,
-    "name": "Ростислав",
+    "name": "Rostislav",
     "email": "rostislav.gavrilov@list.ru",
     "avatarSeed": "avatar-rostislavgavrilov-4f5g6h",
-    "about": "Режиссёр монтажа. Монтирую видео для YouTube и соцсетей. Учу работать в DaVinci Resolve и делать видео, которые залипают. Помогаю найти свой стиль монтажа и не бояться сложных проектов.",
+    "about": "A video editor. I edit videos for YouTube and social media. I teach DaVinci Resolve and how to make videos people cannot stop watching. I help people find their editing style and not fear complex projects.",
     "cityId": 38,
     "dateOfBirth": "1986-06-06",
     "gender": "male",
     "registrationDate": "2025-06-06",
-    "skillInterests": [14, 24, 34],
+    "skillInterests": [
+      14,
+      24,
+      34
+    ],
     "passwordHash": "$2b$10$U2bbt72mNfeJA3FQD71rLe9M0M9aIr86YVSn2ttYKxkZpjdk7Pphu"
   },
   {
     "id": 73,
-    "name": "Зинаида",
+    "name": "Zinaida",
     "email": "zinaida.klimova@gmail.com",
     "avatarSeed": "avatar-zinaidaklimova-7i8j9k",
-    "about": "Повар-кондитер. Пеку торты и десерты на заказ. Учу готовить десерты, которые выглядят как в ресторане, но доступны каждому. Считаю, что домашняя выпечка может быть не хуже профессиональной.",
+    "about": "A pastry chef. I bake custom cakes and desserts. I teach desserts that look restaurant-level but are accessible to everyone. I believe homemade baking can be no worse than professional.",
     "cityId": 2,
     "dateOfBirth": "1964-07-07",
     "gender": "female",
     "registrationDate": "2025-07-07",
-    "skillInterests": [108, 51, 28],
+    "skillInterests": [
+      108,
+      51,
+      28
+    ],
     "passwordHash": "$2b$10$q.M2RZWoABRJwC/au5lnDOCtaBT8NAiOhOfkpPWo8Q7t79FgQEP.q"
   },
   {
     "id": 74,
-    "name": "Альберт",
+    "name": "Albert",
     "email": "albert.davydov@inbox.ru",
     "avatarSeed": "avatar-albertdavydov-0l1m2n",
-    "about": "Преподаватель английского для IT-специалистов. Помогаю читать документацию, проходить собеседования и работать в международных командах. Знаю специфику IT-английского и учу только тому, что реально нужно в работе.",
+    "about": "An English teacher for IT specialists. I help people read documentation, pass interviews, and work in international teams. I know the specifics of IT English and teach only what is actually needed at work.",
     "cityId": 39,
     "dateOfBirth": "1987-08-08",
     "gender": "male",
     "registrationDate": "2025-08-08",
-    "skillInterests": [101, 35, 43],
+    "skillInterests": [
+      101,
+      35,
+      43
+    ],
     "passwordHash": "$2b$10$qrks.nzmgwhb3ZcKIZ6fH.VbVM3RRH2WgYkvEhAqF160ooA6PyHBG"
   },
   {
     "id": 75,
-    "name": "Клавдия",
+    "name": "Klavdia",
     "email": "klavdia.nazarova@mail.ru",
     "avatarSeed": "avatar-klavdianazarova-3o4p5q",
-    "about": "Лоскутное шитьё. Создаю одеяла, пледы и панно из лоскутков. Учу работать с тканью, сочетать цвета и создавать уют. Считаю, что в каждом лоскутке живёт своя история.",
+    "about": "A patchwork maker. I create quilts, throws, and panels from scraps. I teach working with fabric, combining colors, and creating coziness. I believe every scrap holds its own story.",
     "cityId": 40,
     "dateOfBirth": "1959-09-09",
     "gender": "female",
     "registrationDate": "2025-09-09",
-    "skillInterests": [39, 43, 37],
+    "skillInterests": [
+      39,
+      43,
+      37
+    ],
     "passwordHash": "$2b$10$Xg1HIOUWVjKpf02UjF01zeNA9MsKE/XS4YqeDe3nD6nNOCNrg5GoG"
   },
   {
     "id": 76,
-    "name": "Ярослав",
+    "name": "Yaroslav",
     "email": "yaroslav.ustinov@yandex.ru",
     "avatarSeed": "avatar-yaroslavustinov-6r7s8t",
-    "about": "Тренер по функциональному многоборью. Помогаю подготовиться к соревнованиям и просто быть в форме. Составляю программы тренировок без травм и с учётом индивидуальных особенностей.",
+    "about": "A functional training coach. I help people prepare for competitions and simply stay in shape. I build training programs without injuries and with individual needs in mind.",
     "cityId": 41,
     "dateOfBirth": "1989-10-10",
     "gender": "male",
     "registrationDate": "2025-10-10",
-    "skillInterests": [43, 21, 48],
+    "skillInterests": [
+      43,
+      21,
+      48
+    ],
     "passwordHash": "$2b$10$PTNOecLK2.0y2ONc0p.oIeJ3R3Vc/wKnqWrH7feVsA/XycUPcOyKW"
   },
   {
     "id": 77,
-    "name": "Эмилия",
+    "name": "Emilia",
     "email": "emilia.romanova@list.ru",
     "avatarSeed": "avatar-emiliaromanova-9u0v1w",
-    "about": "Стилист-закупщик. Помогаю составлять капсульные гардеробы и делать шопинг без стресса. Знаю, где искать качественные вещи по разумным ценам. Учу не переплачивать и выглядеть дорого.",
+    "about": "A stylist and buyer. I help build capsule wardrobes and shop without stress. I know where to find quality pieces at reasonable prices. I teach how not to overpay and still look expensive.",
     "cityId": 41,
     "dateOfBirth": "1990-11-11",
     "gender": "female",
     "registrationDate": "2025-11-11",
-    "skillInterests": [23, 37, 51],
+    "skillInterests": [
+      23,
+      37,
+      51
+    ],
     "passwordHash": "$2b$10$PWhFaACTQgLrN6cgSqdqEOGBIFRrGYj1Z5kDfn9f0UXa2Di.zk35C"
   },
   {
     "id": 78,
-    "name": "Тарас",
+    "name": "Taras",
     "email": "taras.efimov@gmail.com",
     "avatarSeed": "avatar-tarasefimov-2x3y4z",
-    "about": "Мастер по ремонту бытовой техники. Чиню стиральные машины, холодильники и кофемашины. Учу диагностировать поломки и не вызывать мастера по пустякам. Считаю, что техника служит дольше, если за ней правильно ухаживать.",
+    "about": "A home-appliance repair technician. I fix washing machines, refrigerators, and coffee machines. I teach how to diagnose failures and not call a technician for every trifle. I believe appliances last longer with proper care.",
     "cityId": 42,
     "dateOfBirth": "1972-12-12",
     "gender": "male",
     "registrationDate": "2025-12-12",
-    "skillInterests": [13, 23, 53],
+    "skillInterests": [
+      13,
+      23,
+      53
+    ],
     "passwordHash": "$2b$10$Do3bVSqhmXm.hlZHsasip.hMY7ZIy1PPGlPLhex01dP3mSbLH1Vie"
   },
   {
     "id": 79,
-    "name": "Мирослава",
+    "name": "Miroslava",
     "email": "miroslava.kotova@inbox.ru",
     "avatarSeed": "avatar-miroslavakotova-5a6b7c",
-    "about": "Художник по стеклу. Создаю витражи и расписываю стекло. Учу работать со стеклом и создавать красивые вещи для дома. Верю, что стекло может быть тёплым, если в него вложить душу.",
+    "about": "A glass artist. I create stained glass and paint on glass. I teach working with glass and making beautiful things for the home. I believe glass can feel warm if you put soul into it.",
     "cityId": 43,
     "dateOfBirth": "1985-01-01",
     "gender": "female",
     "registrationDate": "2026-01-01",
-    "skillInterests": [35, 37, 55],
+    "skillInterests": [
+      35,
+      37,
+      55
+    ],
     "passwordHash": "$2b$10$ePPevVJMlaSCUh2rtSYt.u6dwYwhvprFcyxbMmElPOXiArkC9YJ/O"
   },
   {
     "id": 80,
-    "name": "Владислав",
+    "name": "Vladislav",
     "email": "vladislav.kuznetsov@mail.ru",
     "avatarSeed": "avatar-vladislavkuznetsov-8d9e0f",
-    "about": "Маркетолог и стратег. Помогаю малому бизнесу найти клиентов и не тратить бюджет впустую. Учу работать с соцсетями и контекстом. Считаю, что маркетинг — это не магия, а система.",
+    "about": "A marketer and strategist. I help small businesses find clients and not waste budget. I teach working with social media and ads. I believe marketing is not magic, it is a system.",
     "cityId": 44,
     "dateOfBirth": "1982-02-02",
     "gender": "male",
     "registrationDate": "2025-02-02",
-    "skillInterests": [12, 32, 42],
+    "skillInterests": [
+      12,
+      32,
+      42
+    ],
     "passwordHash": "$2b$10$P9pUuG9stAIRI53Vv.oH2ubMNchYY.eehmczrvMf3LHehHw0YBkjW"
   },
   {
     "id": 81,
-    "name": "Лада",
+    "name": "Lada",
     "email": "lada.ershkova@yandex.ru",
     "avatarSeed": "avatar-ladaershova-1g2h3i",
-    "about": "Мастер по маникюру. Работаю с самым капризным материалом — ногтями. Учу делать покрытия, которые носятся долго, и заботиться о здоровье ногтей. Считаю, что ухоженные руки — визитная карточка.",
+    "about": "A nail technician. I work with the most fussy material — nails. I teach coatings that last and how to care for nail health. I believe well-groomed hands are a calling card.",
     "cityId": 45,
     "dateOfBirth": "1992-03-03",
     "gender": "female",
     "registrationDate": "2025-03-03",
-    "skillInterests": [35, 37, 40],
+    "skillInterests": [
+      35,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$SkoDHyauaLNDPNYJvtjQveBSv10JCpPWIRUOTbm514facgy80V/V2"
   },
   {
     "id": 82,
-    "name": "Богдан",
+    "name": "Bogdan",
     "email": "bogdan.ignatiev@list.ru",
     "avatarSeed": "avatar-bogdanignatiev-4j5k6l",
-    "about": "Специалист по нейросетям. Помогаю использовать AI в работе и творчестве. Учу писать промты, генерировать картинки и тексты. Считаю, что нейросети — это инструмент, а не замена человеку.",
+    "about": "An AI specialist. I help people use AI in work and creativity. I teach writing prompts and generating images and texts. I believe neural networks are a tool, not a replacement for people.",
     "cityId": 1,
     "dateOfBirth": "1994-04-04",
     "gender": "male",
     "registrationDate": "2025-04-04",
-    "skillInterests": [101, 47, 106],
+    "skillInterests": [
+      101,
+      47,
+      106
+    ],
     "passwordHash": "$2b$10$uvEOOJyDAxe9rh6Dqa3IN.7dGLHKRJgC.pnax8pR6QuJ.mRvAcjpC"
   },
   {
     "id": 83,
-    "name": "Василиса",
+    "name": "Vasilisa",
     "email": "vasilisa.voloshina@gmail.com",
     "avatarSeed": "avatar-vasilisaVoloshina-7m8n9o",
-    "about": "Ткачиха. Тку гобелены и ковры на станке. Учу основам ткачества и работе с разными материалами. Верю, что ткачество — это медитация и способ замедлиться в быстром мире.",
+    "about": "A weaver. I weave tapestries and rugs on a loom. I teach weaving basics and working with different materials. I believe weaving is meditation and a way to slow down in a fast world.",
     "cityId": 4,
     "dateOfBirth": "1978-05-05",
     "gender": "female",
     "registrationDate": "2025-05-05",
-    "skillInterests": [36, 35, 51],
+    "skillInterests": [
+      36,
+      35,
+      51
+    ],
     "passwordHash": "$2b$10$ckcPBH7rd7jY5DnyGKWOdeHOYLxjdpzAg6UaJdWPh9zn6dBW8g48e"
   },
   {
     "id": 84,
-    "name": "Давид",
+    "name": "David",
     "email": "david.abramov@inbox.ru",
     "avatarSeed": "avatar-davidabramov-0p1q2r",
-    "about": "Тренер по боксу. Занимаюсь с любителями и профессионалами. Помогаю поставить удар, развить выносливость и научиться защищаться. Считаю, что бокс — это шахматы в движении.",
+    "about": "A boxing coach. I train amateurs and professionals. I help set a punch, build endurance, and learn to defend. I believe boxing is chess in motion.",
     "cityId": 2,
     "dateOfBirth": "1985-06-06",
     "gender": "male",
     "registrationDate": "2025-06-06",
-    "skillInterests": [43, 28, 48],
+    "skillInterests": [
+      43,
+      28,
+      48
+    ],
     "passwordHash": "$2b$10$iiVZxY/z1fBQ/ng67v6m5.udREa7V6zINfWB1F3HrMNU8b6Mh5tFC"
   },
   {
     "id": 85,
-    "name": "Евдокия",
+    "name": "Evdokia",
     "email": "evdokiya.grigorieva@mail.ru",
     "avatarSeed": "avatar-evdokiyagrigorieva-3s4t5u",
-    "about": "Травница. Собираю и заготавливаю лекарственные травы. Учу распознавать растения, собирать их правильно и готовить полезные сборы. Верю, что природа даёт всё для здоровья, нужно только знать, где искать.",
+    "about": "An herbalist. I gather and prepare medicinal herbs. I teach how to recognize plants, harvest them correctly, and make useful blends. I believe nature gives everything for health — you just need to know where to look.",
     "cityId": 44,
     "dateOfBirth": "1955-07-07",
     "gender": "female",
     "registrationDate": "2025-07-07",
-    "skillInterests": [20, 23, 28],
+    "skillInterests": [
+      20,
+      23,
+      28
+    ],
     "passwordHash": "$2b$10$uLWmBNgIQvLKJPK1oayXpOb6d1MmC3YYLbtniuHFo2cigPYBxFwmK"
   },
   {
     "id": 86,
-    "name": "Захар",
+    "name": "Zakhar",
     "email": "zakhar.ilin@yandex.ru",
     "avatarSeed": "avatar-zakharilin-6v7w8x",
-    "about": "Мастер по изготовлению ножей. Создаю авторские ножи для охоты, кухни и коллекционирования. Учу работать с металлом и делать вещи, которые будут служить поколениями.",
+    "about": "A knife maker. I create original knives for hunting, the kitchen, and collecting. I teach working with metal and making things that will serve generations.",
     "cityId": 3,
     "dateOfBirth": "1976-08-08",
     "gender": "male",
     "registrationDate": "2025-08-08",
-    "skillInterests": [33, 43, 53],
+    "skillInterests": [
+      33,
+      43,
+      53
+    ],
     "passwordHash": "$2b$10$VakKeC6w2rF.F52Hzzkm3eXUqTMetZhECJGQZiGnymQgrVFhC0Vbq"
   },
   {
     "id": 87,
-    "name": "Фаина",
+    "name": "Faina",
     "email": "faina.drozdova@list.ru",
     "avatarSeed": "avatar-fainadrozdova-9y0z1a",
-    "about": "Кружевница. Плету кружево на коклюшках. Сохраняю традиции и учу этому тонкому искусству. Считаю, что кружево — это застывшая музыка и поэзия в нитях.",
+    "about": "A lacemaker. I make bobbin lace. I preserve the tradition and teach this delicate art. I believe lace is frozen music and poetry in threads.",
     "cityId": 1,
     "dateOfBirth": "1958-09-09",
     "gender": "female",
     "registrationDate": "2025-09-09",
-    "skillInterests": [36, 20, 40],
+    "skillInterests": [
+      36,
+      20,
+      40
+    ],
     "passwordHash": "$2b$10$rR3Ug/M.b0f1cH6at65xYuH9XDdj/z3KRlihx3JGJ3jOwYo0ybCw6"
   },
   {
     "id": 88,
-    "name": "Эрик",
+    "name": "Erik",
     "email": "erik.filippov@gmail.com",
     "avatarSeed": "avatar-erikfilippov-2b3c4d",
-    "about": "Саунд-дизайнер. Создаю музыку и звуки для видео, игр и подкастов. Учу работать со звуком, записывать и обрабатывать. Верю, что хороший звук делает картинку живой.",
+    "about": "A sound designer. I create music and sounds for video, games, and podcasts. I teach working with sound, recording, and processing. I believe good sound makes the picture come alive.",
     "cityId": 2,
     "dateOfBirth": "1988-10-10",
     "gender": "male",
     "registrationDate": "2025-10-10",
-    "skillInterests": [35, 103, 105],
+    "skillInterests": [
+      35,
+      103,
+      105
+    ],
     "passwordHash": "$2b$10$VvwwKWG7IK2RmtJpzQz1d.Z2kLKPHp/lfa6vjS2jYjL7o52hFetVm"
   },
   {
     "id": 89,
-    "name": "Юлиана",
+    "name": "Yuliana",
     "email": "yuliana.ermakova@inbox.ru",
     "avatarSeed": "avatar-yulianaermakova-5e6f7g",
-    "about": "Декоратор праздников. Создаю оформление для дней рождений, свадеб и корпоративов. Учу делать праздник красиво без огромного бюджета. Считаю, что детали создают настроение.",
+    "about": "A holiday decorator. I create styling for birthdays, weddings, and corporate events. I teach how to make a celebration beautiful without a huge budget. I believe details create the mood.",
     "cityId": 4,
     "dateOfBirth": "1991-11-11",
     "gender": "female",
     "registrationDate": "2025-11-11",
-    "skillInterests": [13, 37, 51],
+    "skillInterests": [
+      13,
+      37,
+      51
+    ],
     "passwordHash": "$2b$10$ZZ/C9VTGzFS.DV4YDafp6OdxTb9Fl2oiut9oLKnzvwfobmwJqxmXa"
   },
   {
     "id": 90,
-    "name": "Родион",
+    "name": "Rodion",
     "email": "rodion.maksimov@mail.ru",
     "avatarSeed": "avatar-rodionmaksimov-8h9i0j",
-    "about": "Специалист по Excel. Помогаю автоматизировать отчёты и таблицы. Учу работать с формулами, сводными и макросами. Считаю, что Excel — это самый недооценённый инструмент для работы.",
+    "about": "An Excel specialist. I help automate reports and spreadsheets. I teach formulas, pivot tables, and macros. I believe Excel is the most underrated work tool.",
     "cityId": 5,
     "dateOfBirth": "1983-12-12",
     "gender": "male",
     "registrationDate": "2025-12-12",
-    "skillInterests": [11, 31, 51],
+    "skillInterests": [
+      11,
+      31,
+      51
+    ],
     "passwordHash": "$2b$10$bJNBd.iiEfN7tujdR9TxNOOBofFX8I8eYlGeMe1eF20zEl4LCiCmi"
   },
   {
     "id": 91,
-    "name": "Майя",
+    "name": "Maya",
     "email": "maya.belova@yandex.ru",
     "avatarSeed": "avatar-mayabelova-1k2l3m",
-    "about": "Художник-иллюстратор. Рисую для книг и соцсетей. Учу основам иллюстрации и работы в Procreate. Верю, что рисовать может каждый, нужно только найти свой стиль.",
+    "about": "An illustrator. I draw for books and social media. I teach illustration basics and working in Procreate. I believe anyone can draw — you just need to find your style.",
     "cityId": 1,
     "dateOfBirth": "1987-01-01",
     "gender": "female",
     "registrationDate": "2026-01-01",
-    "skillInterests": [35, 37, 40],
+    "skillInterests": [
+      35,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$2oWrll1xXoAJ.arWvmbmZ.EwT6VTsuzUjaKYJLBwHEiUDk6BuUNMO"
   },
   {
     "id": 92,
-    "name": "Платон",
+    "name": "Platon",
     "email": "platon.suvorov@list.ru",
     "avatarSeed": "avatar-platonsuvorov-4n5o6p",
-    "about": "Философ и преподаватель. Веду дискуссионный клуб и учу мыслить критически. Помогаю разобраться в сложных текстах и сформировать своё мнение. Считаю, что философия нужна не только в университете, но и в жизни.",
+    "about": "A philosopher and teacher. I run a discussion club and teach critical thinking. I help people unpack complex texts and form their own opinions. I believe philosophy is needed not only at university, but in life.",
     "cityId": 2,
     "dateOfBirth": "1979-02-02",
     "gender": "male",
     "registrationDate": "2025-02-02",
-    "skillInterests": [43, 9, 48],
+    "skillInterests": [
+      43,
+      9,
+      48
+    ],
     "passwordHash": "$2b$10$42s07IwKv5j0o7K8CgGpyuP5jYPR6S1d9vWPdYcP6cfmJ9CX5/SYW"
   },
   {
     "id": 93,
-    "name": "Карина",
+    "name": "Karina",
     "email": "karina.orlova@gmail.com",
     "avatarSeed": "avatar-karinaorlova-7q8r9s",
-    "about": "Фитнес-тренер. Специализируюсь на послеродовом восстановлении. Помогаю мамам вернуть форму и полюбить своё тело. Считаю, что тренировки должны быть в радость, а не в наказание.",
+    "about": "A fitness trainer specializing in postpartum recovery. I help mothers get back in shape and love their bodies. I believe workouts should be a joy, not a punishment.",
     "cityId": 3,
     "dateOfBirth": "1989-03-03",
     "gender": "female",
     "registrationDate": "2025-03-03",
-    "skillInterests": [54, 23, 28],
+    "skillInterests": [
+      54,
+      23,
+      28
+    ],
     "passwordHash": "$2b$10$e34pnC3.ooZPYSClWOsc8.QkqUVKWS1V1TIR/fPaxsbgpztyWGStK"
   },
   {
     "id": 94,
-    "name": "Иннокентий",
+    "name": "Innokenty",
     "email": "innokenty.panov@inbox.ru",
     "avatarSeed": "avatar-innokentypanov-0t1u2v",
-    "about": "Реставратор книг. Возвращаю к жизни старые и редкие издания. Учу бережно обращаться с книгами и простым способам реставрации. Верю, что бумажные книги будут жить вечно.",
+    "about": "A book restorer. I bring old and rare editions back to life. I teach careful handling of books and simple restoration methods. I believe paper books will live forever.",
     "cityId": 1,
     "dateOfBirth": "1970-04-04",
     "gender": "male",
     "registrationDate": "2025-04-04",
-    "skillInterests": [19, 29, 49],
+    "skillInterests": [
+      19,
+      29,
+      49
+    ],
     "passwordHash": "$2b$10$nvTv0imDfs5c2Ko6q1QdueagqKZ5.roswHMlHBgYuBsDYvAiuKAQm"
   },
   {
     "id": 95,
-    "name": "Агния",
+    "name": "Agniya",
     "email": "agniya.krylova@mail.ru",
     "avatarSeed": "avatar-agniyakrylova-3w4x5y",
-    "about": "Балетмейстер. Ставлю танцы для театра и шоу. Учу основам хореографии и работе с телом. Считаю, что танец — это язык, на котором говорит душа.",
+    "about": "A ballet master. I choreograph dances for theater and shows. I teach choreography basics and working with the body. I believe dance is a language the soul speaks.",
     "cityId": 2,
     "dateOfBirth": "1980-05-05",
     "gender": "female",
     "registrationDate": "2025-05-05",
-    "skillInterests": [12, 37, 51],
+    "skillInterests": [
+      12,
+      37,
+      51
+    ],
     "passwordHash": "$2b$10$F9w1hYFB3is5DKmDNW6F5eNvQTuCpjfsnO5gaxVmeEdHwdR3RgT/O"
   },
   {
     "id": 96,
-    "name": "Кузьма",
+    "name": "Kuzma",
     "email": "kuzma.zhukov@yandex.ru",
     "avatarSeed": "avatar-kuzmazhukov-6z7a8b",
-    "about": "Кузнец. Работаю с металлом и создаю предметы интерьера, украшения и скульптуры. Учу основам кузнечного дела и работе с горном. Верю, что металл можно сделать тёплым.",
+    "about": "A blacksmith. I work with metal and create interior objects, jewelry, and sculptures. I teach blacksmithing basics and working with a forge. I believe metal can be made warm.",
     "cityId": 4,
     "dateOfBirth": "1975-06-06",
     "gender": "male",
     "registrationDate": "2025-06-06",
-    "skillInterests": [101, 51, 106],
+    "skillInterests": [
+      101,
+      51,
+      106
+    ],
     "passwordHash": "$2b$10$4123cbl9tAHZpWB389XdGeRnne293eEapjjBQDOk/eOME93yhFL/y"
   },
   {
     "id": 97,
-    "name": "Стелла",
+    "name": "Stella",
     "email": "stella.nikiforova@list.ru",
     "avatarSeed": "avatar-stellanikiforova-9c0d1e",
-    "about": "Астролог. Составляю натальные карты и помогаю лучше понять себя. Учу основам астрологии для начинающих. Считаю, что астрология — это инструмент самопознания, а не предсказание судьбы.",
+    "about": "An astrologer. I build natal charts and help people understand themselves better. I teach astrology basics for beginners. I believe astrology is a self-knowledge tool, not fortune-telling.",
     "cityId": 5,
     "dateOfBirth": "1984-07-07",
     "gender": "female",
     "registrationDate": "2025-07-07",
-    "skillInterests": [10, 37, 40],
+    "skillInterests": [
+      10,
+      37,
+      40
+    ],
     "passwordHash": "$2b$10$KsXjr./j0YKyYnTfTwhGq.DJqUJtYejhaJfifVTzGOFyRJQT57ozm"
   },
   {
     "id": 98,
-    "name": "Артемий",
+    "name": "Artemy",
     "email": "artemy.fadeev@gmail.com",
     "avatarSeed": "avatar-artemyfadeev-2f3g4h",
-    "about": "Гейм-дизайнер. Разрабатываю настольные и компьютерные игры. Учу придумывать механики, писать сценарии и тестировать игры. Верю, что игры делают жизнь интереснее.",
+    "about": "A game designer. I develop board and computer games. I teach inventing mechanics, writing scenarios, and playtesting. I believe games make life more interesting.",
     "cityId": 1,
     "dateOfBirth": "1990-08-08",
     "gender": "male",
     "registrationDate": "2025-08-08",
-    "skillInterests": [12, 17, 42],
+    "skillInterests": [
+      12,
+      17,
+      42
+    ],
     "passwordHash": "$2b$10$5TfTya.XOjM.GnABqBnaI.cww.vSuYAaCa0oAKurhIOVvscTeNXzS"
   },
   {
     "id": 99,
-    "name": "Луиза",
+    "name": "Luiza",
     "email": "louise.samoylova@inbox.ru",
     "avatarSeed": "avatar-louisesamoylova-5i0j7k",
-    "about": "Мастер по бисеру. Создаю украшения и вышивку бисером. Учу работать с бисером и создавать красивые вещи своими руками. Считаю, что handmade — это способ выразить себя.",
+    "about": "A beadwork artisan. I create jewelry and bead embroidery. I teach working with beads and making beautiful things by hand. I believe handmade is a way to express yourself.",
     "cityId": 2,
     "dateOfBirth": "1986-09-09",
     "gender": "female",
     "registrationDate": "2025-09-09",
-    "skillInterests": [35, 37, 55],
+    "skillInterests": [
+      35,
+      37,
+      55
+    ],
     "passwordHash": "$2b$10$NO7C2GCqqP7X1L/Ui8xQQOpDLIEpRzPb9iPsoZk65ALcOvktxWgn2"
   },
   {
     "id": 100,
-    "name": "Добрыня",
+    "name": "Dobrynya",
     "email": "dobrynya.mironov@mail.ru",
     "avatarSeed": "avatar-dobrynyamironov-8l95f0n",
-    "about": "Инструктор по выживанию. Учу ориентироваться в лесу, разводить огонь, находить воду и строить укрытие. Провожу выездные тренинги. Считаю, что навыки выживания нужны каждому, даже городскому жителю.",
+    "about": "A survival instructor. I teach how to navigate in the forest, start a fire, find water, and build shelter. I run outdoor trainings. I believe survival skills are useful for everyone, even city dwellers.",
     "cityId": 44,
     "dateOfBirth": "1982-10-10",
     "gender": "male",
     "registrationDate": "2025-10-10",
-    "skillInterests": [43, 14, 48],
+    "skillInterests": [
+      43,
+      14,
+      48
+    ],
     "passwordHash": "$2b$10$mYKi8bNwlipsjEU/qbaIvebeE1eGkVv4dpHZoZYtEXc/sT6Bv6Usu"
   }
 ]

@@ -30,7 +30,7 @@ export const DropDownCity = ({
   onChange,
   onSearch,
   options,
-  placeholder = 'Выберите город',
+  placeholder = 'Select a city',
   label,
   error,
   disabled = false,
@@ -262,7 +262,7 @@ export const DropDownCity = ({
             ) : (
               searchTerm.length >= minSearchLength && (
                 <div className={styles.noResults}>
-                  Городов не найдено
+                  No cities found
                 </div>
               )
             )}

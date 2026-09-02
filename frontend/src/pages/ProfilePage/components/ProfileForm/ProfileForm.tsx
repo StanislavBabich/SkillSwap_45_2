@@ -62,7 +62,7 @@ export const ProfileForm = ({
       <div className={styles.emailPasswordGroup}>
         <Input
           type="email"
-          label="Почта"
+          label="Email"
           value={data.email}
           readOnly
           hideHelper
@@ -76,7 +76,7 @@ export const ProfileForm = ({
           aria-controls="profile-password-field"
           onClick={() => setIsPasswordInputVisible(true)}
         >
-          Изменить пароль
+          Change password
         </button>
       </div>
 
@@ -84,17 +84,17 @@ export const ProfileForm = ({
         <Input
           id="profile-password-field"
           type="password"
-          label="Пароль"
-          placeholder="Введите новый пароль"
+          label="Password"
+          placeholder="Enter a new password"
           value={data.password}
           onChange={(event) => onChange({ password: event.target.value })}
           error={errors.password}
-          helperText="Оставьте пустым, если не хотите менять пароль"
+          helperText="Leave empty if you don't want to change the password"
         />
       ) : null}
 
       <Input
-        label="Имя"
+        label="Name"
         value={data.name}
         onChange={(event) => onChange({ name: event.target.value })}
         error={errors.name}
@@ -106,10 +106,10 @@ export const ProfileForm = ({
         <DatePicker
           className={clsx(styles.rowField, styles.dateField)}
           inputClassName={styles.rowField}
-          label="Дата рождения"
+          label="Date of birth"
           value={data.dateOfBirth}
           onChange={(value) => onChange({ dateOfBirth: value })}
-          placeholder="дд.мм.гггг"
+          placeholder="mm/dd/yyyy"
         />
 
         <Select
@@ -118,19 +118,19 @@ export const ProfileForm = ({
           labelClassName={styles.selectFieldLabel}
           triggerClassName={styles.selectFieldTrigger}
           valueClassName={styles.compactFieldValue}
-          label="Пол"
+          label="Gender"
           value={data.gender}
           onChange={(value) => onChange({ gender: value as Gender })}
           options={[
-            { value: 'male', label: 'Мужской' },
-            { value: 'female', label: 'Женский' },
-            { value: 'other', label: 'Другое' },
+            { value: 'male', label: 'Male' },
+            { value: 'female', label: 'Female' },
+            { value: 'other', label: 'Other' },
           ]}
         />
       </div>
 
       <DropDownCity
-        label="Город"
+        label="City"
         value={data.city}
         onChange={(city) => onChange({ city })}
         onSearch={onCitySearch}
@@ -140,14 +140,14 @@ export const ProfileForm = ({
             : []),
           ...cities.map((city) => ({ value: city.name, label: city.name })),
         ]}
-        placeholder="Не указан"
+        placeholder="Not specified"
         minSearchLength={1}
         maxResults={50}
       />
 
       <div className={styles.textareaGroup}>
         <label htmlFor="profile-about" className={styles.label}>
-          О себе
+          About me
         </label>
         <div className={styles.textareaWrapper}>
           <textarea
@@ -176,7 +176,7 @@ export const ProfileForm = ({
         disabled={isSaveDisabled}
         isLoading={isSaving}
       >
-        Сохранить
+        Save
       </Button>
     </form>
   );

@@ -33,12 +33,12 @@ export const SectionHeader = ({
   const filteredCount = useAppSelector(selectFilteredSkillsCount); 
 
   const displayTitle = hasFilters
-    ? `Подходящие предложения: ${filteredCount}`
+    ? `Matching offers: ${filteredCount}`
     : title;
   const effectiveAppearance = hasFilters ? 'filtered' : appearance;
 
   // В режиме "назад" показываем левую иконку и меняем текст
-  const buttonLabel = isBackMode ? 'На главную' : actionLabel;
+  const buttonLabel = isBackMode ? 'Go to homepage' : actionLabel;
   
   // Определяем иконку для начала кнопки
   const getButtonStartIcon = () => {

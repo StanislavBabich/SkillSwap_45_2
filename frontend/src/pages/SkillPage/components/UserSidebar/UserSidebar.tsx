@@ -34,14 +34,14 @@ export const UserSidebar = ({ skillId, skill, user, className }: UserSidebarProp
       )}
       <div className={styles.categories}>
         <section className={styles.section}>
-          <h4 className={styles.categoryTitle}>Может научить</h4>
+          <h4 className={styles.categoryTitle}>Can teach</h4>
           <div className={styles.tags}>
             <Tag categoryName={skill.category?.name}>{skill.title}</Tag>
           </div>
         </section>
         {wantToLearn.length > 0 && (
           <section className={styles.section}>
-            <h4 className={styles.categoryTitle}>Хочет научиться</h4>
+            <h4 className={styles.categoryTitle}>Wants to learn</h4>
             <div className={styles.tags}>
               {visibleWantToLearn.map((cat) => (
                 <Tag key={cat.id} categoryName={cat.name}>

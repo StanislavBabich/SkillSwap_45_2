@@ -33,17 +33,17 @@ export const FavoritesPage = () => {
     <div className={styles.page}>
       <div className={styles.title}>
         <Headline level={1}>
-          Избранное: <span>{favoritesCount}</span>
+          Favorites: <span>{favoritesCount}</span>
         </Headline>
       </div>
       {status === 'loading' ? (
-        <p className={styles.text}>Загружаем избранное...</p>
+        <p className={styles.text}>Loading favorites...</p>
       ) : favoritesCount === 0 ? (
         <div className={styles.container}>
-        <img src={illustration} alt="Нет избранных навыков" className={styles.images} />
-        <p className={styles.text}>У вас нет избранных навыков. Добавьте понравившиеся навыки</p>
+        <img src={illustration} alt="No favorite skills" className={styles.images} />
+        <p className={styles.text}>You have no favorite skills. Add skills you like</p>
         <Button variant="primary" size="large" onClick={handleGoToCatalog}>
-          Перейти к каталогу
+          Go to catalog
         </Button>
       </div>
       ): (

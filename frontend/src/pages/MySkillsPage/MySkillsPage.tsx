@@ -47,21 +47,21 @@ export const MySkillsPage = () => {
   if (isLoading) {
     return (
       <section className={styles.page}>
-        <h1 className={styles.title}>Мои навыки</h1>
-        <p className={styles.state}>Загрузка...</p>
+        <h1 className={styles.title}>My skills</h1>
+        <p className={styles.state}>Loading...</p>
       </section>
     );
   }
 
   return (
     <section className={styles.page}>
-      <h1 className={styles.title}>Мои навыки</h1>
+      <h1 className={styles.title}>My skills</h1>
 
       {skills.length === 0 ? (
         <div className={styles.empty}>
-          <p className={styles.emptyText}>У вас пока нет навыков</p>
+          <p className={styles.emptyText}>You don't have any skills yet</p>
           <Button variant="primary" onClick={handleAddSkill}>
-            Добавить навык
+            Add a skill
           </Button>
         </div>
       ) : (
@@ -78,10 +78,10 @@ export const MySkillsPage = () => {
             type="button"
             className={styles.addCard}
             onClick={handleAddSkill}
-            aria-label="Добавить навык"
+            aria-label="Add a skill"
           >
             <span className={styles.addIcon}>+</span>
-            <span className={styles.addText}>Добавить навык</span>
+            <span className={styles.addText}>Add a skill</span>
           </button>
         </div>
       )}

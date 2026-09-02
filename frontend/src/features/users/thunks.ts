@@ -68,7 +68,7 @@ export const createUserWithSkill = createAsyncThunk<
     const persistedSkills = skills.length > 0 ? skills : (storage.loadSkills() as Skill[]);
 
     if (!authService.checkEmailUnique(persistedUsers, data.email)) {
-      return rejectWithValue('Этот email уже занят');
+      return rejectWithValue('This email is already taken');
     }
 
     const skillInterests = convertToSkillInterests(
@@ -96,7 +96,7 @@ export const createUserWithSkill = createAsyncThunk<
       try {
         imageUrls = await storageService.uploadSkillImagesWithRollback(files);
       } catch (err) {
-        return rejectWithValue(err instanceof Error ? err.message : 'Не удалось загрузить изображения');
+        return rejectWithValue(err instanceof Error ? err.message : 'Failed to upload images');
       }
     }
 

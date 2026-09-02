@@ -25,7 +25,7 @@ async function updateProfile(token: string, data: Record<string, unknown>): Prom
     },
     body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error('Ошибка обновления профиля');
+  if (!res.ok) throw new Error('Failed to update profile');
 }
 
 type StepId = 1 | 2;
@@ -33,13 +33,13 @@ type StepId = 1 | 2;
 const STEP_CONTENT: Record<StepId, { image: string; title: string; subtitle: string }> = {
   1: {
     image: lightbulb,
-    title: 'Добро пожаловать в SkillSwap!',
-    subtitle: 'Присоединяйтесь к SkillSwap и обменивайтесь знаниями и навыками с другими людьми',
+    title: 'Welcome to SkillSwap!',
+    subtitle: 'Join SkillSwap and exchange knowledge and skills with other people',
   },
   2: {
     image: userInfoIllustration,
-    title: 'Расскажите немного о себе',
-    subtitle: 'Это поможет другим людям лучше вас узнать, чтобы выбрать для обмена',
+    title: 'Tell us a bit about yourself',
+    subtitle: 'This will help others get to know you better and choose you for a swap',
   },
 };
 
@@ -76,7 +76,7 @@ export const RegisterPage = () => {
       if (error instanceof Error) {
         setSubmitError(error.message);
       } else {
-        setSubmitError('Не удалось зарегистрироваться');
+        setSubmitError('Failed to sign up');
       }
     } finally {
       setIsSubmitting(false);
@@ -114,7 +114,7 @@ export const RegisterPage = () => {
       if (error instanceof Error) {
         setSubmitError(error.message);
       } else {
-        setSubmitError('Не удалось обновить профиль');
+        setSubmitError('Failed to update profile');
       }
     } finally {
       setIsSubmitting(false);
@@ -133,7 +133,7 @@ export const RegisterPage = () => {
         return (
           <div className={styles.stepCard}>
             <Step1Account data={data} onUpdate={handleUpdate} onNext={handleStep1Next} onBack={prevStep} />
-            {isSubmitting && <p className={styles.hint}>Регистрация...</p>}
+            {isSubmitting && <p className={styles.hint}>Signing up...</p>}
           </div>
         );
       case 2:

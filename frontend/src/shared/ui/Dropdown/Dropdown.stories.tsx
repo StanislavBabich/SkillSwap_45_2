@@ -8,12 +8,12 @@ type StoryArgs = DropdownProps & {
 };
 
 const skillCategories = [
-  { value: 'business', label: 'Бизнес и карьера' },
-  { value: 'creative', label: 'Творчество и искусство' },
-  { value: 'languages', label: 'Иностранные языки' },
-  { value: 'education', label: 'Образование и развитие' },
-  { value: 'home', label: 'Дом и уют' },
-  { value: 'health', label: 'Здоровье и лайфстайл' },
+  { value: 'business', label: 'Business and career' },
+  { value: 'creative', label: 'Creativity and art' },
+  { value: 'languages', label: 'Foreign languages' },
+  { value: 'education', label: 'Education and development' },
+  { value: 'home', label: 'Home and comfort' },
+  { value: 'health', label: 'Health and lifestyle' },
 ];
 
 const ControlledDropdown = ({
@@ -38,7 +38,7 @@ const ControlledDropdown = ({
       {...args}
       value={selected}
       onChange={handleChange}
-      helperText={helperText ?? `Выбрано: ${selected.length}`}
+      helperText={helperText ?? `Selected: ${selected.length}`}
     />
   );
 };
@@ -58,15 +58,15 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'Выпадающий список с поддержкой одиночного и множественного выбора.',
+        component: 'Dropdown with single and multiple selection support.',
       },
     },
   },
   args: {
     options: skillCategories,
     mode: 'multiple',
-    placeholder: 'Выберите категорию',
-    label: 'Категория навыка',
+    placeholder: 'Select a category',
+    label: 'Skill category',
     initialValue: [],
     disabled: false,
   },
@@ -74,11 +74,11 @@ const meta = {
     mode: {
       control: 'radio',
       options: ['single', 'multiple'],
-      description: 'Режим выбора',
+      description: 'Selection mode',
     },
     initialValue: {
       control: 'object',
-      description: 'Начально выбранные значения для интерактивной истории',
+      description: 'Initially selected values for the interactive story',
     },
     options: {
       control: 'object',
@@ -101,7 +101,7 @@ export const Playground: Story = {};
 export const SingleSelect: Story = {
   args: {
     mode: 'single',
-    label: 'Одиночный выбор',
+    label: 'Single selection',
     initialValue: ['creative'],
   },
 };
@@ -109,34 +109,34 @@ export const SingleSelect: Story = {
 export const MultipleSelect: Story = {
   args: {
     mode: 'multiple',
-    label: 'Множественный выбор',
+    label: 'Multiple selection',
     initialValue: ['business', 'languages'],
   },
 };
 
 export const WithDisabledOptions: Story = {
   args: {
-    label: 'С недоступными опциями',
+    label: 'With disabled options',
     options: [
-      { value: 'business', label: 'Бизнес и карьера' },
-      { value: 'creative', label: 'Творчество и искусство', disabled: true },
-      { value: 'languages', label: 'Иностранные языки' },
-      { value: 'education', label: 'Образование и развитие', disabled: true },
+      { value: 'business', label: 'Business and career' },
+      { value: 'creative', label: 'Creativity and art', disabled: true },
+      { value: 'languages', label: 'Foreign languages' },
+      { value: 'education', label: 'Education and development', disabled: true },
     ],
   },
 };
 
 export const WithError: Story = {
   args: {
-    label: 'Состояние ошибки',
-    error: 'Поле обязательно для заполнения',
-    helperText: 'Выберите хотя бы одну категорию',
+    label: 'Error state',
+    error: 'This field is required',
+    helperText: 'Select at least one category',
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: 'Отключенный Dropdown',
+    label: 'Disabled Dropdown',
     disabled: true,
     initialValue: ['business'],
   },

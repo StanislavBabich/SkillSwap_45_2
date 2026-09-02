@@ -13,72 +13,72 @@ import { CreateRequestDto } from './dto/create-request.dto';
 
 export function SwaggerCreateRequest() {
   return applyDecorators(
-    ApiOperation({ summary: 'Создать заявку на обмен' }),
+    ApiOperation({ summary: 'Create a skill exchange request' }),
     ApiBearerAuth(),
     ApiBody({ type: CreateRequestDto }),
-    ApiCreatedResponse({ description: 'Заявка успешно создана' }),
-    ApiUnauthorizedResponse({ description: 'Требуется авторизация' }),
-    ApiNotFoundResponse({ description: 'Навык или получатель не найден' }),
+    ApiCreatedResponse({ description: 'Request created successfully' }),
+    ApiUnauthorizedResponse({ description: 'Authorization required' }),
+    ApiNotFoundResponse({ description: 'Skill or recipient not found' }),
   );
 }
 
 export function SwaggerGetIncoming() {
   return applyDecorators(
-    ApiOperation({ summary: 'Получить входящие заявки (pending/inProgress)' }),
+    ApiOperation({ summary: 'Get incoming requests (pending/inProgress)' }),
     ApiBearerAuth(),
-    ApiOkResponse({ description: 'Список входящих заявок' }),
-    ApiUnauthorizedResponse({ description: 'Требуется авторизация' }),
+    ApiOkResponse({ description: 'List of incoming requests' }),
+    ApiUnauthorizedResponse({ description: 'Authorization required' }),
   );
 }
 
 export function SwaggerGetOutgoing() {
   return applyDecorators(
-    ApiOperation({ summary: 'Получить исходящие заявки (pending/inProgress)' }),
+    ApiOperation({ summary: 'Get outgoing requests (pending/inProgress)' }),
     ApiBearerAuth(),
-    ApiOkResponse({ description: 'Список исходящих заявок' }),
-    ApiUnauthorizedResponse({ description: 'Требуется авторизация' }),
+    ApiOkResponse({ description: 'List of outgoing requests' }),
+    ApiUnauthorizedResponse({ description: 'Authorization required' }),
   );
 }
 
 export function SwaggerMarkAsRead() {
   return applyDecorators(
-    ApiOperation({ summary: 'Отметить заявку как прочитанную' }),
+    ApiOperation({ summary: 'Mark request as read' }),
     ApiBearerAuth(),
-    ApiOkResponse({ description: 'Заявка отмечена прочитанной' }),
-    ApiUnauthorizedResponse({ description: 'Требуется авторизация' }),
-    ApiNotFoundResponse({ description: 'Заявка не найдена' }),
+    ApiOkResponse({ description: 'Request marked as read' }),
+    ApiUnauthorizedResponse({ description: 'Authorization required' }),
+    ApiNotFoundResponse({ description: 'Request not found' }),
   );
 }
 
 export function SwaggerAcceptRequest() {
   return applyDecorators(
-    ApiOperation({ summary: 'Принять заявку (добавить навыки в избранное)' }),
+    ApiOperation({ summary: 'Accept a request (add skills to favorites)' }),
     ApiBearerAuth(),
-    ApiOkResponse({ description: 'Заявка принята' }),
-    ApiUnauthorizedResponse({ description: 'Требуется авторизация' }),
-    ApiForbiddenResponse({ description: 'Недостаточно прав' }),
-    ApiNotFoundResponse({ description: 'Заявка не найдена' }),
+    ApiOkResponse({ description: 'Request accepted' }),
+    ApiUnauthorizedResponse({ description: 'Authorization required' }),
+    ApiForbiddenResponse({ description: 'Insufficient permissions' }),
+    ApiNotFoundResponse({ description: 'Request not found' }),
   );
 }
 
 export function SwaggerRejectRequest() {
   return applyDecorators(
-    ApiOperation({ summary: 'Отклонить заявку' }),
+    ApiOperation({ summary: 'Reject a request' }),
     ApiBearerAuth(),
-    ApiOkResponse({ description: 'Заявка отклонена' }),
-    ApiUnauthorizedResponse({ description: 'Требуется авторизация' }),
-    ApiForbiddenResponse({ description: 'Недостаточно прав' }),
-    ApiNotFoundResponse({ description: 'Заявка не найдена' }),
+    ApiOkResponse({ description: 'Request rejected' }),
+    ApiUnauthorizedResponse({ description: 'Authorization required' }),
+    ApiForbiddenResponse({ description: 'Insufficient permissions' }),
+    ApiNotFoundResponse({ description: 'Request not found' }),
   );
 }
 
 export function SwaggerDeleteRequest() {
   return applyDecorators(
-    ApiOperation({ summary: 'Удалить заявку (только свои, админ — любые)' }),
+    ApiOperation({ summary: 'Delete a request (own only; admin can delete any)' }),
     ApiBearerAuth(),
-    ApiOkResponse({ description: 'Заявка удалена' }),
-    ApiUnauthorizedResponse({ description: 'Требуется авторизация' }),
-    ApiForbiddenResponse({ description: 'Недостаточно прав' }),
-    ApiNotFoundResponse({ description: 'Заявка не найдена' }),
+    ApiOkResponse({ description: 'Request deleted' }),
+    ApiUnauthorizedResponse({ description: 'Authorization required' }),
+    ApiForbiddenResponse({ description: 'Insufficient permissions' }),
+    ApiNotFoundResponse({ description: 'Request not found' }),
   );
 }

@@ -30,9 +30,9 @@ export const Default: Story = {
     defaultValue: 'all',
     children: (
       <>
-        <Radio value="all" label="Всё" />
-        <Radio value="wantToLearn" label="Хочу научиться" />
-        <Radio value="canTeach" label="Могу научить" />
+        <Radio value="all" label="All" />
+        <Radio value="wantToLearn" label="Want to learn" />
+        <Radio value="canTeach" label="Can teach" />
       </>
     ),
   },
@@ -40,14 +40,14 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   args: {
-    label: 'Фильтры',
+    label: 'Filters',
     name: 'filters',
     defaultValue: 'all',
     children: (
       <>
-        <Radio value="all" label="Всё" />
-        <Radio value="wantToLearn" label="Хочу научиться" />
-        <Radio value="canTeach" label="Могу научить" />
+        <Radio value="all" label="All" />
+        <Radio value="wantToLearn" label="Want to learn" />
+        <Radio value="canTeach" label="Can teach" />
       </>
     ),
   },
@@ -56,14 +56,14 @@ export const WithLabel: Story = {
 export const WithError: Story = {
   args: {
     name: 'filters',
-    label: 'Фильтры',
+    label: 'Filters',
     defaultValue: 'all',
-    error: 'Пожалуйста, выберите один из вариантов',
+    error: 'Please select one of the options',
     children: (
       <>
-        <Radio value="all" label="Всё" />
-        <Radio value="wantToLearn" label="Хочу научиться" />
-        <Radio value="canTeach" label="Могу научить" />
+        <Radio value="all" label="All" />
+        <Radio value="wantToLearn" label="Want to learn" />
+        <Radio value="canTeach" label="Can teach" />
       </>
     ),
   },
@@ -72,14 +72,14 @@ export const WithError: Story = {
 export const Required: Story = {
   args: {
     name: 'filters',
-    label: 'Фильтры',
+    label: 'Filters',
     required: true,
     defaultValue: 'all',
     children: (
       <>
-        <Radio value="all" label="Всё" />
-        <Radio value="wantToLearn" label="Хочу научиться" />
-        <Radio value="canTeach" label="Могу научить" />
+        <Radio value="all" label="All" />
+        <Radio value="wantToLearn" label="Want to learn" />
+        <Radio value="canTeach" label="Can teach" />
       </>
     ),
   },
@@ -90,22 +90,22 @@ const ControlledTemplate = () => {
   return (
     <div>
       <RadioGroup
-        label="Управляемая группа"
+        label="Controlled group"
         name="controlled"
         value={selected}
         onChange={(val) => setSelected(val)}
         children={
           <>
-            <Radio value="option1" label="Вариант 1" />
-            <Radio value="option2" label="Вариант 2" />
-            <Radio value="option3" label="Вариант 3" />
+            <Radio value="option1" label="Option 1" />
+            <Radio value="option2" label="Option 2" />
+            <Radio value="option3" label="Option 3" />
           </>
         }
       />
       <p>
-        Выбрано: {selected}
+        Selected: {selected}
         <button type="button" onClick={() => setSelected('')}>
-          Сбросить
+          Reset
         </button>
       </p>
     </div>
@@ -122,15 +122,15 @@ export const Controlled: Story = {
 
 export const Uncontrolled: Story = {
   args: {
-    label: 'Пол автора',
+    label: "Author's gender",
     name: 'gender',
     defaultValue: 'any',
     orientation: 'horizontal',
     children: (
       <>
-        <Radio value="any" label="Не имеет значения" />
-        <Radio value="male" label="Мужской" />
-        <Radio value="female" label="Женский" />
+        <Radio value="any" label="Doesn't matter" />
+        <Radio value="male" label="Male" />
+        <Radio value="female" label="Female" />
       </>
     ),
   },

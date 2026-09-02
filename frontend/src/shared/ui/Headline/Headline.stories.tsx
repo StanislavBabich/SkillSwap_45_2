@@ -19,7 +19,7 @@ const meta = {
   },
   args: {
     level: 2,
-    children: 'Заголовок',
+    children: 'Headline',
   },
 } satisfies Meta<HeadlineProps>;
 
@@ -34,12 +34,12 @@ export const AllLevels: Story = {
   name: 'All levels',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <Headline level={1}>Level 1 — Заголовок</Headline>
-      <Headline level={2}>Level 2 — Заголовок</Headline>
-      <Headline level={3}>Level 3 — Заголовок</Headline>
-      <Headline level={4}>Level 4 — Заголовок</Headline>
-      <Headline level={5}>Level 5 — Заголовок</Headline>
-      <Headline level={6}>Level 6 — Заголовок</Headline>
+      <Headline level={1}>Level 1 — Headline</Headline>
+      <Headline level={2}>Level 2 — Headline</Headline>
+      <Headline level={3}>Level 3 — Headline</Headline>
+      <Headline level={4}>Level 4 — Headline</Headline>
+      <Headline level={5}>Level 5 — Headline</Headline>
+      <Headline level={6}>Level 6 — Headline</Headline>
     </div>
   ),
 };
@@ -48,7 +48,7 @@ export const CardTitleExample: Story = {
   name: 'Card title example',
   args: {
     level: 3,
-    children: 'Игра на барабанах',
+    children: 'Playing drums',
   },
 };
 
@@ -56,7 +56,7 @@ export const WithAriaLabel: Story = {
   name: 'With aria-label',
   args: {
     level: 2,
-    'aria-label': 'Фильтры',
-    children: 'Фильтры',
+    'aria-label': 'Filters',
+    children: 'Filters',
   },
 };

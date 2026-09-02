@@ -20,7 +20,7 @@ const meta: Meta<typeof Link> = {
     children: { control: 'text' },
   },
   args: {
-    children: 'Перейти в профиль',
+    children: 'Go to profile',
     to: '/profile',
     variant: 'primary',
     size: 'md',
@@ -40,7 +40,7 @@ export const PrimaryInternalLink: Story = {
   render: () => (
     <MemoryRouter initialEntries={['/']}>
       <Link to="/profile" variant="primary" size="md">
-        Перейти в профиль
+        Go to profile
       </Link>
     </MemoryRouter>
   ),
@@ -51,7 +51,7 @@ export const SecondaryInternalLink: Story = {
   render: () => (
     <MemoryRouter initialEntries={['/']}>
       <Link to="/settings" variant="secondary" size="md">
-        Настройки
+        Settings
       </Link>
     </MemoryRouter>
   ),
@@ -67,7 +67,7 @@ export const TextInternalLink: Story = {
   render: () => (
     <MemoryRouter initialEntries={['/']}>
       <Link to="/help" variant="text" size="md">
-        Помощь
+        Help
       </Link>
     </MemoryRouter>
   ),
@@ -116,7 +116,7 @@ export const ActiveInternalLink: Story = {
   render: () => (
     <MemoryRouter initialEntries={['/active']}>
       <Link to="/active" activeClassName="is-active">
-        Активная страница
+        Active page
       </Link>
     </MemoryRouter>
   ),
@@ -132,11 +132,11 @@ export const LinkInTextContext: Story = {
   render: () => (
     <MemoryRouter initialEntries={['/']}>
       <p style={{ maxWidth: 420, color: 'var(--text-color)' }}>
-        Это обычный текст, а вот{' '}
+        This is regular text, and here is{' '}
         <Link to="/docs" variant="text" underline='hover'>
-          ссылка внутри текста
+          a link inside the text
         </Link>{' '}
-        ведёт на документацию.
+        that leads to the documentation.
       </p>
     </MemoryRouter>
   ),

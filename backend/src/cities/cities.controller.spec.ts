@@ -12,7 +12,7 @@ describe('CitiesController', () => {
   const cityId = '550e8400-e29b-41d4-a716-446655440000';
   const mockCity: City = {
     id: cityId,
-    name: 'Москва',
+    name: 'Moscow',
     createdAt: new Date('2026-08-10T10:00:00.000Z'),
     updatedAt: new Date('2026-08-10T10:00:00.000Z'),
   };
@@ -44,7 +44,7 @@ describe('CitiesController', () => {
 
   describe('findAll', () => {
     it('должен передавать query в CitiesService.findAll', async () => {
-      const query = { search: 'моск' };
+      const query = { search: 'mosc' };
       citiesService.findAll.mockResolvedValue([mockCity]);
 
       await expect(controller.findAll(query)).resolves.toEqual([mockCity]);

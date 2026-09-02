@@ -4,9 +4,9 @@ import type { GenderFilter as GenderFilterType } from '@/features/filters/slice'
 import { Radio, RadioGroup } from '@/shared/ui';
 
 const OPTIONS = [
-  { value: 'any', label: 'Не имеет значения' },
-  { value: 'male', label: 'Мужской' },
-  { value: 'female', label: 'Женский' },
+  { value: 'any', label: "Doesn't matter" },
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' },
 ];
 
 export const GenderFilter = () => {
@@ -20,7 +20,7 @@ export const GenderFilter = () => {
   return (
     <RadioGroup 
       name="gender" 
-      label="Пол автора" 
+      label="Author's gender" 
       value={selectedGender} 
       onChange={handleChange}
       orientation="vertical" 

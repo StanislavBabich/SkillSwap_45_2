@@ -153,7 +153,7 @@ describe('AuthService', () => {
     };
 
     await expect(AuthService.register(data)).rejects.toThrow(
-      'Пользователь с таким email уже существует'
+      'A user with this email already exists'
     );
   });
 
@@ -166,7 +166,7 @@ describe('AuthService', () => {
     };
 
     await expect(AuthService.register(data)).rejects.toThrow(
-      'Пароль должен быть не менее 8 символов'
+      'Password must be at least 8 characters'
     );
   });
 

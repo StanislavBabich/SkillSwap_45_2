@@ -27,9 +27,9 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ skillId }) => {
     try {
       await navigator.clipboard.writeText(url);
       // eslint-disable-next-line no-console
-      console.log('Ссылка скопирована:', url);
+      console.log('Link copied:', url);
     } catch {
-      window.prompt('Скопируй ссылку:', url);
+      window.prompt('Copy the link:', url);
     }
   };
 
@@ -46,7 +46,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ skillId }) => {
         variant="text"
         type="button"
         className={styles.iconButton}
-        aria-label="Поделиться"
+        aria-label="Share"
         onClick={handleShare}
       >
         <Icon 
@@ -60,7 +60,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ skillId }) => {
         variant="text"
         type="button"
         className={styles.iconButton}
-        aria-label="Ещё"
+        aria-label="More"
         onClick={handleMore}
       >
         <Icon 

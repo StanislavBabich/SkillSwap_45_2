@@ -27,9 +27,9 @@ export const SuccessModal = ({
       icon={
         <Icon name="done" size={48} className={styles.icon} aria-hidden="true" />
       }
-      title="Регистрация завершена!"
-      description="Ваш профиль создан."
-      buttonText="Готово"
+      title="Sign-up complete!"
+      description="Your profile has been created."
+      buttonText="Done"
       onButtonClick={handleDone}
       closeOnEscape
       closeOnOverlayClick

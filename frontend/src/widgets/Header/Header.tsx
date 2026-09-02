@@ -32,7 +32,7 @@ export const Header = () => {
         <ul className={styles.navList}>
           <li>
             <Link to="/about" className={styles.navLink}>
-              О проекте
+              About
             </Link>
           </li>
           <li>
@@ -47,7 +47,7 @@ export const Header = () => {
         {/* Кнопка смены темы */}
         <button
           className={styles.themeButton}
-          aria-label="Переключить тему"
+          aria-label="Toggle theme"
           onClick={toggleTheme}
         >
           <Icon
@@ -67,13 +67,13 @@ export const Header = () => {
                 variant="secondary" 
                 onClick={handleLoginClick} 
               >
-                Войти
+                Log in
               </Button>
               <Button 
                 variant="primary" 
                 onClick={handleRegisterClick}
               >
-                Зарегистрироваться
+                Sign up
               </Button>
             </div>
           )}

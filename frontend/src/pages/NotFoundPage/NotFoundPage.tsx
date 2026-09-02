@@ -12,18 +12,18 @@ export const NotFoundPage = () => {
     <main className={styles.page}>
       <img
         src={illustration}
-        alt="Страница не найдена"
+        alt="Page not found"
         className={styles.image}
       />
       
-      <h1 className={styles.title}>На сервере произошла ошибка</h1>
-      <p className={styles.text}>К сожалению, эта страница недоступна.
-      Вернитесь на главную или попробуйте позже</p>
+      <h1 className={styles.title}>Page not found</h1>
+      <p className={styles.text}>Unfortunately, this page is unavailable.
+      Go back to the homepage or try again later</p>
     
       <div className={styles.actions}>
-        <Button variant="secondary">Сообщить об ошибке</Button>
+        <Button variant="secondary">Report an error</Button>
         <Button variant="primary" onClick={handleGoHome}>
-          На главную
+          Go to homepage
         </Button>
       </div>
     </main>

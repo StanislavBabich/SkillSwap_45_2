@@ -2,49 +2,49 @@
   "categories": [
     {
       "id": 1,
-      "name": "Бизнес и карьера",
+      "name": "Business and career",
       "color": "var(--color-tag-business)",
       "icon": "/src/assets/briefcase.svg"
     },
     {
       "id": 2,
-      "name": "Творчество и искусство",
+      "name": "Creativity and art",
       "color": "var(--color-tag-art)",
       "icon": "/src/assets/palette.svg"
     },
     {
       "id": 3,
-      "name": "Иностранные языки",
+      "name": "Foreign languages",
       "color": "var(--color-tag-language)",
       "icon": "/src/assets/global.svg"
     },
     {
       "id": 4,
-      "name": "Образование и развитие",
+      "name": "Education and development",
       "color": "var(--color-tag-education)",
       "icon": "/src/assets/book.svg"
     },
     {
       "id": 5,
-      "name": "Здоровье и лайфстайл",
+      "name": "Health and lifestyle",
       "color": "var(--color-tag-health)",
       "icon": "/src/assets/lifestyle.svg"
     },
     {
       "id": 6,
-      "name": "Дом и уют",
+      "name": "Home and comfort",
       "color": "var(--color-tag-home)",
       "icon": "/src/assets/home.svg"
     },
     {
       "id": 7,
-      "name": "IT и технологии",
+      "name": "Technology and IT",
       "color": "var(--color-tag-tech)",
       "icon": "/src/assets/idea.svg"
     },
     {
       "id": 8,
-      "name": "Спорт и активный отдых",
+      "name": "Sports and outdoor activities",
       "color": "var(--color-tag-sport)",
       "icon": "/src/assets/sun.svg"
     }
@@ -52,222 +52,222 @@
   "subcategories": [
     {
       "id": 101,
-      "name": "Управление командой",
+      "name": "Team management",
       "categoryId": 1
     },
     {
       "id": 102,
-      "name": "Маркетинг и реклама",
+      "name": "Marketing and advertising",
       "categoryId": 1
     },
     {
       "id": 103,
-      "name": "Продажи и переговоры",
+      "name": "Sales and negotiations",
       "categoryId": 1
     },
     {
       "id": 104,
-      "name": "Личный бренд",
+      "name": "Personal brand",
       "categoryId": 1
     },
     {
       "id": 105,
-      "name": "Резюме и собеседование",
+      "name": "Resume and interview",
       "categoryId": 1
     },
     {
       "id": 106,
-      "name": "Тайм-менеджмент",
+      "name": "Time management",
       "categoryId": 1
     },
     {
       "id": 107,
-      "name": "Проектное управление",
+      "name": "Project management",
       "categoryId": 1
     },
     {
       "id": 108,
-      "name": "Предпринимательство",
+      "name": "Entrepreneurship",
       "categoryId": 1
     },
     {
       "id": 9,
-      "name": "Английский",
+      "name": "English",
       "categoryId": 3
     },
     {
       "id": 10,
-      "name": "Французский",
+      "name": "French",
       "categoryId": 3
     },
     {
       "id": 11,
-      "name": "Испанский",
+      "name": "Spanish",
       "categoryId": 3
     },
     {
       "id": 12,
-      "name": "Немецкий",
+      "name": "German",
       "categoryId": 3
     },
     {
       "id": 13,
-      "name": "Китайский",
+      "name": "Chinese",
       "categoryId": 3
     },
     {
       "id": 14,
-      "name": "Японский",
+      "name": "Japanese",
       "categoryId": 3
     },
     {
       "id": 15,
-      "name": "Подготовка к экзаменам",
+      "name": "Exam preparation",
       "categoryId": 3
     },
     {
       "id": 16,
-      "name": "Уборка и организация",
+      "name": "Cleaning and organization",
       "categoryId": 6
     },
     {
       "id": 17,
-      "name": "Домашние финансы",
+      "name": "Household finances",
       "categoryId": 6
     },
     {
       "id": 18,
-      "name": "Приготовление еды",
+      "name": "Cooking",
       "categoryId": 6
     },
     {
       "id": 19,
-      "name": "Домашние растения",
+      "name": "Houseplants",
       "categoryId": 6
     },
     {
       "id": 20,
-      "name": "Ремонт",
+      "name": "Home repairs",
       "categoryId": 6
     },
     {
       "id": 21,
-      "name": "Хранение вещей",
+      "name": "Storage",
       "categoryId": 6
     },
     {
       "id": 22,
-      "name": "Рисование и иллюстрация",
+      "name": "Drawing and illustration",
       "categoryId": 2
     },
     {
       "id": 23,
-      "name": "Фотография",
+      "name": "Photography",
       "categoryId": 2
     },
     {
       "id": 24,
-      "name": "Видеомонтаж",
+      "name": "Video editing",
       "categoryId": 2
     },
     {
       "id": 25,
-      "name": "Музыка и звук",
+      "name": "Music and sound",
       "categoryId": 2
     },
     {
       "id": 26,
-      "name": "Актёрское мастерство",
+      "name": "Acting",
       "categoryId": 2
     },
     {
       "id": 27,
-      "name": "Креативное письмо",
+      "name": "Creative writing",
       "categoryId": 2
     },
     {
       "id": 28,
-      "name": "Арт-терапия",
+      "name": "Art therapy",
       "categoryId": 2
     },
     {
       "id": 29,
-      "name": "Декор и DIY",
+      "name": "Decor and DIY",
       "categoryId": 2
     },
     {
       "id": 30,
-      "name": "Личностное развитие",
+      "name": "Personal development",
       "categoryId": 4
     },
     {
       "id": 31,
-      "name": "Навыки обучения",
+      "name": "Learning skills",
       "categoryId": 4
     },
     {
       "id": 32,
-      "name": "Когнитивные техники",
+      "name": "Cognitive techniques",
       "categoryId": 4
     },
     {
       "id": 33,
-      "name": "Скорочтение",
+      "name": "Speed reading",
       "categoryId": 4
     },
     {
       "id": 34,
-      "name": "Навыки преподавания",
+      "name": "Teaching skills",
       "categoryId": 4
     },
     {
       "id": 35,
-      "name": "Коучинг",
+      "name": "Coaching",
       "categoryId": 4
     },
     {
       "id": 36,
-      "name": "Йога и медитация",
+      "name": "Yoga and meditation",
       "categoryId": 5
     },
     {
       "id": 37,
-      "name": "Питание и ЗОЖ",
+      "name": "Nutrition and healthy lifestyle",
       "categoryId": 5
     },
     {
       "id": 38,
-      "name": "Ментальное здоровье",
+      "name": "Mental health",
       "categoryId": 5
     },
     {
       "id": 39,
-      "name": "Осознанность",
+      "name": "Mindfulness",
       "categoryId": 5
     },
     {
       "id": 40,
-      "name": "Физические тренировки",
+      "name": "Physical training",
       "categoryId": 5
     },
     {
       "id": 41,
-      "name": "Сон и восстановление",
+      "name": "Sleep and recovery",
       "categoryId": 5
     },
     {
       "id": 42,
-      "name": "Баланс жизни и работы",
+      "name": "Work-life balance",
       "categoryId": 5
     },
     {
       "id": 43,
-      "name": "Веб-разработка",
+      "name": "Web development",
       "categoryId": 7
     },
     {
       "id": 44,
-      "name": "Мобильная разработка",
+      "name": "Mobile development",
       "categoryId": 7
     },
     {
@@ -277,7 +277,7 @@
     },
     {
       "id": 46,
-      "name": "Кибербезопасность",
+      "name": "Cybersecurity",
       "categoryId": 7
     },
     {
@@ -287,57 +287,57 @@
     },
     {
       "id": 48,
-      "name": "UI/UX дизайн",
+      "name": "UI/UX design",
       "categoryId": 7
     },
     {
       "id": 49,
-      "name": "Тестирование (QA)",
+      "name": "Testing (QA)",
       "categoryId": 7
     },
     {
       "id": 50,
-      "name": "1С",
+      "name": "1C",
       "categoryId": 7
     },
     {
       "id": 51,
-      "name": "Фитнес",
+      "name": "Fitness",
       "categoryId": 8
     },
     {
       "id": 52,
-      "name": "Бег и триатлон",
+      "name": "Running and triathlon",
       "categoryId": 8
     },
     {
       "id": 53,
-      "name": "Командные виды спорта",
+      "name": "Team sports",
       "categoryId": 8
     },
     {
       "id": 54,
-      "name": "Боевые искусства",
+      "name": "Martial arts",
       "categoryId": 8
     },
     {
       "id": 55,
-      "name": "Танцы",
+      "name": "Dance",
       "categoryId": 8
     },
     {
       "id": 56,
-      "name": "Экстремальный спорт",
+      "name": "Extreme sports",
       "categoryId": 8
     },
     {
       "id": 57,
-      "name": "Плавание",
+      "name": "Swimming",
       "categoryId": 8
     },
     {
       "id": 58,
-      "name": "Зимние виды спорта",
+      "name": "Winter sports",
       "categoryId": 8
     }
   ]

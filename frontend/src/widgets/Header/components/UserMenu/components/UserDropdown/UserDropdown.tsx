@@ -57,7 +57,7 @@ export const UserDropdown = ({ onClose }: UserDropdownProps) => {
       ref={dropdownRef}
       onKeyDown={handleKeyDown}
       role="menu"
-      aria-label="Меню пользователя"
+      aria-label="User menu"
     >
       {/* Пункт "Личный кабинет" */}
       <button
@@ -65,9 +65,9 @@ export const UserDropdown = ({ onClose }: UserDropdownProps) => {
         onClick={handleProfileClick}
         role="menuitem"
         tabIndex={0}
-        title="Перейти в личный кабинет"
+        title="Go to profile"
       >
-        Личный кабинет
+        Profile
       </button>
       
       {/* Пункт "Выйти" */}
@@ -76,9 +76,9 @@ export const UserDropdown = ({ onClose }: UserDropdownProps) => {
         onClick={handleLogout}
         role="menuitem"
         tabIndex={0}
-        title="Выйти из аккаунта"
+        title="Log out"
       >
-        <span>Выйти из аккаунта</span>
+        <span>Log out</span>
         <Icon 
           name="logout" 
           size={24} 

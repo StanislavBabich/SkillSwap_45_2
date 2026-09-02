@@ -15,9 +15,9 @@ type Props = {
 };
 
 const statusText: Partial<Record<SkillShareRequestStatus, string>> = {
-  pending: 'Заявка ожидает ответа',
-  accepted: 'Заявка принята',
-  inProgress: 'Обмен начат',
+  pending: 'Request awaiting response',
+  accepted: 'Request accepted',
+  inProgress: 'Swap started',
 };
 
 export const ExchangeButton = ({ onClick, isOwner, activeStatus, hasOfferedSkill }: Props) => {
@@ -26,7 +26,7 @@ export const ExchangeButton = ({ onClick, isOwner, activeStatus, hasOfferedSkill
   if (isOwner) {
     return (
       <Button variant="secondary" size="large" fullWidth disabled className={styles.exchangeButton}>
-        Это ваш навык
+        This is your skill
       </Button>
     );
   }
@@ -40,7 +40,7 @@ export const ExchangeButton = ({ onClick, isOwner, activeStatus, hasOfferedSkill
         className={styles.exchangeButton}
         onClick={onClick}
       >
-        Войти, чтобы предложить обмен
+        Log in to propose a swap
       </Button>
     );
   }
@@ -56,7 +56,7 @@ export const ExchangeButton = ({ onClick, isOwner, activeStatus, hasOfferedSkill
   if (!hasOfferedSkill) {
     return (
       <Button variant="secondary" size="large" fullWidth disabled className={styles.exchangeButton}>
-        Добавьте свой навык для обмена
+        Add your skill to swap
       </Button>
     );
   }
@@ -69,7 +69,7 @@ export const ExchangeButton = ({ onClick, isOwner, activeStatus, hasOfferedSkill
       className={styles.exchangeButton}
       onClick={onClick}
     >
-      Предложить обмен
+      Propose a swap
     </Button>
   );
 };

@@ -20,13 +20,13 @@ export const SkillTypeFilter = () => {
       orientation="vertical"
     >
       <Radio value="all">
-        Все
+        All
       </Radio>
       <Radio value="learn">
-        Хочу научиться
+        Want to learn
       </Radio>
       <Radio value="teach">
-        Могу научить
+        Can teach
       </Radio>
     </RadioGroup>
   );

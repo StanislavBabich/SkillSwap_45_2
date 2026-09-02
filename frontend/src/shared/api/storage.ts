@@ -42,7 +42,7 @@ export async function uploadSkillImages(files: File[]): Promise<string[]> {
 function validateImageFiles(files: File[]): void {
   const invalid = files.find((f) => !f.type.startsWith('image/'));
   if (invalid) {
-    throw new Error(`Недопустимый тип файла: ${invalid.name}. Разрешены только изображения.`);
+    throw new Error(`Invalid file type: ${invalid.name}. Only images are allowed.`);
   }
 }
 
@@ -71,7 +71,7 @@ export async function uploadSkillImagesWithRollback(files: File[]): Promise<stri
       if (paths.length > 0) {
         await supabase.storage.from(BUCKET_SKILL_IMAGES).remove(paths);
       }
-      throw new Error(`Не удалось загрузить изображения: ${error.message}`);
+      throw new Error(`Failed to upload images: ${error.message}`);
     }
 
     paths.push(path);

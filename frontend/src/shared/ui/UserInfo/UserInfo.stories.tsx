@@ -12,9 +12,9 @@ const mockUsers: User[] = [
   {
     id: 101,
     avatarUrl: '/vite.svg',
-    name: 'Иван',
+    name: 'Ivan',
     email: 'ivan@example.com',
-    about: 'Люблю учиться и делиться знаниями',
+    about: 'I love learning and sharing knowledge',
     cityId: 1,
     dateOfBirth: '1992-06-15',
     gender: 'male',
@@ -25,9 +25,9 @@ const mockUsers: User[] = [
   {
     id: 102,
     avatarUrl: '/vite.svg',
-    name: 'Анна',
+    name: 'Anna',
     email: 'anna@example.com',
-    about: 'Изучаю языки и UX',
+    about: 'I study languages and UX',
     cityId: 2,
     dateOfBirth: '2004-09-20',
     gender: 'female',
@@ -38,8 +38,8 @@ const mockUsers: User[] = [
 ];
 
 const mockCities: City[] = [
-  { id: 1, name: 'Санкт-Петербург' },
-  { id: 2, name: 'Москва' },
+  { id: 1, name: 'Saint Petersburg' },
+  { id: 2, name: 'Moscow' },
 ];
 
 const createStoryStore = () =>

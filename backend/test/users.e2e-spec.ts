@@ -320,7 +320,7 @@ describe('UsersController (e2e)', () => {
 
       const body = response.body as { message: string };
 
-      expect(body.message).toBe('Пароль успешно изменён');
+      expect(body.message).toBe('Password changed successfully');
 
       await request(httpServer)
         .post('/api/auth/login')
@@ -344,7 +344,7 @@ describe('UsersController (e2e)', () => {
       const body = response.body as ErrorResponse;
 
       expect(body.statusCode).toBe(401);
-      expect(body.message).toBe('Неверный текущий пароль');
+      expect(body.message).toBe('Invalid current password');
     });
 
     it('возвращает 401 без access token', async () => {

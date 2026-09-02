@@ -29,7 +29,7 @@ export interface DropdownProps {
   className?: string;
   /** Показывать счетчик выбранных элементов (для mode="multiple") */
   showCounter?: boolean;
-  /** Текст для счетчика, например "Выбрано: {count}" */
+  /** Counter text, for example "Selected: {count}" */
   counterText?: string;
 }
 
@@ -40,7 +40,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   mode = 'multiple',
   onChange,
   title,
-  placeholder = 'Выберите опцию',
+  placeholder = 'Select an option',
   disabled = false,
   error,
   helperText,
@@ -49,7 +49,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   required,
   className,
   showCounter = true,
-  counterText = 'Выбрано: {count}',
+  counterText = 'Selected: {count}',
 }) => {
   const getSafeArray = (input: unknown): string[] => {
     if (Array.isArray(input)) {

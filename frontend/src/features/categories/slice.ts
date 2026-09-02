@@ -59,7 +59,7 @@ const categoriesSlice = createSlice({
       .addCase(initializeCategories.rejected, (state, action) => {
         state.isLoading = false;
         state.status = 'failed';
-        state.error = action.error.message ?? 'Ошибка при загрузке категорий';
+        state.error = action.error.message ?? 'Failed to load categories';
       });
   },
   selectors: {

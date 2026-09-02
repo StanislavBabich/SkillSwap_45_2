@@ -41,7 +41,7 @@ export class AuthService {
     // 1. Проверяем, существует ли пользователь
     const existingUser = await this.usersService.findByEmail(dto.email);
     if (existingUser) {
-      throw new ConflictException('Пользователь с таким email уже существует');
+      throw new ConflictException('A user with this email already exists');
     }
 
     // 2. Хешируем пароль
@@ -76,12 +76,12 @@ export class AuthService {
       .getOne();
 
     if (!user) {
-      throw new UnauthorizedException('Неверный email или пароль');
+      throw new UnauthorizedException('Invalid email or password');
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Неверный email или пароль');
+      throw new UnauthorizedException('Invalid email or password');
     }
 
     const { accessToken, refreshToken } = await this.generateTokens(user);
@@ -110,7 +110,7 @@ export class AuthService {
       .getOne();
 
     if (!user?.refreshToken) {
-      throw new UnauthorizedException('Недействительный refresh token');
+      throw new UnauthorizedException('Invalid refresh token');
     }
 
     const isRefreshTokenValid = await bcrypt.compare(
@@ -118,7 +118,7 @@ export class AuthService {
       user.refreshToken,
     );
     if (!isRefreshTokenValid) {
-      throw new UnauthorizedException('Недействительный refresh token');
+      throw new UnauthorizedException('Invalid refresh token');
     }
 
     const tokens = await this.generateTokens(user);
@@ -134,7 +134,7 @@ export class AuthService {
 
   async logout(userId: string): Promise<LogoutResponseDto> {
     await this.usersService.removeRefreshToken(userId);
-    return { message: 'Вы успешно вышли из аккаунта' };
+    return { message: 'You have successfully logged out' };
   }
 
   private async generateTokens(user: User): Promise<{

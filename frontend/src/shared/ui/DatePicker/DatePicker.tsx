@@ -21,7 +21,7 @@ export const DatePicker = ({
   label,
   value,
   onChange,
-  placeholder = 'дд.мм.гггг',
+  placeholder = 'mm/dd/yyyy',
   className,
   inputClassName,
   error,
@@ -46,24 +46,24 @@ export const DatePicker = ({
   const [yearPos, setYearPos] = useState({ top: 0, left: 0 });
 
   const months = [
-    'Январь',
-    'Февраль',
-    'Март',
-    'Апрель',
-    'Май',
-    'Июнь',
-    'Июль',
-    'Август',
-    'Сентябрь',
-    'Октябрь',
-    'Ноябрь',
-    'Декабрь',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   const years = Array.from({ length: 151 }, (_, i) => 1900 + i);
 
   const formatAriaDate = (date: Date) =>
-    date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' });
+    date.toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' });
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -242,7 +242,7 @@ export const DatePicker = ({
         type="button"
         className={clsx(styles.input, error && styles.inputError, inputClassName)}
         aria-labelledby={label ? labelId : undefined}
-        aria-label={label ? undefined : 'Выбрать дату'}
+        aria-label={label ? undefined : 'Select date'}
         aria-expanded={open}
         aria-haspopup="dialog"
         aria-invalid={!!error}
@@ -302,7 +302,7 @@ export const DatePicker = ({
           id={`${fieldId}-calendar`}
           role="dialog"
           aria-modal="false"
-          aria-label="Календарь"
+          aria-label="Calendar"
           className={styles.popover}
         >
           <div className={styles.header}>
@@ -314,7 +314,7 @@ export const DatePicker = ({
                 ref={monthBtnRef}
                 className={styles.chevronBtn}
                 onClick={toggleMonthPopup}
-                aria-label="Выбрать месяц"
+                aria-label="Select month"
                 aria-expanded={monthOpen}
               >
 
@@ -336,7 +336,7 @@ export const DatePicker = ({
                 ref={yearBtnRef}
                 className={styles.chevronBtn}
                 onClick={toggleYearPopup}
-                aria-label="Выбрать год"
+                aria-label="Select year"
                 aria-expanded={yearOpen}
               >
 
@@ -352,7 +352,7 @@ export const DatePicker = ({
           </div>
 
           <div className={styles.weekRow}>
-            {['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((d) => (
+            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((d) => (
               <div key={d} className={styles.weekday}>
                 {d}
               </div>
@@ -382,10 +382,10 @@ export const DatePicker = ({
 
           <div className={styles.footer}>
             <button type="button" className={styles.cancelBtn} onClick={cancel}>
-              Отменить
+              Cancel
             </button>
             <button type="button" className={styles.applyBtn} onClick={apply}>
-              Выбрать
+              Select
             </button>
           </div>
         </div>

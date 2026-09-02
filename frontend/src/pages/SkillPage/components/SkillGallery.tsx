@@ -27,7 +27,7 @@ const CustomLeftNav = (onClick: () => void) => (
   <button 
     className={styles.customArrowLeft} 
     onClick={onClick}
-    aria-label="Предыдущее изображение"
+    aria-label="Previous image"
   >
     <img src={LeftIcon} alt="" width={16} height={16} />
   </button>
@@ -37,7 +37,7 @@ const CustomRightNav = (onClick: () => void) => (
   <button 
     className={styles.customArrowRight} 
     onClick={onClick}
-    aria-label="Следующее изображение"
+    aria-label="Next image"
   >
     <img src={RightIcon} alt="" width={16} height={16} />
   </button>
@@ -50,7 +50,7 @@ const SkillGallery = ({ images }: SkillGalleryProps) => {
     return (
       <div className={styles.gallery}>
         <div className={styles.mainImageContainer}>
-          <img src="/images/placeholder.jpg" alt="Нет изображения" />
+          <img src="/images/placeholder.jpg" alt="No image" />
         </div>
       </div>
     );
@@ -59,8 +59,8 @@ const SkillGallery = ({ images }: SkillGalleryProps) => {
   const galleryItems = images.map((url) => ({
     original: getFullUrl(url),
     thumbnail: getFullUrl(getThumbnailUrl(url)),
-    originalAlt: `Изображение навыка`,
-    thumbnailAlt: `Миниатюра`,
+    originalAlt: `Skill image`,
+    thumbnailAlt: `Thumbnail`,
   }));
 
   return (

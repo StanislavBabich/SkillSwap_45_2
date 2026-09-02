@@ -12,7 +12,7 @@ export class AuthService {
     });
     if (!res.ok) {
       const error = await res.json().catch(() => ({}));
-      throw new Error(error.message || 'Ошибка регистрации');
+      throw new Error(error.message || 'Sign-up failed');
     }
     return res.json();
   }

@@ -20,12 +20,12 @@ type Story = StoryObj<typeof meta>;
 
 const sixCheckboxes = (
   <>
-    <div><Checkbox value="business" /><span>Бизнес и карьера</span></div>
-    <div><Checkbox value="art" /><span>Творчество и искусство</span></div>
-    <div><Checkbox value="languages" /><span>Иностранные языки</span></div>
-    <div><Checkbox value="education" /><span>Образование и развитие</span></div>
-    <div><Checkbox value="health" /><span>Здоровье и лайфстайл</span></div>
-    <div><Checkbox value="home" /><span>Дом и уют</span></div>
+    <div><Checkbox value="business" /><span>Business and career</span></div>
+    <div><Checkbox value="art" /><span>Creativity and art</span></div>
+    <div><Checkbox value="languages" /><span>Foreign languages</span></div>
+    <div><Checkbox value="education" /><span>Education and development</span></div>
+    <div><Checkbox value="health" /><span>Health and lifestyle</span></div>
+    <div><Checkbox value="home" /><span>Home and comfort</span></div>
   </>
 );
 
@@ -40,7 +40,7 @@ export const Default: Story = {
 export const WithLabel: Story = {
   args: {
     name: 'skills',
-    label: 'Навыки',
+    label: 'Skills',
     defaultValue: [],
     children: sixCheckboxes,
   },
@@ -49,9 +49,9 @@ export const WithLabel: Story = {
 export const WithError: Story = {
   args: {
     name: 'skills',
-    label: 'Навыки',
+    label: 'Skills',
     defaultValue: [],
-    error: 'Выберите хотя бы один пункт',
+    error: 'Select at least one item',
     children: sixCheckboxes,
   },
 };
@@ -59,7 +59,7 @@ export const WithError: Story = {
 export const Disabled: Story = {
   args: {
     name: 'settings',
-    label: 'Настройки',
+    label: 'Settings',
     defaultValue: ['business'],
     disabled: true,
     children: sixCheckboxes,
@@ -69,7 +69,7 @@ export const Disabled: Story = {
 export const Required: Story = {
   args: {
     name: 'required',
-    label: 'Обязательный выбор',
+    label: 'Required selection',
     required: true,
     defaultValue: [],
     children: sixCheckboxes,
@@ -83,17 +83,17 @@ export const Controlled = () => {
     <div>
       <CheckboxGroup
         name="controlled"
-        label="Управляемая группа"
+        label="Controlled group"
         value={values}
         onChange={setValues}
       >
         {sixCheckboxes}
       </CheckboxGroup>
 
-      <p>Выбрано: {values.join(', ') || 'ничего'}</p>
+      <p>Selected: {values.join(', ') || 'none'}</p>
 
       <button type="button" onClick={() => setValues([])}>
-        Сбросить
+        Reset
       </button>
     </div>
   );
@@ -102,7 +102,7 @@ export const Controlled = () => {
 export const Uncontrolled: Story = {
   args: {
     name: 'categories',
-    label: 'Категории',
+    label: 'Categories',
     defaultValue: ['languages'],
     children: sixCheckboxes,
   },
@@ -111,8 +111,8 @@ export const Uncontrolled: Story = {
 export const WithMaxSelections: Story = {
   args: {
     name: 'interests',
-    label: 'Интересы',
-    description: 'Можно выбрать не более 3 пунктов',
+    label: 'Interests',
+    description: 'You can select no more than 3 items',
     defaultValue: ['business'],
     maxSelections: 3,
     showCounter: true,

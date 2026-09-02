@@ -41,19 +41,19 @@ export const LoginPage = () => {
   const validateField = useCallback((field: 'email' | 'password', value: string) => {
     if (field === 'email') {
       if (!value.trim()) {
-        return 'Email обязателен';
+        return 'Email is required';
       }
       if (!/^\S+@\S+\.\S+$/.test(value)) {
-        return 'Некорректный email';
+        return 'Invalid email';
       }
     }
     
     if (field === 'password') {
       if (!value.trim()) {
-        return 'Пароль обязателен';
+        return 'Password is required';
       }
       if (value.length < 8) {
-        return 'Минимум 8 символов';
+        return 'Minimum 8 characters';
       }
     }
     
@@ -114,7 +114,7 @@ export const LoginPage = () => {
             onClick={handleGoogleLogin}
             startIcon={<img src={googleIcon} alt="" />}
           >
-            Продолжить с Google
+            Continue with Google
           </Button>
 
           <Button
@@ -124,13 +124,13 @@ export const LoginPage = () => {
             onClick={handleAppleLogin}
             startIcon={<img src={appleIcon} alt="" />}
           >
-            Продолжить с Apple
+            Continue with Apple
           </Button>
         </div>
 
         {/* Разделитель */}
         <div className={styles.divider}>
-          <span>или</span>
+          <span>or</span>
         </div>
 
         {/* Форма входа по email */}
@@ -138,7 +138,7 @@ export const LoginPage = () => {
           <Input
             type="email"
             label="Email"
-            placeholder="Введите email"
+            placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onBlur={() => handleBlur('email')}
@@ -148,8 +148,8 @@ export const LoginPage = () => {
 
           <Input
             type={showPassword ? 'text' : 'password'}
-            label="Пароль"
-            placeholder="Введите пароль"
+            label="Password"
+            placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onFocus={() => setIsPasswordFocused(true)}
@@ -160,7 +160,7 @@ export const LoginPage = () => {
             error={touched.password ? errors.password : false}
             helperText={
               isPasswordFocused && !errors.password
-                ? "Пароль должен содержать не менее 8 символов"
+                ? "Password must be at least 8 characters"
                 : undefined
             }
             fullWidth
@@ -169,14 +169,14 @@ export const LoginPage = () => {
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 className={styles.passwordToggle}
-                aria-label={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {/* Иконка глаза */}
               </button>
             }
           />
 
-          {error && <div className={styles.authError}>Неверный email или пароль</div>}
+          {error && <div className={styles.authError}>Invalid email or password</div>}
 
           <Button
             type="submit"
@@ -186,21 +186,21 @@ export const LoginPage = () => {
             disabled={isLoading}
             className={styles.submitButton}
           >
-            {isLoading ? 'Вход...' : 'Войти'}
+            {isLoading ? 'Logging in...' : 'Log in'}
           </Button>
         </form>
 
         <p className={styles.registerLink}>
-          Нет аккаунта? <a href="/register">Зарегистрироваться</a>
+          Don't have an account? <a href="/register">Sign up</a>
         </p>
       </div>
 
       {/* Правая колонка — картинка и текст */}
       <div className={styles.right}>
         <img src={illustration} alt="Login illustration" />
-        <h2 className={styles.welcomeTitle}>Добро пожаловать в SkillSwap!</h2>
+        <h2 className={styles.welcomeTitle}>Welcome to SkillSwap!</h2>
         <p className={styles.description}>
-        Присоединяйтесь к SkillSwap и обменивайтесь знаниями и навыками с другими людьми
+        Join SkillSwap and exchange knowledge and skills with other people
         </p>
       </div>
     </div>

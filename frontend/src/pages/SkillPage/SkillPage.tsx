@@ -49,7 +49,7 @@ export const SkillPage = () => {
     const loadSkill = async () => {
       try {
         const res = await fetch(`${API_URL}/skills/${skillId}`);
-        if (!res.ok) throw new Error('Навык не найден');
+        if (!res.ok) throw new Error('Skill not found');
         const data = await res.json();
         setSkill(data);
       } catch {
@@ -118,9 +118,9 @@ export const SkillPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (skillId == null) return <div>Некорректный id</div>;
-  if (isLoading) return <div>Загрузка...</div>;
-  if (!skill) return <div>Навык не найден</div>;
+  if (skillId == null) return <div>Invalid id</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (!skill) return <div>Skill not found</div>;
 
   const handleExchangeClick = () => {
     if (!authUser) {

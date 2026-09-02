@@ -37,7 +37,7 @@ export class UpdateProfileDto {
   avatar?: string;
 
   @ApiPropertyOptional({
-    description: 'ID категорий, которым пользователь хочет научиться',
+    description: 'Category IDs the user wants to learn',
     type: [String],
     example: ['550e8400-e29b-41d4-a716-446655440000'],
   })

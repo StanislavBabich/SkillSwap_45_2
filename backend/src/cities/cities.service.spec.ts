@@ -14,7 +14,7 @@ describe('CitiesService', () => {
   const cityId = '550e8400-e29b-41d4-a716-446655440000';
   const mockCity: City = {
     id: cityId,
-    name: 'Москва',
+    name: 'Moscow',
     createdAt: new Date('2026-08-10T10:00:00.000Z'),
     updatedAt: new Date('2026-08-10T10:00:00.000Z'),
   };
@@ -58,11 +58,11 @@ describe('CitiesService', () => {
     it('должен искать города по подстроке без учета регистра', async () => {
       cityRepository.find.mockResolvedValue([mockCity]);
 
-      const result = await service.findAll({ search: 'моск' });
+      const result = await service.findAll({ search: 'mosc' });
 
       expect(result).toEqual([mockCity]);
       expect(cityRepository.find).toHaveBeenCalledWith({
-        where: { name: ILike('%моск%') },
+        where: { name: ILike('%mosc%') },
         order: { name: 'ASC' },
         take: 10,
       });

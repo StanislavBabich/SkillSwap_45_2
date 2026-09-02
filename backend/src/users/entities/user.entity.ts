@@ -77,7 +77,7 @@ export class User {
   skills?: Skill[];
 
   @ApiPropertyOptional({
-    description: 'Категории, которым пользователь хочет научиться',
+    description: 'Categories the user wants to learn',
   })
   @ManyToMany(() => Category)
   @JoinTable({

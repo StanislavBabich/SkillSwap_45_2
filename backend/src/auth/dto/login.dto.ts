@@ -1,11 +1,11 @@
 import { IsEmail, IsString, MinLength, MaxLength } from 'class-validator';
 
 export class LoginDto {
-  @IsEmail({}, { message: 'Некорректный email' })
+  @IsEmail({}, { message: 'Invalid email' })
   email: string;
 
   @IsString()
-  @MinLength(6, { message: 'Пароль должен содержать минимум 6 символов' })
-  @MaxLength(20, { message: 'Пароль не должен превышать 20 символов' })
+  @MinLength(6, { message: 'Password must contain at least 6 characters' })
+  @MaxLength(20, { message: 'Password must not exceed 20 characters' })
   password: string;
 }

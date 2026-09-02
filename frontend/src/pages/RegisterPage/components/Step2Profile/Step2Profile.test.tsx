@@ -6,7 +6,7 @@ import type { RegistrationData } from "@/pages/RegisterPage/types";
 
 const mockState = {
   cities: {
-    items: [{ id: 1, name: "Москва" }],
+    items: [{ id: 1, name: "Moscow" }],
   },
   categories: {
     categories: [{ id: 10, name: "IT" }],
@@ -145,11 +145,11 @@ describe("Step2Profile", () => {
       />
     );
 
-    expect(screen.getByLabelText("Имя")).toBeInTheDocument();
-    expect(screen.getByLabelText("Дата рождения")).toBeInTheDocument();
-    expect(screen.getByLabelText("Пол")).toBeInTheDocument();
-    expect(screen.getByLabelText("Город")).toBeInTheDocument();
-    expect(screen.getByLabelText("Категории, которым хотите научиться")).toBeInTheDocument();
+    expect(screen.getByLabelText("Name")).toBeInTheDocument();
+    expect(screen.getByLabelText("Date of birth")).toBeInTheDocument();
+    expect(screen.getByLabelText("Gender")).toBeInTheDocument();
+    expect(screen.getByLabelText("City")).toBeInTheDocument();
+    expect(screen.getByLabelText("Categories you want to learn")).toBeInTheDocument();
   });
 
   test("allows entering name and updates parent data", () => {
@@ -168,11 +168,11 @@ describe("Step2Profile", () => {
       />
     );
 
-    const nameInput = screen.getByLabelText("Имя");
+    const nameInput = screen.getByLabelText("Name");
 
-    fireEvent.change(nameInput, { target: { value: "Алексей" } });
+    fireEvent.change(nameInput, { target: { value: "Alexey" } });
 
-    expect(onUpdate).toHaveBeenCalledWith({ name: "Алексей" });
+    expect(onUpdate).toHaveBeenCalledWith({ name: "Alexey" });
   });
 
   test("selecting category triggers update", () => {
@@ -189,7 +189,7 @@ describe("Step2Profile", () => {
       />
     );
 
-    const categorySelect = screen.getByLabelText("Категории, которым хотите научиться");
+    const categorySelect = screen.getByLabelText("Categories you want to learn");
 
     fireEvent.change(categorySelect, { target: { value: "10" } });
 

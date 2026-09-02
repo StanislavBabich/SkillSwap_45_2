@@ -31,5 +31,5 @@ export async function seedCategories(dataSource: DataSource): Promise<void> {
     (count, category) => count + 1 + (category.children?.length ?? 0),
     0,
   );
-  console.log(`Категории: обработано ${total}`);
+  console.log(`Categories processed: ${total}`);
 }

@@ -96,10 +96,10 @@ export const Step2Profile = ({
 
   const validate = () => {
     const newErrors = { name: '', dateOfBirth: '', gender: '', city: '', categories: '' };
-    if (!data.name.trim()) newErrors.name = 'Введите имя';
-    if (!data.dateOfBirth) newErrors.dateOfBirth = 'Выберите дату рождения';
-    if (!data.gender) newErrors.gender = 'Выберите пол';
-    if (selectedCategoryIds.length === 0) newErrors.categories = 'Выберите хотя бы одну категорию';
+    if (!data.name.trim()) newErrors.name = 'Enter your name';
+    if (!data.dateOfBirth) newErrors.dateOfBirth = 'Select date of birth';
+    if (!data.gender) newErrors.gender = 'Select gender';
+    if (selectedCategoryIds.length === 0) newErrors.categories = 'Select at least one category';
     setErrors(newErrors);
     return !Object.values(newErrors).some((error) => error !== '');
   };
@@ -115,19 +115,19 @@ export const Step2Profile = ({
         <div className={styles.avatarSection}>
           <AvatarUpload email={data.email} gender={data.gender} value={data.avatarSeed} onChange={handleAvatarChange} variant="iconOnly" avatarSize={164} />
         </div>
-        <p className={styles.avatarCaption}>Аватар генерируется автоматически. <br />Нажимайте на кнопку чтобы изменить</p>
+        <p className={styles.avatarCaption}>Avatar is generated automatically. <br />Click the button to change it</p>
 
         <div className={styles.formContainer}>
-          <Input label="Имя" placeholder="Введите ваше имя" value={data.name} onChange={handleNameChange} error={errors.name} hideHelper={!errors.name} />
+          <Input label="Name" placeholder="Enter your name" value={data.name} onChange={handleNameChange} error={errors.name} hideHelper={!errors.name} />
 
           <div className={styles.row}>
-            <DatePicker label="Дата рождения" value={data.dateOfBirth || ''} onChange={handleDateChange} placeholder="дд.мм.гггг" error={errors.dateOfBirth} instantSave closeOnSelect />
+            <DatePicker label="Date of birth" value={data.dateOfBirth || ''} onChange={handleDateChange} placeholder="mm/dd/yyyy" error={errors.dateOfBirth} instantSave closeOnSelect />
             <div className={styles.genderWrapper}>
-              <Select size="short" label="Пол" value={data.gender || ''} onChange={handleGenderChange}
+              <Select size="short" label="Gender" value={data.gender || ''} onChange={handleGenderChange}
                 options={[
-                  { value: 'male', label: 'Мужской' },
-                  { value: 'female', label: 'Женский' },
-                  { value: 'other', label: 'Другое' },
+                  { value: 'male', label: 'Male' },
+                  { value: 'female', label: 'Female' },
+                  { value: 'other', label: 'Other' },
                 ]}
                 error={errors.gender}
               />
@@ -135,39 +135,39 @@ export const Step2Profile = ({
           </div>
 
           <DropDownCity
-            label="Город"
+            label="City"
             value={data.city || ''}
             onChange={handleCityChange}
             onSearch={handleCitySearch}
             options={cities.map((city) => ({ value: city.name, label: city.name }))}
-            placeholder="Не указан"
+            placeholder="Not specified"
             minSearchLength={1}
             maxResults={50}
           />
 
           <div className={styles.field}>
-            <label className={styles.label} htmlFor="about">О себе</label>
-            <textarea id="about" className={styles.textarea} placeholder="Расскажите немного о себе" value={data.about || ''} onChange={handleAboutChange} rows={3} />
+            <label className={styles.label} htmlFor="about">About me</label>
+            <textarea id="about" className={styles.textarea} placeholder="Tell us a bit about yourself" value={data.about || ''} onChange={handleAboutChange} rows={3} />
           </div>
 
-          <Dropdown mode="multiple" label="Категории, которым хотите научиться" placeholder="Выберите категории"
+          <Dropdown mode="multiple" label="Categories you want to learn" placeholder="Select categories"
             value={selectedCategoryIds} onChange={handleCategoriesChange}
             options={categories.map((c) => ({ value: String(c.id), label: c.name }))}
-            error={errors.categories} showCounter counterText="Выбрано: {count}"
+            error={errors.categories} showCounter counterText="Selected: {count}"
           />
 
           {availableSubcategories.length > 0 && (
-            <Dropdown mode="multiple" label="Подкатегории" placeholder="Выберите подкатегории"
+            <Dropdown mode="multiple" label="Subcategories" placeholder="Select subcategories"
               value={selectedSubcategoryIds} onChange={handleSubcategoriesChange}
               options={availableSubcategories.map((sub) => ({ value: String(sub.id), label: sub.name }))}
-              showCounter counterText="Выбрано: {count}"
+              showCounter counterText="Selected: {count}"
             />
           )}
 
           <div className={styles.buttons}>
-            <Button variant="secondary" onClick={onBack} fullWidth>Назад</Button>
+            <Button variant="secondary" onClick={onBack} fullWidth>Back</Button>
             <Button onClick={handleSubmit} fullWidth disabled={isSubmitting}>
-              {isSubmitting ? 'Сохранение...' : 'Завершить регистрацию'}
+              {isSubmitting ? 'Saving...' : 'Complete sign-up'}
             </Button>
           </div>
         </div>
@@ -178,8 +178,8 @@ export const Step2Profile = ({
           <div className={styles.infoContainer}>
             <img src={userInfoIllustration} className={styles.illustrationImage} alt="" />
             <div className={styles.infoText}>
-              <h3 className={styles.infoTitle}>Расскажите немного о себе</h3>
-              <p className={styles.infoSubtitle}>Это поможет другим людям лучше вас узнать, чтобы выбрать для обмена</p>
+              <h3 className={styles.infoTitle}>Tell us a bit about yourself</h3>
+              <p className={styles.infoSubtitle}>This will help others get to know you better and choose you for a swap</p>
             </div>
           </div>
         </div>

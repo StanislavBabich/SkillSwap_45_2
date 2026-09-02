@@ -60,14 +60,14 @@ export const useAuth = (): UseAuthReturn => {
         setUser(user);
         return true;
       } else {
-        setError('Неверный email или пароль');
+        setError('Invalid email or password');
         return false;
       }
     } catch (unknownError) {
       if (unknownError instanceof Error) {
         setError(unknownError.message);
       } else {
-        setError('Не удалось выполнить вход');
+        setError('Failed to log in');
       }
       return false;
     } finally {
@@ -87,7 +87,7 @@ export const useAuth = (): UseAuthReturn => {
       if (unknownError instanceof Error) {
         setError(unknownError.message);
       } else {
-        setError('Не удалось выполнить регистрацию');
+        setError('Failed to sign up');
       }
       return false;
     } finally {

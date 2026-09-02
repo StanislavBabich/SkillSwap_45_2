@@ -30,7 +30,7 @@ export const RequestsPage = () => {
     } catch (error) {
       setMessage({
         kind: 'error',
-        text: error instanceof Error ? error.message : 'Не удалось загрузить заявки',
+        text: error instanceof Error ? error.message : 'Failed to load requests',
       });
     } finally {
       setIsLoading(false);
@@ -55,10 +55,10 @@ export const RequestsPage = () => {
         kind: 'success',
         text:
           action === 'accept'
-            ? 'Заявка принята, навыки добавлены в избранное'
+            ? 'Request accepted, skills added to favorites'
             : action === 'reject'
-              ? 'Заявка отклонена'
-              : 'Заявка удалена',
+              ? 'Request declined'
+              : 'Request deleted',
       });
       const items =
         tab === 'incoming' ? await requestsApi.getIncoming() : await requestsApi.getOutgoing();
@@ -66,7 +66,7 @@ export const RequestsPage = () => {
     } catch (error) {
       setMessage({
         kind: 'error',
-        text: error instanceof Error ? error.message : 'Не удалось выполнить действие',
+        text: error instanceof Error ? error.message : 'Failed to perform action',
       });
     } finally {
       setUpdatingId(null);
@@ -79,15 +79,15 @@ export const RequestsPage = () => {
         <ProfileMenu />
       </aside>
       <div className={styles.content}>
-        <h1 className={styles.title}>Заявки</h1>
-        <div className={styles.tabs} role="tablist" aria-label="Тип заявок">
+        <h1 className={styles.title}>Requests</h1>
+        <div className={styles.tabs} role="tablist" aria-label="Request type">
           <button
             className={tab === 'incoming' ? styles.activeTab : styles.tab}
             role="tab"
             aria-selected={tab === 'incoming'}
             onClick={() => setTab('incoming')}
           >
-            Входящие
+            Incoming
           </button>
           <button
             className={tab === 'outgoing' ? styles.activeTab : styles.tab}
@@ -95,7 +95,7 @@ export const RequestsPage = () => {
             aria-selected={tab === 'outgoing'}
             onClick={() => setTab('outgoing')}
           >
-            Исходящие
+            Outgoing
           </button>
         </div>
         {message && (
@@ -104,12 +104,12 @@ export const RequestsPage = () => {
           </p>
         )}
         {isLoading ? (
-          <p className={styles.state}>Загрузка...</p>
+          <p className={styles.state}>Loading...</p>
         ) : requests.length === 0 ? (
           <p className={styles.state}>
             {tab === 'incoming'
-              ? 'У вас нет активных входящих заявок'
-              : 'У вас нет активных исходящих заявок'}
+              ? 'You have no active incoming requests'
+              : 'You have no active outgoing requests'}
           </p>
         ) : (
           <div className={styles.list}>

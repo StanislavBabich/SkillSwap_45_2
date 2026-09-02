@@ -139,7 +139,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               type="button"
               className={styles.inputIconButton}
               onClick={handleClear}
-              aria-label="Очистить поле"
+              aria-label="Clear field"
             >
               <img
                 src={CrossIcon}
@@ -159,8 +159,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
               }
               aria-label={
                 showPassword
-                  ? 'Скрыть пароль'
-                  : 'Показать пароль'
+                  ? 'Hide password'
+                  : 'Show password'
               }
             >
               <img

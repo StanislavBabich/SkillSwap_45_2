@@ -109,25 +109,25 @@ export const selectFiltersDescription = createSelector(
     const parts: string[] = [];
     
     if (filters.search.trim()) {
-      parts.push(`поиск: "${filters.search}"`);
+      parts.push(`search: "${filters.search}"`);
     }
     
     if (filters.skillType !== 'all') {
-      parts.push(`режим: ${filters.skillType === 'learn' ? 'хочу научиться' : 'могу научить'}`);
+      parts.push(`mode: ${filters.skillType === 'learn' ? 'want to learn' : 'can teach'}`);
     }
     
     if (filters.gender !== 'any') {
-      parts.push(`пол: ${filters.gender}`);
+      parts.push(`gender: ${filters.gender}`);
     }
     
     if (filters.selectedCategoryIds.length > 0) {
-      parts.push(`категории: ${filters.selectedCategoryIds.length} выбрано`);
+      parts.push(`categories: ${filters.selectedCategoryIds.length} selected`);
     }
     
     if (filters.selectedCityIds.length > 0) {
-      parts.push(`города: ${filters.selectedCityIds.length} выбрано`);
+      parts.push(`cities: ${filters.selectedCityIds.length} selected`);
     }
     
-    return parts.join(', ') || 'нет активных фильтров';
+    return parts.join(', ') || 'no active filters';
   }
 );

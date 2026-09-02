@@ -1,12 +1,12 @@
 export const categoryColorMap: Record<string, string> = {
-  'Бизнес и карьера': 'var(--color-tag-business)',
-  'Творчество и искусство': 'var(--color-tag-art)',
-  'Иностранные языки': 'var(--color-tag-language)',
-  'Образование и развитие': 'var(--color-tag-education)',
-  'Здоровье и лайфстайл': 'var(--color-tag-health)',
-  'Дом и уют': 'var(--color-tag-home)',
-  'IT и технологии': 'var(--color-tag-tech)',
-  'Спорт и активный отдых': 'var(--color-tag-sport)',
+  'Business and career': 'var(--color-tag-business)',
+  'Creativity and art': 'var(--color-tag-art)',
+  'Foreign languages': 'var(--color-tag-language)',
+  'Education and development': 'var(--color-tag-education)',
+  'Health and lifestyle': 'var(--color-tag-health)',
+  'Home and comfort': 'var(--color-tag-home)',
+  'Technology and IT': 'var(--color-tag-tech)',
+  'Sports and outdoor activities': 'var(--color-tag-sport)',
 };
 
 export const getCategoryColor = (categoryName?: string | null): string => {

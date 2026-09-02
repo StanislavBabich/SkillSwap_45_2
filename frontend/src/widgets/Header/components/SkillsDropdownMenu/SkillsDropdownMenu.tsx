@@ -120,9 +120,9 @@ export const SkillsDropdownMenu = ({ className = '' }: SkillsDropdownMenuProps) 
         onClick={isOpen ? handleClose : handleOpen}
         aria-expanded={isOpen}
         aria-haspopup="true"
-        aria-label="Все навыки"
+        aria-label="All skills"
       >
-        <span>Все навыки</span>
+        <span>All skills</span>
         <Icon name="chevron-down" className={clsx(styles.chevron, isOpen && styles.chevronOpen)} size={24} />
       </button>
       <MenuPanel

@@ -41,7 +41,7 @@ export class RequestsService {
     await this.usersService.findOne(createRequestDto.receiverId);
 
     if (senderId === createRequestDto.receiverId) {
-      throw new BadRequestException('Нельзя отправить заявку самому себе');
+      throw new BadRequestException('You cannot send a request to yourself');
     }
 
     await this.skillsService.findOne(createRequestDto.offeredSkillId);
@@ -110,7 +110,7 @@ export class RequestsService {
 
     if (request.receiver.id !== userId) {
       throw new ForbiddenException(
-        'Вы не можете отметить эту заявку как прочитанную',
+        'You cannot mark this request as read',
       );
     }
 
@@ -131,13 +131,13 @@ export class RequestsService {
 
     if (request.receiver.id !== userId) {
       throw new ForbiddenException(
-        'Вы не можете принять эту заявку: Вы не являетесь получателем',
+        'You cannot accept this request: you are not the recipient',
       );
     }
 
     if (request.status !== RequestStatus.PENDING) {
       throw new BadRequestException(
-        `Заявка уже имеет статус ${request.status}`,
+        `Request already has status ${request.status}`,
       );
     }
 
@@ -179,13 +179,13 @@ export class RequestsService {
 
     if (request.receiver.id !== userId) {
       throw new ForbiddenException(
-        'Вы не можете отклонить эту заявку: Вы не являетесь получателем',
+        'You cannot reject this request: you are not the recipient',
       );
     }
 
     if (request.status !== RequestStatus.PENDING) {
       throw new BadRequestException(
-        `Заявка уже имеет статус ${request.status}`,
+        `Request already has status ${request.status}`,
       );
     }
 
@@ -217,7 +217,7 @@ export class RequestsService {
 
     if (!isAdmin && !isSender) {
       throw new ForbiddenException(
-        'Вы не можете удалить эту заявку. Только отправитель или администратор могут удалить заявку.',
+        'You cannot delete this request. Only the sender or an administrator can delete a request.',
       );
     }
 

@@ -38,5 +38,5 @@ export async function seedUsers(dataSource: DataSource): Promise<void> {
     );
   }
 
-  console.log(`Пользователи: обработано ${UsersData.length}`);
+  console.log(`Users processed: ${UsersData.length}`);
 }

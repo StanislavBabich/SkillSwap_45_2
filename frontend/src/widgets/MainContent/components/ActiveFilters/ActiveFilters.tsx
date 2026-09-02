@@ -46,9 +46,9 @@ export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
 
     if (skillType !== 'all') {
       const labels: Record<SkillType, string> = {
-        all: 'Все',
-        learn: 'Хочу научиться',
-        teach: 'Могу научить',
+        all: 'All',
+        learn: 'Want to learn',
+        teach: 'Can teach',
       };
       filters.push({
         id: 'skill-type',
@@ -88,9 +88,9 @@ export const ActiveFilters = ({ className }: ActiveFiltersProps) => {
 
     if (gender !== 'any') {
       const labels: Record<Gender, string> = {
-        male: 'Мужской',
-        female: 'Женский',
-        other: 'Другое',
+        male: 'Male',
+        female: 'Female',
+        other: 'Other',
       };
       filters.push({
         id: 'gender',

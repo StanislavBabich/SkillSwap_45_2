@@ -62,7 +62,7 @@ export const Modal = ({
   title,
   description,
   children,
-  buttonText = 'Готово',
+  buttonText = 'Done',
   buttonVariant = 'primary',
   buttonFullWidth = true,
   onButtonClick,

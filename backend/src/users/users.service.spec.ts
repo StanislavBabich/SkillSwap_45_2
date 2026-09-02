@@ -79,7 +79,7 @@ describe('UsersService', () => {
     it('должен выбрасывать ConflictException при дублировании email', async () => {
       userRepo.create.mockReturnValue(mockUser);
       userRepo.save.mockRejectedValue(
-        new ConflictException('Пользователь с таким email уже существует'),
+        new ConflictException('A user with this email already exists'),
       );
 
       await expect(service.create(mockCreateUserDto)).rejects.toThrow(
@@ -120,7 +120,7 @@ describe('UsersService', () => {
       );
 
       expect(bcrypt.compare).toHaveBeenCalledWith('old', 'hashed');
-      expect(result).toEqual({ message: 'Пароль успешно изменён' });
+      expect(result).toEqual({ message: 'Password changed successfully' });
     });
 
     it('должен выбрасывать EntityNotFoundException, если пользователь не найден', async () => {

@@ -9,7 +9,7 @@ export interface StepIndicatorProps {
 export const StepIndicator = ({ currentStep, totalSteps = 2 }: StepIndicatorProps) => {
   return (
     <div className={styles.root}>
-      <p className={styles.title}>Шаг {currentStep} из {totalSteps}</p>
+      <p className={styles.title}>Step {currentStep} of {totalSteps}</p>
       <div className={styles.bars}>
         <div
           className={clsx(styles.bar, styles.barFirst, currentStep >= 1 && styles.barActive)}

@@ -74,7 +74,7 @@ const skillsSlice = createSlice({
       .addCase(initializeSkills.rejected, (state, action) => {
         state.isLoading = false;
         state.status = 'failed';
-        state.error = action.error.message ?? 'Ошибка при загрузке навыков';
+        state.error = action.error.message ?? 'Failed to load skills';
       })
       .addCase(initializeFavoriteSkills.fulfilled, (state, action) => {
         for (const favoriteSkill of action.payload) {

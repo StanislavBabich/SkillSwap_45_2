@@ -113,7 +113,7 @@ describe('AuthController (e2e)', () => {
       expect(body).toEqual(
         expect.objectContaining({
           statusCode: 409,
-          message: 'Пользователь с таким email уже существует',
+          message: 'A user with this email already exists',
         }),
       );
     });
@@ -137,7 +137,7 @@ describe('AuthController (e2e)', () => {
       );
 
       expect(body.message).toEqual(
-        expect.arrayContaining(['Некорректный email']),
+        expect.arrayContaining(['Invalid email']),
       );
     });
 
@@ -200,7 +200,7 @@ describe('AuthController (e2e)', () => {
       expect(body).toEqual(
         expect.objectContaining({
           statusCode: 401,
-          message: 'Неверный email или пароль',
+          message: 'Invalid email or password',
         }),
       );
     });
@@ -219,7 +219,7 @@ describe('AuthController (e2e)', () => {
       expect(body).toEqual(
         expect.objectContaining({
           statusCode: 401,
-          message: 'Неверный email или пароль',
+          message: 'Invalid email or password',
         }),
       );
     });
@@ -243,8 +243,8 @@ describe('AuthController (e2e)', () => {
 
       expect(body.message).toEqual(
         expect.arrayContaining([
-          'Некорректный email',
-          'Пароль должен содержать минимум 6 символов',
+          'Invalid email',
+          'Password must contain at least 6 characters',
         ]),
       );
     });
@@ -323,7 +323,7 @@ describe('AuthController (e2e)', () => {
       const body = response.body as LogoutResponse;
 
       expect(body).toEqual({
-        message: 'Вы успешно вышли из аккаунта',
+        message: 'You have successfully logged out',
       });
     });
 

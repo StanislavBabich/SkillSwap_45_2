@@ -29,7 +29,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
       <header className={styles.header}>
         <Logo isLink={true} />
           <Button as="a" href="/" variant="tertiary" size="medium" endIcon={<CrossIcon />} className={styles.closeButton}>
-            Закрыть
+            Close
           </Button>
         
       </header>

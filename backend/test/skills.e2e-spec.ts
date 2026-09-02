@@ -385,7 +385,7 @@ describe('SkillsController (e2e)', () => {
       const body = response.body as ErrorResponse;
 
       expect(body.statusCode).toBe(404);
-      expect(body.message).toContain('Страница 999 не найдена');
+      expect(body.message).toContain('Page 999 not found');
     });
   });
 
@@ -507,7 +507,7 @@ describe('SkillsController (e2e)', () => {
       const body = response.body as ErrorResponse;
 
       expect(body.statusCode).toBe(403);
-      expect(body.message).toBe('Вы не можете редактировать чужой навык');
+      expect(body.message).toBe('You cannot edit someone else\'s skill');
 
       await userRepository.delete({ email: otherUserData.email });
     });
@@ -558,7 +558,7 @@ describe('SkillsController (e2e)', () => {
       const body = response.body as ErrorResponse;
 
       expect(body.statusCode).toBe(409);
-      expect(body.message).toContain('Навык уже добавлен в избранное');
+      expect(body.message).toContain('Skill is already in favorites');
     });
 
     it('возвращает 401 без access token', async () => {
@@ -631,7 +631,7 @@ describe('SkillsController (e2e)', () => {
       const body = response.body as ErrorResponse;
 
       expect(body.statusCode).toBe(404);
-      expect(body.message).toContain('Навык не найден в избранном');
+      expect(body.message).toContain('Skill not found in favorites');
     });
   });
 
@@ -811,7 +811,7 @@ describe('SkillsController (e2e)', () => {
       const body = response.body as ErrorResponse;
 
       expect(body.statusCode).toBe(403);
-      expect(body.message).toBe('Вы не можете удалить чужой навык');
+      expect(body.message).toBe('You cannot delete someone else\'s skill');
 
       await userRepository.delete({ email: otherUserData.email });
     });

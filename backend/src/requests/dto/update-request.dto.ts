@@ -4,7 +4,7 @@ import { RequestStatus } from '../request-status.enums';
 
 export class UpdateRequestDto {
   @ApiProperty({
-    description: 'Новый статус заявки',
+    description: 'New request status',
     enum: RequestStatus,
     example: RequestStatus.ACCEPTED,
   })

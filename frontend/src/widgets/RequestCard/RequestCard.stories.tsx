@@ -10,27 +10,27 @@ const pendingRequest: SkillShareRequest = {
   isRead: false,
   sender: {
     id: 'sender-1',
-    name: 'Анна Петрова',
+    name: 'Anna Petrova',
     email: 'anna.petrova@example.com',
     avatar: null,
     role: 'user',
   },
   receiver: {
     id: 'receiver-1',
-    name: 'Кирилл Федотов',
+    name: 'Kirill Fedotov',
     email: 'kirill.fedotov@example.com',
     avatar: null,
     role: 'user',
   },
   offeredSkill: {
     id: 'skill-1',
-    title: 'Фотография',
-    description: 'Основы портретной фотографии',
+    title: 'Photography',
+    description: 'Portrait photography basics',
   },
   requestedSkill: {
     id: 'skill-2',
-    title: 'Английский язык',
-    description: 'Разговорный английский',
+    title: 'English',
+    description: 'Conversational English',
   },
 };
 

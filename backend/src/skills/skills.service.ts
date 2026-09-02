@@ -35,7 +35,7 @@ export class SkillsService {
 
   async create(dto: CreateSkillDto, userId: string): Promise<Skill> {
     if (!userId) {
-      throw new UnauthorizedException('Требуется авторизация');
+      throw new UnauthorizedException('Authorization required');
     }
 
     const { categoryId, ...rest } = dto;
@@ -63,7 +63,7 @@ export class SkillsService {
 
     if (page > totalPages && total > 0) {
       throw new NotFoundException(
-        `Страница ${page} не найдена. Всего страниц: ${totalPages}`,
+        `Page ${page} not found. Total pages: ${totalPages}`,
       );
     }
 
@@ -77,7 +77,7 @@ export class SkillsService {
   //   });
 
   //   if (!skill) {
-  //     throw new NotFoundException('Навык не найден');
+  //     throw new NotFoundException('Skill not found');
   //   }
 
   //   return skill;
@@ -89,12 +89,12 @@ export class SkillsService {
     userId: string,
   ): Promise<Skill> {
     if (!userId) {
-      throw new UnauthorizedException('Требуется авторизация');
+      throw new UnauthorizedException('Authorization required');
     }
 
     const skill = await this.findOneWithOwner(id);
     if (skill.owner.id !== userId) {
-      throw new ForbiddenException('Вы не можете редактировать чужой навык');
+      throw new ForbiddenException('You cannot edit someone else\'s skill');
     }
 
     const { categoryId, ...rest } = dto;
@@ -125,12 +125,12 @@ export class SkillsService {
 
   async remove(id: string, userId: string): Promise<void> {
     if (!userId) {
-      throw new UnauthorizedException('Требуется авторизация');
+      throw new UnauthorizedException('Authorization required');
     }
 
     const skill = await this.findOneWithOwner(id);
     if (skill.owner.id !== userId) {
-      throw new ForbiddenException('Вы не можете удалить чужой навык');
+      throw new ForbiddenException('You cannot delete someone else\'s skill');
     }
 
     // Удаляем файлы изображений из public/uploads
@@ -157,7 +157,7 @@ export class SkillsService {
     });
 
     if (!skill) {
-      throw new NotFoundException('Навык не найден');
+      throw new NotFoundException('Skill not found');
     }
 
     if (!skill.category) {
@@ -246,7 +246,7 @@ export class SkillsService {
     });
 
     if (!skill) {
-      throw new NotFoundException('Навык не найден');
+      throw new NotFoundException('Skill not found');
     }
 
     return skill;
@@ -338,7 +338,7 @@ export class SkillsService {
     );
 
     if (isAlreadyFavorite) {
-      throw new ConflictException('Навык уже добавлен в избранное');
+      throw new ConflictException('Skill is already in favorites');
     }
 
     user.favoriteSkills.push(skill);
@@ -368,7 +368,7 @@ export class SkillsService {
     );
 
     if (!isFavorite) {
-      throw new NotFoundException('Навык не найден в избранном');
+      throw new NotFoundException('Skill not found in favorites');
     }
 
     user.favoriteSkills = user.favoriteSkills.filter(

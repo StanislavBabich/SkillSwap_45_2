@@ -8,10 +8,10 @@ const MAX_FILES = 5;
 
 const getFileError = (file: File): string | null => {
   if (!ALLOWED_TYPES.includes(file.type)) {
-    return 'Только JPEG, PNG, WebP, GIF';
+    return 'JPEG, PNG, WebP, GIF only';
   }
   if (file.size > MAX_SIZE_BYTES) {
-    return 'Макс. размер файла 5 МБ';
+    return 'Max file size 5 MB';
   }
   return null;
 };
@@ -38,7 +38,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
           continue;
         }
         if (value.length + valid.length >= MAX_FILES) {
-          setError(`Максимум ${MAX_FILES} фото`);
+          setError(`Maximum ${MAX_FILES} photos`);
           break;
         }
         valid.push(file);
@@ -72,7 +72,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
         accept={ALLOWED_TYPES.join(',')}
         multiple
         className={styles.input}
-        aria-label="Добавить фото"
+        aria-label="Add photo"
         onChange={handleInputChange}
         disabled={!canAdd}
       />
@@ -91,7 +91,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
                 type="button"
                 className={styles.removeBtn}
                 onClick={() => removeAt(index)}
-                aria-label="Удалить фото"
+                aria-label="Remove photo"
               >
                 ×
               </button>
@@ -102,7 +102,7 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
               type="button"
               className={styles.addArea}
               onClick={() => inputRef.current?.click()}
-              aria-label="Добавить фото"
+              aria-label="Add photo"
             >
               <img src={galleryAddIcon} alt="" className={styles.addIcon} aria-hidden />
             </button>
@@ -115,12 +115,12 @@ export function ImageUpload({ value, onChange }: ImageUploadProps) {
           type="button"
           className={styles.addAreaFull}
           onClick={() => inputRef.current?.click()}
-          aria-label="Добавить фото"
+          aria-label="Add photo"
         >
-          <span className={styles.addCaption}>Перетащите или выберите изображения навыка</span>
+          <span className={styles.addCaption}>Drag and drop or select skill images</span>
           <span className={styles.addRow}>
             <img src={galleryAddIcon} alt="" className={styles.addIcon} aria-hidden />
-            <span className={styles.addText}>Выбрать изображения</span>
+            <span className={styles.addText}>Choose images</span>
           </span>
         </button>
       )}

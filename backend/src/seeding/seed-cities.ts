@@ -17,5 +17,5 @@ export async function seedCities(dataSource: DataSource): Promise<void> {
     },
   );
 
-  console.log(`Города: обработано ${uniqueNames.length}`);
+  console.log(`Cities processed: ${uniqueNames.length}`);
 }

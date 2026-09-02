@@ -43,7 +43,7 @@ export const WithLabel: Story = {
   args: {
     name: 'radio-group',
     value: 'option3',
-    label: 'Выбери этот вариант',
+    label: 'Choose this option',
   },
 };
 
@@ -51,7 +51,7 @@ export const WithDescription: Story = {
   args: {
     name: 'radio-group',
     value: 'option4',
-    label: 'Вариант с описанием',
-    description: 'Дополнительная информация о том, что означает этот выбор',
+    label: 'Option with description',
+    description: 'Additional information about what this choice means',
   },
 };

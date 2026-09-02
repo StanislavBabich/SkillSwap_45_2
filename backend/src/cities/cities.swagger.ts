@@ -36,7 +36,7 @@ export function ApiGetCities() {
       name: 'search',
       required: false,
       description: 'Case-insensitive substring to search for in city names',
-      example: 'моск',
+      example: 'mosc',
     }),
     ApiOkResponse({
       description: 'Cities returned successfully',

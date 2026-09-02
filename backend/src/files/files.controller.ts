@@ -29,7 +29,7 @@ const fileFilter = (
   if (!allowedMimeTypes.includes(file.mimetype)) {
     callback(
       new BadRequestException(
-        'Недопустимый формат файла. Разрешены: JPEG, PNG, GIF, WEBP',
+        'Invalid file format. Allowed: JPEG, PNG, GIF, WEBP',
       ),
       false,
     );
@@ -63,7 +63,7 @@ export class FilesController {
   )
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     if (!file) {
-      throw new BadRequestException('Файл не загружен');
+      throw new BadRequestException('File was not uploaded');
     }
 
     return {

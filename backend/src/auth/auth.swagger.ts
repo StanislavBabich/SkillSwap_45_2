@@ -16,37 +16,37 @@ import { LogoutResponseDto } from './dto/logout-response.dto';
 
 export function SwaggerRegister() {
   return applyDecorators(
-    ApiOperation({ summary: 'Регистрация нового пользователя' }),
+    ApiOperation({ summary: 'Register a new user' }),
     ApiBody({ type: RegisterDto }),
     ApiCreatedResponse({
-      description: 'Пользователь успешно зарегистрирован',
+      description: 'User registered successfully',
       type: AuthResponseDto,
     }),
     ApiConflictResponse({
-      description: 'Пользователь с таким email уже существует',
+      description: 'A user with this email already exists',
     }),
   );
 }
 
 export function SwaggerLogin() {
   return applyDecorators(
-    ApiOperation({ summary: 'Вход в аккаунт' }),
+    ApiOperation({ summary: 'Log in' }),
     ApiBody({ type: LoginDto }),
     ApiOkResponse({
-      description: 'Успешный вход',
+      description: 'Login successful',
       type: AuthResponseDto,
     }),
-    ApiUnauthorizedResponse({ description: 'Неверный email или пароль' }),
+    ApiUnauthorizedResponse({ description: 'Invalid email or password' }),
   );
 }
 
 export function SwaggerRefresh() {
   return applyDecorators(
-    ApiOperation({ summary: 'Обновление токенов' }),
+    ApiOperation({ summary: 'Refresh tokens' }),
     ApiBearerAuth(),
     ApiBody({ type: RefreshTokenDto }),
     ApiOkResponse({
-      description: 'Токены успешно обновлены',
+      description: 'Tokens refreshed successfully',
       schema: {
         example: {
           accessToken: 'eyJhbGciOi...',
@@ -54,18 +54,18 @@ export function SwaggerRefresh() {
         },
       },
     }),
-    ApiUnauthorizedResponse({ description: 'Недействительный refresh token' }),
+    ApiUnauthorizedResponse({ description: 'Invalid refresh token' }),
   );
 }
 
 export function SwaggerLogout() {
   return applyDecorators(
-    ApiOperation({ summary: 'Выход из аккаунта' }),
+    ApiOperation({ summary: 'Log out' }),
     ApiBearerAuth(),
     ApiOkResponse({
-      description: 'Успешный выход',
+      description: 'Logout successful',
       type: LogoutResponseDto,
     }),
-    ApiUnauthorizedResponse({ description: 'Требуется авторизация' }),
+    ApiUnauthorizedResponse({ description: 'Authorization required' }),
   );
 }

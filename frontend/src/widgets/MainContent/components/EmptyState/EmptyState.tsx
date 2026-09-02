@@ -10,8 +10,8 @@ export interface EmptyStateProps {
 }
 
 export const EmptyState = ({
-  title = 'Ничего не найдено',
-  description = 'Попробуйте изменить фильтры или запрос.',
+  title = 'Nothing found',
+  description = 'Try changing the filters or query.',
   icon,
   action,
 }: EmptyStateProps) => {

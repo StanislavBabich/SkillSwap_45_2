@@ -33,5 +33,5 @@ export async function seedSkills(dataSource: DataSource): Promise<void> {
     );
   }
 
-  console.log(`Навыки: обработано ${SkillsData.length}`);
+  console.log(`Skills processed: ${SkillsData.length}`);
 }

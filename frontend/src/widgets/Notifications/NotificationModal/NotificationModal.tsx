@@ -74,7 +74,7 @@ export const NotificationModal = forwardRef<HTMLDivElement, NotificationModalPro
         onClose();
         return;
       }
-      if (notification.message.startsWith('Вы')) {
+      if (notification.message.startsWith('You')) {
         navigate(`/skill/${notification.skillId}`);
       } else {
         if (notification.targetSkillId) {
@@ -106,7 +106,7 @@ export const NotificationModal = forwardRef<HTMLDivElement, NotificationModalPro
               className={styles.goBtn}
               onClick={() => handleGoClick(n)}
             >
-              Перейти
+              Go
             </Button>
           )}
         </div>
@@ -149,20 +149,20 @@ export const NotificationModal = forwardRef<HTMLDivElement, NotificationModalPro
         aria-labelledby="notifications-modal-title"
       >
         {renderSection({
-          title: 'Новые уведомления',
+          title: 'New notifications',
           titleId: 'notifications-modal-title',
-          actionLabel: 'Прочитать все',
+          actionLabel: 'Mark all as read',
           onAction: handleMarkAllRead,
           items: unread,
-          emptyText: 'Нет новых уведомлений',
+          emptyText: 'No new notifications',
           showGoButton: true,
         })}
         {renderSection({
-          title: 'Просмотренные',
-          actionLabel: 'Очистить',
+          title: 'Viewed',
+          actionLabel: 'Clear',
           onAction: handleClearRead,
           items: read,
-          emptyText: 'Нет просмотренных уведомлений',
+          emptyText: 'No viewed notifications',
           showGoButton: false,
         })}
       </div>

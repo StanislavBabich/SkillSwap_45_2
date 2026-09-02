@@ -65,7 +65,7 @@ describe('useAuth hook', () => {
 
     expect(loginResult).toBe(false);
     expect(result.current.user).toBeNull();
-    expect(result.current.error).toBe('Неверный email или пароль');
+    expect(result.current.error).toBe('Invalid email or password');
   });
 
   test('login error thrown from AuthService', async () => {

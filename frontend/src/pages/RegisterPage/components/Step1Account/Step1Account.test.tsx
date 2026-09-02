@@ -54,14 +54,14 @@ function getHelper(input: HTMLElement) {
 test("email validation follows real component logic", async () => {
   const { updateRender, onUpdate } = setup();
 
-  const emailInput = screen.getByPlaceholderText("Введите email");
+  const emailInput = screen.getByPlaceholderText("Enter email");
 
   // EMPTY - "Введите email"
   fireEvent.blur(emailInput);
   updateRender();
 
   await waitFor(() => {
-    expect(screen.getByText("Введите email")).toBeInTheDocument();
+    expect(screen.getByText("Enter email")).toBeInTheDocument();
   });
 
   // WRONG FORMAT
@@ -72,7 +72,7 @@ test("email validation follows real component logic", async () => {
   updateRender();
 
   await waitFor(() => {
-    expect(screen.getByText("Неверный формат email")).toBeInTheDocument();
+    expect(screen.getByText("Invalid email format")).toBeInTheDocument();
   });
 
   // CORRECT
@@ -96,13 +96,13 @@ test("emailAlreadyUsed shows correct error", async () => {
     emailAlreadyUsed: true,
   });
 
-  const emailInput = screen.getByPlaceholderText("Введите email");
+  const emailInput = screen.getByPlaceholderText("Enter email");
 
   fireEvent.blur(emailInput);
   updateRender();
 
   await waitFor(() => {
-    expect(screen.getByText("Email уже используется")).toBeInTheDocument();
+    expect(screen.getByText("Email is already in use")).toBeInTheDocument();
   });
 });
 
@@ -111,14 +111,14 @@ test("emailAlreadyUsed shows correct error", async () => {
 test("password validation follows real logic", async () => {
   const { updateRender, onUpdate } = setup();
 
-  const passwordInput = screen.getByPlaceholderText("Придумайте надёжный пароль");
+  const passwordInput = screen.getByPlaceholderText("Create a strong password");
 
   // EMPTY
   fireEvent.blur(passwordInput);
   updateRender();
 
   await waitFor(() => {
-    expect(screen.getByText("Введите пароль")).toBeInTheDocument();
+    expect(screen.getByText("Enter password")).toBeInTheDocument();
   });
 
   // SHORT
@@ -129,7 +129,7 @@ test("password validation follows real logic", async () => {
   updateRender();
 
   await waitFor(() => {
-    expect(screen.getByText("Пароль должен содержать не менее 8 знаков")).toBeInTheDocument();
+    expect(screen.getByText("Password must be at least 8 characters")).toBeInTheDocument();
   });
 
   // VALID
@@ -140,7 +140,7 @@ test("password validation follows real logic", async () => {
   updateRender();
 
   await waitFor(() => {
-    expect(screen.getByText("Надёжный")).toBeInTheDocument();
+    expect(screen.getByText("Strong")).toBeInTheDocument();
   });
 });
 
@@ -150,9 +150,9 @@ test("password validation follows real logic", async () => {
 test("submit triggers onNext only when form is valid", async () => {
   const { onUpdate, onNext, updateRender } = setup();
 
-  const email = screen.getByPlaceholderText("Введите email");
-  const password = screen.getByPlaceholderText("Придумайте надёжный пароль");
-  const submitBtn = screen.getByRole("button", { name: /далее/i });
+  const email = screen.getByPlaceholderText("Enter email");
+  const password = screen.getByPlaceholderText("Create a strong password");
+  const submitBtn = screen.getByRole("button", { name: /continue/i });
 
   // initially invalid
   expect(submitBtn).toBeDisabled();

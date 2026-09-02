@@ -10,16 +10,16 @@ export const ServerErrorPage = () => {
   };
   return (
     <main className={style.content}>
-      <img src={Error500} className={style.img} alt="Ошибка сервера 500" />
+      <img src={Error500} className={style.img} alt="Server error 500" />
 
       <div className={style.errorTitle}>
-        <h1 className={style.title}>На сервере произошла ошибка</h1>
-        <p className={style.text}>Попробуйте позже или вернитесь на главную страницу</p>
+        <h1 className={style.title}>A server error occurred</h1>
+        <p className={style.text}>Please try again later or go back to the homepage</p>
       </div>
       <div className={style.buttons}>
-        <Button variant="secondary">Сообщить об ошибке</Button>
+        <Button variant="secondary">Report an error</Button>
         <Button variant="primary" onClick={handleGoHome}>
-          На главную
+          Go to homepage
         </Button>
       </div>
     </main>

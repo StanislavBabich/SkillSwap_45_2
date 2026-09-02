@@ -5,14 +5,14 @@ export const AboutPage = () => {
   
   return (
     <main className={style.content}>
-        <h1 className={style.title}>Проект «SkillSwap» — платформа обмена навыками</h1>
-        <p className={style.text}>SkillSwap — одностраничное (SPA) приложение, в котором пользователи публикуют навыки двух типов:</p>
+        <h1 className={style.title}>The SkillSwap project — a skill-exchange platform</h1>
+        <p className={style.text}>SkillSwap is a single-page (SPA) app where users publish two kinds of skills:</p>
         <ul className={style.ul}>
-            <li>«Учу» — навыки, которыми пользователь готов делиться;</li>
-            <li>«Учусь» — навыки, которым пользователь хочет научиться.</li>
+            <li>“Can teach” — skills the user is ready to share;</li>
+            <li>“Want to learn” — skills the user wants to learn.</li>
         </ul>
         
-        <h2 className={style.title}>Команда разработчиков</h2>
+        <h2 className={style.title}>Development team</h2>
 
         <section className={style.cards}>
           {/* Алишер */}
@@ -21,17 +21,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?glassesProbability=100&mouth=variant10,variant11,variant13,variant15,variant16,variant17,variant19,variant21,variant22,variant23,variant25,variant26,variant27,variant28,variant29,variant30,variant12,variant18,variant20,variant24&seed=Easton)' }}
-                 aria-label="Аватар Алишера"
+                 aria-label="Alisher's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Алишер</h3>
+                 <h3 className={style.name}>Alisher</h3>
                  <div className={style.tags}>
-                   <Tag variant="language">Казахстан</Tag>
+                   <Tag variant="language">Kazakhstan</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Я бэкенд-разработчик из Казахстана, пишу в основном на Java/Php/Typescript. В 2024 году заканчивал курс "Java Backend" от яндекса практикума. И уже как 1.5 года работаю бэкенд-разработчиком удаленно на Европейскую компанию. Свободное время занимаюсь музыкой, иногда если будет желание пишу свои песни используя пианино и электрогитару</p>
+             <p className={style.text}>I'm a backend developer from Kazakhstan, working mainly with Java/PHP/TypeScript. In 2024 I finished the "Java Backend" course at Yandex Practicum. For about 1.5 years I've been working remotely as a backend developer for a European company. In my free time I make music, and sometimes I write my own songs using piano and electric guitar.</p>
           </div>  
           
           {/* Валентина */}
@@ -40,17 +40,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?earrings=variant01,variant02,variant03,variant04&eyes=variant21,variant01&featuresProbability=0&glasses[]&glassesProbability=5&hair=long05,long11,short05&hairColor=0e0e0e,3eac2c,796a45,85c2c6,ab2a18,ac6511,afafaf,b9a05f,cb6820,dba3be,e5d7a3&backgroundColor=ffdfbf&seed=Sarah)' }}
-                 aria-label="Аватар Валентины"
+                 aria-label="Valentina's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Валентина</h3>
+                 <h3 className={style.name}>Valentina</h3>
                  <div className={style.tags}>
-                   <Tag variant="home">Санкт-Петербург</Tag>
+                   <Tag variant="home">Saint Petersburg</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Живу в Санкт-Петербурге. Являюсь администратором портала и начальником IT-отдела Российского кардиологического общества (звучит "круто", по факту просто организую вебинары, слежу за сайтом, делаю какие-то функционалы по надобности), обожаю программирование и организацию, решать всякие задачи. Моя большая семья - это моя любовь и одновременно разностороннее хобби ))</p>
+             <p className={style.text}>I live in Saint Petersburg. I am a portal administrator and head of the IT department at the Russian Society of Cardiology (it sounds impressive; in practice I organize webinars, look after the website, and add features as needed). I love programming, organizing, and solving all kinds of problems. My big family is both my love and a many-sided hobby.</p>
           </div> 
           
           {/* Герман */}
@@ -59,17 +59,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/lorelei/svg?seed=Brian)' }}
-                 aria-label="Аватар Германа"
+                 aria-label="German's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Герман</h3>
+                 <h3 className={style.name}>German</h3>
                  <div className={style.tags}>
-                   <Tag variant="health">Самара</Tag>
+                   <Tag variant="health">Samara</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Живу в Самаре. Работаю фирме, что реализует электротехнические товары. Из хобби - пою, играю на гитаре и укулеле,  занимаюсь силовым троеборьем)</p>
+             <p className={style.text}>I live in Samara. I work at a company that sells electrical products. Hobbies: singing, playing guitar and ukulele, and powerlifting.</p>
           </div>
           
           {/* Дарья */}
@@ -78,17 +78,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?randomizeIds=true&earrings=variant06&earringsProbability=100&eyebrows=variant10&eyes=variant17&featuresProbability=0&glasses[]&glassesProbability=0&hair=long19&hairColor=6a4e35&mouth=variant02&skinColor=ecad80&seed=Eden)' }}
-                 aria-label="Аватар Дарьи"
+                 aria-label="Darya's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Дарья</h3>
+                 <h3 className={style.name}>Darya</h3>
                  <div className={style.tags}>
-                   <Tag variant="business">Москва</Tag>
+                   <Tag variant="business">Moscow</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Живу в Москве. Работаю с 14-ого года в бывшем НИИ, сейчас ФМБА, на должности биолога. Решила сменить род деятель и попробовать себя в программировании. Люблю вышивать крестиком под кино/сериалы/аниме, вожусь с комнатными растениями, аквариумом, пытаюсь в цветоводстве на даче.</p>
+             <p className={style.text}>I live in Moscow. I have worked as a biologist since 2014 at a former research institute, now part of FMBA. I decided to change careers and try programming. I love cross-stitching while watching movies, TV series, and anime, I tend to houseplants and an aquarium, and I try my hand at gardening at the dacha.</p>
           </div>
           
           {/* Денис */}
@@ -97,17 +97,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?eyes=variant15,variant14,variant13,variant24&hair=short01&hairColor=0e0e0e&seed=Easton)' }}
-                 aria-label="Аватар Дениса"
+                 aria-label="Denis's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Денис</h3>
+                 <h3 className={style.name}>Denis</h3>
                  <div className={style.tags}>
-                   <Tag variant="art">Санкт-Петербург</Tag>
+                   <Tag variant="art">Saint Petersburg</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Меня зовут Денис, мне 22, родом из Новосибирска, сейчас обитаю в Санкт-Петербурге. Работаю продуктом и дизом. Если кратко, то развиваю внутренний EdTech внутри лидирующей золотодобывающей компании) Все это совмещаю с учебной в ЖД университете. До этого успел поработать в фоксфорде, РЖД, ВК.</p>
+             <p className={style.text}>My name is Denis, I'm 22, originally from Novosibirsk, and I now live in Saint Petersburg. I work in product and design. In short, I develop internal EdTech at a leading gold-mining company. I combine this with studies at a railway university. Before that I worked at Foxford, Russian Railways, and VK.</p>
           </div> 
           
           {/* Иван */}
@@ -116,17 +116,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?eyes=variant12&hair=short11,short08&hairColor=0e0e0e&mouth=variant02&seed=Jameson)' }}
-                 aria-label="Аватар Ивана"
+                 aria-label="Ivan's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Иван</h3>
+                 <h3 className={style.name}>Ivan</h3>
                  <div className={style.tags}>
-                   <Tag variant="language">Канада</Tag>
+                   <Tag variant="language">Canada</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Меня зовут Иван, мне 33 года. Я родом из Казахстана, далее жил в Тульской области, но последние 12 лет проживал и работал в Сочи. У меня гуманитарное образование, однако по специальности я никогда не работал. В Сочи я был занят в сфере туризма — что вполне логично для этого города 😊. Мне довелось своими глазами увидеть Олимпиаду. Сейчас временно нахожусь в Канаде по работе. В свободное время увлекаюсь велоспортом, туризмом и, конечно же, ценю время, проведённое с семьёй.</p>
+             <p className={style.text}>My name is Ivan, I'm 33. I'm originally from Kazakhstan, then lived in Tula Oblast, and spent the last 12 years living and working in Sochi. I have a humanities degree, but I never worked in my field. In Sochi I worked in tourism — which makes sense for that city. I got to see the Olympics with my own eyes. I'm currently in Canada temporarily for work. In my free time I enjoy cycling, travel, and of course time spent with family.</p>
           </div>
           
           {/* Игнат */}
@@ -135,17 +135,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?eyes=variant12&hair=short11,short08,short16&hairColor=0e0e0e,cb6820&mouth=variant02&seed=Christopher)' }}
-                 aria-label="Аватар Игната"
+                 aria-label="Ignat's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Игнат</h3>
+                 <h3 className={style.name}>Ignat</h3>
                  <div className={style.tags}>
-                   <Tag variant="home">Алтайский край</Tag>
+                   <Tag variant="home">Altai Krai</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Мне 20 лет. Родился и живу в г. Рубцовск в Алтайском Крае. Учусь на 4 курсе в институте, планирую дальше получить высшее образование и работать в сфере IT.</p>
+             <p className={style.text}>I'm 20. I was born and live in Rubtsovsk, Altai Krai. I'm a 4th-year student at an institute and plan to continue my higher education and work in IT.</p>
           </div>
           
           {/* Лидия */}
@@ -154,17 +154,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?flip=true&earrings=variant01,variant02,variant03,variant04&eyebrows=variant12&eyes=variant05&featuresProbability=0&glasses[]&glassesProbability=5&hair=long10&hairColor=562306&mouth=variant12&backgroundColor=b6e3f4&seed=Jack)' }}
-                 aria-label="Аватар Лидии"
+                 aria-label="Lidia's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Лидия</h3>
+                 <h3 className={style.name}>Lidia</h3>
                  <div className={style.tags}>
-                   <Tag variant="health">Вьетнам</Tag>
+                   <Tag variant="health">Vietnam</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Я из Нижнего Новгорода, но уже больше года там не была. Сейчас путешествую. Посетила больше 10 стран и пока не собираюсь останавливаться. Сейчас живём во Вьетнаме. Все включая детей на удаленке)) Работала менеджером по продажам, но решила освоить новое для меня направление. Так что в программировании я с полного нуля). Зато отлично готовлю. Торты, выпечка, бездрожевой хлеб, пицца на биге, хинкали - всё это и многое другое. А ещё жизнь за рубежом научила делать творог и квасить капусту (мигранты меня поймут😂 ), а также уживаться с детьми 24/7 без садов и школ</p>
+             <p className={style.text}>I'm from Nizhny Novgorod, but I haven't been there in over a year. I'm traveling now. I've visited more than 10 countries and I'm not stopping yet. We currently live in Vietnam. Everyone, including the kids, works remotely. I used to work as a sales manager, but I decided to learn a new field. So I'm starting programming from scratch. On the plus side, I cook really well: cakes, pastries, sourdough bread, pizza on biga, khinkali, and much more. Living abroad also taught me to make cottage cheese and ferment cabbage (fellow migrants will get it), and to live with kids 24/7 without kindergartens or schools.</p>
           </div>
           
           {/* Станислав */}
@@ -173,17 +173,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?backgroundType[]&earrings[]&eyebrows=variant03&eyes=variant04&features[]&glasses[]&hair=long12&hairColor=afafaf&mouth=variant03&skinColor=f2d3b1&backgroundColor=transparent&seed=Adrian)' }}
-                 aria-label="Аватар Станислава"
+                 aria-label="Stanislav's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Станислав</h3>
+                 <h3 className={style.name}>Stanislav</h3>
                  <div className={style.tags}>
-                   <Tag variant="business">Москва</Tag>
+                   <Tag variant="business">Moscow</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Я живу в Москве. За последние 10 лет сменил очень много профессий, пробуя себя в различных сферах. На данный момент работаю топ-мастером в небольшой сети барбершопов. Из хобби: играю на гитаре и барабанах, много читаю, занимаюсь спортом)</p>
+             <p className={style.text}>I live in Moscow. Over the past 10 years I've changed a lot of jobs, trying myself in different fields. I currently work as a top barber in a small barbershop chain. Hobbies: I play guitar and drums, read a lot, and work out.</p>
           </div> 
           
           {/* Юлия */}
@@ -192,17 +192,17 @@ export const AboutPage = () => {
                <div 
                  className={style.avatar} 
                  style={{ backgroundImage: 'url(https://api.dicebear.com/9.x/adventurer/svg?eyebrows=variant13&eyes=variant19&features[]&glassesProbability=0&hair=long09&hairColor=0f0703&mouth=variant05&backgroundColor=a0a0a0&seed=Julia)' }}
-                 aria-label="Аватар Юлии"
+                 aria-label="Yulia's avatar"
                  role="img"
                />
                <div>
-                 <h3 className={style.name}>Юлия</h3>
+                 <h3 className={style.name}>Yulia</h3>
                  <div className={style.tags}>
-                   <Tag variant="home">Сибирь</Tag>
+                   <Tag variant="home">Siberia</Tag>
                  </div>
                </div>
              </div>
-             <p className={style.text}>Контент-менеджер из Сибири. В свободное время вышиваю крестиком, пытаюсь учиться готовить, занимаюсь йогой и бесконечным поиском интересных новинок в уходовой косметике)</p>
+             <p className={style.text}>A content manager from Siberia. In my free time I cross-stitch, try to learn cooking, practice yoga, and endlessly hunt for interesting new skincare products.</p>
           </div>
         </section>
 

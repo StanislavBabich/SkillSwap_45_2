@@ -21,24 +21,24 @@ const navColumns: {
   items: NavItem[];
 }[] = [
   {
-    title: '1 колонка',
+    title: 'Column 1',
     items: [
-      { id: 'about', label: 'О проекте', to: '/about' },
-      { id: 'all-skills', label: 'Все навыки', to: '/skills' },
+      { id: 'about', label: 'About', to: '/about' },
+      { id: 'all-skills', label: 'All skills', to: '/skills' },
     ],
   },
   {
-    title: '2 колонка',
+    title: 'Column 2',
     items: [
-      { id: 'contacts', label: 'Контакты', to: '/' },
-      { id: 'blog', label: 'Блог', to: '/' },
+      { id: 'contacts', label: 'Contacts', to: '/' },
+      { id: 'blog', label: 'Blog', to: '/' },
     ],
   },
   {
-    title: '3 колонка',
+    title: 'Column 3',
     items: [
-      { id: 'privacy', label: 'Политика конфиденциальности', to: '/'},
-      { id: 'terms', label: 'Пользовательское соглашение', to: '/'},
+      { id: 'privacy', label: 'Privacy policy', to: '/'},
+      { id: 'terms', label: 'Terms of use', to: '/'},
     ],
   },
 ];
@@ -69,12 +69,12 @@ export const Footer = ({
         </div>
 
         {/* Блок с навигацией */}
-        <nav aria-label="Нижняя навигация" className={styles.navSection}>
+        <nav aria-label="Footer navigation" className={styles.navSection}>
           {navColumns.map((column, colIndex) => (
             <ul key={colIndex} className={styles.column}>
               {column.items.map((item) => (
                 <li key={item.id}>
-                  {item.label === 'Все навыки' ? (
+                  {item.label === 'All skills' ? (
                     <a
                       href="/"
                       onClick={handleSkillsClick}

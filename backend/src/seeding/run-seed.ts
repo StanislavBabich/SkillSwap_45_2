@@ -17,7 +17,7 @@ async function run(): Promise<void> {
   const seedName = process.argv[2] as keyof typeof seeds;
   const seed = seeds[seedName];
   if (!seed) {
-    throw new Error(`Неизвестный сид: ${process.argv[2] ?? ''}`);
+    throw new Error(`Unknown seed: ${process.argv[2] ?? ''}`);
   }
 
   await SeedingDataSource.initialize();
@@ -29,6 +29,6 @@ async function run(): Promise<void> {
 }
 
 run().catch((error: unknown) => {
-  console.error('Ошибка выполнения сида', error);
+  console.error('Seed execution error', error);
   process.exitCode = 1;
 });

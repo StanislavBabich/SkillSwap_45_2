@@ -20,32 +20,32 @@ import '@/app/styles/globals.css';
 import { SkillCard } from './SkillCard';
 
 const mockCities: City[] = [
-  { id: 1, name: 'Санкт-Петербург' },
-  { id: 2, name: 'Москва' },
+  { id: 1, name: 'Saint Petersburg' },
+  { id: 2, name: 'Moscow' },
 ];
 
 const mockCategories: Category[] = [
-  { id: 1, name: 'Бизнес и карьера', color: 'var(--color-tag-business)', icon: 'briefcase' },
-  { id: 3, name: 'Иностранные языки', color: 'var(--color-tag-language)', icon: 'global' },
-  { id: 4, name: 'Образование и развитие', color: 'var(--color-tag-education)', icon: 'book' },
-  { id: 5, name: 'Здоровье и лайфстайл', color: 'var(--color-tag-health)', icon: 'lifestyle' },
+  { id: 1, name: 'Business and career', color: 'var(--color-tag-business)', icon: 'briefcase' },
+  { id: 3, name: 'Foreign languages', color: 'var(--color-tag-language)', icon: 'global' },
+  { id: 4, name: 'Education and development', color: 'var(--color-tag-education)', icon: 'book' },
+  { id: 5, name: 'Health and lifestyle', color: 'var(--color-tag-health)', icon: 'lifestyle' },
 ];
 
 const mockSubcategories: Subcategory[] = [
-  { id: 9, name: 'Английский язык', categoryId: 3 },
-  { id: 6, name: 'Тайм менеджмент', categoryId: 1 },
-  { id: 36, name: 'Медитация', categoryId: 5 },
-  { id: 30, name: 'Личностное развитие', categoryId: 4 },
-  { id: 31, name: 'Навыки обучения', categoryId: 4 },
+  { id: 9, name: 'English', categoryId: 3 },
+  { id: 6, name: 'Time management', categoryId: 1 },
+  { id: 36, name: 'Meditation', categoryId: 5 },
+  { id: 30, name: 'Personal development', categoryId: 4 },
+  { id: 31, name: 'Learning skills', categoryId: 4 },
 ];
 
 const mockUsers: User[] = [
   {
     id: 1,
     avatarUrl: '/vite.svg',
-    name: 'Иван',
+    name: 'Ivan',
     email: 'ivan@example.com',
-    about: 'Описание',
+    about: 'Description',
     cityId: 1,
     dateOfBirth: '1991-07-20',
     gender: 'male',
@@ -56,9 +56,9 @@ const mockUsers: User[] = [
   {
     id: 2,
     avatarUrl: '/vite.svg',
-    name: 'Анна',
+    name: 'Anna',
     email: 'anna@example.com',
-    about: 'Описание',
+    about: 'Description',
     cityId: 2,
     dateOfBirth: '1997-10-02',
     gender: 'female',
@@ -72,9 +72,9 @@ const mockSkills: Skill[] = [
   {
     id: 1,
     userId: 1,
-    name: 'Английский язык',
+    name: 'English',
     subcategoryId: 9,
-    description: 'Описание навыка',
+    description: 'Skill description',
     images: [],
     likes: [2],
   },

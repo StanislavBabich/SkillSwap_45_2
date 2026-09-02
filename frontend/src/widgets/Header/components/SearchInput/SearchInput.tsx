@@ -51,7 +51,7 @@ export const SearchInput = () => {
   return (
     <div className={styles.searchWrapper}>
       <Input
-        placeholder="Искать навык"
+        placeholder="Search for a skill"
         value={localValue}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

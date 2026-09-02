@@ -45,7 +45,7 @@ export const toggleFavoriteSkill = createAsyncThunk<
   { skillId: EntityId; isFavorite: boolean }
 >('favorites/toggleSkill', async ({ skillId, isFavorite }) => {
   const token = storage.getToken();
-  if (!token) throw new Error('Требуется авторизация');
+  if (!token) throw new Error('Authorization required');
 
   if (isFavorite) {
     await skillsApi.removeFromFavorites(skillId, token);
@@ -112,7 +112,7 @@ const favoritesSlice = createSlice({
       })
       .addCase(initializeFavoriteSkills.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message ?? 'Не удалось загрузить избранное';
+        state.error = action.error.message ?? 'Failed to load favorites';
       })
       .addCase(toggleFavoriteSkill.fulfilled, (state, action) => {
         const ids = state.skillIds ?? [];

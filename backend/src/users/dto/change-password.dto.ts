@@ -4,7 +4,7 @@ import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 export class ChangePasswordDto {
   @ApiProperty({ example: 'CurrentPassword123', writeOnly: true })
   @IsString()
-  @IsNotEmpty({ message: 'Текущий пароль обязателен' })
+  @IsNotEmpty({ message: 'Current password is required' })
   oldPassword!: string;
 
   @ApiProperty({
@@ -13,7 +13,7 @@ export class ChangePasswordDto {
     writeOnly: true,
   })
   @IsString()
-  @MinLength(6, { message: 'Новый пароль должен быть минимум 6 символов' })
-  @IsNotEmpty({ message: 'Новый пароль обязателен' })
+  @MinLength(6, { message: 'New password must be at least 6 characters' })
+  @IsNotEmpty({ message: 'New password is required' })
   newPassword!: string;
 }

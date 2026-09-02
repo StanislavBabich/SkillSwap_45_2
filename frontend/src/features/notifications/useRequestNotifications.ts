@@ -18,9 +18,9 @@ const notificationTypes: Record<RequestNotificationPayload['type'], Notification
 };
 
 const getMessage = (payload: RequestNotificationPayload) => {
-  if (payload.type === 'newRequest') return `${payload.user.name} предлагает вам обмен`;
-  if (payload.type === 'requestAccepted') return `${payload.user.name} принял(а) вашу заявку`;
-  return `${payload.user.name} отклонил(а) вашу заявку`;
+  if (payload.type === 'newRequest') return `${payload.user.name} is offering you a swap`;
+  if (payload.type === 'requestAccepted') return `${payload.user.name} accepted your request`;
+  return `${payload.user.name} declined your request`;
 };
 
 export const useRequestNotifications = () => {

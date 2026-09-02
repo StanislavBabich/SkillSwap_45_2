@@ -50,14 +50,14 @@ describe("LoginPage", () => {
     renderWithRouter(<LoginPage />);
 
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Введите пароль")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /войти/i })).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Enter password")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /log in/i })).toBeInTheDocument();
   });
 
 
 // Валидация email
 
-  test("validates email: empty → 'Email обязателен', wrong → 'Некорректный email'", async () => {
+  test("validates email: empty → 'Email is required', wrong → 'Invalid email'", async () => {
     mockUseAuth({});
     renderWithRouter(<LoginPage />);
 
@@ -67,7 +67,7 @@ describe("LoginPage", () => {
     fireEvent.blur(emailInput);
 
     await waitFor(() => {
-      expect(screen.getByText("Email обязателен")).toBeInTheDocument();
+      expect(screen.getByText("Email is required")).toBeInTheDocument();
     });
 
     // wrong
@@ -75,24 +75,24 @@ describe("LoginPage", () => {
     fireEvent.blur(emailInput);
 
     await waitFor(() => {
-      expect(screen.getByText("Некорректный email")).toBeInTheDocument();
+      expect(screen.getByText("Invalid email")).toBeInTheDocument();
     });
   });
 
 
 // Валидация пароля
 
-  test("validates password: empty → 'Пароль обязателен', short → 'Минимум 8 символов'", async () => {
+  test("validates password: empty → 'Password is required', short → 'Minimum 8 characters'", async () => {
     mockUseAuth({});
     renderWithRouter(<LoginPage />);
 
-    const passInput = screen.getByPlaceholderText("Введите пароль");
+    const passInput = screen.getByPlaceholderText("Enter password");
 
     // empty
     fireEvent.blur(passInput);
 
     await waitFor(() => {
-      expect(screen.getByText("Пароль обязателен")).toBeInTheDocument();
+      expect(screen.getByText("Password is required")).toBeInTheDocument();
     });
 
     // short
@@ -100,7 +100,7 @@ describe("LoginPage", () => {
     fireEvent.blur(passInput);
 
     await waitFor(() => {
-      expect(screen.getByText("Минимум 8 символов")).toBeInTheDocument();
+      expect(screen.getByText("Minimum 8 characters")).toBeInTheDocument();
     });
   });
 
@@ -109,13 +109,13 @@ describe("LoginPage", () => {
 
   test("shows login error from useAuth", () => {
     mockUseAuth({
-      error: "Неверный email или пароль",
+      error: "Invalid email or password",
     });
 
     renderWithRouter(<LoginPage />);
 
     expect(
-      screen.getByText("Неверный email или пароль")
+      screen.getByText("Invalid email or password")
     ).toBeInTheDocument();
   });
 
@@ -132,8 +132,8 @@ describe("LoginPage", () => {
     renderWithRouter(<LoginPage />);
 
     const email = screen.getByLabelText(/email/i);
-    const password = screen.getByPlaceholderText("Введите пароль");
-    const submit = screen.getByRole("button", { name: /войти/i });
+    const password = screen.getByPlaceholderText("Enter password");
+    const submit = screen.getByRole("button", { name: /log in/i });
 
     fireEvent.change(email, { target: { value: "user@mail.com" } });
     fireEvent.change(password, { target: { value: "12345678" } });
@@ -161,11 +161,11 @@ describe("LoginPage", () => {
     fireEvent.change(screen.getByLabelText(/email/i), {
       target: { value: "user@mail.com" },
     });
-    fireEvent.change(screen.getByPlaceholderText("Введите пароль"), {
+    fireEvent.change(screen.getByPlaceholderText("Enter password"), {
       target: { value: "12345678" },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /войти/i }));
+    fireEvent.click(screen.getByRole("button", { name: /log in/i }));
 
     await waitFor(() => {
       expect(mockNavigate).not.toHaveBeenCalled();

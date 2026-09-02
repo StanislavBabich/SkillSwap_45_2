@@ -50,11 +50,11 @@ const getValidationErrors = (state: ProfileFormState): ProfileFormErrors => {
   const nextErrors: ProfileFormErrors = {};
 
   if (!state.name.trim()) {
-    nextErrors.name = 'Введите имя';
+    nextErrors.name = 'Enter your name';
   }
 
   if (state.password && state.password.length < 8) {
-    nextErrors.password = 'Пароль должен содержать минимум 8 символов';
+    nextErrors.password = 'Password must be at least 8 characters';
   }
 
   return nextErrors;
@@ -196,7 +196,7 @@ export const ProfilePage = () => {
         body: JSON.stringify(body),
       });
 
-      if (!res.ok) throw new Error('Ошибка сохранения');
+      if (!res.ok) throw new Error('Failed to save');
 
       const updatedUser = await res.json();
       setCurrentUser(updatedUser);
@@ -221,7 +221,7 @@ export const ProfilePage = () => {
       setFormData(nextFormState);
       setSavedData(toComparableState(nextFormState));
     } catch {
-      setSaveError('Не удалось сохранить изменения. Повторите попытку.');
+      setSaveError('Failed to save changes. Please try again.');
     } finally {
       setIsSaving(false);
     }
@@ -230,7 +230,7 @@ export const ProfilePage = () => {
   if (isLoading || !formData) {
     return (
       <section className={styles.page}>
-        <div className={styles.state}>Загрузка профиля...</div>
+        <div className={styles.state}>Loading profile...</div>
       </section>
     );
   }

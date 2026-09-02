@@ -22,5 +22,5 @@ export async function seedAdmin(dataSource: DataSource): Promise<void> {
     }),
   );
 
-  console.log(`Администратор: ${data.email}`);
+  console.log(`Administrator: ${data.email}`);
 }

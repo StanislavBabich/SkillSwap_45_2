@@ -85,7 +85,7 @@ export function NotificationToast({ notification, onClose }: NotificationToastPr
         type="button"
         className={styles.closeBtn}
         onClick={handleCloseBtnClick}
-        aria-label="Закрыть уведомление"
+        aria-label="Close notification"
       >
         <Icon name="close-thin" size={10} className={styles.closeIcon} aria-hidden="true" />
       </button>

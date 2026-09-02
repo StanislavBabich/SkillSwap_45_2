@@ -57,7 +57,7 @@ export const CityFilter = () => {
     <div>
       <CheckboxGroup
         name="cities"
-        label="Город"
+        label="City"
         value={selectedCityIds.map(String)}
         onChange={handleGroupChange}
         orientation="vertical"
@@ -92,7 +92,7 @@ export const CityFilter = () => {
           }
         >
           <span className={styles.showAllButtonText}>
-            {showAllCities ? 'Свернуть' : 'Все города'}
+            {showAllCities ? 'Collapse' : 'All cities'}
           </span>
         </Button>
       )}

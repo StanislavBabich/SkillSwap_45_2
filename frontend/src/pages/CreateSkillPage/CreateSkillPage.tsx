@@ -44,9 +44,9 @@ export const CreateSkillPage = () => {
     setSubcategoryId('');
   }, []);
 
-  const nameError = submitted && !title.trim() ? 'Введите название навыка' : undefined;
-  const categoryError = submitted && !categoryId ? 'Выберите категорию' : undefined;
-  const subcategoryError = submitted && categoryId && !subcategoryId ? 'Выберите подкатегорию' : undefined;
+  const nameError = submitted && !title.trim() ? 'Enter a skill name' : undefined;
+  const categoryError = submitted && !categoryId ? 'Select a category' : undefined;
+  const subcategoryError = submitted && categoryId && !subcategoryId ? 'Select a subcategory' : undefined;
 
   const isFormValid = Boolean(title.trim()) && Boolean(categoryId) && Boolean(subcategoryId);
 
@@ -94,12 +94,12 @@ export const CreateSkillPage = () => {
         }),
       });
 
-      if (!res.ok) throw new Error('Ошибка создания навыка');
+      if (!res.ok) throw new Error('Failed to create skill');
 
       const skill = await res.json();
       navigate(`/skill/${skill.id}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Не удалось создать навык');
+      setError(err instanceof Error ? err.message : 'Failed to create skill');
     } finally {
       setIsSubmitting(false);
     }
@@ -107,21 +107,21 @@ export const CreateSkillPage = () => {
 
   return (
     <section className={styles.page}>
-      <h1 className={styles.title}>Создание навыка</h1>
+      <h1 className={styles.title}>Create a skill</h1>
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         {loadError && <p className={styles.loadError} role="alert">{loadError}</p>}
         
         <Input
-          label="Название навыка"
-          placeholder="Введите название вашего навыка"
+          label="Skill name"
+          placeholder="Enter your skill name"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           error={nameError ?? false}
         />
 
         <Select
-          label="Категория навыка"
-          placeholder="Выберите категорию навыка"
+          label="Skill category"
+          placeholder="Select a skill category"
           options={categoryOptions}
           value={categoryId}
           onChange={handleCategoryChange}
@@ -129,8 +129,8 @@ export const CreateSkillPage = () => {
         />
 
         <Select
-          label="Подкатегория навыка"
-          placeholder="Выберите подкатегорию навыка"
+          label="Skill subcategory"
+          placeholder="Select a skill subcategory"
           options={subcategoryOptions}
           value={subcategoryId}
           onChange={setSubcategoryId}
@@ -139,11 +139,11 @@ export const CreateSkillPage = () => {
         />
 
         <div className={styles.field}>
-          <label className={styles.label} htmlFor="skill-description">Описание</label>
+          <label className={styles.label} htmlFor="skill-description">Description</label>
           <textarea
             id="skill-description"
             className={styles.textarea}
-            placeholder="Коротко опишите, чему можете научить"
+            placeholder="Briefly describe what you can teach"
             value={description}
             onChange={(e) => setDescription(e.target.value.slice(0, DESCRIPTION_MAX_LENGTH))}
             maxLength={DESCRIPTION_MAX_LENGTH}
@@ -158,7 +158,7 @@ export const CreateSkillPage = () => {
         {error && <p className={styles.error} role="alert">{error}</p>}
 
         <Button type="submit" variant="primary" fullWidth disabled={isSubmitting}>
-          {isSubmitting ? 'Создание...' : 'Создать навык'}
+          {isSubmitting ? 'Creating...' : 'Create skill'}
         </Button>
       </form>
     </section>

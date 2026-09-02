@@ -162,7 +162,7 @@ export const CategoryFilter = () => {
     <div>
       <CheckboxGroup
         name="categories"
-        label="Навыки"
+        label="Skills"
         value={selectedIds.map(String)}
         onChange={() => {}}
         orientation="vertical"
@@ -187,7 +187,7 @@ export const CategoryFilter = () => {
           }
         >
           <span className={styles.showAllButtonText}>
-            {showAllCategories ? 'Свернуть' : 'Все категории'}
+            {showAllCategories ? 'Collapse' : 'All categories'}
           </span>
         </Button>
       )}

@@ -103,7 +103,7 @@ export const UserMenu = ({ user }: UserMenuProps) => {
   const getUserName = () => {
     if (effectiveName) return effectiveName;
     if (effectiveEmail) return effectiveEmail.split('@')[0];
-    return 'Пользователь';
+    return 'User';
   };
 
   return (
@@ -123,10 +123,10 @@ export const UserMenu = ({ user }: UserMenuProps) => {
             aria-haspopup="true"
             aria-label={
               hasUnread
-                ? `Уведомления: ${unreadCount} непрочитанных`
-                : 'Уведомления'
+                ? `Notifications: ${unreadCount} unread`
+                : 'Notifications'
             }
-            title="Уведомления"
+            title="Notifications"
           >
             <Icon
               name="notification"
@@ -147,8 +147,8 @@ export const UserMenu = ({ user }: UserMenuProps) => {
       <button
         className={styles.iconButton}
         onClick={handleFavoritesClick}
-        aria-label="Избранное"
-        title="Избранное"
+        aria-label="Favorites"
+        title="Favorites"
       >
         <Icon
           name="like"
@@ -162,16 +162,16 @@ export const UserMenu = ({ user }: UserMenuProps) => {
         <button
           className={styles.userButton}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          aria-label="Меню пользователя"
+          aria-label="User menu"
           aria-expanded={isDropdownOpen}
           aria-haspopup="true"
-          title="Меню пользователя"
+          title="User menu"
         >
           <span className={styles.userName}>{getUserName()}</span>
 
           <img
             src={avatarUrl}
-            alt={`Аватар ${getUserName()}`}
+            alt={`Avatar ${getUserName()}`}
             className={styles.avatar}
             width={48}
             height={48}

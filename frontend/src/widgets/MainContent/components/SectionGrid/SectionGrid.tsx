@@ -42,7 +42,7 @@ export const SectionGrid = ({
         ))}
         {hasMore && (
           <div ref={lastElementRef} className={styles.trigger}>
-            {isLoading && <div className={styles.loader}>Загрузка...</div>}
+            {isLoading && <div className={styles.loader}>Loading...</div>}
           </div>
         )}
       </div>

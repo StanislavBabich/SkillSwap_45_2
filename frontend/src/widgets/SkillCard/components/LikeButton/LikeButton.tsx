@@ -59,7 +59,7 @@ export const LikeButton = ({ skillId, size = 'md', onToggle }: LikeButtonProps) 
       className={clsx(styles.root, styles[`size_${size}`], isLiked && styles.liked, isAnimating && styles.animate)}
       onClick={handleToggle}
       disabled={!isAuthenticated || isPending || favoritesStatus === 'loading'}
-      aria-label={`${isLiked ? 'Убрать из избранного' : 'Добавить в избранное'} (${displayCount})`}
+      aria-label={`${isLiked ? 'Remove from favorites' : 'Add to favorites'} (${displayCount})`}
       aria-pressed={isLiked}
     >
       <div className={styles.content}>

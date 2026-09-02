@@ -51,8 +51,8 @@ export const ConfirmModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Ваше предложение"
-      description="Пожалуйста, проверьте и подтвердите правильность данных"
+      title="Your offer"
+      description="Please review and confirm that the details are correct"
       className={styles.modal}
       hideButton
     >
@@ -85,7 +85,7 @@ export const ConfirmModal = ({
               endIcon={<Icon name="edit" size={20} className={styles.editIcon} />}
               className={styles.editButton}
             >
-              Редактировать
+              Edit
             </Button>
 
             <Button
@@ -96,7 +96,7 @@ export const ConfirmModal = ({
               disabled={isConfirming}
               className={styles.confirmButton}
             >
-              {isConfirming ? 'Сохраняем...' : 'Готово'}
+              {isConfirming ? 'Saving...' : 'Done'}
             </Button>
           </div>
         </div>

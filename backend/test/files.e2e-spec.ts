@@ -148,7 +148,7 @@ describe('FilesController (e2e)', () => {
       expect(body).toEqual(
         expect.objectContaining({
           statusCode: 400,
-          message: 'Файл не загружен',
+          message: 'File was not uploaded',
         }),
       );
     });
@@ -164,7 +164,7 @@ describe('FilesController (e2e)', () => {
       expect(body).toEqual(
         expect.objectContaining({
           statusCode: 400,
-          message: 'Недопустимый формат файла. Разрешены: JPEG, PNG, GIF, WEBP',
+          message: 'Invalid file format. Allowed: JPEG, PNG, GIF, WEBP',
         }),
       );
     });
