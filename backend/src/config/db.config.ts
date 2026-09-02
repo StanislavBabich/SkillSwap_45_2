@@ -1,5 +1,10 @@
 import { registerAs } from '@nestjs/config';
 import { DataSourceOptions } from 'typeorm';
+import { User } from '../users/entities/user.entity';
+import { Skill } from '../skills/entities/skill.entity';
+import { Category } from '../categories/entities/category.entity';
+import { Request } from '../requests/entities/request.entity';
+import { City } from '../cities/entities/city.entity';
 
 export function createDbOptions(): DataSourceOptions {
   const isTestEnv = process.env.NODE_ENV === 'test';
@@ -13,7 +18,7 @@ export function createDbOptions(): DataSourceOptions {
 
   const common: Pick<DataSourceOptions, 'entities' | 'synchronize' | 'logging'> =
     {
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      entities: [User, Skill, Category, Request, City],
       synchronize,
       logging: false,
     };

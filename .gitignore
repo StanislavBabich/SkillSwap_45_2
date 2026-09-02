@@ -1,6 +1,7 @@
 # compiled output
 /dist
 /backend/dist
+/backend/_nest
 /backend/api/_nest
 node_modules/
 /build
