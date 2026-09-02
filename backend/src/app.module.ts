@@ -32,7 +32,11 @@ import { CitiesModule } from './cities/cities.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [dbConfig.KEY],
-      useFactory: (config: TDbConfig) => config,
+      useFactory: (config: TDbConfig) => ({
+        ...config,
+        retryAttempts: process.env.VERCEL ? 1 : 10,
+        retryDelay: 1000,
+      }),
     }),
 
     ThrottlerModule.forRoot({
