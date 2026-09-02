@@ -3,11 +3,11 @@
   "installCommand": "npm install",
   "functions": {
     "api/index.js": {
-      "includeFiles": "_nest/**",
+      "includeFiles": "{_nest/**,node_modules/swagger-ui-dist/**}",
       "maxDuration": 30
     },
     "api/[[...path]].js": {
-      "includeFiles": "_nest/**",
+      "includeFiles": "{_nest/**,node_modules/swagger-ui-dist/**}",
       "maxDuration": 30
     }
   }

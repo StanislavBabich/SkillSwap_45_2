@@ -27,7 +27,12 @@ export async function createExpressServer(): Promise<Express> {
     { logger: winstonLogger },
   );
 
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+      crossOriginEmbedderPolicy: false,
+    }),
+  );
 
   app.enableCors({
     origin: nestCorsOrigin,
@@ -58,7 +63,12 @@ export async function createExpressServer(): Promise<Express> {
     .build();
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api/docs', app, swaggerDocument);
+  SwaggerModule.setup('api/docs', app, swaggerDocument, {
+    customSiteTitle: 'SkillSwap API',
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
