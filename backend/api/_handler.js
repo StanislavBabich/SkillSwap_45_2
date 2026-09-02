@@ -22,6 +22,12 @@ module.exports = async (req, res) => {
       ]);
     }
 
+    const [pathname, search] = String(req.url || '/').split('?');
+    if (pathname !== '/api' && !pathname.startsWith('/api/')) {
+      const nextPath = pathname === '/' ? '/api' : `/api${pathname}`;
+      req.url = search ? `${nextPath}?${search}` : nextPath;
+    }
+
     cachedServer(req, res);
   } catch (error) {
     console.error('SkillSwap API bootstrap failed', error);
