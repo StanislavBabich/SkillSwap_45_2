@@ -5,13 +5,13 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { join } from 'path';
-import { mkdirSync } from 'fs';
 import type { Express } from 'express';
 import express from 'express';
 import { AppModule } from './app.module';
 import { nestCorsOrigin } from './config/cors.config';
 import { winstonLogger } from './logger/logger.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
+import { getUploadsDir } from './files/uploads-path';
 
 let cachedServer: Express | undefined;
 
@@ -34,11 +34,11 @@ export async function createExpressServer(): Promise<Express> {
     credentials: true,
   });
 
-  const publicPath = join(process.cwd(), 'public');
-  const uploadsPath = join(process.cwd(), 'public', 'uploads');
   try {
-    mkdirSync(uploadsPath, { recursive: true });
-    app.useStaticAssets(publicPath, { prefix: '/' });
+    const uploadsPath = getUploadsDir();
+    if (!process.env.VERCEL) {
+      app.useStaticAssets(join(process.cwd(), 'public'), { prefix: '/' });
+    }
     app.useStaticAssets(uploadsPath, { prefix: '/uploads' });
   } catch {
     // Vercel serverless filesystem is read-only except /tmp

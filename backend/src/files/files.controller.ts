@@ -13,6 +13,7 @@ import { extname } from 'path';
 import { randomUUID } from 'crypto';
 import { Express } from 'express';
 import { ApiFilesController, ApiUploadFile } from './files.swagger';
+import { getUploadsDir } from './uploads-path';
 
 const fileFilter = (
   _req: any,
@@ -48,7 +49,9 @@ export class FilesController {
   @UseInterceptors(
     FileInterceptor('file', {
       storage: diskStorage({
-        destination: './public/uploads',
+        destination: (_req, _file, callback) => {
+          callback(null, getUploadsDir());
+        },
         filename: (req, file, callback) => {
           const uniqueName = randomUUID();
           const extension = extname(file.originalname);
