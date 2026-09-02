@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import { join } from 'path';
 import { AppModule } from './app.module';
 import { appConfig, TAppConfig } from './config/app.config';
+import { nestCorsOrigin } from './config/cors.config';
 import { winstonLogger } from './logger/logger.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 
@@ -18,7 +19,7 @@ async function bootstrap() {
   app.use(helmet());
 
   app.enableCors({
-    origin: ['http://localhost:5173'],
+    origin: nestCorsOrigin,
     credentials: true,
   });
 

@@ -4,10 +4,16 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { nestCorsOrigin } from '../config/cors.config';
 import { WsJwtGuard } from '../auth/guards/ws-jwt.guard';
 import { NotificationPayload } from './notification.types';
 
-@WebSocketGateway()
+@WebSocketGateway({
+  cors: {
+    origin: nestCorsOrigin,
+    credentials: true,
+  },
+})
 export class NotificationsGateway implements OnGatewayConnection {
   @WebSocketServer()
   private readonly server: Server;

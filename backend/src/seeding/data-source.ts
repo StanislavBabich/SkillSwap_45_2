@@ -1,5 +1,5 @@
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
-import { dbConfig } from '../config/db.config';
+import { createDbOptions } from '../config/db.config';
 
-export const SeedingDataSource = new DataSource(dbConfig());
+export const SeedingDataSource = new DataSource(createDbOptions());
