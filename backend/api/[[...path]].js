@@ -1,10 +1,16 @@
-const { createExpressServer } = require('../dist/main');
+const path = require('path');
 
 let cachedServer;
 
 module.exports = async (req, res) => {
   try {
     if (!cachedServer) {
+      const { createExpressServer } = require(path.join(
+        __dirname,
+        '..',
+        'nest-runtime',
+        'main',
+      ));
       cachedServer = await createExpressServer();
     }
 

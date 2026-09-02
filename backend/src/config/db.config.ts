@@ -3,7 +3,10 @@ import { DataSourceOptions } from 'typeorm';
 
 export function createDbOptions(): DataSourceOptions {
   const isTestEnv = process.env.NODE_ENV === 'test';
-  const databaseUrl = process.env.DATABASE_URL;
+  const databaseUrl = process.env.DATABASE_URL?.replace(
+    /&?channel_binding=require/g,
+    '',
+  );
   const synchronize =
     process.env.DB_SYNC === 'true' ||
     (process.env.DB_SYNC !== 'false' && process.env.NODE_ENV !== 'production');
