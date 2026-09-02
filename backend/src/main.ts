@@ -12,6 +12,7 @@ import { nestCorsOrigin } from './config/cors.config';
 import { winstonLogger } from './logger/logger.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { getUploadsDir } from './files/uploads-path';
+import { swaggerUiHtml } from './swagger-ui';
 
 let cachedServer: Express | undefined;
 
@@ -21,6 +22,11 @@ export async function createExpressServer(): Promise<Express> {
   }
 
   const expressApp = express();
+  expressApp.get(['/api/docs', '/api/docs/'], (_req, res) => {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.end(swaggerUiHtml);
+  });
+
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
     new ExpressAdapter(expressApp),
@@ -64,10 +70,8 @@ export async function createExpressServer(): Promise<Express> {
 
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api/docs', app, swaggerDocument, {
-    customSiteTitle: 'SkillSwap API',
-    swaggerOptions: {
-      persistAuthorization: true,
-    },
+    ui: false,
+    jsonDocumentUrl: 'api/docs-json',
   });
 
   app.useGlobalPipes(
