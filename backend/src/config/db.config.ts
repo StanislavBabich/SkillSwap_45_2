@@ -20,6 +20,10 @@ export function createDbOptions(): DataSourceOptions {
       type: 'postgres',
       url: databaseUrl,
       ssl: { rejectUnauthorized: false },
+      extra: {
+        max: 2,
+        ssl: { rejectUnauthorized: false },
+      },
       ...common,
     };
   }

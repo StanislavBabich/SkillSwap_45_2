@@ -1,20 +1,31 @@
 import { NestFactory, Reflector } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { join } from 'path';
+import { mkdirSync } from 'fs';
+import type { Express } from 'express';
+import express from 'express';
 import { AppModule } from './app.module';
-import { appConfig, TAppConfig } from './config/app.config';
 import { nestCorsOrigin } from './config/cors.config';
 import { winstonLogger } from './logger/logger.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 
-async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    logger: winstonLogger,
-  });
+let cachedServer: Express | undefined;
+
+export async function createExpressServer(): Promise<Express> {
+  if (cachedServer) {
+    return cachedServer;
+  }
+
+  const expressApp = express();
+  const app = await NestFactory.create<NestExpressApplication>(
+    AppModule,
+    new ExpressAdapter(expressApp),
+    { logger: winstonLogger },
+  );
 
   app.use(helmet());
 
@@ -23,12 +34,9 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Статика ДО глобального префикса
   const publicPath = join(process.cwd(), 'public');
   const uploadsPath = join(process.cwd(), 'public', 'uploads');
-
-  console.log('Public path:', publicPath);
-  console.log('Uploads path:', uploadsPath);
+  mkdirSync(uploadsPath, { recursive: true });
 
   app.useStaticAssets(publicPath, { prefix: '/' });
   app.useStaticAssets(uploadsPath, { prefix: '/uploads' });
@@ -48,9 +56,6 @@ async function bootstrap() {
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api/docs', app, swaggerDocument);
 
-  const config = app.get<TAppConfig>(appConfig.KEY);
-  const port = config.port;
-
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -61,10 +66,23 @@ async function bootstrap() {
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
-  await app.listen(port);
+  await app.init();
+  cachedServer = expressApp;
+  return expressApp;
+}
+
+async function bootstrap() {
+  const server = await createExpressServer();
+  const port = Number(process.env.PORT) || 3000;
+
+  await new Promise<void>((resolve) => {
+    server.listen(port, () => resolve());
+  });
 
   winstonLogger.log(`App running on http://localhost:${port}`);
   winstonLogger.log(`Swagger docs: http://localhost:${port}/api/docs`);
 }
 
-void bootstrap();
+if (!process.env.VERCEL) {
+  void bootstrap();
+}

@@ -1,4 +1,4 @@
-# decompress-targz [![CI](https://github.com/XhmikosR/decompress-targz/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/XhmikosR/decompress-targz/actions/workflows/ci.yml)
+# decompress-targz [![npm version](https://img.shields.io/npm/v/@xhmikosr/decompress-targz?logo=npm&logoColor=fff)](https://www.npmjs.com/package/@xhmikosr/decompress-targz) [![CI Status](https://img.shields.io/github/actions/workflow/status/XhmikosR/decompress-targz/ci.yml?branch=master&label=CI&logo=github)](https://github.com/XhmikosR/decompress-targz/actions/workflows/ci.yml?query=branch%3Amaster)
 
 > tar.gz decompress plugin
 
