@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository, QueryFailedError } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { User } from './entities/user.entity';
 import { Skill } from '../skills/entities/skill.entity';
 import { Category } from '../categories/entities/category.entity';

@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
   BadRequestException,
 } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { Skill } from '../skills/entities/skill.entity';

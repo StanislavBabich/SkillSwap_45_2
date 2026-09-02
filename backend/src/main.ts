@@ -36,10 +36,13 @@ export async function createExpressServer(): Promise<Express> {
 
   const publicPath = join(process.cwd(), 'public');
   const uploadsPath = join(process.cwd(), 'public', 'uploads');
-  mkdirSync(uploadsPath, { recursive: true });
-
-  app.useStaticAssets(publicPath, { prefix: '/' });
-  app.useStaticAssets(uploadsPath, { prefix: '/uploads' });
+  try {
+    mkdirSync(uploadsPath, { recursive: true });
+    app.useStaticAssets(publicPath, { prefix: '/' });
+    app.useStaticAssets(uploadsPath, { prefix: '/uploads' });
+  } catch {
+    // Vercel serverless filesystem is read-only except /tmp
+  }
 
   app.use(cookieParser());
   app.setGlobalPrefix('api');

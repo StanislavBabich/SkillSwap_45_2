@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { DataSource } from 'typeorm';
 import { User } from '../users/entities/user.entity';
 import { Category } from '../categories/entities/category.entity';

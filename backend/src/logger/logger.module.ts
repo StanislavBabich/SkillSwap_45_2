@@ -4,18 +4,21 @@ import * as path from 'path';
 
 const logsDir = path.join(process.cwd(), 'logs');
 
-export const winstonLogger = WinstonModule.createLogger({
-  transports: [
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.colorize(),
-        winston.format.printf(({ timestamp, level, message, context }) => {
-          const ctx = typeof context === 'string' ? context : '';
-          return `[${String(timestamp)}] ${String(level)}${ctx ? ` [${ctx}]` : ''}: ${String(message)}`;
-        }),
-      ),
-    }),
+const transports: winston.transport[] = [
+  new winston.transports.Console({
+    format: winston.format.combine(
+      winston.format.timestamp(),
+      winston.format.colorize(),
+      winston.format.printf(({ timestamp, level, message, context }) => {
+        const ctx = typeof context === 'string' ? context : '';
+        return `[${String(timestamp)}] ${String(level)}${ctx ? ` [${ctx}]` : ''}: ${String(message)}`;
+      }),
+    ),
+  }),
+];
+
+if (!process.env.VERCEL) {
+  transports.push(
     new winston.transports.File({
       dirname: logsDir,
       filename: 'application.log',
@@ -33,5 +36,9 @@ export const winstonLogger = WinstonModule.createLogger({
         winston.format.json(),
       ),
     }),
-  ],
+  );
+}
+
+export const winstonLogger = WinstonModule.createLogger({
+  transports,
 });
