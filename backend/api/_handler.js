@@ -23,9 +23,24 @@ module.exports = async (req, res) => {
     }
 
     const [pathname, search] = String(req.url || '/').split('?');
-    if (pathname !== '/api' && !pathname.startsWith('/api/')) {
-      const nextPath = pathname === '/' ? '/api' : `/api${pathname}`;
-      req.url = search ? `${nextPath}?${search}` : nextPath;
+    let nextPath =
+      pathname === '/api' || pathname.startsWith('/api/')
+        ? pathname
+        : pathname === '/'
+          ? '/api'
+          : `/api${pathname}`;
+
+    const params = new URLSearchParams(search || '');
+    params.delete('...path');
+    params.delete('[...path]');
+    params.delete('path');
+    const nextSearch = params.toString();
+    req.url = nextSearch ? `${nextPath}?${nextSearch}` : nextPath;
+
+    if (req.query && typeof req.query === 'object') {
+      delete req.query['...path'];
+      delete req.query['[...path]'];
+      delete req.query.path;
     }
 
     cachedServer(req, res);
